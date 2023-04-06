@@ -4,11 +4,17 @@ Designed and developed by: [your names here]
 
 CodePath WEB103 Final Project
 
-## Description and Inspiration
+🔗 Link to deployed app:
+
+## About
+
+### Description and Purpose
 
 [text goes here]
 
-🔗 Link to deployed app:
+### Inspiration
+
+[text goes here]
 
 ## Tech Stack
 
