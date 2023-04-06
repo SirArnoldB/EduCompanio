@@ -1,4 +1,4 @@
-# Milestone 1 Document
+# Milestone 1
 
 This document should be completed and submitted during **Unit 5** of this course. You **must** check off all completed tasks in this document in order to receive credit for your work.
 
