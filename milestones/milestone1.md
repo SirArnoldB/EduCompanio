@@ -4,7 +4,7 @@ This document should be completed and submitted during **Unit 5** of this course
 
 ## Checklist
 
-This unit, be sure to complete all tasks listed below.
+This unit, be sure to complete all tasks listed below. To complete a task, place an `x` between the brackets.
 
 - [ ] Read and understand all required features
   - [ ] Understand you **must** implement **all** baseline features and **two** custom features
@@ -18,14 +18,14 @@ This unit, be sure to complete all tasks listed below.
 
 ## Reflection
 
-### 1. What went well this week?
+### 1. What went well during this unit?
 
 [👉🏾👉🏾👉🏾 your answer here]
 
-### 2. What were some challenges your group faced this week?
+### 2. What were some challenges your group faced in this unit?
 
 [👉🏾👉🏾👉🏾 your answer here]
 
-### 3. What additional support will you need in upcoming weeks as you continue to work on your final project?
+### 3. What additional support will you need in upcoming units as you continue to work on your final project?
 
 [👉🏾👉🏾👉🏾 your answer here]
