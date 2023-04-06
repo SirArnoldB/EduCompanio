@@ -1,10 +1,10 @@
 # Milestone 1 Document
 
-This document should be completed and submitted during Unit 5 of this course. You **must** check off all completed tasks in this document in order to receive credit for your work.
+This document should be completed and submitted during **Unit 5** of this course. You **must** check off all completed tasks in this document in order to receive credit for your work.
 
 ## Checklist
 
-This week, be sure to complete all tasks listed below.
+This unit, be sure to complete all tasks listed below.
 
 - [ ] Read and understand all required features
   - [ ] Understand you **must** implement **all** baseline features and **two** custom features
