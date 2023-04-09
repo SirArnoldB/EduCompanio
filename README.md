@@ -1,8 +1,8 @@
 # [your app name here]
 
-Designed and developed by: [your names here]
-
 CodePath WEB103 Final Project
+
+Designed and developed by: [your names here]
 
 🔗 Link to deployed app:
 
@@ -22,9 +22,27 @@ Frontend:
 
 Backend:
 
-## Demo
+## Features
+
+### [Name of Feature 1]
+
+[short description goes here]
 
 [gif goes here]
+
+### [Name of Feature 2]
+
+[short description goes here]
+
+[gif goes here]
+
+### [Name of Feature 3]
+
+[short description goes here]
+
+[gif goes here]
+
+### [ADDITIONAL FEATURES GO HERE - ADD ALL FEATURES HERE IN THE FORMAT ABOVE; you will check these off and add gifs as you complete them]
 
 ## Installation Instructions
 
