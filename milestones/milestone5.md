@@ -11,7 +11,12 @@ This unit, be sure to complete all tasks listed below. To complete a task, place
 - [ ] Update the status of issues in your project board as you complete them
 - [ ] In `readme.md`, check off the features you have completed in this unit by adding a ✅ emoji in front of their title
   - [ ] Under each feature you have completed, **include a GIF** showing feature functionality
+- [ ] Record a 2 - 4 minute practice run of your demo for Demo Day and include it in the **Demo Video** section below in this document
 - [ ] In this document, complete the **Reflection** section below
+
+## Demo Video
+
+🔗 [Here's a walkthrough of implemented required features](👉🏿👉🏿👉🏿 your link here)
 
 ## Reflection
 
