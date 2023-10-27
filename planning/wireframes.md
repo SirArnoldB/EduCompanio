@@ -6,9 +6,9 @@ Reference the Creating an Entity Relationship Diagram final project guide in the
 
 [👉🏾👉🏾👉🏾 List the pages you expect to have in your app, with a ⭐ next to pages you have wireframed]
 
-## Wireframe 1: [page title]
+## Wireframe 1: Landing Page
 
-[👉🏾👉🏾👉🏾 include wireframe 1]
+![Landing Page]('https://github.com/SirArnoldB/EduCompanio/blob/milestone1/planning/wireframes/landing-page.png')
 
 ## Wireframe 2: [page title]
 
