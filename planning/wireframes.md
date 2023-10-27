@@ -6,16 +6,26 @@ Reference the Creating an Entity Relationship Diagram final project guide in the
 
 [👉🏾👉🏾👉🏾 List the pages you expect to have in your app, with a ⭐ next to pages you have wireframed]
 
-## Wireframe 1: Landing Page
+## Wireframe 1: Landing Page ⭐
 
-![Landing Page](./wireframes/landing-page.png)
+![Landing Page](./images/landing-page.png)
 
-## Wireframe 2: [page title]
+## Wireframe 2: Dashboard ⭐
 
-[👉🏾👉🏾👉🏾 include wireframe 2]
+![Dashboard](./images/dashboard.png)
 
-## Wireframe 3: [page title]
+## Wireframe 3: Internships ⭐
 
-[👉🏾👉🏾👉🏾 include wireframe 3]
+![Internships](./images/internships.png)
 
-[👉🏾👉🏾👉🏾 include more wireframes as desired]
+## Wireframe 4: Notes ⭐
+
+![Notes](./images/notes.png)
+
+## Wireframe 5: Projects ⭐
+
+![Projects](./images/projects.png)
+
+## Wireframe 6: Resources ⭐
+
+![Resources](./images/resources.png)
