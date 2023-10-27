@@ -8,7 +8,7 @@ Reference the Creating an Entity Relationship Diagram final project guide in the
 
 ## Wireframe 1: Landing Page
 
-![Landing Page](https://github.com/SirArnoldB/EduCompanio/blob/milestone2/planning/wireframes/landing-page.png)
+![Landing Page](./wireframes/landing-page.png)
 
 ## Wireframe 2: [page title]
 
