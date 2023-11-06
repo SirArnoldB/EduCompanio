@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, Stack } from '@mui/material'
+import { Logo } from '../../assets'
 
 
 const NavBar = () => {
@@ -18,15 +19,15 @@ const NavBar = () => {
       justifyContent: "space-between",
     }}
   >
-    <Link to="/" style={{ display: "flex", alignItems: "center" }}>
-      <img src='' alt="logo" height={45} />
+    <Link to="/" style={{ display: "flex", textDecoration: 'none', color: "#fff", fontWeight: "600", alignItems: "center" }}>
+      <img src={Logo} className='logo' alt="logo" height={45} />
       EduCompanio
     </Link>
     <Stack direction='row' spacing={2}>
-        <Link to ='#features' color='#ffffff' sx={{textDecoration:'none'}}>Features</Link>
-        <Link to ='#testimonials' color='#ffffff' sx={{textDecoration:'none'}}>testimonials</Link>
-        <Link to ='#contact' color='#ffffff' sx={{textDecoration:'none'}}>Sponsors</Link>
-        <Link to ='/signup' color='#ffffff' sx={{textDecoration:'none'}}>Sign Up</Link>
+        <Link to ='#features' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Features</Link>
+        <Link to ='#testimonials' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Testimonials</Link>
+        <Link to ='#sponsors' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Sponsors</Link>
+        <Link to ='/signup'  color='#ffffff' sx={{textDecoration:'none', color: '#152246', fontWeight: '700', backgroundColor: '#f1f1f1', padding: '5px 5px', borderRadius: '10px'}}>Sign Up</Link>
     </Stack>    
   </Stack>
   )

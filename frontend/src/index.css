@@ -67,3 +67,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.sponsor {
+    background-color: '#F0F0F0';
+    border-radius: '10px';
+    padding: '10px';
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+    height: '100%';
+}

@@ -14,12 +14,12 @@ const Hero = () => {
                     EduCompanio
                 </Typography>
                 <Typography variant="h4" sx={{ fontWeight: 400, mb: 4, pr: 5 }}>
-                    EduCompanio is a platform that helps you to find the best online courses for you.
+                    EduCompanio is a platform that helps you to find the best resources for your career development and growth in college.
                 </Typography>
                 <Button variant="contained" color="primary" sx={{ mr: 2 }}>
                     Sign Up
                 </Button>
-                <Button variant="outlined" color="primary">
+            <Button variant="outlined" style={{color: '#ffffff'}}>
                     Learn More
                 </Button>
             </Box>
