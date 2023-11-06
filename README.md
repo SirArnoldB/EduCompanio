@@ -27,7 +27,7 @@ Backend:
 ### Landing Page
 On visiting EduCompanio, every user can  access the landing page. The landing page shows the features of the app.
 ![landing page](https://i.imgur.com/DQykVOY.gif)
-
+https://i.imgur.com/DQykVOY.gif
 ### Organizations
 
 This feature allows students to add and track on-campus and off-campus organizations. Students can add a custom organization if it's not already listed on the platform.
