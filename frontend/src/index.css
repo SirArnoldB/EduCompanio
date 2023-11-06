@@ -76,3 +76,4 @@ button:focus-visible {
     align-items: 'center';
     height: '100%';
 }
+@import 'simplebar-react/dist/simplebar.min.css';
