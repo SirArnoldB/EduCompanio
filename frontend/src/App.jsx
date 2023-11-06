@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import AppContent from "./components/AppContent";
+import ThemeProvider from "./theme";
 
 function App() {
-  
   return (
-    <>
-      <h1>Hello</h1>
-    </>
-  )
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
