@@ -5,7 +5,7 @@ import { Card, CardMedia, CardContent, Typography, Stack } from '@mui/material'
 
 const Features = () => {
     return (
-        <Stack direction='column' spacing={2} id='features'>
+        <Stack direction='column' spacing={2} id='features' style={{paddingBottom: '35px'}}>
             <Typography variant='h2' style={{margin: '12 auto', textAlign: 'center'}}>Features</Typography>
             <Stack direction='row' spacing={2} sx={{margin: '20px 40px', flexWrap: 'wrap', justifyContent: 'space-between', alignContent: 'center'}}>
                 <Card style={{ width: 360, marginTop: '30px' }}>

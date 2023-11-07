@@ -40,12 +40,12 @@
         const [testimonials, setTestimonials] = useState(testimonialData);
 
         return (
-            <Box sx={{ flexGrow: 1 }} style={{marginBottom: '30px' }} id='testimonials'>
+            <Box sx={{ flexGrow: 1 }} style={{paddingBottom: '100px', backgroundColor: '#f1f1f1' }} id='testimonials'>
                 <Typography variant='h2' style={{margin: '20 auto', textAlign: 'center', paddingTop: '90px'}}>Testimonials</Typography>
                 <Grid container spacing={2}>
                     {testimonials.map((testimonial) => (
                         <Grid item xs={12} sm={4} key={testimonial.id}>
-                            <TestimonialContainer>
+                            <TestimonialContainer style={{border: '1px solid #1d587de8'}}>
                                 <Avatar
                                     alt={testimonial.name}
                                     src={testimonial.image}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Stack } from '@mui/material'
-import { Logo } from '../../assets'
+import Logo from '../../../public/logo/png/logo-no-background.png'
 
 
 const NavBar = () => {
@@ -21,13 +21,12 @@ const NavBar = () => {
   >
     <Link to="/" style={{ display: "flex", textDecoration: 'none', color: "#fff", fontWeight: "600", alignItems: "center" }}>
       <img src={Logo} className='logo' alt="logo" height={45} />
-      EduCompanio
     </Link>
     <Stack direction='row' spacing={2}>
         <Link to ='#features' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Features</Link>
         <Link to ='#testimonials' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Testimonials</Link>
         <Link to ='#sponsors' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Sponsors</Link>
-        <Link to ='/signup'  color='#ffffff' sx={{textDecoration:'none', color: '#152246', fontWeight: '700', backgroundColor: '#f1f1f1', padding: '5px 5px', borderRadius: '10px'}}>Sign Up</Link>
+        <Link to ='/signup'  color='#ffffff' sx={{textDecoration:'none', color: '#152246', fontWeight: '700', backgroundColor: '#f1f1f1', padding: '5px 5px', borderRadius: '10px'}}>Sign In</Link>
     </Stack>    
   </Stack>
   )

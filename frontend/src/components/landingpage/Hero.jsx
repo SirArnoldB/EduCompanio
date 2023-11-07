@@ -19,9 +19,6 @@ const Hero = () => {
                 <Button variant="contained" color="primary" sx={{ mr: 2 }}>
                     Sign Up
                 </Button>
-            <Button variant="outlined" style={{color: '#ffffff'}}>
-                    Learn More
-                </Button>
             </Box>
         </Stack>
     

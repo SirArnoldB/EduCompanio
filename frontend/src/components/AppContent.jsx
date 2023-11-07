@@ -20,13 +20,15 @@ const AppContent = () => {
         </DashboardLayout>
       ),
       children: [
-        { path: "/", element: <LandingPage />, index: true},
-        { path: "/home", element: <IndexPage />  },
+        { path: "/", element: <IndexPage />, index: true  },
         { path: "/internships", element: <InternshipsPage /> },
         { path: "/notes", element: <NotesPage /> },
         { path: "/projects", element: <ProjectsPage /> },
       ],
     },
+    {
+      path: "/home", element: <LandingPage />
+    }
   ]);
 
   return routes;
