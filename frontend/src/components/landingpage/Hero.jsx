@@ -7,9 +7,9 @@ const Hero = () => {
     <Box  minHeight="95vh" style={{ marginTop: "4rem" }}>
         <Stack direction={{ xs: "column", md: "row" }} sx={{marginTop: 12}} >
             <Box flex={1} >
-               <img src={HeroImage} alt="hero" height={600} />
+               <img src={HeroImage} alt="hero" style={{height: 600, width: 600}} width='auto' />
             </Box>
-            <Box >
+            <Box style={{width: '50%'}} >
                 <Typography variant="h1" sx={{ fontWeight: 600, mb: 8 }}>
                     EduCompanio
                 </Typography>
