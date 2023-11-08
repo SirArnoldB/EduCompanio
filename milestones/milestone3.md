@@ -21,21 +21,21 @@ You will need to reference the GitHub Project Management guide in the course por
 ## Reflection
 
 ### 1. What went well during this unit?
-Project created: Set up milestones on github, created issues for each of the feature, database set up successful, dashboard and landing page in react in progress
-[👉🏾👉🏾👉🏾 your answer here]
+
+[Project created: Set up milestones on github, created issues for each of the feature, database set up successful, dashboard and landing page in react in progress]
 
 ### 2. What were some challenges your group faced in this unit?
-Patiently setting-up the project which consumed more time but beneficial for the team
-[👉🏾👉🏾👉🏾 your answer here]
+
+[Patiently setting-up the project which consumed more time but beneficial for the team]
 
 ### Did you finish all of your tasks in your sprint plan for this week? If you did not finish all of the planned tasks, how would you prioritize the remaining tasks on your list?
-Some tasks are still in progress. Completing the react frontend app. We should be done with major portions by midweek next week. 
-[👉🏾👉🏾👉🏾 your answer here]
+
+[Some tasks are still in progress. Completing the react frontend app. We should be done with major portions by midweek next week. ]
 
 ### Which features and user stories would you consider “at risk”? How will you change your plan if those items remain “at risk”?
-Organizations section where students add on campus and off campus organization. Based on feedback from pur pitch, we're considering removing it.
-[👉🏾👉🏾👉🏾 your answer here]
+
+[Organizations section where students add on campus and off campus organization. Based on feedback from pur pitch, we're considering removing it.]
 
 ### 5. What additional support will you need in upcoming units as you continue to work on your final project?
-More Guidance on implementing our features
-[👉🏾👉🏾👉🏾 your answer here]
+
+[More Guidance on implementing our features]
