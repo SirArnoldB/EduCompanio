@@ -4,9 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 import StrictModeDroppable from "./StrictModeDroppable";
 import { Box, Typography } from "@mui/material";
 import PropTypes from "prop-types";
+import SearchBar from "./SearchBar";
 
 const Board = ({ boardType }) => {
   const [columns, setColumns] = useState();
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     switch (boardType) {
@@ -98,6 +100,10 @@ const Board = ({ boardType }) => {
     }
   }, [boardType]);
 
+  const handleSearchInput = (event) => {
+    setSearchInput(event.target.value);
+  };
+
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -136,92 +142,121 @@ const Board = ({ boardType }) => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        height: "100%",
-        width: "100%",
-      }}
-    >
-      {columns && (
-        <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-        >
-          {Object.entries(columns).map(([columnId, column], index) => {
-            return (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  height: "calc(100vh - 64px)",
-                }}
-                key={columnId}
-              >
-                <Typography variant="h5">{column.name}</Typography>
+    <>
+      <SearchBar onSearch={handleSearchInput} />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "nowrap",
+          overflowX: "auto",
+        }}
+      >
+        {columns && (
+          <DragDropContext
+            onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+          >
+            {Object.entries(columns).map(([columnId, column], index) => {
+              return (
                 <Box
                   sx={{
-                    margin: 0.5,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    height: "calc(100vh - 64px)",
                   }}
+                  key={columnId}
                 >
-                  <StrictModeDroppable droppableId={columnId} key={columnId}>
-                    {(provided, snapshot) => {
-                      return (
-                        <Box
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                          sx={{
-                            background: snapshot.isDraggingOver
-                              ? "lightblue"
-                              : "lightgrey",
-                            padding: 1,
-                            width: 300,
-                            height: "100%",
-                          }}
-                        >
-                          {column.items.map((item, index) => {
-                            return (
-                              <Draggable
-                                key={item.id}
-                                draggableId={item.id}
-                                index={index}
-                              >
-                                {(provided, snapshot) => {
-                                  return (
-                                    <Box
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      sx={{
-                                        userSelect: "none",
-                                        padding: 2,
-                                        margin: "0 0 8px 0",
-                                        backgroundColor: snapshot.isDragging
-                                          ? "#263B4A"
-                                          : "#456C86",
-                                        color: "white",
-                                        ...provided.draggableProps.style,
-                                      }}
-                                    >
-                                      {item.content}
-                                    </Box>
-                                  );
-                                }}
-                              </Draggable>
-                            );
-                          })}
-                          {provided.placeholder}
-                        </Box>
-                      );
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#010C80",
                     }}
-                  </StrictModeDroppable>
+                  >
+                    {column.name}
+                  </Typography>
+                  <Box
+                    sx={{
+                      margin: 0.9,
+                      maxHeight: "calc(100vh - 64px)",
+                    }}
+                  >
+                    <StrictModeDroppable droppableId={columnId} key={columnId}>
+                      {(provided, snapshot) => {
+                        return (
+                          <Box
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            sx={{
+                              background: snapshot.isDraggingOver
+                                ? "#77D4FC"
+                                : "lightgrey",
+                              padding: 1,
+                              width: 300,
+                              height: "100%",
+                            }}
+                          >
+                            {column.items && column.items.length > 0 ? (
+                              column.items.map((item, index) => {
+                                return (
+                                  <Draggable
+                                    key={item.id}
+                                    draggableId={item.id}
+                                    index={index}
+                                  >
+                                    {(provided, snapshot) => {
+                                      return (
+                                        <Box
+                                          ref={provided.innerRef}
+                                          {...provided.draggableProps}
+                                          {...provided.dragHandleProps}
+                                          sx={{
+                                            userSelect: "none",
+                                            padding: 2,
+                                            margin: "0 0 8px 0",
+                                            backgroundColor: snapshot.isDragging
+                                              ? "#263B4A"
+                                              : "#456C86",
+                                            color: "white",
+                                            ...provided.draggableProps.style,
+                                          }}
+                                        >
+                                          {item.content}
+                                        </Box>
+                                      );
+                                    }}
+                                  </Draggable>
+                                );
+                              })
+                            ) : (
+                              <Typography
+                                variant="body1"
+                                sx={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  fontSize: "1.2rem",
+                                  color: "#888",
+                                }}
+                              >
+                                Nothing here yet!
+                              </Typography>
+                            )}
+
+                            {provided.placeholder}
+                          </Box>
+                        );
+                      }}
+                    </StrictModeDroppable>
+                  </Box>
                 </Box>
-              </Box>
-            );
-          })}
-        </DragDropContext>
-      )}
-    </Box>
+              );
+            })}
+          </DragDropContext>
+        )}
+      </Box>
+    </>
   );
 };
 
