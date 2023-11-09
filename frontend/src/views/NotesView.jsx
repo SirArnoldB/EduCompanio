@@ -1,6 +1,5 @@
-import { Typography } from "@mui/material";
-
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import Board from "../components/Board";
 
 const NotesView = () => {
   return (
@@ -8,6 +7,7 @@ const NotesView = () => {
       <Typography variant="h4" sx={{ mb: 5 }}>
         Notes 📝
       </Typography>
+      <Board boardType="notes" />
     </Container>
   );
 };
