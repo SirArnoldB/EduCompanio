@@ -14,9 +14,9 @@ app.use(cors());
 app.use(express.json());
 
 // TODO: Add API paths for the backend here
-app.use('/api/notes', notesRouter);
-app.use('/api/internships', internshipsRouter);
-app.use('/api/projects', projectsRouter);
+app.use('/notes', notesRouter);
+app.use('/internships', internshipsRouter);
+app.use('/projects', projectsRouter);
 
 // Set up the default route
 app.get('/', (req, res) => {
