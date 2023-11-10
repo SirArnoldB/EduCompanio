@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
-import Popover from "@mui/material/Popover";
+import {
+  Avatar,
+  Divider,
+  Popover,
+  MenuItem,
+  IconButton,
+  Typography,
+  Box,
+} from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
 
 const MENU_OPTIONS = [
   {
