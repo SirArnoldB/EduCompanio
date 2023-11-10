@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 
 import Nav from "./nav";
 import Main from "./main";
