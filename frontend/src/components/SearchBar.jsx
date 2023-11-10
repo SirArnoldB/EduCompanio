@@ -9,7 +9,14 @@ import {
 import Iconify from "./Iconify";
 import PropTypes from "prop-types";
 
-const SearchBar = ({ onSearch }) => {
+/**
+ * A search bar component that allows users to search and add items.
+ * @param {Object} props - The props object.
+ * @param {Function} props.onSearch - The function to call when the search input changes.
+ * @param {Function} props.setAddModalOpen - The function to call when the add button is clicked.
+ * @returns {JSX.Element} - The SearchBar component.
+ */
+const SearchBar = ({ onSearch, setAddModalOpen }) => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleChange = (event) => {
@@ -50,6 +57,7 @@ const SearchBar = ({ onSearch }) => {
           variant="contained"
           color="info"
           startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={() => setAddModalOpen(true)}
         >
           Add
         </Button>
@@ -60,6 +68,7 @@ const SearchBar = ({ onSearch }) => {
 
 SearchBar.propTypes = {
   onSearch: PropTypes.func.isRequired,
+  setAddModalOpen: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

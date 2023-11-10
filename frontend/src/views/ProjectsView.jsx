@@ -1,3 +1,7 @@
+/**
+ * Renders the ProjectsView component.
+ * @returns {JSX.Element} The ProjectsView component.
+ */
 import { Container, Typography } from "@mui/material";
 import Board from "../components/Board";
 
@@ -7,7 +11,7 @@ const ProjectsView = () => {
       <Typography variant="h4" sx={{ mb: 5 }}>
         Projects 🎯
       </Typography>
-      <Board boardType="projects" />
+      <Board boardType="project" />
     </Container>
   );
 };
