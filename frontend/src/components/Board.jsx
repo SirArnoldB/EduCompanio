@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
-import { DragDropContext, Draggable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
-import StrictModeDroppable from "./StrictModeDroppable";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import PropTypes from "prop-types";
 import SearchBar from "./SearchBar";
-import ViewModal from "./ViewModal";
-import EditModal from "./EditModal";
-import DeleteModal from "./DeleteModal";
-import AddModal from "./AddModal";
-import BoardItem from "./BoardItem";
+import DroppableColumn from "./DroppableColumn";
+import Modals from "./Modals";
 
 /**
  * A component that displays a board with draggable and droppable columns and items.
@@ -281,105 +277,13 @@ const Board = ({ boardType }) => {
           >
             {Object.entries(columns).map(([columnId, column]) => {
               return (
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    height: "calc(100vh - 64px)",
-                  }}
+                <DroppableColumn
+                  column={column}
+                  columnId={columnId}
+                  boardType={boardType}
+                  handleViewModalOpen={handleViewModalOpen}
                   key={columnId}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#010C80",
-                    }}
-                  >
-                    {column.name}
-                  </Typography>
-                  <Box
-                    sx={{
-                      margin: 0.9,
-                      maxHeight: "calc(100vh - 64px)",
-                    }}
-                  >
-                    <StrictModeDroppable droppableId={columnId} key={columnId}>
-                      {(provided, snapshot) => {
-                        return (
-                          <Box
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            sx={{
-                              background: snapshot.isDraggingOver
-                                ? "lightblue"
-                                : "lightgrey",
-                              padding: 1,
-                              width: 350,
-                              height: "100%",
-                            }}
-                          >
-                            {column.items && column.items.length > 0 ? (
-                              column.items.map((item, index) => {
-                                return (
-                                  <Draggable
-                                    key={item.id}
-                                    draggableId={item.id}
-                                    index={index}
-                                  >
-                                    {(provided, snapshot) => {
-                                      return (
-                                        <Box
-                                          onClick={() =>
-                                            handleViewModalOpen(item)
-                                          }
-                                          ref={provided.innerRef}
-                                          {...provided.draggableProps}
-                                          {...provided.dragHandleProps}
-                                          sx={{
-                                            userSelect: "none",
-                                            padding: 0.5,
-                                            margin: "0 0 8px 0",
-                                            backgroundColor: snapshot.isDragging
-                                              ? "#154c79"
-                                              : "#263B4A",
-                                            color: "#f5f5f5",
-                                            ...provided.draggableProps.style,
-                                          }}
-                                        >
-                                          <BoardItem
-                                            item={item}
-                                            itemType={boardType}
-                                          />
-                                        </Box>
-                                      );
-                                    }}
-                                  </Draggable>
-                                );
-                              })
-                            ) : (
-                              <Typography
-                                variant="body1"
-                                sx={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  fontSize: "1.2rem",
-                                  color: "#888",
-                                }}
-                              >
-                                Nothing here yet!
-                              </Typography>
-                            )}
-
-                            {provided.placeholder}
-                          </Box>
-                        );
-                      }}
-                    </StrictModeDroppable>
-                  </Box>
-                </Box>
+                />
               );
             })}
           </DragDropContext>
@@ -387,32 +291,21 @@ const Board = ({ boardType }) => {
       </Box>
 
       {/* Modals */}
-      <ViewModal
-        open={viewModalOpen}
-        handleClose={handleViewModalClose}
-        onEdit={handleEditModalOpen}
-        onDelete={handleDeleteModalOpen}
-        item={modalItem}
-        itemType={boardType}
-      />
-      <EditModal
-        open={editModalOpen}
-        handleClose={handleEditModalClose}
-        item={modalItem}
-        itemType={boardType}
-      />
-      <DeleteModal
-        open={deleteModalOpen}
-        handleClose={handleDeleteModalClose}
-        item={modalItem}
-        itemType={boardType}
-        onDelete={handleDelete}
-      />
-      <AddModal
-        open={addModalOpen}
-        handleClose={handleAddModalClose}
-        onSave={handleAdd}
-        itemType={boardType}
+      <Modals
+        viewModalOpen={viewModalOpen}
+        handleViewModalClose={handleViewModalClose}
+        handleEditModalOpen={handleEditModalOpen}
+        handleDeleteModalOpen={handleDeleteModalOpen}
+        modalItem={modalItem}
+        boardType={boardType}
+        editModalOpen={editModalOpen}
+        handleEditModalClose={handleEditModalClose}
+        addModalOpen={addModalOpen}
+        handleAddModalClose={handleAddModalClose}
+        deleteModalOpen={deleteModalOpen}
+        handleDeleteModalClose={handleDeleteModalClose}
+        handleDelete={handleDelete}
+        handleAdd={handleAdd}
       />
     </>
   );
