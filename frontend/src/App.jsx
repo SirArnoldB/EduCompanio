@@ -1,3 +1,4 @@
+import "./App.css";
 import AppContent from "./components/AppContent";
 import ThemeProvider from "./theme";
 

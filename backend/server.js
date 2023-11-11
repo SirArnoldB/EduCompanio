@@ -1,5 +1,10 @@
 import express from 'express';
 import cors from 'cors';
+import notesRouter from './routes/notes.js';
+import internshipsRouter from './routes/internships.js';
+import projectsRouter from './routes/projects.js';
+import categoriesRouter from './routes/categories.js';
+import statusesRouter from './routes/statuses.js';
 
 // create express app
 const app = express();
@@ -10,7 +15,16 @@ app.use(cors());
 // set up the express app to handle data parsing
 app.use(express.json());
 
-// TODO: Add API paths for the backend here
+// set up the routes
+app.use('/notes', notesRouter);
+app.use('/internships', internshipsRouter);
+app.use('/projects', projectsRouter);
+
+// set up the categories routes
+app.use('/categories', categoriesRouter);
+
+// set up the statuses routes
+app.use('/statuses', statusesRouter);
 
 // Set up the default route
 app.get('/', (req, res) => {

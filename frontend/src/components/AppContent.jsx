@@ -3,6 +3,7 @@ import { Outlet, useRoutes } from "react-router-dom";
 import DashboardLayout from "../layouts/dashboard/DashboardLayout";
 import LoadingSpinner from "./LoadingSpinner";
 
+export const LandingPage = lazy(() => import("../pages/LandingPage"));
 export const IndexPage = lazy(() => import("../pages/IndexPage"));
 export const InternshipsPage = lazy(() => import("../pages/InternshipsPage"));
 export const NotesPage = lazy(() => import("../pages/NotesPage"));
@@ -24,6 +25,10 @@ const AppContent = () => {
         { path: "/notes", element: <NotesPage /> },
         { path: "/projects", element: <ProjectsPage /> },
       ],
+    },
+    {
+      path: "/home",
+      element: <LandingPage />,
     },
   ]);
 
