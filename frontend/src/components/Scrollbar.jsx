@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { forwardRef } from "react";
 
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import { StyledRootScrollbar, StyledScrollbar } from "../styles/scroll-bar";
 
 // eslint-disable-next-line react/display-name

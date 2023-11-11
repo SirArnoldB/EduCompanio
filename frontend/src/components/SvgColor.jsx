@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { forwardRef } from "react";
 
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 
 // eslint-disable-next-line react/display-name
 const SvgColor = forwardRef(({ src, sx, ...other }, ref) => (

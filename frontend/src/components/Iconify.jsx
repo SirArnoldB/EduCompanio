@@ -1,8 +1,7 @@
-import PropTypes from "prop-types";
+import { Box } from "@mui/material";
 import { forwardRef } from "react";
 import { Icon } from "@iconify/react";
-
-import Box from "@mui/material/Box";
+import PropTypes from "prop-types";
 
 // eslint-disable-next-line react/display-name
 const Iconify = forwardRef(({ icon, width = 20, sx, ...other }, ref) => (

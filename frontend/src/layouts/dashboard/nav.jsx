@@ -1,20 +1,22 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Drawer from "@mui/material/Drawer";
-import Avatar from "@mui/material/Avatar";
+import {
+  Stack,
+  Drawer,
+  Typography,
+  Box,
+  ListItemButton,
+  Avatar,
+} from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import ListItemButton from "@mui/material/ListItemButton";
 
 import { NAV } from "./config-layout";
 import navConfig from "./config-navigation";
 import usePathname from "../../hooks/use-pathname";
 import RouterLink from "../../components/RouterLink";
 import { useResponsive } from "../../hooks/use-responsive";
-import Scrollbar from "../../components/ScrollBar";
+import Scrollbar from "../../components/Scrollbar";
 import Logo from "../../components/Logo";
 
 export default function Nav({ openNav, onCloseNav }) {
