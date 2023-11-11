@@ -23,11 +23,11 @@ This unit, be sure to complete all tasks listed below. To complete a task, place
 - We had to rethink using react-trello because it kept giving us errors and we were not able to figure out how to fix them.
 - We had a bit of challenge learning react-beautiful-dnd and implementing it in our app, but we were able to figure it out.
 
-### Did you finish all of your tasks in your sprint plan for this week? If you did not finish all of the planned tasks, how would you prioritize the remaining tasks on your list?
+### 3. Did you finish all of your tasks in your sprint plan for this week? If you did not finish all of the planned tasks, how would you prioritize the remaining tasks on your list?
 
 - We managed to finish all of our tasks for this week.
 
-### Which features and user stories would you consider “at risk”? How will you change your plan if those items remain “at risk”?
+### 4. Which features and user stories would you consider “at risk”? How will you change your plan if those items remain “at risk”?
 
 - Skills Development, Interview Prep and Career Roadmaps are at risk. Therefore, we have decided to merge these features into one feature called Resources. This feature will provide resources for students to prepare for interviews, develop their skills and learn about career roadmaps.
 
