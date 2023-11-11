@@ -24,29 +24,40 @@ Backend:
 
 ## Features
 
-### Landing Page
-On visiting EduCompanio, every user can  access the landing page. The landing page shows the features of the app.
+### Landing Page ✅
+
+On visiting EduCompanio, every user can access the landing page. The landing page shows the features of the app.
 ![landing page](https://i.imgur.com/DQykVOY.gif)
 https://i.imgur.com/DQykVOY.gif
+
 ### Organizations
 
 This feature allows students to add and track on-campus and off-campus organizations. Students can add a custom organization if it's not already listed on the platform.
 
-### Internships
+### Internships ✅
 
 Provides a customizable Trello-like board for students to track their internship applications, along with their respective statuses. Offers a curated list of websites for discovering internship opportunities.
+
+- Current Progress GIF:
+  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/internships.gif' title='Video Walkthrough' width='' alt='Internship Board' />
 
 ### Interview Prep
 
 This feature provides resources that students can use to prepare for interviews. It aims to make it easier for students across all disciplines to find necessary resources quickly and efficiently.
 
-### Projects
+### Projects ✅
 
 Provides a curated list of websites for discovering hackathons and open-source projects, catering to students interested in honing their technical skills.
 
-### Notes
+- Current Progress GIF:
+  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/projects.gif' title='Video Walkthrough' width='' alt='Projects Board' />
+
+### Notes ✅
 
 Allows students to journal about their experiences and take notes, ensuring all valuable information is stored in one accessible location.
+
+- Current Progress GIF:
+  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/notes.gif' title='Video Walkthrough' width='' alt='Notes Board' />
 
 ### Skills Development
 
