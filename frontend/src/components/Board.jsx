@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { v4 as uuidv4 } from "uuid";
 import { Box } from "@mui/material";
 import PropTypes from "prop-types";
 import SearchBar from "./SearchBar";
 import DroppableColumn from "./DroppableColumn";
 import Modals from "./Modals";
+import LoadingSpinner from "./LoadingSpinner";
+import InternshipsAPI from "../services/internships";
+import NotesAPI from "../services/notes";
+import ProjectsAPI from "../services/projects";
 
 /**
  * A component that displays a board with draggable and droppable columns and items.
@@ -13,183 +16,55 @@ import Modals from "./Modals";
  * @param {string} props.boardType - The type of board to display (note, internship, or project).
  * @returns {JSX.Element} - The Board component.
  */
-const Board = ({ boardType }) => {
-  const [columns, setColumns] = useState();
+const Board = ({ boardType, columns }) => {
+  const [boardColumns, setBoardColumns] = useState(null);
   const [searchInput, setSearchInput] = useState("");
 
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [modalItem, setModalItem] = useState();
+  const [modalItem, setModalItem] = useState({});
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [filteredColumns, setFilteredColumns] = useState(null);
 
   useEffect(() => {
-    switch (boardType) {
-      case "note": {
-        const notesItems = [
-          {
-            id: uuidv4(),
-            title: "First Note",
-            content: `This is the first note with a lot of content. I am the one doing this. Yes! This is the first note with a lot of content.
-              I am the one doing this. Yes! This is the first note with a lot of content. I am the one doing this. Yes!
-              This is the first note with a lot of content. I am the one doing this. Yes! This is the first note with a lot of content.
-              I am the one doing this. Yes! This is the first note with a lot of content. I am the one doing this. Yes!
-              This is the first note with a lot of content. I am the one doing this. Yes! This is the first note with a lot of content.
-              I am the one doing this. Yes! This is the first note with a lot of content. I am the one doing this. Yes!
-              This is the first note with a lot of content. I am the one doing this. Yes! This is the first note with a lot of content.
-              I am the one doing this. Yes! This is the first note with a lot of content. I am the one doing this. Yes!
-              This is the first note with a lot of content. I am the one doing this. Yes! This is the first note with a lot of content.
-              I am the one doing this. Yes! This is the first note with a lot of content. I am the one doing this. Yes!
-              `,
-            status: "Active",
-            category: "💡 Brain Sparks",
-          },
-          {
-            id: uuidv4(),
-            title: "Second Note",
-            content: "This is the second note",
-            status: "Active",
-            category: "🤔 Mind Maze",
-          },
-        ];
-        const notesColumns = {
-          [uuidv4()]: {
-            name: "💡 Brain Sparks",
-            items: notesItems,
-          },
-          [uuidv4()]: {
-            name: "🤔 Mind Maze",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "📝 Snippets",
-            items: [],
-          },
-        };
-        setColumns(notesColumns);
-        break;
-      }
-      case "internship": {
-        const internshipsItems = [
-          {
-            id: uuidv4(),
-            company: "First Company",
-            position: "First Position",
-            content: "This is the first internship",
-            status: "Applied",
-            url: "https://www.google.com",
-            category: "Applied",
-          },
-          {
-            id: uuidv4(),
-            company: "Second Company",
-            position: "Second Position",
-            content: "This is the second internship",
-            status: "Applied",
-            url: "https://www.google.com",
-            category: "Screen",
-          },
-          {
-            id: uuidv4(),
-            company: "Third Company",
-            position: "Third Position",
-            content: "This is the third internship",
-            status: "Applied",
-            url: "https://www.google.com",
-            category: "Interviewing",
-          },
-        ];
-        const internshipsColumns = {
-          [uuidv4()]: {
-            name: "Applied",
-            items: internshipsItems,
-          },
-          [uuidv4()]: {
-            name: "Screen",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Interviewing",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Offer",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Rejected",
-            items: [],
-          },
-        };
-        setColumns(internshipsColumns);
-        break;
-      }
-      case "project": {
-        const projectsItems = [
-          {
-            id: uuidv4(),
-            title: "First Project",
-            content: "This is the first project",
-            status: "Active",
-            category: "💡 Brain Sparks",
-            url: "https://www.google.com",
-          },
-          {
-            id: uuidv4(),
-            title: "Second Project",
-            content: "This is the second project",
-            status: "Active",
-            category: "🤔 Mind Maze",
-            url: "https://www.google.com",
-          },
-          {
-            id: uuidv4(),
-            title: "Third Project",
-            content: "This is the third project",
-            status: "Active",
-            category: "📝 Snippets",
-            url: "https://www.google.com",
-          },
-        ];
-        const projectsColumns = {
-          [uuidv4()]: {
-            name: "Not Started",
-            items: projectsItems,
-          },
-          [uuidv4()]: {
-            name: "In Progress",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Completed",
-            items: [],
-          },
-        };
-        setColumns(projectsColumns);
-        break;
-      }
-      default:
-        break;
-    }
-  }, [boardType]);
+    setBoardColumns(columns);
+  }, [columns]);
 
-  const handleSearchInput = (event) => {
-    setSearchInput(event.target.value);
+  useEffect(() => {
+    if (boardColumns) {
+      const newFilteredColumns = {};
+      Object.entries(boardColumns).forEach(([columnId, column]) => {
+        const filteredItems = column.items.filter((item) => {
+          return (
+            item.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.position?.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.company?.toLowerCase().includes(searchInput.toLowerCase())
+          );
+        });
+        newFilteredColumns[columnId] = { ...column, items: filteredItems };
+      });
+      setFilteredColumns(newFilteredColumns);
+    }
+  }, [searchInput, boardColumns]);
+
+  const handleSearchInput = (value) => {
+    setSearchInput(value);
   };
 
-  const onDragEnd = (result, columns, setColumns) => {
+  const onDragEnd = (result, boardColumns, setBoardColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
 
     if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId];
-      const destColumn = columns[destination.droppableId];
+      const sourceColumn = boardColumns[source.droppableId];
+      const destColumn = boardColumns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
+      setBoardColumns({
+        ...boardColumns,
         [source.droppableId]: {
           ...sourceColumn,
           items: sourceItems,
@@ -199,13 +74,46 @@ const Board = ({ boardType }) => {
           items: destItems,
         },
       });
+
+      // Update the status of the item in the database
+      const item = removed;
+      console.log("Updating item: ", item);
+      const statusId = destination.droppableId;
+      console.log("Status ID: ", statusId);
+      const itemId = item.id;
+
+      switch (boardType) {
+        case "internship":
+          InternshipsAPI.updateInternship(itemId, {
+            ...item,
+            status_id: statusId,
+            updated_at: new Date(),
+          });
+          break;
+        case "note":
+          NotesAPI.updateNote(itemId, {
+            ...item,
+            status_id: statusId,
+            updated_at: new Date(),
+          });
+          break;
+        case "project":
+          ProjectsAPI.updateProject(itemId, {
+            ...item,
+            status_id: statusId,
+            updated_at: new Date(),
+          });
+          break;
+        default:
+          break;
+      }
     } else {
-      const column = columns[source.droppableId];
+      const column = boardColumns[source.droppableId];
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
+      setBoardColumns({
+        ...boardColumns,
         [source.droppableId]: {
           ...column,
           items: copiedItems,
@@ -243,17 +151,7 @@ const Board = ({ boardType }) => {
     setDeleteModalOpen(false);
   };
 
-  const handleDelete = (item) => {
-    console.log("Deleting item: ", item);
-    setDeleteModalOpen(false);
-  };
-
   const handleAddModalClose = () => {
-    setAddModalOpen(false);
-  };
-
-  const handleAdd = (item) => {
-    console.log("Adding item: ", item);
     setAddModalOpen(false);
   };
 
@@ -262,6 +160,7 @@ const Board = ({ boardType }) => {
       <SearchBar
         onSearch={handleSearchInput}
         setAddModalOpen={setAddModalOpen}
+        boardType={boardType}
       />
       <Box
         sx={{
@@ -271,11 +170,13 @@ const Board = ({ boardType }) => {
           overflowX: "auto",
         }}
       >
-        {columns && (
+        {filteredColumns ? (
           <DragDropContext
-            onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+            onDragEnd={(result) =>
+              onDragEnd(result, filteredColumns, setFilteredColumns)
+            }
           >
-            {Object.entries(columns).map(([columnId, column]) => {
+            {Object.entries(filteredColumns).map(([columnId, column]) => {
               return (
                 <DroppableColumn
                   column={column}
@@ -287,6 +188,8 @@ const Board = ({ boardType }) => {
               );
             })}
           </DragDropContext>
+        ) : (
+          <LoadingSpinner label="board items" />
         )}
       </Box>
 
@@ -304,8 +207,6 @@ const Board = ({ boardType }) => {
         handleAddModalClose={handleAddModalClose}
         deleteModalOpen={deleteModalOpen}
         handleDeleteModalClose={handleDeleteModalClose}
-        handleDelete={handleDelete}
-        handleAdd={handleAdd}
       />
     </>
   );
@@ -313,6 +214,7 @@ const Board = ({ boardType }) => {
 
 Board.propTypes = {
   boardType: PropTypes.string.isRequired,
+  columns: PropTypes.object.isRequired,
 };
 
 export default Board;

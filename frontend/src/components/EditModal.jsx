@@ -1,6 +1,9 @@
 import { Modal, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import EditItem from "./EditItem";
+import InternshipsAPI from "../services/internships";
+import NotesAPI from "../services/notes";
+import ProjectsAPI from "../services/projects";
 
 /**
  * A modal component for editing an item.
@@ -12,7 +15,31 @@ import EditItem from "./EditItem";
  * @returns {JSX.Element} - The EditModal component.
  */
 const EditModal = ({ open, handleClose, item, itemType }) => {
-  const handleSubmit = () => {
+  const handleSubmit = (updatedItem) => {
+    console.log("Updated item: ", updatedItem);
+    switch (itemType) {
+      case "internship":
+        InternshipsAPI.updateInternship(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        });
+        break;
+      case "note":
+        NotesAPI.updateNote(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        });
+        break;
+      case "project":
+        ProjectsAPI.updateProject(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        });
+        break;
+      default:
+        break;
+    }
+
     handleClose();
   };
 

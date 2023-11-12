@@ -1,5 +1,8 @@
 import { Modal, Box, Typography, Button } from "@mui/material";
 import PropTypes from "prop-types";
+import InternshipsAPI from "../services/internships";
+import NotesAPI from "../services/notes";
+import ProjectsAPI from "../services/projects";
 
 /**
  * A modal component for deleting an item.
@@ -8,13 +11,26 @@ import PropTypes from "prop-types";
  * @param {function} props.handleClose - The function to handle closing the modal.
  * @param {Object} props.item - The item to be deleted.
  * @param {string} props.itemType - The type of item being deleted.
- * @param {function} props.onDelete - The function to handle deleting the item.
  * @returns {JSX.Element} - The DeleteModal component.
  */
-const DeleteModal = ({ open, handleClose, item, itemType, onDelete }) => {
+const DeleteModal = ({ open, handleClose, item, itemType }) => {
   const handleDelete = () => {
-    onDelete(item);
+    switch (itemType) {
+      case "internship":
+        InternshipsAPI.deleteInternship(item.id);
+        break;
+      case "note":
+        NotesAPI.deleteNote(item.id);
+        break;
+      case "project":
+        ProjectsAPI.deleteProject(item.id);
+        break;
+      default:
+        break;
+    }
+
     handleClose();
+    alert(`${itemType} deleted.`);
   };
 
   return (
@@ -63,7 +79,6 @@ DeleteModal.propTypes = {
   handleClose: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default DeleteModal;

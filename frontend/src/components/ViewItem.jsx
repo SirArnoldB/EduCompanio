@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -11,11 +11,14 @@ import {
   IconButton,
   CardActions,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PropTypes from "prop-types";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import StatusesAPI from "../services/statuses";
+import CategoriesAPI from "../services/categories";
 
 /**
  * Renders a card displaying the details of an item.
@@ -28,8 +31,48 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
  * @returns {JSX.Element} - The JSX element representing the ViewItem component.
  */
 const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
-  console.log(item);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [statuses, setStatuses] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [loadingStatusesAndCategories, setLoadingStatusesAndCategories] =
+    useState(true);
+
+  useEffect(() => {
+    const getStatusesAndCategories = async () => {
+      switch (itemType) {
+        case "internship": {
+          const internshipStatuses =
+            await StatusesAPI.getAllInternshipStatuses();
+          const internshipCategories =
+            await CategoriesAPI.getAllInternshipCategories();
+          setStatuses(internshipStatuses);
+          setCategories(internshipCategories);
+          setLoadingStatusesAndCategories(false);
+          break;
+        }
+        case "note": {
+          const noteStatuses = await StatusesAPI.getAllNoteStatuses();
+          const noteCategories = await CategoriesAPI.getAllNoteCategories();
+          setStatuses(noteStatuses);
+          setCategories(noteCategories);
+          setLoadingStatusesAndCategories(false);
+          break;
+        }
+        case "project": {
+          const projectStatuses = await StatusesAPI.getAllProjectStatuses();
+          const projectCategories =
+            await CategoriesAPI.getAllProjectCategories();
+          setStatuses(projectStatuses);
+          setCategories(projectCategories);
+          setLoadingStatusesAndCategories(false);
+          break;
+        }
+        default:
+          break;
+      }
+    };
+    getStatusesAndCategories();
+  }, [itemType]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +106,7 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
         onClose={handleClose}
       >
         <MenuItem onClick={() => onEdit(item)}>Edit</MenuItem>
-        <MenuItem onClick={() => onDelete(item)}>Delete</MenuItem>
+        <MenuItem onClick={() => onDelete()}>Delete</MenuItem>
       </Menu>
       <CardContent
         sx={{
@@ -86,37 +129,47 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
             fontFamily: "Roboto",
             width: "100%",
           }}
-          InputProps={{
-            readOnly: true,
-          }}
+          readOnly
         />
         <FormControl fullWidth>
           <InputLabel id="status-select-label">Status</InputLabel>
-          <Select
-            labelId="status-select-label"
-            id="status-select"
-            value={item.status}
-            label="Status"
-            disabled
-          >
-            <MenuItem value={"Active"}>Active</MenuItem>
-            <MenuItem value={"Inactive"}>Inactive</MenuItem>
-          </Select>
+          {loadingStatusesAndCategories ? (
+            <CircularProgress />
+          ) : (
+            <Select
+              labelId="status-select-label"
+              id="status-select"
+              value={item.status_id}
+              label="Status"
+              disabled
+            >
+              {statuses.map((status) => (
+                <MenuItem key={status.id} value={status.id}>
+                  {status.status}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
         </FormControl>
-
         <FormControl fullWidth>
           <InputLabel id="category-select-label">Category</InputLabel>
-          <Select
-            labelId="category-select-label"
-            id="category-select"
-            value={item.category}
-            label="Category"
-            disabled
-          >
-            <MenuItem value={"💡 Brain Sparks"}>💡 Brain Sparks</MenuItem>
-            <MenuItem value={"🔖 Bookmarks"}>🔖 Bookmarks</MenuItem>
-            <MenuItem value={"🛠️ Toolbox"}>🛠️ Toolbox</MenuItem>
-          </Select>
+          {loadingStatusesAndCategories ? (
+            <CircularProgress />
+          ) : (
+            <Select
+              labelId="category-select-label"
+              id="category-select"
+              value={item.category_id}
+              label="Category"
+              disabled
+            >
+              {categories.map((category) => (
+                <MenuItem key={category.id} value={category.id}>
+                  {category.category}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
         </FormControl>
       </CardContent>
       <CardActions
@@ -129,15 +182,16 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
         <Button variant="contained" color="info" onClick={onClose}>
           Close
         </Button>
-        <Button
-          variant="contained"
-          color="info"
-          startIcon={<OpenInNewIcon />}
-          href={item.link}
-          target="_blank"
-        >
-          Visit Website
-        </Button>
+        {itemType !== "note" && (
+          <Button
+            variant="contained"
+            color="info"
+            startIcon={<OpenInNewIcon />}
+            onClick={() => window.open(item.url, "_blank")}
+          >
+            Visit Website
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

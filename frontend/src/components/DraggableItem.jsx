@@ -13,9 +13,9 @@ import PropTypes from "prop-types";
  * @param {Function} props.handleViewModalOpen - The function to handle opening a modal.
  * @returns {JSX.Element} - The DraggableItem component.
  */
-const DraggableItem = ({ item, key, index, itemType, handleViewModalOpen }) => {
+const DraggableItem = ({ item, index, itemType, handleViewModalOpen }) => {
   return (
-    <Draggable key={key} draggableId={item.id} index={index}>
+    <Draggable key={item.id} draggableId={item.id} index={index}>
       {(provided, snapshot) => {
         return (
           <Box
@@ -42,7 +42,6 @@ const DraggableItem = ({ item, key, index, itemType, handleViewModalOpen }) => {
 
 DraggableItem.propTypes = {
   item: PropTypes.object.isRequired,
-  key: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   itemType: PropTypes.string.isRequired,
   handleViewModalOpen: PropTypes.func.isRequired,
