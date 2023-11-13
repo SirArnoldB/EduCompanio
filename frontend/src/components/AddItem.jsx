@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   Card,
   CardContent,
@@ -10,12 +10,10 @@ import {
   Button,
   CardActions,
   CardHeader,
-  CircularProgress,
 } from "@mui/material";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import PropTypes from "prop-types";
-import StatusesAPI from "../services/statuses";
-import CategoriesAPI from "../services/categories";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * A component for adding a new item, such as an internship, note, or project.
@@ -35,56 +33,29 @@ const AddItem = ({ itemType, onSave, onCancel }) => {
   const [companyName, setCompanyName] = useState("");
   const [statuses, setStatuses] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [loadingStatusesAndCategories, setLoadingStatusesAndCategories] =
-    useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
 
   useEffect(() => {
-    const getStatusesAndCategories = async () => {
-      switch (itemType) {
-        case "internship": {
-          const internshipStatuses =
-            await StatusesAPI.getAllInternshipStatuses();
-          const internshipCategories =
-            await CategoriesAPI.getAllInternshipCategories();
-          setStatuses(internshipStatuses);
-          setCategories(internshipCategories);
-          setLoadingStatusesAndCategories(false);
-          break;
-        }
-        case "note": {
-          const noteStatuses = await StatusesAPI.getAllNoteStatuses();
-          const noteCategories = await CategoriesAPI.getAllNoteCategories();
-          setStatuses(noteStatuses);
-          setCategories(noteCategories);
-          setLoadingStatusesAndCategories(false);
-          break;
-        }
-        case "project": {
-          const projectStatuses = await StatusesAPI.getAllProjectStatuses();
-          const projectCategories =
-            await CategoriesAPI.getAllProjectCategories();
-          setStatuses(projectStatuses);
-          setCategories(projectCategories);
-          setLoadingStatusesAndCategories(false);
-          break;
-        }
-        default:
-          break;
-      }
-    };
-    getStatusesAndCategories();
-  }, [itemType]);
+    switch (itemType) {
+      case "internship":
+        setStatuses(state.statuses.internships);
+        setCategories(state.categories.internships);
+        break;
+      case "note":
+        setStatuses(state.statuses.notes);
+        setCategories(state.categories.notes);
+        break;
+      case "project":
+        setStatuses(state.statuses.projects);
+        setCategories(state.categories.projects);
+        break;
+      default:
+        break;
+    }
+  }, [itemType, state.statuses, state.categories]);
 
   const handleSave = () => {
-    console.log("Title: ", title);
-    console.log("Content: ", content);
-    console.log("Status: ", status);
-    console.log("Category: ", category);
-    console.log("Position: ", position);
-    console.log("URL: ", url);
-    console.log("Company Name: ", companyName);
-
-    // Validate input
     if (!content || !status || !category) {
       alert("Please fill out all fields.");
       return;
@@ -179,43 +150,36 @@ const AddItem = ({ itemType, onSave, onCancel }) => {
         />
         <FormControl fullWidth>
           <InputLabel id="status-select-label">Status</InputLabel>
-          {loadingStatusesAndCategories ? (
-            <CircularProgress />
-          ) : (
-            <Select
-              labelId="status-select-label"
-              id="status-select"
-              value={statuses.length > 0 ? status : ""}
-              onChange={(e) => setStatus(e.target.value)}
-              label="Status"
-            >
-              {statuses.map((status) => (
-                <MenuItem key={status.id} value={status.id}>
-                  {status.status}
-                </MenuItem>
-              ))}
-            </Select>
-          )}
+          <Select
+            labelId="status-select-label"
+            id="status-select"
+            value={statuses.length > 0 ? status : ""}
+            onChange={(e) => setStatus(e.target.value)}
+            label="Status"
+          >
+            {statuses.map((status) => (
+              <MenuItem key={status.id} value={status.id}>
+                {status.status}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
         <FormControl fullWidth>
           <InputLabel id="category-select-label">Category</InputLabel>
-          {loadingStatusesAndCategories ? (
-            <CircularProgress />
-          ) : (
-            <Select
-              labelId="category-select-label"
-              id="category-select"
-              value={categories.length > 0 ? category : ""}
-              onChange={(e) => setCategory(e.target.value)}
-              label="Category"
-            >
-              {categories.map((category) => (
-                <MenuItem key={category.id} value={category.id}>
-                  {category.category}
-                </MenuItem>
-              ))}
-            </Select>
-          )}
+
+          <Select
+            labelId="category-select-label"
+            id="category-select"
+            value={categories.length > 0 ? category : ""}
+            onChange={(e) => setCategory(e.target.value)}
+            label="Category"
+          >
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.category}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
       </CardContent>
       <CardActions

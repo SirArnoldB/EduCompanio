@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import PropTypes from "prop-types";
 import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * A modal component for deleting an item.
@@ -14,16 +16,37 @@ import ProjectsAPI from "../services/projects";
  * @returns {JSX.Element} - The DeleteModal component.
  */
 const DeleteModal = ({ open, handleClose, item, itemType }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
   const handleDelete = () => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.deleteInternship(item.id);
+        InternshipsAPI.deleteInternship(item.id)
+          .then((res) => {
+            dispatch({ type: "DELETE_INTERNSHIP", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         break;
       case "note":
-        NotesAPI.deleteNote(item.id);
+        NotesAPI.deleteNote(item.id)
+          .then((res) => {
+            dispatch({ type: "DELETE_NOTE", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         break;
       case "project":
-        ProjectsAPI.deleteProject(item.id);
+        ProjectsAPI.deleteProject(item.id)
+          .then((res) => {
+            dispatch({ type: "DELETE_PROJECT", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         break;
       default:
         break;

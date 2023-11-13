@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ViewModal from "./ViewModal";
 import EditModal from "./EditModal";
 import AddModal from "./AddModal";
@@ -35,6 +36,12 @@ const Modals = ({
   deleteModalOpen,
   handleDeleteModalClose,
 }) => {
+  const [item, setItem] = useState({});
+
+  useEffect(() => {
+    setItem(modalItem);
+  }, [modalItem]);
+
   return (
     <>
       {modalItem && (
@@ -44,19 +51,19 @@ const Modals = ({
             handleClose={handleViewModalClose}
             onEdit={handleEditModalOpen}
             onDelete={handleDeleteModalOpen}
-            item={modalItem}
+            item={item}
             itemType={boardType}
           />
           <EditModal
             open={editModalOpen}
             handleClose={handleEditModalClose}
-            item={modalItem}
+            item={item}
             itemType={boardType}
           />
           <DeleteModal
             open={deleteModalOpen}
             handleClose={handleDeleteModalClose}
-            item={modalItem}
+            item={item}
             itemType={boardType}
           />
           <AddModal

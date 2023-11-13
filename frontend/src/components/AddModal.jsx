@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import { Modal, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import AddItem from "./AddItem";
 import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * Renders a modal for adding an item of a specified type.
@@ -15,17 +17,37 @@ import ProjectsAPI from "../services/projects";
  * @returns {JSX.Element} - The AddModal component.
  */
 const AddModal = ({ open, handleClose, itemType }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
   const handleSubmit = (newItem) => {
-    console.log("New item: ", newItem);
     switch (itemType) {
       case "internship":
-        InternshipsAPI.createInternship(newItem);
+        InternshipsAPI.createInternship(newItem)
+          .then((res) => {
+            dispatch({ type: "ADD_INTERNSHIP", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         break;
       case "note":
-        NotesAPI.createNote(newItem);
+        NotesAPI.createNote(newItem)
+          .then((res) => {
+            dispatch({ type: "ADD_NOTE", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         break;
       case "project":
-        ProjectsAPI.createProject(newItem);
+        ProjectsAPI.createProject(newItem)
+          .then((res) => {
+            dispatch({ type: "ADD_PROJECT", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         break;
       default:
         break;
