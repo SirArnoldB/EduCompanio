@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Outlet, useRoutes } from "react-router-dom";
 import DashboardLayout from "../layouts/dashboard/DashboardLayout";
 import LoadingSpinner from "./LoadingSpinner";
+import ProfilePage from "../pages/ProfilePage";
 
 export const LandingPage = lazy(() => import("../pages/landingPage"));
 export const IndexPage = lazy(() => import("../pages/IndexPage"));
@@ -28,6 +29,9 @@ const AppContent = () => {
     },
     {
       path: "/home", element: <LandingPage />
+    },
+    {
+      path: "/profile", element: <ProfilePage />
     }
   ]);
 

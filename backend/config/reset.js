@@ -55,7 +55,7 @@ const createProjectsTable = async () => {
     CREATE TABLE IF NOT EXISTS projects (
         project_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
         project_name VARCHAR(50) NOT NULL,
-        project_description VARCHAR(50) NOT NULL,
+        description VARCHAR(50) NOT NULL,
         url VARCHAR(225) NOT NULL,
         category VARCHAR(50) NOT NULL
     );
