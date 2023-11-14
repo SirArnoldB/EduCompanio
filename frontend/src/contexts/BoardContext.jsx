@@ -9,6 +9,11 @@ import { generateColumns } from "../utilities/columns";
 
 // Initial state
 const initialState = {
+  counts: {
+    projects: 0,
+    internships: 0,
+    notes: 0,
+  },
   columns: {
     projects: {},
     internships: {},
@@ -31,6 +36,14 @@ const initialState = {
 // Define the reducer function
 const boardReducer = (state, action) => {
   switch (action.type) {
+    case "SET_COUNTS":
+      return {
+        ...state,
+        counts: {
+          ...state.counts,
+          ...action.payload,
+        },
+      };
     case "SET_COLUMNS":
       return {
         ...state,
@@ -281,6 +294,11 @@ export const BoardContextProvider = ({ children }) => {
         const projects = await ProjectsAPI.getAllProjects();
         const internships = await InternshipsAPI.getAllInternships();
         const notes = await NotesAPI.getAllNotes();
+        const counts = {
+          projects: projects.length,
+          internships: internships.length,
+          notes: notes.length,
+        };
 
         // Statuses
         const internshipStatuses = await StatusesAPI.getAllInternshipStatuses();
@@ -317,6 +335,7 @@ export const BoardContextProvider = ({ children }) => {
         };
 
         // Dispatch actions to set state
+        dispatch({ type: "SET_COUNTS", payload: counts });
         dispatch({ type: "SET_COLUMNS", payload: columns });
         dispatch({ type: "SET_STATUSES", payload: statuses });
         dispatch({ type: "SET_CATEGORIES", payload: categories });
