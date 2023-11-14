@@ -45,7 +45,8 @@ const updateNote = async (req, res) => {
     const results = await pool.query(
       `UPDATE notes
       SET title = $1, content = $2, category_id = $3, status_id = $4
-      WHERE id = $5`,
+      WHERE id = $5
+      RETURNING *`,
       [title, content, category_id, status_id, id]
     )
     res.status(200).json(results.rows[0])
@@ -58,7 +59,7 @@ const updateNote = async (req, res) => {
 const deleteNote = async (req, res) => {
   try {
     const id = req.params.id
-    const results = await pool.query('DELETE FROM notes WHERE id = $1', [id])
+    const results = await pool.query('DELETE FROM notes WHERE id = $1 RETURNING *', [id])
     res.status(200).json(results.rows[0])
   }
   catch (error) {

@@ -50,7 +50,7 @@ const updateInternship = async (req, res) => {
             RETURNING *`,
             [company, position, content, url, category_id, status_id, id]
         )
-        res.status(200).json({ updatedInternship: updatedInternships[0] })
+        res.status(200).json(updatedInternships[0])
     }
     catch (error) {
         res.status(409).json({ error: error.message })
@@ -60,7 +60,7 @@ const updateInternship = async (req, res) => {
 const deleteInternship = async (req, res) => {
     try {
         const id = req.params.id
-        const results = await pool.query('DELETE FROM internships WHERE id = $1', [id])
+        const results = await pool.query('DELETE FROM internships WHERE id = $1 RETURNING *', [id])
         res.status(200).json(results.rows[0])
     }
     catch (error) {

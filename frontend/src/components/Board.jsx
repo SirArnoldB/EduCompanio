@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Box } from "@mui/material";
 import PropTypes from "prop-types";
@@ -9,6 +9,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * A component that displays a board with draggable and droppable columns and items.
@@ -16,20 +17,32 @@ import ProjectsAPI from "../services/projects";
  * @param {string} props.boardType - The type of board to display (note, internship, or project).
  * @returns {JSX.Element} - The Board component.
  */
-const Board = ({ boardType, columns }) => {
+const Board = ({ boardType }) => {
   const [boardColumns, setBoardColumns] = useState(null);
   const [searchInput, setSearchInput] = useState("");
-
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [modalItem, setModalItem] = useState({});
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [filteredColumns, setFilteredColumns] = useState(null);
+  const [state, dispatch] = useContext(BoardContext);
 
   useEffect(() => {
-    setBoardColumns(columns);
-  }, [columns]);
+    switch (boardType) {
+      case "internship":
+        setBoardColumns(state.columns.internships);
+        break;
+      case "note":
+        setBoardColumns(state.columns.notes);
+        break;
+      case "project":
+        setBoardColumns(state.columns.projects);
+        break;
+      default:
+        break;
+    }
+  }, [boardType, state.columns]);
 
   useEffect(() => {
     if (boardColumns) {
@@ -77,9 +90,7 @@ const Board = ({ boardType, columns }) => {
 
       // Update the status of the item in the database
       const item = removed;
-      console.log("Updating item: ", item);
       const statusId = destination.droppableId;
-      console.log("Status ID: ", statusId);
       const itemId = item.id;
 
       switch (boardType) {
@@ -88,21 +99,57 @@ const Board = ({ boardType, columns }) => {
             ...item,
             status_id: statusId,
             updated_at: new Date(),
-          });
+          })
+            .then((res) => {
+              dispatch({
+                type: "UPDATE_INTERNSHIP",
+                payload: {
+                  updatedItem: res,
+                  original_status_id: source.droppableId,
+                },
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           break;
         case "note":
           NotesAPI.updateNote(itemId, {
             ...item,
             status_id: statusId,
             updated_at: new Date(),
-          });
+          })
+            .then((res) => {
+              dispatch({
+                type: "UPDATE_NOTE",
+                payload: {
+                  updatedItem: res,
+                  original_status_id: source.droppableId,
+                },
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           break;
         case "project":
           ProjectsAPI.updateProject(itemId, {
             ...item,
             status_id: statusId,
             updated_at: new Date(),
-          });
+          })
+            .then((res) => {
+              dispatch({
+                type: "UPDATE_PROJECT",
+                payload: {
+                  updatedItem: res,
+                  original_status_id: source.droppableId,
+                },
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           break;
         default:
           break;
@@ -214,7 +261,6 @@ const Board = ({ boardType, columns }) => {
 
 Board.propTypes = {
   boardType: PropTypes.string.isRequired,
-  columns: PropTypes.object.isRequired,
 };
 
 export default Board;
