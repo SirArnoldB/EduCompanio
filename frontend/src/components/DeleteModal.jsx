@@ -1,5 +1,10 @@
+import { useContext } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import PropTypes from "prop-types";
+import InternshipsAPI from "../services/internships";
+import NotesAPI from "../services/notes";
+import ProjectsAPI from "../services/projects";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * A modal component for deleting an item.
@@ -8,13 +13,47 @@ import PropTypes from "prop-types";
  * @param {function} props.handleClose - The function to handle closing the modal.
  * @param {Object} props.item - The item to be deleted.
  * @param {string} props.itemType - The type of item being deleted.
- * @param {function} props.onDelete - The function to handle deleting the item.
  * @returns {JSX.Element} - The DeleteModal component.
  */
-const DeleteModal = ({ open, handleClose, item, itemType, onDelete }) => {
+const DeleteModal = ({ open, handleClose, item, itemType }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
   const handleDelete = () => {
-    onDelete(item);
+    switch (itemType) {
+      case "internship":
+        InternshipsAPI.deleteInternship(item.id)
+          .then((res) => {
+            dispatch({ type: "DELETE_INTERNSHIP", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case "note":
+        NotesAPI.deleteNote(item.id)
+          .then((res) => {
+            dispatch({ type: "DELETE_NOTE", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case "project":
+        ProjectsAPI.deleteProject(item.id)
+          .then((res) => {
+            dispatch({ type: "DELETE_PROJECT", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      default:
+        break;
+    }
+
     handleClose();
+    alert(`${itemType} deleted.`);
   };
 
   return (
@@ -63,7 +102,6 @@ DeleteModal.propTypes = {
   handleClose: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default DeleteModal;

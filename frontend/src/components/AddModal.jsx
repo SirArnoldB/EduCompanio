@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Modal, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import AddItem from "./AddItem";
+import InternshipsAPI from "../services/internships";
+import NotesAPI from "../services/notes";
+import ProjectsAPI from "../services/projects";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * Renders a modal for adding an item of a specified type.
@@ -11,7 +16,47 @@ import AddItem from "./AddItem";
  * @param {function} props.onSave - The function to handle saving the added item.
  * @returns {JSX.Element} - The AddModal component.
  */
-const AddModal = ({ open, handleClose, itemType, onSave }) => {
+const AddModal = ({ open, handleClose, itemType }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
+  const handleSubmit = (newItem) => {
+    switch (itemType) {
+      case "internship":
+        InternshipsAPI.createInternship(newItem)
+          .then((res) => {
+            dispatch({ type: "ADD_INTERNSHIP", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case "note":
+        NotesAPI.createNote(newItem)
+          .then((res) => {
+            dispatch({ type: "ADD_NOTE", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case "project":
+        ProjectsAPI.createProject(newItem)
+          .then((res) => {
+            dispatch({ type: "ADD_PROJECT", payload: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      default:
+        break;
+    }
+
+    handleClose();
+    alert(`${itemType} added.`);
+  };
+
   return (
     <Modal open={open} onClose={handleClose}>
       <Box
@@ -25,7 +70,11 @@ const AddModal = ({ open, handleClose, itemType, onSave }) => {
           p: 0.5,
         }}
       >
-        <AddItem onSave={onSave} onCancel={handleClose} itemType={itemType} />
+        <AddItem
+          onSave={handleSubmit}
+          onCancel={handleClose}
+          itemType={itemType}
+        />
       </Box>
     </Modal>
   );
@@ -35,7 +84,6 @@ AddModal.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   itemType: PropTypes.string.isRequired,
-  onSave: PropTypes.func.isRequired,
 };
 
 export default AddModal;

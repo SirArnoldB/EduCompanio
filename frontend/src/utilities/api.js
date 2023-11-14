@@ -16,14 +16,17 @@ class ApiError extends Error {
  * @returns {Promise<Object>} - A promise that resolves to the response data.
  * @throws {ApiError} - If the API returns an error response.
  */
-const request = async (method, url, body = null) => {
+const request = async (method, url, body = '') => {
     try {
-        const response = await axios({
+        const config = {
             method,
             url,
             headers: { 'Content-Type': 'application/json' },
-            data: body
-        });
+        };
+        if (body !== '') {
+            config.data = body;
+        }
+        const response = await axios(config);
         return response.data;
     } catch (error) {
         throw new ApiError('⛔️ API Error: ', error.message);

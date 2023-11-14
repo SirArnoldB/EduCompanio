@@ -18,7 +18,6 @@ const DroppableColumn = ({
   columnId,
   boardType,
   handleViewModalOpen,
-  key,
 }) => {
   return (
     <Box
@@ -28,7 +27,6 @@ const DroppableColumn = ({
         alignItems: "center",
         height: "calc(100vh - 64px)",
       }}
-      key={key}
     >
       <Typography
         variant="h5"
@@ -103,7 +101,6 @@ DroppableColumn.propTypes = {
   columnId: PropTypes.string.isRequired,
   boardType: PropTypes.string.isRequired,
   handleViewModalOpen: PropTypes.func.isRequired,
-  key: PropTypes.string.isRequired,
 };
 
 export default DroppableColumn;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import PropTypes from "prop-types";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * A component for editing an item.
@@ -24,28 +25,94 @@ import PropTypes from "prop-types";
  */
 const EditItem = ({ item, itemType, onSave, onCancel }) => {
   const [content, setContent] = useState(item?.content);
-  const [status, setStatus] = useState(item?.status);
-  const [category, setCategory] = useState(item?.category);
+  const [status, setStatus] = useState(item.status_id || "");
+  const [category, setCategory] = useState(item.category_id || "");
   const [title, setTitle] = useState(item?.title);
   const [position, setPosition] = useState(item?.position);
   const [url, setUrl] = useState(item?.url ?? "");
   const [companyName, setCompanyName] = useState(item?.company ?? "");
+  const [statuses, setStatuses] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [initialItem, setInitialItem] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
+  useEffect(() => {
+    setInitialItem(item);
+  }, [item]);
+
+  useEffect(() => {
+    switch (itemType) {
+      case "internship":
+        setStatuses(state.statuses.internships);
+        setCategories(state.categories.internships);
+        break;
+      case "note":
+        setStatuses(state.statuses.notes);
+        setCategories(state.categories.notes);
+        break;
+      case "project":
+        setStatuses(state.statuses.projects);
+        setCategories(state.categories.projects);
+        break;
+      default:
+        break;
+    }
+  }, [itemType, state.statuses, state.categories]);
 
   const handleSave = () => {
-    if (typeof onSave === "function") {
-      onSave({
-        ...item,
-        title,
-        content,
-        status,
-        category,
-        position,
-        url,
-        companyName,
-      });
-    } else {
-      console.error("onSave is not a function");
+    // Check if any changes have been made to the item
+    let updatedItem;
+
+    switch (itemType) {
+      case "note":
+        updatedItem = {
+          ...item,
+          title,
+          content,
+          status_id: status,
+          category_id: category,
+          updated_at: "",
+        };
+        break;
+      case "project":
+        updatedItem = {
+          ...item,
+          title,
+          content,
+          status_id: status,
+          category_id: category,
+          url,
+          updated_at: "",
+        };
+        break;
+      case "internship":
+        updatedItem = {
+          ...item,
+          title,
+          content,
+          status_id: status,
+          category_id: category,
+          position,
+          url,
+          company: companyName,
+          updated_at: "",
+        };
+        break;
+      default:
+        break;
     }
+
+    // Check if any changes have been made to the item
+    if (
+      JSON.stringify({ ...initialItem, updated_at: "" }) ===
+      JSON.stringify(updatedItem)
+    ) {
+      alert("No changes have been made to the item.");
+      return;
+    }
+
+    onSave(updatedItem);
   };
 
   return (
@@ -99,18 +166,20 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
             width: "100%",
           }}
         />
-
         <FormControl fullWidth>
           <InputLabel id="status-select-label">Status</InputLabel>
           <Select
             labelId="status-select-label"
             id="status-select"
-            value={status}
+            value={statuses.length > 0 ? status : ""}
             onChange={(e) => setStatus(e.target.value)}
             label="Status"
           >
-            <MenuItem value={"Active"}>Active</MenuItem>
-            <MenuItem value={"Inactive"}>Inactive</MenuItem>
+            {statuses.map((status) => (
+              <MenuItem key={status.id} value={status.id}>
+                {status.status}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl fullWidth>
@@ -118,13 +187,15 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
           <Select
             labelId="category-select-label"
             id="category-select"
-            value={category}
+            value={categories.length > 0 ? category : ""}
             onChange={(e) => setCategory(e.target.value)}
             label="Category"
           >
-            <MenuItem value={"💡 Brain Sparks"}>💡 Brain Sparks</MenuItem>
-            <MenuItem value={"🔖 Bookmarks"}>🔖 Bookmarks</MenuItem>
-            <MenuItem value={"🛠️ Toolbox"}>🛠️ Toolbox</MenuItem>
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.category}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </CardContent>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   Card,
   CardContent,
@@ -16,6 +16,7 @@ import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PropTypes from "prop-types";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * Renders a card displaying the details of an item.
@@ -28,8 +29,30 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
  * @returns {JSX.Element} - The JSX element representing the ViewItem component.
  */
 const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
-  console.log(item);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [statuses, setStatuses] = useState([]);
+  const [categories, setCategories] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
+  useEffect(() => {
+    switch (itemType) {
+      case "internship":
+        setStatuses(state.statuses.internships);
+        setCategories(state.categories.internships);
+        break;
+      case "note":
+        setStatuses(state.statuses.notes);
+        setCategories(state.categories.notes);
+        break;
+      case "project":
+        setStatuses(state.statuses.projects);
+        setCategories(state.categories.projects);
+        break;
+      default:
+        break;
+    }
+  }, [itemType, state.statuses, state.categories]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,7 +77,7 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
           </IconButton>
         }
         title={itemType === "internship" ? item.position : item.title}
-        subheader={itemType === "internship" ? item.company : item.category}
+        subheader={itemType === "internship" ? item.company : item.updated_at}
       />
       <Menu
         id="simple-menu"
@@ -86,36 +109,38 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
             fontFamily: "Roboto",
             width: "100%",
           }}
-          InputProps={{
-            readOnly: true,
-          }}
+          readOnly
         />
         <FormControl fullWidth>
           <InputLabel id="status-select-label">Status</InputLabel>
           <Select
             labelId="status-select-label"
             id="status-select"
-            value={item.status}
+            value={statuses.length > 0 ? item.status_id : ""}
             label="Status"
             disabled
           >
-            <MenuItem value={"Active"}>Active</MenuItem>
-            <MenuItem value={"Inactive"}>Inactive</MenuItem>
+            {statuses.map((status) => (
+              <MenuItem key={status.id} value={status.id}>
+                {status.status}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
-
         <FormControl fullWidth>
           <InputLabel id="category-select-label">Category</InputLabel>
           <Select
             labelId="category-select-label"
             id="category-select"
-            value={item.category}
+            value={categories.length > 0 ? item.category_id : ""}
             label="Category"
             disabled
           >
-            <MenuItem value={"💡 Brain Sparks"}>💡 Brain Sparks</MenuItem>
-            <MenuItem value={"🔖 Bookmarks"}>🔖 Bookmarks</MenuItem>
-            <MenuItem value={"🛠️ Toolbox"}>🛠️ Toolbox</MenuItem>
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.category}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </CardContent>
@@ -129,15 +154,16 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
         <Button variant="contained" color="info" onClick={onClose}>
           Close
         </Button>
-        <Button
-          variant="contained"
-          color="info"
-          startIcon={<OpenInNewIcon />}
-          href={item.link}
-          target="_blank"
-        >
-          Visit Website
-        </Button>
+        {itemType !== "note" && (
+          <Button
+            variant="contained"
+            color="info"
+            startIcon={<OpenInNewIcon />}
+            onClick={() => window.open(item.url, "_blank")}
+          >
+            Visit Website
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

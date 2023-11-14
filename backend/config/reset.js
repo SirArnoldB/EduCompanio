@@ -149,10 +149,12 @@ const createNotesTable = async () => {
         id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
         title VARCHAR(500) NOT NULL,
         content VARCHAR(1000) NOT NULL,
-        category_id VARCHAR(50) NOT NULL,
-        status_id VARCHAR(50) NOT NULL,
+        category_id uuid NOT NULL,
+        status_id uuid NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW()
+        updated_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY (category_id) REFERENCES note_categories (id),
+        FOREIGN KEY (status_id) REFERENCES note_statuses (id)
     );
 `
     try {
@@ -206,10 +208,12 @@ const createInternshipsTable = async () => {
         position VARCHAR(500) NOT NULL,
         content VARCHAR(1000) NOT NULL,
         url VARCHAR(500) NOT NULL,
-        category_id VARCHAR(50) NOT NULL,
-        status_id VARCHAR(50) NOT NULL,
+        category_id uuid NOT NULL,
+        status_id uuid NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW()
+        updated_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY (category_id) REFERENCES internship_categories (id),
+        FOREIGN KEY (status_id) REFERENCES internship_statuses (id)
     );
 `
     try {
@@ -264,10 +268,12 @@ const createProjectsTable = async () => {
         title VARCHAR(500) NOT NULL,
         content VARCHAR(1000) NOT NULL,
         url VARCHAR(500) NOT NULL,
-        category_id VARCHAR(50) NOT NULL,
-        status_id VARCHAR(50) NOT NULL,
+        category_id uuid NOT NULL,
+        status_id uuid NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW()
+        updated_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY (category_id) REFERENCES project_categories (id),
+        FOREIGN KEY (status_id) REFERENCES project_statuses (id)
     );
 `
     try {

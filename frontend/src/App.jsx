@@ -1,11 +1,14 @@
 import "./App.css";
 import AppContent from "./components/AppContent";
 import ThemeProvider from "./theme";
+import { BoardContextProvider } from "./contexts/BoardContext";
 
 function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <BoardContextProvider>
+        <AppContent />
+      </BoardContextProvider>
     </ThemeProvider>
   );
 }

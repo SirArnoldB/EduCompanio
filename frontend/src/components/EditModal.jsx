@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Modal, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import EditItem from "./EditItem";
+import InternshipsAPI from "../services/internships";
+import NotesAPI from "../services/notes";
+import ProjectsAPI from "../services/projects";
+import { BoardContext } from "../contexts/BoardContext";
 
 /**
  * A modal component for editing an item.
@@ -12,7 +17,69 @@ import EditItem from "./EditItem";
  * @returns {JSX.Element} - The EditModal component.
  */
 const EditModal = ({ open, handleClose, item, itemType }) => {
-  const handleSubmit = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
+  const handleSubmit = (updatedItem) => {
+    switch (itemType) {
+      case "internship":
+        InternshipsAPI.updateInternship(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        })
+          .then((res) => {
+            dispatch({
+              type: "UPDATE_INTERNSHIP",
+              payload: {
+                updatedItem: res,
+                original_status_id: item.status_id,
+              },
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case "note":
+        NotesAPI.updateNote(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        })
+          .then((res) => {
+            dispatch({
+              type: "UPDATE_NOTE",
+              payload: {
+                updatedItem: res,
+                original_status_id: item.status_id,
+              },
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case "project":
+        ProjectsAPI.updateProject(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        })
+          .then((res) => {
+            dispatch({
+              type: "UPDATE_PROJECT",
+              payload: {
+                updatedItem: res,
+                original_status_id: item.status_id,
+              },
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      default:
+        break;
+    }
+
     handleClose();
   };
 

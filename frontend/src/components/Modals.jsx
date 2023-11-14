@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ViewModal from "./ViewModal";
 import EditModal from "./EditModal";
 import AddModal from "./AddModal";
@@ -19,8 +20,6 @@ import PropTypes from "prop-types";
  * @param {function} props.handleAddModalClose - Function to close the add modal.
  * @param {boolean} props.deleteModalOpen - Whether the delete modal is open.
  * @param {function} props.handleDeleteModalClose - Function to close the delete modal.
- * @param {function} props.handleDelete - Function to handle item deletion.
- * @param {function} props.handleAdd - Function to handle item addition.
  * @returns {JSX.Element} The Modals component.
  */
 const Modals = ({
@@ -36,38 +35,44 @@ const Modals = ({
   handleAddModalClose,
   deleteModalOpen,
   handleDeleteModalClose,
-  handleDelete,
-  handleAdd,
 }) => {
+  const [item, setItem] = useState({});
+
+  useEffect(() => {
+    setItem(modalItem);
+  }, [modalItem]);
+
   return (
     <>
-      <ViewModal
-        open={viewModalOpen}
-        handleClose={handleViewModalClose}
-        onEdit={handleEditModalOpen}
-        onDelete={handleDeleteModalOpen}
-        item={modalItem}
-        itemType={boardType}
-      />
-      <EditModal
-        open={editModalOpen}
-        handleClose={handleEditModalClose}
-        item={modalItem}
-        itemType={boardType}
-      />
-      <DeleteModal
-        open={deleteModalOpen}
-        handleClose={handleDeleteModalClose}
-        item={modalItem}
-        itemType={boardType}
-        onDelete={handleDelete}
-      />
-      <AddModal
-        open={addModalOpen}
-        handleClose={handleAddModalClose}
-        onSave={handleAdd}
-        itemType={boardType}
-      />
+      {modalItem && (
+        <>
+          <ViewModal
+            open={viewModalOpen}
+            handleClose={handleViewModalClose}
+            onEdit={handleEditModalOpen}
+            onDelete={handleDeleteModalOpen}
+            item={item}
+            itemType={boardType}
+          />
+          <EditModal
+            open={editModalOpen}
+            handleClose={handleEditModalClose}
+            item={item}
+            itemType={boardType}
+          />
+          <DeleteModal
+            open={deleteModalOpen}
+            handleClose={handleDeleteModalClose}
+            item={item}
+            itemType={boardType}
+          />
+          <AddModal
+            open={addModalOpen}
+            handleClose={handleAddModalClose}
+            itemType={boardType}
+          />
+        </>
+      )}
     </>
   );
 };
@@ -85,8 +90,6 @@ Modals.propTypes = {
   handleAddModalClose: PropTypes.func.isRequired,
   deleteModalOpen: PropTypes.bool.isRequired,
   handleDeleteModalClose: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
-  handleAdd: PropTypes.func.isRequired,
 };
 
 export default Modals;
