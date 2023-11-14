@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SectionPreview from "../components/SectionPreview";
-import {HeroImage} from "../assets";
+import {Indexquote} from "../assets";
 
 const IndexView = () => {
   const mockNotes = [
@@ -46,7 +46,7 @@ const IndexView = () => {
         Hi {username ? username : "John"}, Welcome back!
       </Typography>
       <Box >
-        <img style={{ height: "30vh", width: "80%"}} src={""} alt="quote" />
+        <img style={{ height: "35vh", width: "80%"}} src={Indexquote} alt="quote" />
       </Box>
 
       <Box sx={{ display: "flex", flexDirection: "column", mt: 5 }}>

@@ -4,7 +4,7 @@ import DashboardLayout from "../layouts/dashboard/DashboardLayout";
 import LoadingSpinner from "./LoadingSpinner";
 import ProfilePage from "../pages/ProfilePage";
 
-export const LandingPage = lazy(() => import("../pages/landingPage"));
+export const LandingPage = lazy(() => import("../pages/LandingPage"));
 export const IndexPage = lazy(() => import("../pages/IndexPage"));
 export const InternshipsPage = lazy(() => import("../pages/InternshipsPage"));
 export const NotesPage = lazy(() => import("../pages/NotesPage"));
@@ -21,17 +21,19 @@ const AppContent = () => {
         </DashboardLayout>
       ),
       children: [
-        { path: "/", element: <IndexPage />, index: true  },
+        { path: "/", element: <IndexPage />, index: true },
         { path: "/internships", element: <InternshipsPage /> },
         { path: "/notes", element: <NotesPage /> },
         { path: "/projects", element: <ProjectsPage /> },
       ],
     },
     {
-      path: "/home", element: <LandingPage />
+      path: "/home",
+      element: <LandingPage />,
     },
     {
-      path: "/profile", element: <ProfilePage />
+      path: "/profile", 
+      element: <ProfilePage />
     }
   ]);
 

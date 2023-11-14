@@ -1,122 +1,70 @@
 import { useState, useEffect } from "react";
-import { DragDropContext, Draggable } from "react-beautiful-dnd";
-import { v4 as uuidv4 } from "uuid";
-import StrictModeDroppable from "./StrictModeDroppable";
-import { Box, Typography } from "@mui/material";
+import { DragDropContext } from "react-beautiful-dnd";
+import { Box } from "@mui/material";
 import PropTypes from "prop-types";
 import SearchBar from "./SearchBar";
+import DroppableColumn from "./DroppableColumn";
+import Modals from "./Modals";
+import LoadingSpinner from "./LoadingSpinner";
+import InternshipsAPI from "../services/internships";
+import NotesAPI from "../services/notes";
+import ProjectsAPI from "../services/projects";
 
-const Board = ({ boardType }) => {
-  const [columns, setColumns] = useState();
+/**
+ * A component that displays a board with draggable and droppable columns and items.
+ * @param {Object} props - The props object.
+ * @param {string} props.boardType - The type of board to display (note, internship, or project).
+ * @returns {JSX.Element} - The Board component.
+ */
+const Board = ({ boardType, columns }) => {
+  const [boardColumns, setBoardColumns] = useState(null);
   const [searchInput, setSearchInput] = useState("");
 
-  useEffect(() => {
-    switch (boardType) {
-      case "notes": {
-        const notesItems = [
-          { id: uuidv4(), content: "First Note" },
-          { id: uuidv4(), content: "Second Note" },
-          { id: uuidv4(), content: "Third Note" },
-          { id: uuidv4(), content: "Fourth Note" },
-          { id: uuidv4(), content: "Fifth Note" },
-        ];
-        const notesColumns = {
-          [uuidv4()]: {
-            name: "Experiences",
-            items: notesItems,
-          },
-          [uuidv4()]: {
-            name: "Ideas",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Other",
-            items: [],
-          },
-        };
-        setColumns(notesColumns);
-        break;
-      }
-      case "internships": {
-        const internshipsItems = [
-          { id: uuidv4(), content: "First Internship" },
-          { id: uuidv4(), content: "Second Internship" },
-          { id: uuidv4(), content: "Third Internship" },
-          { id: uuidv4(), content: "Fourth Internship" },
-          { id: uuidv4(), content: "Fifth Internship" },
-        ];
-        const internshipsColumns = {
-          [uuidv4()]: {
-            name: "Applied",
-            items: internshipsItems,
-          },
-          [uuidv4()]: {
-            name: "Screen",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Interviewing",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Offer",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Rejected",
-            items: [],
-          },
-        };
-        setColumns(internshipsColumns);
-        break;
-      }
-      case "projects": {
-        const projectsItems = [
-          { id: uuidv4(), content: "First Project" },
-          { id: uuidv4(), content: "Second Project" },
-          { id: uuidv4(), content: "Third Project" },
-          { id: uuidv4(), content: "Fourth Project" },
-          { id: uuidv4(), content: "Fifth Project" },
-        ];
-        const projectsColumns = {
-          [uuidv4()]: {
-            name: "Not Started",
-            items: projectsItems,
-          },
-          [uuidv4()]: {
-            name: "In Progress",
-            items: [],
-          },
-          [uuidv4()]: {
-            name: "Completed",
-            items: [],
-          },
-        };
-        setColumns(projectsColumns);
-        break;
-      }
-      default:
-        break;
-    }
-  }, [boardType]);
+  const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [modalItem, setModalItem] = useState({});
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [filteredColumns, setFilteredColumns] = useState(null);
 
-  const handleSearchInput = (event) => {
-    setSearchInput(event.target.value);
+  useEffect(() => {
+    setBoardColumns(columns);
+  }, [columns]);
+
+  useEffect(() => {
+    if (boardColumns) {
+      const newFilteredColumns = {};
+      Object.entries(boardColumns).forEach(([columnId, column]) => {
+        const filteredItems = column.items.filter((item) => {
+          return (
+            item.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.position?.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.company?.toLowerCase().includes(searchInput.toLowerCase())
+          );
+        });
+        newFilteredColumns[columnId] = { ...column, items: filteredItems };
+      });
+      setFilteredColumns(newFilteredColumns);
+    }
+  }, [searchInput, boardColumns]);
+
+  const handleSearchInput = (value) => {
+    setSearchInput(value);
   };
 
-  const onDragEnd = (result, columns, setColumns) => {
+  const onDragEnd = (result, boardColumns, setBoardColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
 
     if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId];
-      const destColumn = columns[destination.droppableId];
+      const sourceColumn = boardColumns[source.droppableId];
+      const destColumn = boardColumns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
+      setBoardColumns({
+        ...boardColumns,
         [source.droppableId]: {
           ...sourceColumn,
           items: sourceItems,
@@ -126,13 +74,46 @@ const Board = ({ boardType }) => {
           items: destItems,
         },
       });
+
+      // Update the status of the item in the database
+      const item = removed;
+      console.log("Updating item: ", item);
+      const statusId = destination.droppableId;
+      console.log("Status ID: ", statusId);
+      const itemId = item.id;
+
+      switch (boardType) {
+        case "internship":
+          InternshipsAPI.updateInternship(itemId, {
+            ...item,
+            status_id: statusId,
+            updated_at: new Date(),
+          });
+          break;
+        case "note":
+          NotesAPI.updateNote(itemId, {
+            ...item,
+            status_id: statusId,
+            updated_at: new Date(),
+          });
+          break;
+        case "project":
+          ProjectsAPI.updateProject(itemId, {
+            ...item,
+            status_id: statusId,
+            updated_at: new Date(),
+          });
+          break;
+        default:
+          break;
+      }
     } else {
-      const column = columns[source.droppableId];
+      const column = boardColumns[source.droppableId];
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
+      setBoardColumns({
+        ...boardColumns,
         [source.droppableId]: {
           ...column,
           items: copiedItems,
@@ -141,9 +122,46 @@ const Board = ({ boardType }) => {
     }
   };
 
+  const handleViewModalOpen = (item) => {
+    setModalItem(item);
+    setViewModalOpen(true);
+  };
+
+  const handleViewModalClose = () => {
+    setViewModalOpen(false);
+  };
+
+  const handleEditModalOpen = (item) => {
+    setModalItem(item);
+    setViewModalOpen(false);
+    setEditModalOpen(true);
+  };
+
+  const handleEditModalClose = () => {
+    setEditModalOpen(false);
+  };
+
+  const handleDeleteModalOpen = (item) => {
+    setModalItem(item);
+    setViewModalOpen(false);
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setDeleteModalOpen(false);
+  };
+
+  const handleAddModalClose = () => {
+    setAddModalOpen(false);
+  };
+
   return (
     <>
-      <SearchBar onSearch={handleSearchInput} />
+      <SearchBar
+        onSearch={handleSearchInput}
+        setAddModalOpen={setAddModalOpen}
+        boardType={boardType}
+      />
       <Box
         sx={{
           display: "flex",
@@ -152,116 +170,51 @@ const Board = ({ boardType }) => {
           overflowX: "auto",
         }}
       >
-        {columns && (
+        {filteredColumns ? (
           <DragDropContext
-            onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+            onDragEnd={(result) =>
+              onDragEnd(result, filteredColumns, setFilteredColumns)
+            }
           >
-            {Object.entries(columns).map(([columnId, column], index) => {
+            {Object.entries(filteredColumns).map(([columnId, column]) => {
               return (
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    height: "calc(100vh - 64px)",
-                  }}
+                <DroppableColumn
+                  column={column}
+                  columnId={columnId}
+                  boardType={boardType}
+                  handleViewModalOpen={handleViewModalOpen}
                   key={columnId}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#010C80",
-                    }}
-                  >
-                    {column.name}
-                  </Typography>
-                  <Box
-                    sx={{
-                      margin: 0.9,
-                      maxHeight: "calc(100vh - 64px)",
-                    }}
-                  >
-                    <StrictModeDroppable droppableId={columnId} key={columnId}>
-                      {(provided, snapshot) => {
-                        return (
-                          <Box
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            sx={{
-                              background: snapshot.isDraggingOver
-                                ? "#77D4FC"
-                                : "lightgrey",
-                              padding: 1,
-                              width: 300,
-                              height: "100%",
-                            }}
-                          >
-                            {column.items && column.items.length > 0 ? (
-                              column.items.map((item, index) => {
-                                return (
-                                  <Draggable
-                                    key={item.id}
-                                    draggableId={item.id}
-                                    index={index}
-                                  >
-                                    {(provided, snapshot) => {
-                                      return (
-                                        <Box
-                                          ref={provided.innerRef}
-                                          {...provided.draggableProps}
-                                          {...provided.dragHandleProps}
-                                          sx={{
-                                            userSelect: "none",
-                                            padding: 2,
-                                            margin: "0 0 8px 0",
-                                            backgroundColor: snapshot.isDragging
-                                              ? "#263B4A"
-                                              : "#456C86",
-                                            color: "white",
-                                            ...provided.draggableProps.style,
-                                          }}
-                                        >
-                                          {item.content}
-                                        </Box>
-                                      );
-                                    }}
-                                  </Draggable>
-                                );
-                              })
-                            ) : (
-                              <Typography
-                                variant="body1"
-                                sx={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  fontSize: "1.2rem",
-                                  color: "#888",
-                                }}
-                              >
-                                Nothing here yet!
-                              </Typography>
-                            )}
-
-                            {provided.placeholder}
-                          </Box>
-                        );
-                      }}
-                    </StrictModeDroppable>
-                  </Box>
-                </Box>
+                />
               );
             })}
           </DragDropContext>
+        ) : (
+          <LoadingSpinner label="board items" />
         )}
       </Box>
+
+      {/* Modals */}
+      <Modals
+        viewModalOpen={viewModalOpen}
+        handleViewModalClose={handleViewModalClose}
+        handleEditModalOpen={handleEditModalOpen}
+        handleDeleteModalOpen={handleDeleteModalOpen}
+        modalItem={modalItem}
+        boardType={boardType}
+        editModalOpen={editModalOpen}
+        handleEditModalClose={handleEditModalClose}
+        addModalOpen={addModalOpen}
+        handleAddModalClose={handleAddModalClose}
+        deleteModalOpen={deleteModalOpen}
+        handleDeleteModalClose={handleDeleteModalClose}
+      />
     </>
   );
 };
 
 Board.propTypes = {
   boardType: PropTypes.string.isRequired,
+  columns: PropTypes.object.isRequired,
 };
 
 export default Board;
