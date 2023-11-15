@@ -2,6 +2,7 @@ import React from 'react'
 
 
 import { Card, CardMedia, CardContent, Typography, Stack } from '@mui/material'
+import { CareerRoadmap, Internship, InterviewPrep, Notes, Projects, SkillsDevelopment } from '../../assets'
 
 const Features = () => {
     return (
@@ -12,7 +13,7 @@ const Features = () => {
                     <CardMedia
                         component='img'
                         height='140'
-                        image='https://source.unsplash.com/featured/?internship'
+                        image={Internship}
                         alt='Internships'
                     />
                     <CardContent>
@@ -28,7 +29,7 @@ const Features = () => {
                     <CardMedia
                         component='img'
                         height='140'
-                        image='https://source.unsplash.com/featured/?interview'
+                        image={InterviewPrep}
                         alt='Interview Prep'
                     />
                     <CardContent>
@@ -44,7 +45,7 @@ const Features = () => {
                     <CardMedia
                         component='img'
                         height='140'
-                        image='https://source.unsplash.com/featured/?project'
+                        image={Projects}
                         alt='Projects'
                     />
                     <CardContent>
@@ -60,7 +61,7 @@ const Features = () => {
                     <CardMedia
                         component='img'
                         height='140'
-                        image='https://source.unsplash.com/featured/?note'
+                        image={Notes}
                         alt='Notes'
                     />
                     <CardContent>
@@ -76,7 +77,7 @@ const Features = () => {
                     <CardMedia
                         component='img'
                         height='140'
-                        image='https://source.unsplash.com/featured/?skill'
+                        image={SkillsDevelopment}
                         alt='Skills Development'
                     />
                     <CardContent>
@@ -92,7 +93,7 @@ const Features = () => {
                     <CardMedia
                         component='img'
                         height='140'
-                        image='https://source.unsplash.com/featured/?career'
+                        image={CareerRoadmap}
                         alt='Career Roadmaps'
                     />
                     <CardContent>

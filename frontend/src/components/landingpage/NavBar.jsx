@@ -4,6 +4,7 @@ import Logo from '../../../public/logo/png/logo-no-background.png'
 
 
 const NavBar = () => {
+  
   return (
     <Stack
     direction="row"
@@ -23,9 +24,9 @@ const NavBar = () => {
       <img src={Logo} className='logo' alt="logo" height={45} />
     </Link>
     <Stack direction='row' spacing={2}>
-        <Link to ='#features' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Features</Link>
-        <Link to ='#testimonials' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Testimonials</Link>
-        <Link to ='#sponsors' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Sponsors</Link>
+        <Link href ='#features' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Features</Link>
+        <Link href ='#testimonials' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Testimonials</Link>
+        <Link href ='#sponsors' color='#ffffff' sx={{textDecoration:'none', fontWeight: '700'}}>Sponsors</Link>
         <Link to ='/signup'  color='#ffffff' sx={{textDecoration:'none', color: '#152246', fontWeight: '700', backgroundColor: '#f1f1f1', padding: '5px 5px', borderRadius: '10px'}}>Sign In</Link>
     </Stack>    
   </Stack>
