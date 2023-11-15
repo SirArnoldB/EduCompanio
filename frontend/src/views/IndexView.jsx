@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SectionPreview from "../components/SectionPreview";
 import {Indexquote} from "../assets";
+import { useNavigate } from 'react-router-dom';
 
 const IndexView = () => {
   const mockNotes = [
@@ -40,6 +41,8 @@ const IndexView = () => {
   const [notes, setNotes] = useState(mockNotes);
   const [internships, setInternships] = useState(mockInternships);
 
+  const navigate = useNavigate();
+
   return (
     <Container maxWidth="xl">
       <Typography variant="h5">
@@ -52,7 +55,7 @@ const IndexView = () => {
       <Box sx={{ display: "flex", flexDirection: "column", mt: 5 }}>
         <Box sx={{ width: "95%" }}>
           <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 5 }}>
-            <Button variant="contained">View All</Button>
+            <Button variant="contained" onClick={() => navigate("/notes")}>View All</Button>
           </Box>
           <Box style={{padding: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
             {notes.length > 0 ? (
@@ -69,7 +72,7 @@ const IndexView = () => {
 
         <Box sx={{ width: "95%" }}>
           <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 5 }}>
-            <Button variant="contained">View All</Button>
+            <Button variant="contained" onClick={() => navigate("/internships")}>View All</Button>
           </Box>
           <Box style={{padding: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
             {internships.length > 0 ? (

@@ -1,7 +1,9 @@
-import React from 'react'
+import { useContext} from 'react'
 import { Button, Grid, Paper, Typography } from '@mui/material';
+import { BoardContext } from '../contexts/BoardContext';
 
 const ProfileView = () => {
+    const [state, dispatch] = useContext(BoardContext);
 
     return (
         <div style={{padding: '2rem'}}>
@@ -25,7 +27,7 @@ const ProfileView = () => {
                                     Total Notes
                                 </Typography>
                                 <Typography variant="h4" gutterBottom>
-                                    0
+                                    {state.counts.notes}
                                 </Typography>
                             </Paper>
                         </Grid>
@@ -35,7 +37,7 @@ const ProfileView = () => {
                                     Total Internships
                                 </Typography>
                                 <Typography variant="h4" gutterBottom>
-                                    0
+                                    {state.counts.internships}
                                 </Typography>
                             </Paper>
                         </Grid>
@@ -45,7 +47,7 @@ const ProfileView = () => {
                                     Total Projects
                                 </Typography>
                                 <Typography variant="h4" gutterBottom>
-                                    0
+                                    {state.counts.projects}
                                 </Typography>
                             </Paper>
                         </Grid>
