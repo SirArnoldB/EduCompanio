@@ -95,11 +95,15 @@ const Board = ({ boardType }) => {
 
       switch (boardType) {
         case "internship":
-          InternshipsAPI.updateInternship(itemId, {
-            ...item,
-            status_id: statusId,
-            updated_at: new Date(),
-          })
+          InternshipsAPI.updateInternship(
+            itemId,
+            {
+              ...item,
+              status_id: statusId,
+              updated_at: new Date(),
+            },
+            state.user.accesstoken
+          )
             .then((res) => {
               dispatch({
                 type: "UPDATE_INTERNSHIP",
@@ -114,11 +118,15 @@ const Board = ({ boardType }) => {
             });
           break;
         case "note":
-          NotesAPI.updateNote(itemId, {
-            ...item,
-            status_id: statusId,
-            updated_at: new Date(),
-          })
+          NotesAPI.updateNote(
+            itemId,
+            {
+              ...item,
+              status_id: statusId,
+              updated_at: new Date(),
+            },
+            state.user.accesstoken
+          )
             .then((res) => {
               dispatch({
                 type: "UPDATE_NOTE",
@@ -133,11 +141,15 @@ const Board = ({ boardType }) => {
             });
           break;
         case "project":
-          ProjectsAPI.updateProject(itemId, {
-            ...item,
-            status_id: statusId,
-            updated_at: new Date(),
-          })
+          ProjectsAPI.updateProject(
+            itemId,
+            {
+              ...item,
+              status_id: statusId,
+              updated_at: new Date(),
+            },
+            state.user.accesstoken
+          )
             .then((res) => {
               dispatch({
                 type: "UPDATE_PROJECT",

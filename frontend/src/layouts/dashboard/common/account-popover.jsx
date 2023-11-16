@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { BoardContext } from "../../../contexts/BoardContext";
 
 import {
   Avatar,
@@ -8,6 +9,7 @@ import {
   IconButton,
   Typography,
   Box,
+  Button,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
@@ -28,6 +30,7 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
+  const [state] = useContext(BoardContext);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -35,13 +38,6 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
-  };
-
-  const account = {
-    displayName: "John Doe",
-    email: "johndoe@example.com",
-    photoURL: "",
-    role: "User",
   };
 
   return (
@@ -59,15 +55,15 @@ export default function AccountPopover() {
         }}
       >
         <Avatar
-          src={account.photoURL}
-          alt={account.displayName}
+          src={state.user.avatarurl}
+          alt={state.user.username}
           sx={{
             width: 36,
             height: 36,
             border: (theme) => `solid 2px ${theme.palette.background.default}`,
           }}
         >
-          {account.displayName.charAt(0).toUpperCase()}
+          {state.user.username?.charAt(0)}
         </Avatar>
       </IconButton>
 
@@ -88,10 +84,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {state.user?.username}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
-            {account.email}
+            {`@${state.user.username?.toLowerCase()}`}
           </Typography>
         </Box>
 
@@ -105,13 +101,13 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: "dashed", m: 0 }} />
 
-        <MenuItem
-          disableRipple
-          disableTouchRipple
-          onClick={handleClose}
-          sx={{ typography: "body2", color: "error.main", py: 1.5 }}
-        >
-          Logout
+        <MenuItem disableRipple disableTouchRipple>
+          <Button
+            href={`${state.API_URL}${state.LOGOUT_AUTH_PATH}`}
+            color="error"
+          >
+            Logout
+          </Button>
         </MenuItem>
       </Popover>
     </>

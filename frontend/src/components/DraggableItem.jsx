@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Draggable } from "react-beautiful-dnd";
 import { Box } from "@mui/material";
 import BoardItem from "./BoardItem";
@@ -26,9 +27,9 @@ const DraggableItem = ({ item, index, itemType, handleViewModalOpen }) => {
             sx={{
               userSelect: "none",
               padding: 0.5,
-              margin: "0 0 8px 0",
-              backgroundColor: snapshot.isDragging ? "#154c79" : "#263B4A",
-              color: "#f5f5f5",
+              // margin: "0 0 8px 0",
+              // backgroundColor: snapshot.isDragging ? "#154c79" : "#263B4A",
+              // color: "#f5f5f5",
               ...provided.draggableProps.style,
             }}
           >

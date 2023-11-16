@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -18,16 +18,11 @@ import RouterLink from "../../components/RouterLink";
 import { useResponsive } from "../../hooks/use-responsive";
 import Scrollbar from "../../components/Scrollbar";
 import Logo from "../../components/Logo";
+import { BoardContext } from "../../contexts/BoardContext";
 
 export default function Nav({ openNav, onCloseNav }) {
   const pathname = usePathname();
-
-  const account = {
-    displayName: "John Doe",
-    email: "johndoe@example.com",
-    photoURL: "",
-    role: "Student",
-  };
+  const [state] = useContext(BoardContext);
 
   const upLg = useResponsive("up", "lg");
 
@@ -51,13 +46,13 @@ export default function Nav({ openNav, onCloseNav }) {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Avatar src={account.photoURL} alt="photoURL" />
+      <Avatar src={state.user.avatarurl} alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{account.displayName}</Typography>
+        <Typography variant="subtitle2">{state.user.username}</Typography>
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {account.role}
+          {`@${state.user.username?.toLowerCase()}`}
         </Typography>
       </Box>
     </Box>

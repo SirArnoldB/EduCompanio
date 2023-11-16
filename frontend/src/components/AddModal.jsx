@@ -23,7 +23,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
   const handleSubmit = (newItem) => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.createInternship(newItem)
+        InternshipsAPI.createInternship(newItem, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "ADD_INTERNSHIP", payload: res });
           })
@@ -32,7 +32,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
           });
         break;
       case "note":
-        NotesAPI.createNote(newItem)
+        NotesAPI.createNote(newItem, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "ADD_NOTE", payload: res });
           })
@@ -41,7 +41,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
           });
         break;
       case "project":
-        ProjectsAPI.createProject(newItem)
+        ProjectsAPI.createProject(newItem, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "ADD_PROJECT", payload: res });
           })

@@ -22,7 +22,7 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
   const handleDelete = () => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.deleteInternship(item.id)
+        InternshipsAPI.deleteInternship(item.id, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "DELETE_INTERNSHIP", payload: res });
           })
@@ -31,7 +31,7 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "note":
-        NotesAPI.deleteNote(item.id)
+        NotesAPI.deleteNote(item.id, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "DELETE_NOTE", payload: res });
           })
@@ -40,7 +40,7 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "project":
-        ProjectsAPI.deleteProject(item.id)
+        ProjectsAPI.deleteProject(item.id, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "DELETE_PROJECT", payload: res });
           })
