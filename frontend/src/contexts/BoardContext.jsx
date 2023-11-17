@@ -363,7 +363,7 @@ export const BoardContextProvider = ({ children }) => {
       }
     };
     fetchData();
-  }, [state.user]);
+  }, [state.user.accesstoken]);
 
   return (
     <BoardContext.Provider value={[state, dispatch]}>
