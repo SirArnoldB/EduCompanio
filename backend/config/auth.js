@@ -5,7 +5,7 @@ import { initializeUserData } from "./initialize-data.js";
 const options = {
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3002/auth/github/callback',
+    callbackURL: 'https://educompanio-prod-server.up.railway.app/auth/github/callback',
 };
 
 const verify = async (accessToken, refreshToken, profile, callback) => {
