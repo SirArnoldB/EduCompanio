@@ -21,9 +21,11 @@ app.use(session({
     saveUninitialized: false,
 }))
 
+const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'https://fredngo-cp-w103-lab9-client.up.railway.app' : 'http://localhost:5173'
+
 // set up the cors middleware
 app.use(cors({
-    origin: ['http://localhost:3002', 'http://localhost:5173'],
+    origin: CLIENT_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true
 }));
@@ -48,7 +50,7 @@ app.use(express.json());
 
 // Set up the default route
 app.get('/', (req, res) => {
-    res.redirect('http://localhost:5173')
+    res.redirect(CLIENT_URL)
 })
 
 // set up the auth routes

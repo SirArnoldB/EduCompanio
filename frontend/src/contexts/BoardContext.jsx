@@ -30,7 +30,10 @@ const initialState = {
     internships: [],
     notes: [],
   },
-  API_URL: "http://localhost:3002",
+  API_URL:
+    process.env.NODE_ENV === "production"
+      ? "https://educompanio-prod-server.up.railway.app"
+      : "http://localhost:3002",
   LOGOUT_AUTH_PATH: "/auth/logout",
   LOGIN_AUTH_PATH: "/auth/github",
   loading: false,
