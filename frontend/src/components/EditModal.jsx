@@ -6,6 +6,8 @@ import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
 import { BoardContext } from "../contexts/BoardContext";
+import { toast } from "react-toastify";
+import Notify from "./Toast/Notify";
 
 /**
  * A modal component for editing an item.
@@ -39,9 +41,11 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
                 original_status_id: item.status_id,
               },
             });
+            Notify("Internship updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Internship update failed", toast.TYPE.ERROR);
           });
         break;
       case "note":
@@ -61,9 +65,11 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
                 original_status_id: item.status_id,
               },
             });
+            Notify("Note updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Note update failed", toast.TYPE.ERROR);
           });
         break;
       case "project":
@@ -83,9 +89,11 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
                 original_status_id: item.status_id,
               },
             });
+            Notify("Project updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Project update failed", toast.TYPE.ERROR);
           });
         break;
       default:

@@ -10,6 +10,8 @@ import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
 import { BoardContext } from "../contexts/BoardContext";
+import { toast } from "react-toastify";
+import Notify from "./Toast/Notify";
 
 /**
  * A component that displays a board with draggable and droppable columns and items.
@@ -112,9 +114,11 @@ const Board = ({ boardType }) => {
                   original_status_id: source.droppableId,
                 },
               });
+              Notify("Internship moved successfully", toast.TYPE.SUCCESS);
             })
             .catch((err) => {
               console.log(err);
+              Notify("Internship move failed", toast.TYPE.ERROR);
             });
           break;
         case "note":
@@ -135,9 +139,11 @@ const Board = ({ boardType }) => {
                   original_status_id: source.droppableId,
                 },
               });
+              Notify("Note moved successfully", toast.TYPE.SUCCESS);
             })
             .catch((err) => {
               console.log(err);
+              Notify("Note move failed", toast.TYPE.ERROR);
             });
           break;
         case "project":
@@ -158,9 +164,11 @@ const Board = ({ boardType }) => {
                   original_status_id: source.droppableId,
                 },
               });
+              Notify("Project moved successfully", toast.TYPE.SUCCESS);
             })
             .catch((err) => {
               console.log(err);
+              Notify("Project move failed", toast.TYPE.ERROR);
             });
           break;
         default:

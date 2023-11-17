@@ -5,6 +5,8 @@ import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
 import { BoardContext } from "../contexts/BoardContext";
+import { toast } from "react-toastify";
+import Notify from "./Toast/Notify";
 
 /**
  * A modal component for deleting an item.
@@ -25,27 +27,33 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
         InternshipsAPI.deleteInternship(item.id, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "DELETE_INTERNSHIP", payload: res });
+            Notify("Internship deleted successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Internship deletion failed", toast.TYPE.ERROR);
           });
         break;
       case "note":
         NotesAPI.deleteNote(item.id, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "DELETE_NOTE", payload: res });
+            Notify("Note deleted successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Note deletion failed", toast.TYPE.ERROR);
           });
         break;
       case "project":
         ProjectsAPI.deleteProject(item.id, state.user.accesstoken)
           .then((res) => {
             dispatch({ type: "DELETE_PROJECT", payload: res });
+            Notify("Project deleted successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Project deletion failed", toast.TYPE.ERROR);
           });
         break;
       default:
@@ -53,7 +61,6 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
     }
 
     handleClose();
-    alert(`${itemType} deleted.`);
   };
 
   return (
