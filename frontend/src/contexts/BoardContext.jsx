@@ -31,6 +31,7 @@ const initialState = {
     notes: [],
   },
   API_URL:
+    // eslint-disable-next-line no-undef
     process.env.NODE_ENV === "production"
       ? "https://educompanio-prod-server.up.railway.app"
       : "http://localhost:3002",
@@ -307,13 +308,9 @@ export const BoardContextProvider = ({ children }) => {
       if (state.user.accesstoken) {
         try {
           // Projects, internships, and notes
-          const projects = await ProjectsAPI.getAllProjects(
-            state.user.accesstoken
-          );
-          const internships = await InternshipsAPI.getAllInternships(
-            state.user.accesstoken
-          );
-          const notes = await NotesAPI.getAllNotes(state.user.accesstoken);
+          const projects = await ProjectsAPI.getAllProjects();
+          const internships = await InternshipsAPI.getAllInternships();
+          const notes = await NotesAPI.getAllNotes();
           const counts = {
             projects: projects.length,
             internships: internships.length,

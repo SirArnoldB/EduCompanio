@@ -5,6 +5,7 @@ import internshipsRouter from './routes/internships.js';
 import projectsRouter from './routes/projects.js';
 import categoriesRouter from './routes/categories.js';
 import statusesRouter from './routes/statuses.js';
+import ensureAuthenticated from './config/auth-middleware.js';
 
 import passport from 'passport'
 import session from 'express-session'
@@ -18,7 +19,7 @@ const app = express();
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
 }))
 
 const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'https://educompanio.up.railway.app' : 'http://localhost:5173'
@@ -57,9 +58,9 @@ app.get('/', (req, res) => {
 app.use('/auth', authRouter);
 
 // set up the routes
-app.use('/api/notes', notesRouter);
-app.use('/api/internships', internshipsRouter);
-app.use('/api/projects', projectsRouter);
+app.use('/api/notes', ensureAuthenticated, notesRouter);
+app.use('/api/internships', ensureAuthenticated, internshipsRouter);
+app.use('/api/projects', ensureAuthenticated, projectsRouter);
 
 // set up the categories routes
 app.use('/api/categories', categoriesRouter);

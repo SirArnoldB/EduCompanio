@@ -2,10 +2,6 @@
 import { pool } from '../config/database.js'
 
 const createProject = async (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: 'Not authenticated' });
-  }
-
   try {
     const user_id = req.user.id
     const { title, content, url, category_id, status_id } = req.body
@@ -24,10 +20,6 @@ const createProject = async (req, res) => {
 }
 
 const getAllProjects = async (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: 'Not authenticated' });
-  }
-
   try {
     const user_id = req.user.id
     const results = await pool.query('SELECT * FROM projects WHERE user_id = $1 ORDER BY updated_at DESC', [user_id])
@@ -55,10 +47,6 @@ const getProjectById = async (req, res) => {
 }
 
 const updateProject = async (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: 'Not authenticated' });
-  }
-
   try {
     const user_id = req.user.id
     const id = req.params.id
@@ -78,10 +66,6 @@ const updateProject = async (req, res) => {
 }
 
 const deleteProject = async (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: 'Not authenticated' });
-  }
-
   try {
     const user_id = req.user.id
     const id = req.params.id

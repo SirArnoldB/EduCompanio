@@ -2,10 +2,6 @@ import { pool } from '../config/database.js'
 
 
 const createInternship = async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ error: 'Not authenticated' });
-    }
-
     try {
         const { company, position, content, url, category_id, status_id } = req.body
         const user_id = req.user.id
@@ -24,10 +20,6 @@ const createInternship = async (req, res) => {
 }
 
 const getAllInternships = async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ error: 'Not authenticated' });
-    }
-
     try {
         const user_id = req.user.id
 
@@ -40,10 +32,6 @@ const getAllInternships = async (req, res) => {
 }
 
 const getInternshipById = async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ error: 'Not authenticated' });
-    }
-
     try {
         const id = req.params.id
         const user_id = req.user.id
@@ -56,10 +44,6 @@ const getInternshipById = async (req, res) => {
 }
 
 const updateInternship = async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ error: 'Not authenticated' });
-    }
-
     try {
         const id = req.params.id
         const user_id = req.user.id
@@ -79,10 +63,6 @@ const updateInternship = async (req, res) => {
 }
 
 const deleteInternship = async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ error: 'Not authenticated' });
-    }
-
     try {
         const user_id = req.user.id
         const id = req.params.id

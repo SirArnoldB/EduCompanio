@@ -24,7 +24,7 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
   const handleDelete = () => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.deleteInternship(item.id, state.user.accesstoken)
+        InternshipsAPI.deleteInternship(item.id)
           .then((res) => {
             dispatch({ type: "DELETE_INTERNSHIP", payload: res });
             Notify("Internship deleted successfully", toast.TYPE.SUCCESS);
@@ -35,7 +35,7 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "note":
-        NotesAPI.deleteNote(item.id, state.user.accesstoken)
+        NotesAPI.deleteNote(item.id)
           .then((res) => {
             dispatch({ type: "DELETE_NOTE", payload: res });
             Notify("Note deleted successfully", toast.TYPE.SUCCESS);
@@ -46,7 +46,7 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "project":
-        ProjectsAPI.deleteProject(item.id, state.user.accesstoken)
+        ProjectsAPI.deleteProject(item.id)
           .then((res) => {
             dispatch({ type: "DELETE_PROJECT", payload: res });
             Notify("Project deleted successfully", toast.TYPE.SUCCESS);

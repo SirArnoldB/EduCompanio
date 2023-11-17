@@ -25,7 +25,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
   const handleSubmit = (newItem) => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.createInternship(newItem, state.user.accesstoken)
+        InternshipsAPI.createInternship(newItem)
           .then((res) => {
             dispatch({ type: "ADD_INTERNSHIP", payload: res });
             Notify("Internship added successfully", toast.TYPE.SUCCESS);
@@ -36,7 +36,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
           });
         break;
       case "note":
-        NotesAPI.createNote(newItem, state.user.accesstoken)
+        NotesAPI.createNote(newItem)
           .then((res) => {
             dispatch({ type: "ADD_NOTE", payload: res });
             Notify("Note added successfully", toast.TYPE.SUCCESS);
@@ -47,7 +47,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
           });
         break;
       case "project":
-        ProjectsAPI.createProject(newItem, state.user.accesstoken)
+        ProjectsAPI.createProject(newItem)
           .then((res) => {
             dispatch({ type: "ADD_PROJECT", payload: res });
             Notify("Project added successfully", toast.TYPE.SUCCESS);

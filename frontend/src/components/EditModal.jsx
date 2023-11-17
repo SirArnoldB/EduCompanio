@@ -25,14 +25,10 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
   const handleSubmit = (updatedItem) => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.updateInternship(
-          updatedItem.id,
-          {
-            ...updatedItem,
-            updated_at: new Date(),
-          },
-          state.user.accesstoken
-        )
+        InternshipsAPI.updateInternship(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        })
           .then((res) => {
             dispatch({
               type: "UPDATE_INTERNSHIP",
@@ -49,14 +45,10 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "note":
-        NotesAPI.updateNote(
-          updatedItem.id,
-          {
-            ...updatedItem,
-            updated_at: new Date(),
-          },
-          state.user.accesstoken
-        )
+        NotesAPI.updateNote(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        })
           .then((res) => {
             dispatch({
               type: "UPDATE_NOTE",
@@ -73,14 +65,10 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "project":
-        ProjectsAPI.updateProject(
-          updatedItem.id,
-          {
-            ...updatedItem,
-            updated_at: new Date(),
-          },
-          state.user.accesstoken
-        )
+        ProjectsAPI.updateProject(updatedItem.id, {
+          ...updatedItem,
+          updated_at: new Date(),
+        })
           .then((res) => {
             dispatch({
               type: "UPDATE_PROJECT",
