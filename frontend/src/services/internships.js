@@ -2,15 +2,15 @@ import request from "../utilities/api";
 
 const internshipsUrl = "/api/internships";
 
-const getAllInternships = () => request("GET", internshipsUrl);
+const getAllInternships = (token) => request("GET", internshipsUrl, '', { Authorization: `Bearer ${token}` });
 
-const getInternshipById = (id) => request("GET", `${internshipsUrl}/${id}`);
+const getInternshipById = (id, token) => request("GET", `${internshipsUrl}/${id}`, '', { Authorization: `Bearer ${token}` });
 
-const createInternship = (internship) => request("POST", internshipsUrl, internship);
+const createInternship = (internship, token) => request("POST", internshipsUrl, internship, { Authorization: `Bearer ${token}` });
 
-const updateInternship = (id, internship) => request("PATCH", `${internshipsUrl}/${id}`, internship);
+const updateInternship = (id, internship, token) => request("PATCH", `${internshipsUrl}/${id}`, internship, { Authorization: `Bearer ${token}` });
 
-const deleteInternship = (id) => request("DELETE", `${internshipsUrl}/${id}`);
+const deleteInternship = (id, token) => request("DELETE", `${internshipsUrl}/${id}`, '', { Authorization: `Bearer ${token}` });
 
 export default {
     getAllInternships,
