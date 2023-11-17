@@ -23,6 +23,10 @@ const createNote = async (req, res) => {
 }
 
 const getAllNotes = async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+
   try {
     const user_id = req.user.id
     const results = await pool.query('SELECT * FROM notes WHERE user_id = $1 ORDER BY created_at DESC', [user_id])
@@ -46,6 +50,10 @@ const getNoteById = async (req, res) => {
 }
 
 const updateNote = async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+
   try {
     const user_id = req.user.id
     const id = req.params.id
@@ -65,6 +73,10 @@ const updateNote = async (req, res) => {
 }
 
 const deleteNote = async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+
   try {
     const user_id = req.user.id
     const id = req.params.id
