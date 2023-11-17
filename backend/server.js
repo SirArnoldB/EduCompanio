@@ -50,7 +50,7 @@ app.use(express.json());
 
 // Set up the default route
 app.get('/', (req, res) => {
-    res.redirect(CLIENT_URL)
+    res.redirect(`${CLIENT_URL}/dashboard`)
 })
 
 // set up the auth routes

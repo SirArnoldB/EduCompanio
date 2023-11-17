@@ -22,7 +22,7 @@ const AppContent = () => {
       ),
       children: [
         {
-          path: "/",
+          path: "/dashboard",
           element: <ProtectedRoute element={<IndexPage />} />,
           index: true,
         },
@@ -38,7 +38,7 @@ const AppContent = () => {
       ],
     },
     {
-      path: "/home",
+      path: "/",
       element: <LandingPage />,
     },
   ]);
