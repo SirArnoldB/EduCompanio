@@ -5,7 +5,7 @@ import internshipsRouter from './routes/internships.js';
 import projectsRouter from './routes/projects.js';
 import categoriesRouter from './routes/categories.js';
 import statusesRouter from './routes/statuses.js';
-import ensureAuthenticated from './config/auth-middleware.js';
+import { ensureAuthenticated, findById } from './config/auth-middleware.js';
 
 import passport from 'passport'
 import session from 'express-session'
@@ -41,13 +41,21 @@ app.use(express.static('/public'));
 
 // set up the passport user serialization
 passport.serializeUser((user, done) => {
-    done(null, user)
+    console.log('Serializing user: ', user)
+    done(null, user.id)
 })
 
 // set up the passport user deserialization
-passport.deserializeUser((user, done) => {
-    done(null, user)
-})
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await findById(id)
+        console.log('Deserializing user: ', user)
+        done(null, user)
+    } catch (error) {
+        console.log('Error deserializing user: ', error)
+        done(error)
+    }
+});
 
 // set up the express app to handle data parsing
 app.use(express.json());
