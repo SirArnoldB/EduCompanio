@@ -3,6 +3,8 @@ import passport from 'passport';
 
 const router = express.Router();
 
+const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'https://educompanio.up.railway.app' : 'http://localhost:5173'
+
 router.get('/login/success', (req, res) => {
     if (req.user) {
         res.status(200).json({
@@ -31,7 +33,7 @@ router.get('/logout', (req, res) => {
                 return next(err);
             }
             res.clearCookie('connect.sid');
-            res.redirect('http://localhost:5173/home');
+            res.redirect(`${CLIENT_URL}/home`);
         });
     });
 });
