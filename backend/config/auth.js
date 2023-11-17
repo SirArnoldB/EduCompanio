@@ -8,7 +8,7 @@ const options = {
     callbackURL: 'https://educompanio-prod-server.up.railway.app/auth/github/callback',
 };
 
-const verify = async (accessToken, refreshToken, profile, callback) => {
+const verify = async (accessToken, refreshToken, profile, done) => {
     const { _json: { id, name, login, avatar_url } } = profile
 
     const userData = {
@@ -38,12 +38,12 @@ const verify = async (accessToken, refreshToken, profile, callback) => {
             // Initialize example data for new user
             await initializeUserData(newUser.id)
 
-            return callback(null, newUser)
+            return done(null, newUser)
         }
 
-        return callback(null, user)
+        return done(null, user)
     } catch (error) {
-        return callback(error)
+        return done(error)
     }
 }
 

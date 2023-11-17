@@ -36,6 +36,9 @@ app.use(passport.initialize()) // Used to initialize passport
 app.use(passport.session()) // Used to persist login sessions
 passport.use(GitHub) // Use the GitHub strategy for passport
 
+// serve static files
+app.use(express.static('/public'));
+
 // set up the passport user serialization
 passport.serializeUser((user, done) => {
     done(null, user)
