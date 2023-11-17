@@ -17,10 +17,11 @@ class ApiError extends Error {
  * @throws {ApiError} - If the API returns an error response.
  */
 const request = async (method, url, body = '', headers = {}) => {
+    const API_URL = "https://educompanio-prod-server.up.railway.app";
     try {
         const config = {
             method,
-            url,
+            url: `${API_URL}${url}`,
             headers: { 'Content-Type': 'application/json', ...headers },
         };
         if (body !== '') {
