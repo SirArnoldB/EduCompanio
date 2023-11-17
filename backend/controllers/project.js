@@ -26,7 +26,7 @@ const getAllProjects = async (req, res) => {
     res.status(200).json(results.rows)
   }
   catch (error) {
-    res.status(409).json({ error: error.message, req: req })
+    res.status(409).json({ error: error.message, req: req.user.id, req_user_username: req.user.username })
   }
 }
 
