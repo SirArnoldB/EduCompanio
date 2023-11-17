@@ -1,4 +1,4 @@
-import { pool } from "./database";
+import { pool } from "./database.js";
 
 const ensureAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
