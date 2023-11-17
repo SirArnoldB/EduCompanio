@@ -19,7 +19,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (loading) {
-      fetch(`http://localhost:3002/auth/login/success`, {
+      fetch(`${state.API_URL}/auth/login/success`, {
         credentials: "include",
       })
         .then((res) => res.json())
@@ -34,7 +34,7 @@ const LandingPage = () => {
           dispatch({ type: "SET_ERROR", payload: error });
         });
     }
-  }, [dispatch, loading]);
+  }, [dispatch, loading, state.API_URL]);
 
   return (
     <>

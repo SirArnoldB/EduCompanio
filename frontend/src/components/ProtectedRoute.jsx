@@ -11,7 +11,7 @@ const ProtectedRoute = ({ element }) => {
 
   useEffect(() => {
     if (state.loading) {
-      fetch(`http://localhost:3002/auth/login/success`, {
+      fetch(`${state.API_URL}/auth/login/success`, {
         credentials: "include",
       })
         .then((res) => res.json())
@@ -27,11 +27,11 @@ const ProtectedRoute = ({ element }) => {
           dispatch({ type: "SET_ERROR", payload: error });
         });
     }
-  }, [dispatch, state.loading]);
+  }, [dispatch, state.API_URL, state.loading]);
 
   const isAuthenticated = user.id && user.accesstoken;
 
-  return isAuthenticated ? element : <Navigate to="/home" />;
+  return isAuthenticated ? element : <Navigate to="/" />;
 };
 
 ProtectedRoute.propTypes = {

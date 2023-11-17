@@ -33,7 +33,7 @@ router.get('/logout', (req, res) => {
                 return next(err);
             }
             res.clearCookie('connect.sid');
-            res.redirect(`${CLIENT_URL}/home`);
+            res.redirect(`${CLIENT_URL}`);
         });
     });
 });
