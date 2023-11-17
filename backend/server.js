@@ -21,7 +21,7 @@ app.use(session({
     saveUninitialized: false,
 }))
 
-const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'https://fredngo-cp-w103-lab9-client.up.railway.app' : 'http://localhost:5173'
+const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'https://educompanio.up.railway.app' : 'http://localhost:5173'
 
 // set up the cors middleware
 app.use(cors({
