@@ -304,62 +304,66 @@ export const BoardContextProvider = ({ children }) => {
   useEffect(() => {
     // Fetch data from APIs and dispatch actions to update state
     const fetchData = async () => {
-      try {
-        // Projects, internships, and notes
-        const projects = await ProjectsAPI.getAllProjects(
-          state.user.accesstoken
-        );
-        const internships = await InternshipsAPI.getAllInternships(
-          state.user.accesstoken
-        );
-        const notes = await NotesAPI.getAllNotes(state.user.accesstoken);
-        const counts = {
-          projects: projects.length,
-          internships: internships.length,
-          notes: notes.length,
-        };
+      if (state.user.accesstoken) {
+        try {
+          // Projects, internships, and notes
+          const projects = await ProjectsAPI.getAllProjects(
+            state.user.accesstoken
+          );
+          const internships = await InternshipsAPI.getAllInternships(
+            state.user.accesstoken
+          );
+          const notes = await NotesAPI.getAllNotes(state.user.accesstoken);
+          const counts = {
+            projects: projects.length,
+            internships: internships.length,
+            notes: notes.length,
+          };
 
-        // Statuses
-        const internshipStatuses = await StatusesAPI.getAllInternshipStatuses();
-        const noteStatuses = await StatusesAPI.getAllNoteStatuses();
-        const projectStatuses = await StatusesAPI.getAllProjectStatuses();
-        const statuses = {
-          projects: projectStatuses,
-          internships: internshipStatuses,
-          notes: noteStatuses,
-        };
+          // Statuses
+          const internshipStatuses =
+            await StatusesAPI.getAllInternshipStatuses();
+          const noteStatuses = await StatusesAPI.getAllNoteStatuses();
+          const projectStatuses = await StatusesAPI.getAllProjectStatuses();
+          const statuses = {
+            projects: projectStatuses,
+            internships: internshipStatuses,
+            notes: noteStatuses,
+          };
 
-        // Generate columns from statuses and items
-        const projectColumns = generateColumns(projectStatuses, projects);
-        const internshipColumns = generateColumns(
-          internshipStatuses,
-          internships
-        );
-        const noteColumns = generateColumns(noteStatuses, notes);
-        const columns = {
-          projects: projectColumns,
-          internships: internshipColumns,
-          notes: noteColumns,
-        };
+          // Generate columns from statuses and items
+          const projectColumns = generateColumns(projectStatuses, projects);
+          const internshipColumns = generateColumns(
+            internshipStatuses,
+            internships
+          );
+          const noteColumns = generateColumns(noteStatuses, notes);
+          const columns = {
+            projects: projectColumns,
+            internships: internshipColumns,
+            notes: noteColumns,
+          };
 
-        // Categories
-        const internshipCategories =
-          await CategoriesAPi.getAllInternshipCategories();
-        const noteCategories = await CategoriesAPi.getAllNoteCategories();
-        const projectCategories = await CategoriesAPi.getAllProjectCategories();
-        const categories = {
-          projects: projectCategories,
-          internships: internshipCategories,
-          notes: noteCategories,
-        };
+          // Categories
+          const internshipCategories =
+            await CategoriesAPi.getAllInternshipCategories();
+          const noteCategories = await CategoriesAPi.getAllNoteCategories();
+          const projectCategories =
+            await CategoriesAPi.getAllProjectCategories();
+          const categories = {
+            projects: projectCategories,
+            internships: internshipCategories,
+            notes: noteCategories,
+          };
 
-        // Dispatch actions to set state
-        dispatch({ type: "SET_COUNTS", payload: counts });
-        dispatch({ type: "SET_COLUMNS", payload: columns });
-        dispatch({ type: "SET_STATUSES", payload: statuses });
-        dispatch({ type: "SET_CATEGORIES", payload: categories });
-      } catch (error) {
-        dispatch({ type: "SET_ERROR", payload: error });
+          // Dispatch actions to set state
+          dispatch({ type: "SET_COUNTS", payload: counts });
+          dispatch({ type: "SET_COLUMNS", payload: columns });
+          dispatch({ type: "SET_STATUSES", payload: statuses });
+          dispatch({ type: "SET_CATEGORIES", payload: categories });
+        } catch (error) {
+          dispatch({ type: "SET_ERROR", payload: error });
+        }
       }
     };
     fetchData();
