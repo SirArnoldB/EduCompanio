@@ -57,15 +57,15 @@ app.get('/', (req, res) => {
 app.use('/auth', authRouter);
 
 // set up the routes
-app.use('/notes', notesRouter);
-app.use('/internships', internshipsRouter);
-app.use('/projects', projectsRouter);
+app.use('/api/notes', notesRouter);
+app.use('/api/internships', internshipsRouter);
+app.use('/api/projects', projectsRouter);
 
 // set up the categories routes
-app.use('/categories', categoriesRouter);
+app.use('/api/categories', categoriesRouter);
 
 // set up the statuses routes
-app.use('/statuses', statusesRouter);
+app.use('/api/statuses', statusesRouter);
 
 // set up the port that the server will run on
 const PORT = process.env.PORT || 3002;
