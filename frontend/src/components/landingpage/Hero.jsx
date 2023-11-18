@@ -7,7 +7,6 @@ const Hero = () => {
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSignUpClick = () => {
-    console.log("Sign up clicked");
     dispatch({ type: "SET_LOADING", payload: true });
 
     window.location.href = `${state.API_URL}${state.LOGIN_AUTH_PATH}`;

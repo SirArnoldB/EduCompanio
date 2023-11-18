@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import { Link, Box } from "@mui/material";
 import RouterLink from "./RouterLink";
 import { useTheme } from "@mui/material/styles";
+import { LogoNoBackground } from "../assets";
 
 // eslint-disable-next-line react/display-name
 const Logo = forwardRef(({ disabledLink = false, sx }, ref) => {
@@ -13,7 +14,7 @@ const Logo = forwardRef(({ disabledLink = false, sx }, ref) => {
     <Box
       ref={ref}
       component="img"
-      src="../../public/logo/png/logo-no-background.png"
+      src={LogoNoBackground}
       sx={{
         cursor: "pointer",
         ...sx,

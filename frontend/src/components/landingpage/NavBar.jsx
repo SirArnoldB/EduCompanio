@@ -1,16 +1,12 @@
 import { useContext } from "react";
 import { Link, Stack } from "@mui/material";
-import Logo from "../../../public/logo/png/logo-no-background.png";
+import { LogoNoBackground } from "../../assets/index.js";
 import { BoardContext } from "../../contexts/BoardContext.jsx";
 
 const NavBar = () => {
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSignInClick = () => {
-    console.log("Sign in clicked");
-
-    console.log("Sign in clicked");
-
     dispatch({ type: "SET_LOADING", payload: true });
 
     window.location.href = `${state.API_URL}${state.LOGIN_AUTH_PATH}`;
@@ -41,7 +37,7 @@ const NavBar = () => {
           alignItems: "center",
         }}
       >
-        <img src={Logo} className="logo" alt="logo" height={45} />
+        <img src={LogoNoBackground} className="logo" alt="logo" height={45} />
       </Link>
       <Stack
         direction="row"
