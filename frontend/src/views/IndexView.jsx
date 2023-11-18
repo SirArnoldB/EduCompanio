@@ -5,9 +5,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SectionPreview from "../components/SectionPreview";
-import { Indexquote } from "../assets";
 import { useNavigate } from "react-router-dom";
 import { BoardContext } from "../contexts/BoardContext";
+import DashboardStats from "../components/DashboardStats";
 
 const IndexView = () => {
   const mockNotes = [
@@ -53,15 +53,14 @@ const IndexView = () => {
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 5 }}>
         {state.user.username
-          ? `Hi ${state.user.username}, Welcome back to EduCompanio!`
+          ? `Hi ${state.user.username}, 👋 Welcome back to EduCompanio!`
           : "Welcome to EduCompanio!"}
       </Typography>
-      <Box>
-        <img
-          style={{ height: "35vh", width: "80%" }}
-          src={Indexquote}
-          alt="quote"
-        />
+      <Box sx={{ mt: 5 }}>
+        <Typography variant="h5" sx={{ mb: 5 }}>
+          Your Dashboard Stats
+        </Typography>
+        <DashboardStats />
       </Box>
 
       <Box sx={{ display: "flex", flexDirection: "column", mt: 5 }}>
@@ -80,8 +79,12 @@ const IndexView = () => {
             }}
           >
             {notes.length > 0 ? (
-              notes.map((note) => (
-                <SectionPreview title={note.title} content={note.content} />
+              notes.map((note, index) => (
+                <SectionPreview
+                  key={index}
+                  title={note.title}
+                  content={note.content}
+                />
               ))
             ) : (
               <Typography variant="h6" style={{ color: "#000000" }}>
@@ -109,8 +112,9 @@ const IndexView = () => {
             }}
           >
             {internships.length > 0 ? (
-              internships.map((internship) => (
+              internships.map((internship, index) => (
                 <SectionPreview
+                  key={index}
                   title={internship.company}
                   content={internship.position}
                 />

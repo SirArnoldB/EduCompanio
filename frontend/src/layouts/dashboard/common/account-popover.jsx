@@ -28,7 +28,7 @@ const MENU_OPTIONS = [
   {
     label: "Settings",
     icon: "eva:settings-2-fill",
-    url: "/",
+    url: "/dashboard",
   },
 ];
 
