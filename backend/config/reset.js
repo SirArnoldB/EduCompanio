@@ -319,6 +319,13 @@ const createProjectsTable = async () => {
     CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
     
     CREATE TABLE IF NOT EXISTS projects (
+<<<<<<< HEAD
+        project_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        project_name VARCHAR(50) NOT NULL,
+        description VARCHAR(50) NOT NULL,
+        url VARCHAR(225) NOT NULL,
+        category VARCHAR(50) NOT NULL
+=======
         id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
         user_id uuid NOT NULL,
         title VARCHAR(500) NOT NULL,

@@ -11,21 +11,21 @@ const testimonialData = [
     id: 1,
     name: "John Doe",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod justo quis ex bibendum, vel bibendum sapien bibendum. Sed euismod justo quis ex bibendum, vel bibendum sapien bibendum.",
-    image: "https://i.pravatar.cc/300?img=1",
+      "EduCompanio has been a game-changer for my studies. The note-taking feature is so convenient and has helped me stay organized. I can't imagine going back to my old way of studying.",
+    image: "https://i.pravatar.cc/300?img=7",
   },
   {
     id: 2,
     name: "Jane Doe",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod justo quis ex bibendum, vel bibendum sapien bibendum. Sed euismod justo quis ex bibendum, vel bibendum sapien bibendum.",
-    image: "https://i.pravatar.cc/300?img=2",
+      "I love the internship opportunities I've found through EduCompanio. It's made the job search process so much easier and has helped me land an amazing internship!",
+    image: "https://i.pravatar.cc/300?img=5",
   },
   {
     id: 3,
     name: "Bob Smith",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod justo quis ex bibendum, vel bibendum sapien bibendum. Sed euismod justo quis ex bibendum, vel bibendum sapien bibendum.",
+      "The project collaboration feature on EduCompanio has been invaluable for my group projects. It's made communication and coordination so much smoother. Highly recommend!",
     image: "https://i.pravatar.cc/300?img=3",
   },
 ];

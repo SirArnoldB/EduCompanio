@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { BoardContext } from "../../../contexts/BoardContext";
 
 import {
@@ -17,14 +18,17 @@ const MENU_OPTIONS = [
   {
     label: "Home",
     icon: "eva:home-fill",
+    url: "/",
   },
   {
     label: "Profile",
     icon: "eva:person-fill",
+    url: "/profile",
   },
   {
     label: "Settings",
     icon: "eva:settings-2-fill",
+    url: "/dashboard",
   },
 ];
 
@@ -38,6 +42,13 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+  };
+  const navigate = useNavigate();
+  const account = {
+    displayName: "John Doe",
+    email: "johndoe@example.com",
+    photoURL: "",
+    role: "User",
   };
 
   return (
@@ -94,7 +105,7 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: "dashed" }} />
 
         {MENU_OPTIONS.map((option) => (
-          <MenuItem key={option.label} onClick={handleClose}>
+          <MenuItem key={option.label} onClick={() => navigate(option.url)}>
             {option.label}
           </MenuItem>
         ))}
