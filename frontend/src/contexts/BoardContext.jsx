@@ -9,6 +9,7 @@ import { generateColumns } from "../utilities/columns";
 
 // Initial state
 const initialState = {
+  user: JSON.parse(sessionStorage.getItem("user")) || {},
   counts: {
     projects: 0,
     internships: 0,
@@ -29,13 +30,26 @@ const initialState = {
     internships: [],
     notes: [],
   },
-  loading: true,
+  API_URL:
+    // eslint-disable-next-line no-undef
+    process.env.NODE_ENV === "production"
+      ? "https://educompanio-prod-server.up.railway.app"
+      : "http://localhost:3002",
+  LOGOUT_AUTH_PATH: "/auth/logout",
+  LOGIN_AUTH_PATH: "/auth/github",
+  loading: false,
   error: null,
 };
 
 // Define the reducer function
 const boardReducer = (state, action) => {
   switch (action.type) {
+    case "SET_USER":
+      sessionStorage.setItem("user", JSON.stringify(action.payload));
+      return {
+        ...state,
+        user: action.payload,
+      };
     case "SET_COUNTS":
       return {
         ...state,
@@ -51,7 +65,6 @@ const boardReducer = (state, action) => {
           ...state.columns,
           ...action.payload,
         },
-        loading: false,
       };
     case "SET_STATUSES":
       return {
@@ -60,7 +73,6 @@ const boardReducer = (state, action) => {
           ...state.statuses,
           ...action.payload,
         },
-        loading: false,
       };
     case "SET_CATEGORIES":
       return {
@@ -69,7 +81,6 @@ const boardReducer = (state, action) => {
           ...state.categories,
           ...action.payload,
         },
-        loading: false,
       };
     case "ADD_PROJECT":
       return {
@@ -268,6 +279,11 @@ const boardReducer = (state, action) => {
         },
       };
     }
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
+      };
     case "SET_ERROR":
       return {
         ...state,
@@ -289,62 +305,68 @@ export const BoardContextProvider = ({ children }) => {
   useEffect(() => {
     // Fetch data from APIs and dispatch actions to update state
     const fetchData = async () => {
-      try {
-        // Projects, internships, and notes
-        const projects = await ProjectsAPI.getAllProjects();
-        const internships = await InternshipsAPI.getAllInternships();
-        const notes = await NotesAPI.getAllNotes();
-        const counts = {
-          projects: projects.length,
-          internships: internships.length,
-          notes: notes.length,
-        };
+      if (state.user.accesstoken) {
+        try {
+          // Projects, internships, and notes
+          const projects = await ProjectsAPI.getAllProjects(state.user.id);
+          const internships = await InternshipsAPI.getAllInternships(
+            state.user.id
+          );
+          const notes = await NotesAPI.getAllNotes(state.user.id);
+          const counts = {
+            projects: projects.length,
+            internships: internships.length,
+            notes: notes.length,
+          };
 
-        // Statuses
-        const internshipStatuses = await StatusesAPI.getAllInternshipStatuses();
-        const noteStatuses = await StatusesAPI.getAllNoteStatuses();
-        const projectStatuses = await StatusesAPI.getAllProjectStatuses();
-        const statuses = {
-          projects: projectStatuses,
-          internships: internshipStatuses,
-          notes: noteStatuses,
-        };
+          // Statuses
+          const internshipStatuses =
+            await StatusesAPI.getAllInternshipStatuses();
+          const noteStatuses = await StatusesAPI.getAllNoteStatuses();
+          const projectStatuses = await StatusesAPI.getAllProjectStatuses();
+          const statuses = {
+            projects: projectStatuses,
+            internships: internshipStatuses,
+            notes: noteStatuses,
+          };
 
-        // Generate columns from statuses and items
-        const projectColumns = generateColumns(projectStatuses, projects);
-        const internshipColumns = generateColumns(
-          internshipStatuses,
-          internships
-        );
-        const noteColumns = generateColumns(noteStatuses, notes);
-        const columns = {
-          projects: projectColumns,
-          internships: internshipColumns,
-          notes: noteColumns,
-        };
+          // Generate columns from statuses and items
+          const projectColumns = generateColumns(projectStatuses, projects);
+          const internshipColumns = generateColumns(
+            internshipStatuses,
+            internships
+          );
+          const noteColumns = generateColumns(noteStatuses, notes);
+          const columns = {
+            projects: projectColumns,
+            internships: internshipColumns,
+            notes: noteColumns,
+          };
 
-        // Categories
-        const internshipCategories =
-          await CategoriesAPi.getAllInternshipCategories();
-        const noteCategories = await CategoriesAPi.getAllNoteCategories();
-        const projectCategories = await CategoriesAPi.getAllProjectCategories();
-        const categories = {
-          projects: projectCategories,
-          internships: internshipCategories,
-          notes: noteCategories,
-        };
+          // Categories
+          const internshipCategories =
+            await CategoriesAPi.getAllInternshipCategories();
+          const noteCategories = await CategoriesAPi.getAllNoteCategories();
+          const projectCategories =
+            await CategoriesAPi.getAllProjectCategories();
+          const categories = {
+            projects: projectCategories,
+            internships: internshipCategories,
+            notes: noteCategories,
+          };
 
-        // Dispatch actions to set state
-        dispatch({ type: "SET_COUNTS", payload: counts });
-        dispatch({ type: "SET_COLUMNS", payload: columns });
-        dispatch({ type: "SET_STATUSES", payload: statuses });
-        dispatch({ type: "SET_CATEGORIES", payload: categories });
-      } catch (error) {
-        dispatch({ type: "SET_ERROR", payload: error });
+          // Dispatch actions to set state
+          dispatch({ type: "SET_COUNTS", payload: counts });
+          dispatch({ type: "SET_COLUMNS", payload: columns });
+          dispatch({ type: "SET_STATUSES", payload: statuses });
+          dispatch({ type: "SET_CATEGORIES", payload: categories });
+        } catch (error) {
+          dispatch({ type: "SET_ERROR", payload: error });
+        }
       }
     };
     fetchData();
-  }, []);
+  }, [state.user.accesstoken, state.user.id]);
 
   return (
     <BoardContext.Provider value={[state, dispatch]}>

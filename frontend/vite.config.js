@@ -11,7 +11,7 @@ export default () => {
     server: {
       proxy: {
         '/api': {
-          target: 'http://localhost:3002',
+          target: 'https://educompanio-prod-server.up.railway.app',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },

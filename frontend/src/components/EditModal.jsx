@@ -6,6 +6,8 @@ import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
 import { BoardContext } from "../contexts/BoardContext";
+import { toast } from "react-toastify";
+import Notify from "./Toast/Notify";
 
 /**
  * A modal component for editing an item.
@@ -17,16 +19,19 @@ import { BoardContext } from "../contexts/BoardContext";
  * @returns {JSX.Element} - The EditModal component.
  */
 const EditModal = ({ open, handleClose, item, itemType }) => {
-  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSubmit = (updatedItem) => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.updateInternship(updatedItem.id, {
-          ...updatedItem,
-          updated_at: new Date(),
-        })
+        InternshipsAPI.updateInternship(
+          updatedItem.id,
+          {
+            ...updatedItem,
+            updated_at: new Date(),
+          },
+          state.user.id
+        )
           .then((res) => {
             dispatch({
               type: "UPDATE_INTERNSHIP",
@@ -35,16 +40,22 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
                 original_status_id: item.status_id,
               },
             });
+            Notify("Internship updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Internship update failed", toast.TYPE.ERROR);
           });
         break;
       case "note":
-        NotesAPI.updateNote(updatedItem.id, {
-          ...updatedItem,
-          updated_at: new Date(),
-        })
+        NotesAPI.updateNote(
+          updatedItem.id,
+          {
+            ...updatedItem,
+            updated_at: new Date(),
+          },
+          state.user.id
+        )
           .then((res) => {
             dispatch({
               type: "UPDATE_NOTE",
@@ -53,16 +64,22 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
                 original_status_id: item.status_id,
               },
             });
+            Notify("Note updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Note update failed", toast.TYPE.ERROR);
           });
         break;
       case "project":
-        ProjectsAPI.updateProject(updatedItem.id, {
-          ...updatedItem,
-          updated_at: new Date(),
-        })
+        ProjectsAPI.updateProject(
+          updatedItem.id,
+          {
+            ...updatedItem,
+            updated_at: new Date(),
+          },
+          state.user.id
+        )
           .then((res) => {
             dispatch({
               type: "UPDATE_PROJECT",
@@ -71,9 +88,11 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
                 original_status_id: item.status_id,
               },
             });
+            Notify("Project updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Project update failed", toast.TYPE.ERROR);
           });
         break;
       default:

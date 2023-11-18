@@ -16,12 +16,13 @@ class ApiError extends Error {
  * @returns {Promise<Object>} - A promise that resolves to the response data.
  * @throws {ApiError} - If the API returns an error response.
  */
-const request = async (method, url, body = '') => {
+const request = async (method, url, body = '', headers = {}) => {
+    const API_URL = "https://educompanio-prod-server.up.railway.app";
     try {
         const config = {
             method,
-            url,
-            headers: { 'Content-Type': 'application/json' },
+            url: `${API_URL}${url}`,
+            headers: { 'Content-Type': 'application/json', ...headers },
         };
         if (body !== '') {
             config.data = body;

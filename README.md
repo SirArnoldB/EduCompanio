@@ -38,8 +38,8 @@ This feature allows students to add and track on-campus and off-campus organizat
 
 Provides a customizable Trello-like board for students to track their internship applications, along with their respective statuses. Offers a curated list of websites for discovering internship opportunities.
 
-- Current Progress GIF:
-  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/internships.gif' title='Video Walkthrough' width='' alt='Internship Board' />
+- Final GIF:
+  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/internships_page.gif' title='Video Walkthrough' width='' alt='Internship Board' />
 
 ### Interview Prep
 
@@ -49,15 +49,15 @@ This feature provides resources that students can use to prepare for interviews.
 
 Provides a curated list of websites for discovering hackathons and open-source projects, catering to students interested in honing their technical skills.
 
-- Current Progress GIF:
-  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/projects.gif' title='Video Walkthrough' width='' alt='Projects Board' />
+- Final GIF:
+  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/projects_page.gif' title='Video Walkthrough' width='' alt='Projects Board' />
 
 ### Notes ✅
 
 Allows students to journal about their experiences and take notes, ensuring all valuable information is stored in one accessible location.
 
-- Current Progress GIF:
-  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/notes.gif' title='Video Walkthrough' width='' alt='Notes Board' />
+- Final GIF:
+  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/notes_page.gif' title='Video Walkthrough' width='' alt='Notes Board' />
 
 ### Skills Development
 

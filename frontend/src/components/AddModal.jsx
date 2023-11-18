@@ -6,6 +6,8 @@ import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
 import ProjectsAPI from "../services/projects";
 import { BoardContext } from "../contexts/BoardContext";
+import { toast } from "react-toastify";
+import Notify from "./Toast/Notify";
 
 /**
  * Renders a modal for adding an item of a specified type.
@@ -17,36 +19,41 @@ import { BoardContext } from "../contexts/BoardContext";
  * @returns {JSX.Element} - The AddModal component.
  */
 const AddModal = ({ open, handleClose, itemType }) => {
-  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSubmit = (newItem) => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.createInternship(newItem)
+        InternshipsAPI.createInternship(newItem, state.user.id)
           .then((res) => {
             dispatch({ type: "ADD_INTERNSHIP", payload: res });
+            Notify("Internship added successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Internship addition failed", toast.TYPE.ERROR);
           });
         break;
       case "note":
-        NotesAPI.createNote(newItem)
+        NotesAPI.createNote(newItem, state.user.id)
           .then((res) => {
             dispatch({ type: "ADD_NOTE", payload: res });
+            Notify("Note added successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Note addition failed", toast.TYPE.ERROR);
           });
         break;
       case "project":
-        ProjectsAPI.createProject(newItem)
+        ProjectsAPI.createProject(newItem, state.user.id)
           .then((res) => {
             dispatch({ type: "ADD_PROJECT", payload: res });
+            Notify("Project added successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
             console.log(err);
+            Notify("Project addition failed", toast.TYPE.ERROR);
           });
         break;
       default:
@@ -54,7 +61,6 @@ const AddModal = ({ open, handleClose, itemType }) => {
     }
 
     handleClose();
-    alert(`${itemType} added.`);
   };
 
   return (

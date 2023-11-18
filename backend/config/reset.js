@@ -4,6 +4,57 @@ import notesData from '../data/notes.json' assert { type: "json" };
 import internshipsData from '../data/internships.json' assert { type: "json" };
 import projectsData from '../data/projects.json' assert { type: "json" };
 
+// ------------------- Session Table -------------------
+
+// Create Session Table
+const createSessionTable = async () => {
+    const CreateSessionTable = `
+    DROP TABLE IF EXISTS "session";
+
+    CREATE TABLE IF NOT EXISTS "session" (
+        "sid" varchar NOT NULL COLLATE "default",
+        "sess" json NOT NULL,
+        "expire" timestamp(6) NOT NULL
+    )
+    WITH (OIDS=FALSE);
+    ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+    CREATE INDEX "IDX_session_expire" ON "session" ("expire");`
+
+    try {
+        const res = await pool.query(CreateSessionTable);
+        console.log("🚀 Session Table is successfully created");
+    } catch (err) {
+        console.log(`⛔️ Error creating session table: ${err}`);
+    }
+}
+
+// ------------------- Users Table -------------------
+
+// Create Users Table
+const createUsersTable = async () => {
+    const CreateUsersTable = `
+    DROP TABLE IF EXISTS users;
+    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+    CREATE TABLE IF NOT EXISTS users (
+        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        githubid int NOT NULL,
+        username VARCHAR(100) NOT NULL,
+        avatarurl VARCHAR(500) NOT NULL,
+        accesstoken VARCHAR(500) NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+    );`
+
+    try {
+        const res = await pool.query(CreateUsersTable);
+        console.log("🚀 Users Table is successfully created");
+    } catch (err) {
+        console.log(`⛔️ Error creating users table: ${err}`);
+    }
+
+}
 
 // ------------------- Categories and Statuses Tables -------------------
 
@@ -147,6 +198,7 @@ const createNotesTable = async () => {
 
     CREATE TABLE IF NOT EXISTS notes (
         id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        user_id uuid NOT NULL,
         title VARCHAR(500) NOT NULL,
         content VARCHAR(1000) NOT NULL,
         category_id uuid NOT NULL,
@@ -154,7 +206,8 @@ const createNotesTable = async () => {
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW(),
         FOREIGN KEY (category_id) REFERENCES note_categories (id),
-        FOREIGN KEY (status_id) REFERENCES note_statuses (id)
+        FOREIGN KEY (status_id) REFERENCES note_statuses (id),
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
     );
 `
     try {
@@ -204,6 +257,7 @@ const createInternshipsTable = async () => {
 
     CREATE TABLE IF NOT EXISTS internships (
         id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        user_id uuid NOT NULL,
         company VARCHAR(500) NOT NULL,
         position VARCHAR(500) NOT NULL,
         content VARCHAR(1000) NOT NULL,
@@ -213,7 +267,8 @@ const createInternshipsTable = async () => {
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW(),
         FOREIGN KEY (category_id) REFERENCES internship_categories (id),
-        FOREIGN KEY (status_id) REFERENCES internship_statuses (id)
+        FOREIGN KEY (status_id) REFERENCES internship_statuses (id),
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
     );
 `
     try {
@@ -272,6 +327,7 @@ const createProjectsTable = async () => {
         category VARCHAR(50) NOT NULL
 =======
         id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        user_id uuid NOT NULL,
         title VARCHAR(500) NOT NULL,
         content VARCHAR(1000) NOT NULL,
         url VARCHAR(500) NOT NULL,
@@ -280,8 +336,8 @@ const createProjectsTable = async () => {
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW(),
         FOREIGN KEY (category_id) REFERENCES project_categories (id),
-        FOREIGN KEY (status_id) REFERENCES project_statuses (id)
->>>>>>> c3fa655598466bb44cee17862b75326bcb85c195
+        FOREIGN KEY (status_id) REFERENCES project_statuses (id),
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
     );
 `
     try {
@@ -325,15 +381,20 @@ const seedProjectsTable = async () => {
 // ------------------- Run All Functions -------------------
 
 const runAllFunctions = async () => {
+    await createSessionTable();
+    await createUsersTable();
     await createAndSeedNoteCategoriesTable();
     await createAndSeedNoteStatusesTable();
     await createAndSeedInternshipCategoriesTable();
     await createAndSeedInternshipStatusesTable();
     await createAndSeedProjectCategoriesTable();
     await createAndSeedProjectStatusesTable();
-    await seedNotesTable();
-    await seedInternshipsTable();
-    await seedProjectsTable();
+    await createNotesTable();
+    await createInternshipsTable();
+    await createProjectsTable();
+    // await seedNotesTable();
+    // await seedInternshipsTable();
+    // await seedProjectsTable();
 }
 
 runAllFunctions();
