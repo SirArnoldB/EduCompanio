@@ -28,8 +28,8 @@ app.use(session({
     }),
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true, maxAge: 7 * 24 * 60 * 60 * 1000 } // 1 week
+    saveUninitialized: false,
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 } // 1 week
 }))
 
 const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'https://educompanio.up.railway.app' : 'http://localhost:5173'
