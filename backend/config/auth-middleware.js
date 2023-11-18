@@ -1,6 +1,7 @@
 import { pool } from "./database.js";
 
 const ensureAuthenticated = (req, res, next) => {
+    console.log('req', req)
     if (req.params.user_id) {
         return next();
     }

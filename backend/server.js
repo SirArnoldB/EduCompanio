@@ -74,9 +74,9 @@ app.get('/', (req, res) => {
 app.use('/auth', authRouter);
 
 // set up the routes
-app.use('/api/notes', ensureAuthenticated, notesRouter);
-app.use('/api/internships', ensureAuthenticated, internshipsRouter);
-app.use('/api/projects', ensureAuthenticated, projectsRouter);
+app.use('/api/notes', notesRouter);
+app.use('/api/internships', internshipsRouter);
+app.use('/api/projects', projectsRouter);
 
 // set up the categories routes
 app.use('/api/categories', categoriesRouter);
