@@ -308,9 +308,11 @@ export const BoardContextProvider = ({ children }) => {
       if (state.user.accesstoken) {
         try {
           // Projects, internships, and notes
-          const projects = await ProjectsAPI.getAllProjects();
-          const internships = await InternshipsAPI.getAllInternships();
-          const notes = await NotesAPI.getAllNotes();
+          const projects = await ProjectsAPI.getAllProjects(state.user.id);
+          const internships = await InternshipsAPI.getAllInternships(
+            state.user.id
+          );
+          const notes = await NotesAPI.getAllNotes(state.user.id);
           const counts = {
             projects: projects.length,
             internships: internships.length,
@@ -364,7 +366,7 @@ export const BoardContextProvider = ({ children }) => {
       }
     };
     fetchData();
-  }, [state.user.accesstoken]);
+  }, [state.user.accesstoken, state.user.id]);
 
   return (
     <BoardContext.Provider value={[state, dispatch]}>

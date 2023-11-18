@@ -19,13 +19,12 @@ import Notify from "./Toast/Notify";
  * @returns {JSX.Element} - The AddModal component.
  */
 const AddModal = ({ open, handleClose, itemType }) => {
-  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSubmit = (newItem) => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.createInternship(newItem)
+        InternshipsAPI.createInternship(newItem, state.user.id)
           .then((res) => {
             dispatch({ type: "ADD_INTERNSHIP", payload: res });
             Notify("Internship added successfully", toast.TYPE.SUCCESS);
@@ -36,7 +35,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
           });
         break;
       case "note":
-        NotesAPI.createNote(newItem)
+        NotesAPI.createNote(newItem, state.user.id)
           .then((res) => {
             dispatch({ type: "ADD_NOTE", payload: res });
             Notify("Note added successfully", toast.TYPE.SUCCESS);
@@ -47,7 +46,7 @@ const AddModal = ({ open, handleClose, itemType }) => {
           });
         break;
       case "project":
-        ProjectsAPI.createProject(newItem)
+        ProjectsAPI.createProject(newItem, state.user.id)
           .then((res) => {
             dispatch({ type: "ADD_PROJECT", payload: res });
             Notify("Project added successfully", toast.TYPE.SUCCESS);

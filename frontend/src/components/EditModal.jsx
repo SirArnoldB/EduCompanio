@@ -19,16 +19,19 @@ import Notify from "./Toast/Notify";
  * @returns {JSX.Element} - The EditModal component.
  */
 const EditModal = ({ open, handleClose, item, itemType }) => {
-  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSubmit = (updatedItem) => {
     switch (itemType) {
       case "internship":
-        InternshipsAPI.updateInternship(updatedItem.id, {
-          ...updatedItem,
-          updated_at: new Date(),
-        })
+        InternshipsAPI.updateInternship(
+          updatedItem.id,
+          {
+            ...updatedItem,
+            updated_at: new Date(),
+          },
+          state.user.id
+        )
           .then((res) => {
             dispatch({
               type: "UPDATE_INTERNSHIP",
@@ -45,10 +48,14 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "note":
-        NotesAPI.updateNote(updatedItem.id, {
-          ...updatedItem,
-          updated_at: new Date(),
-        })
+        NotesAPI.updateNote(
+          updatedItem.id,
+          {
+            ...updatedItem,
+            updated_at: new Date(),
+          },
+          state.user.id
+        )
           .then((res) => {
             dispatch({
               type: "UPDATE_NOTE",
@@ -65,10 +72,14 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
           });
         break;
       case "project":
-        ProjectsAPI.updateProject(updatedItem.id, {
-          ...updatedItem,
-          updated_at: new Date(),
-        })
+        ProjectsAPI.updateProject(
+          updatedItem.id,
+          {
+            ...updatedItem,
+            updated_at: new Date(),
+          },
+          state.user.id
+        )
           .then((res) => {
             dispatch({
               type: "UPDATE_PROJECT",
