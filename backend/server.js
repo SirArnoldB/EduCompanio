@@ -47,25 +47,20 @@ app.use(passport.session()) // Used to persist login sessions
 passport.use(GitHub) // Use the GitHub strategy for passport
 
 // serve static files
-app.use(express.static('/public'));
+app.use(express.static('public'));
 
 // set up the passport user serialization
 passport.serializeUser((user, done) => {
     console.log('Serializing user: ', user)
-    done(null, user.id)
+    done(null, user)
 })
 
 // set up the passport user deserialization
-passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await findById(id)
-        console.log('Deserializing user: ', user)
-        done(null, user)
-    } catch (error) {
-        console.log('Error deserializing user: ', error)
-        done(error)
-    }
-});
+passport.deserializeUser((user, done) => {
+    console.log('Deserializing user: ', user)
+    done(null, user)
+})
+
 
 // set up the express app to handle data parsing
 app.use(express.json());
