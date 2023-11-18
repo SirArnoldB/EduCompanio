@@ -31,10 +31,6 @@ const getAllProjects = async (req, res) => {
 }
 
 const getProjectById = async (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: 'Not authenticated' });
-  }
-
   try {
     const user_id = req.user.id
     const id = req.params.id

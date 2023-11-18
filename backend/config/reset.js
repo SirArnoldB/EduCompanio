@@ -4,6 +4,30 @@ import notesData from '../data/notes.json' assert { type: "json" };
 import internshipsData from '../data/internships.json' assert { type: "json" };
 import projectsData from '../data/projects.json' assert { type: "json" };
 
+// ------------------- Session Table -------------------
+
+// Create Session Table
+const createSessionTable = async () => {
+    const CreateSessionTable = `
+    DROP TABLE IF EXISTS "session";
+
+    CREATE TABLE IF NOT EXISTS "session" (
+        "sid" varchar NOT NULL COLLATE "default",
+        "sess" json NOT NULL,
+        "expire" timestamp(6) NOT NULL
+    )
+    WITH (OIDS=FALSE);
+    ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+    CREATE INDEX "IDX_session_expire" ON "session" ("expire");`
+
+    try {
+        const res = await pool.query(CreateSessionTable);
+        console.log("🚀 Session Table is successfully created");
+    } catch (err) {
+        console.log(`⛔️ Error creating session table: ${err}`);
+    }
+}
 
 // ------------------- Users Table -------------------
 
@@ -350,6 +374,7 @@ const seedProjectsTable = async () => {
 // ------------------- Run All Functions -------------------
 
 const runAllFunctions = async () => {
+    await createSessionTable();
     await createUsersTable();
     await createAndSeedNoteCategoriesTable();
     await createAndSeedNoteStatusesTable();

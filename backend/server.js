@@ -6,20 +6,30 @@ import projectsRouter from './routes/projects.js';
 import categoriesRouter from './routes/categories.js';
 import statusesRouter from './routes/statuses.js';
 import { ensureAuthenticated, findById } from './config/auth-middleware.js';
+import { pool } from './config/database.js';
 
 import passport from 'passport'
 import session from 'express-session'
+import pgSession from 'connect-pg-simple'
 import { GitHub } from './config/auth.js'
 import authRouter from './routes/auth.js'
 
 // create express app
 const app = express();
 
+// set up the session store
+const PgStore = pgSession(session)
+
 // set up express-session middleware
 app.use(session({
+    store: new PgStore({
+        pool: pool,
+        tableName: 'session'
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: { secure: true, maxAge: 7 * 24 * 60 * 60 * 1000 } // 1 week
 }))
 
 const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'https://educompanio.up.railway.app' : 'http://localhost:5173'
