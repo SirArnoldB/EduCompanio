@@ -2,15 +2,15 @@ import request from "../utilities/api";
 
 const notesUrl = "/api/notes";
 
-const getAllNotes = (user_id) => request("GET", `${notesUrl}/${user_id}`, '');
+const getAllNotes = (token) => request("GET", `${notesUrl}`, '', { Authorization: `Bearer ${token}` });
 
-const getNoteById = (id, user_id) => request("GET", `${notesUrl}/${user_id}/${id}`, '');
+const getNoteById = (id, token) => request("GET", `${notesUrl}/${id}`, '', { Authorization: `Bearer ${token}` });
 
-const createNote = (note, user_id) => request("POST", `${notesUrl}/${user_id}`, note);
+const createNote = (note, token) => request("POST", `${notesUrl}`, note, { Authorization: `Bearer ${token}` });
 
-const updateNote = (id, note, user_id) => request("PATCH", `${notesUrl}/${user_id}/${id}`, note);
+const updateNote = (id, note, token) => request("PATCH", `${notesUrl}/${id}`, note, { Authorization: `Bearer ${token}` });
 
-const deleteNote = (id, user_id) => request("DELETE", `${notesUrl}/${user_id}/${id}`, '');
+const deleteNote = (id, token) => request("DELETE", `${notesUrl}/${id}`, '', { Authorization: `Bearer ${token}` });
 
 export default {
     getAllNotes,

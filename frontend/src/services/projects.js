@@ -2,15 +2,15 @@ import request from "../utilities/api";
 
 const projectsUrl = "/api/projects";
 
-const getAllProjects = (user_id) => request("GET", `${projectsUrl}/${user_id}`, '');
+const getAllProjects = (token) => request("GET", `${projectsUrl}`, '', { Authorization: `Bearer ${token}` });
 
-const getProjectById = (id, user_id) => request("GET", `${projectsUrl}/${user_id}/${id}`, '');
+const getProjectById = (id, token) => request("GET", `${projectsUrl}/${id}`, '', { Authorization: `Bearer ${token}` });
 
-const createProject = (project, user_id) => request("POST", `${projectsUrl}/${user_id}`, project);
+const createProject = (project, token) => request("POST", `${projectsUrl}`, project, { Authorization: `Bearer ${token}` });
 
-const updateProject = (id, project, user_id) => request("PATCH", `${projectsUrl}/${user_id}/${id}`, project);
+const updateProject = (id, project, token) => request("PATCH", `${projectsUrl}/${id}`, project, { Authorization: `Bearer ${token}` });
 
-const deleteProject = (id, user_id) => request("DELETE", `${projectsUrl}/${user_id}/${id}`, '');
+const deleteProject = (id, token) => request("DELETE", `${projectsUrl}/${id}`, '', { Authorization: `Bearer ${token}` });
 
 export default {
     getAllProjects,

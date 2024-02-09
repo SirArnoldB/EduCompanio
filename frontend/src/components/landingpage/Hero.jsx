@@ -9,7 +9,7 @@ const Hero = () => {
   const handleSignUpClick = () => {
     dispatch({ type: "SET_LOADING", payload: true });
 
-    window.location.href = `${state.API_URL}${state.LOGIN_AUTH_PATH}`;
+    window.location.href = `${state.API_URL}/login`;
   };
 
   return (

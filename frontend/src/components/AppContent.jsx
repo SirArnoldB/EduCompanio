@@ -10,6 +10,8 @@ export const InternshipsPage = lazy(() => import("../pages/InternshipsPage"));
 export const NotesPage = lazy(() => import("../pages/NotesPage"));
 export const ProjectsPage = lazy(() => import("../pages/ProjectsPage"));
 export const ProfilePage = lazy(() => import("../pages/ProfilePage"));
+export const LoginPage = lazy(() => import("../pages/LoginPage"));
+export const SettingsPage = lazy(() => import("../pages/SettingsPage"));
 
 const AppContent = () => {
   const routes = useRoutes([
@@ -40,11 +42,19 @@ const AppContent = () => {
           path: "/profile",
           element: <ProtectedRoute element={<ProfilePage />} />,
         },
+        {
+          path: "/settings",
+          element: <ProtectedRoute element={<SettingsPage />} />,
+        },
       ],
     },
     {
       path: "/",
       element: <LandingPage />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
     },
   ]);
 

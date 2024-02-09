@@ -21,38 +21,40 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
   const [state, dispatch] = useContext(BoardContext);
 
   const handleDelete = () => {
+    const accessToken = state.user.stsTokenManager.accessToken;
+
     switch (itemType) {
       case "internship":
-        InternshipsAPI.deleteInternship(item.id, state.user.id)
+        InternshipsAPI.deleteInternship(item.id, accessToken)
           .then((res) => {
             dispatch({ type: "DELETE_INTERNSHIP", payload: res });
             Notify("Internship deleted successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Internship deletion failed", toast.TYPE.ERROR);
+            Notify(
+              `Internship deletion failed: ${err.message}`,
+              toast.TYPE.ERROR
+            );
           });
         break;
       case "note":
-        NotesAPI.deleteNote(item.id, state.user.id)
+        NotesAPI.deleteNote(item.id, accessToken)
           .then((res) => {
             dispatch({ type: "DELETE_NOTE", payload: res });
             Notify("Note deleted successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Note deletion failed", toast.TYPE.ERROR);
+            Notify(`Note deletion failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       case "project":
-        ProjectsAPI.deleteProject(item.id, state.user.id)
+        ProjectsAPI.deleteProject(item.id, accessToken)
           .then((res) => {
             dispatch({ type: "DELETE_PROJECT", payload: res });
             Notify("Project deleted successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Project deletion failed", toast.TYPE.ERROR);
+            Notify(`Project deletion failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       default:
