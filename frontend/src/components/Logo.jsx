@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
-import { forwardRef } from "react";
-
+import { forwardRef, useContext } from "react";
 import { Link, Box } from "@mui/material";
 import RouterLink from "./RouterLink";
 import { useTheme } from "@mui/material/styles";
 import { LogoNoBackground } from "../assets";
+import { BoardContext } from "../contexts/BoardContext";
 
 // eslint-disable-next-line react/display-name
 const Logo = forwardRef(({ disabledLink = false, sx }, ref) => {
+  const [state] = useContext(BoardContext);
   const theme = useTheme();
 
   const logo = (
@@ -27,8 +28,10 @@ const Logo = forwardRef(({ disabledLink = false, sx }, ref) => {
     return logo;
   }
 
+  const logUrl = state.user.uid ? "/dashboard" : "/";
+
   return (
-    <Link component={RouterLink} href="/dashboard" sx={{ display: "contents" }}>
+    <Link component={RouterLink} href={logUrl} sx={{ display: "contents" }}>
       {logo}
     </Link>
   );

@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { BoardContext } from "../../../contexts/BoardContext";
+import { getAuth } from "firebase/auth";
+import { app } from "../../../firebase/firebase";
 
 import {
   Avatar,
@@ -18,7 +20,7 @@ const MENU_OPTIONS = [
   {
     label: "Home",
     icon: "eva:home-fill",
-    url: "/",
+    url: "/dashboard",
   },
   {
     label: "Profile",
@@ -28,13 +30,31 @@ const MENU_OPTIONS = [
   {
     label: "Settings",
     icon: "eva:settings-2-fill",
-    url: "/dashboard",
+    url: "/settings",
   },
 ];
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-  const [state] = useContext(BoardContext);
+  const [state, dispatch] = useContext(BoardContext);
+
+  const handleLogout = () => {
+    // Dispatch SIGN_OUT action
+    dispatch({ type: "SIGN_OUT" });
+
+    // Sign out from Firebase
+    getAuth(app)
+      .signOut()
+      .then(() => {
+        console.log("User signed out");
+      })
+      .catch((error) => {
+        console.log("Error signing out: ", error);
+      });
+
+    // Navigate to landing page
+    navigate("/");
+  };
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -44,12 +64,6 @@ export default function AccountPopover() {
     setOpen(null);
   };
   const navigate = useNavigate();
-  const account = {
-    displayName: "John Doe",
-    email: "johndoe@example.com",
-    photoURL: "",
-    role: "User",
-  };
 
   return (
     <>
@@ -66,15 +80,15 @@ export default function AccountPopover() {
         }}
       >
         <Avatar
-          src={state.user.avatarurl}
-          alt={state.user.username}
+          src={state.user.photoURL}
+          alt={state.user.displayName}
           sx={{
             width: 36,
             height: 36,
             border: (theme) => `solid 2px ${theme.palette.background.default}`,
           }}
         >
-          {state.user.username?.charAt(0)}
+          {state.user.displayName?.charAt(0)}
         </Avatar>
       </IconButton>
 
@@ -95,10 +109,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {state.user?.username}
+            {state.user?.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
-            {`@${state.user.username?.toLowerCase()}`}
+            {`${state.user.email?.toLowerCase()}`}
           </Typography>
         </Box>
 
@@ -113,10 +127,7 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: "dashed", m: 0 }} />
 
         <MenuItem disableRipple disableTouchRipple>
-          <Button
-            href={`${state.API_URL}${state.LOGOUT_AUTH_PATH}`}
-            color="error"
-          >
+          <Button onClick={handleLogout} color="error">
             Logout
           </Button>
         </MenuItem>

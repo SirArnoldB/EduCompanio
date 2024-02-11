@@ -1,6 +1,6 @@
-import { pool } from "./database.js";
+import { pool } from "../config/database.js";
 
-const initializeUserData = async (userId) => {
+const initializeExamples = async (userId) => {
     // Define example data
     const exampleNote = {
         title: 'My First Note (Example)',
@@ -24,7 +24,7 @@ const initializeUserData = async (userId) => {
         url: 'http://example.com',
         category: 'Paid',
         status: 'Applied'
-    }; status: 'Applied'
+    };
 
 
     // Define queries
@@ -54,4 +54,4 @@ const initializeUserData = async (userId) => {
     }
 }
 
-export { initializeUserData };
+export { initializeExamples };

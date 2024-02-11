@@ -94,6 +94,7 @@ const Board = ({ boardType }) => {
       const item = removed;
       const statusId = destination.droppableId;
       const itemId = item.id;
+      const accessToken = state.user.stsTokenManager.accessToken;
 
       switch (boardType) {
         case "internship":
@@ -104,7 +105,7 @@ const Board = ({ boardType }) => {
               status_id: statusId,
               updated_at: new Date(),
             },
-            state.user.id
+            accessToken
           )
             .then((res) => {
               dispatch({
@@ -117,8 +118,10 @@ const Board = ({ boardType }) => {
               Notify("Internship moved successfully", toast.TYPE.SUCCESS);
             })
             .catch((err) => {
-              console.log(err);
-              Notify("Internship move failed", toast.TYPE.ERROR);
+              Notify(
+                `Internship move failed: ${err.message}`,
+                toast.TYPE.ERROR
+              );
             });
           break;
         case "note":
@@ -129,7 +132,7 @@ const Board = ({ boardType }) => {
               status_id: statusId,
               updated_at: new Date(),
             },
-            state.user.id
+            accessToken
           )
             .then((res) => {
               dispatch({
@@ -142,8 +145,7 @@ const Board = ({ boardType }) => {
               Notify("Note moved successfully", toast.TYPE.SUCCESS);
             })
             .catch((err) => {
-              console.log(err);
-              Notify("Note move failed", toast.TYPE.ERROR);
+              Notify(`Note move failed: ${err.message}`, toast.TYPE.ERROR);
             });
           break;
         case "project":
@@ -154,7 +156,7 @@ const Board = ({ boardType }) => {
               status_id: statusId,
               updated_at: new Date(),
             },
-            state.user.id
+            accessToken
           )
             .then((res) => {
               dispatch({
@@ -167,8 +169,7 @@ const Board = ({ boardType }) => {
               Notify("Project moved successfully", toast.TYPE.SUCCESS);
             })
             .catch((err) => {
-              console.log(err);
-              Notify("Project move failed", toast.TYPE.ERROR);
+              Notify(`Project move failed: ${err.message}`, toast.TYPE.ERROR);
             });
           break;
         default:

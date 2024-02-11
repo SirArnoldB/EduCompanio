@@ -47,19 +47,17 @@ const ProfileView = () => {
             }}
           >
             <Avatar
-              src={state.user?.avatarurl}
-              alt={state.user?.username}
+              src={state.user?.photoURL}
+              alt={state.user?.displayName}
               sx={{ width: 200, height: 200 }}
             />
             <Typography variant="h4" gutterBottom>
-              {state.user?.username ? state.user.username : "EduCompanio User"}
+              {state.user?.displayName
+                ? state.user.displayName
+                : "EduCompanio User"}
             </Typography>
-            <Typography variant="h6" gutterBottom>
-              {`@${
-                state.user?.username
-                  ? state.user.username.toLowerCase()
-                  : "educompanio"
-              }`}
+            <Typography variant="body2" gutterBottom>
+              {`${state.user?.email ? state.user.email : ""}`}
             </Typography>
           </Paper>
         </Grid>
