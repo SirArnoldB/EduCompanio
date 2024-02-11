@@ -33,6 +33,10 @@ const ProfileView = () => {
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
+  const totalNotes = Object.keys(state.columns?.notes).length ?? 0;
+  const totalInternships = Object.keys(state.columns?.internships).length ?? 0;
+  const totalProjects = Object.keys(state.columns?.projects).length ?? 0;
+
   return (
     <Box sx={{ p: 2 }}>
       <Grid container spacing={3}>
@@ -72,12 +76,9 @@ const ProfileView = () => {
           xs={12}
         >
           <Grid container spacing={3}>
-            <StatCard title="Total Notes" value={state.counts.notes} />
-            <StatCard
-              title="Total Internships"
-              value={state.counts.internships}
-            />
-            <StatCard title="Total Projects" value={state.counts.projects} />
+            <StatCard title="Total Notes" value={totalNotes} />
+            <StatCard title="Total Internships" value={totalInternships} />
+            <StatCard title="Total Projects" value={totalProjects} />
           </Grid>
           <Button
             sx={{
