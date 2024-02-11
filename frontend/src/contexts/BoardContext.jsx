@@ -12,6 +12,11 @@ import { BoardReducer } from "../reducers/board-reducer";
 // Initial state
 const initialState = {
   user: JSON.parse(sessionStorage.getItem("user")) || {},
+  counts: {
+    projects: 0,
+    internships: 0,
+    notes: 0,
+  },
   columns: {
     projects: {},
     internships: {},
@@ -46,10 +51,14 @@ export const BoardContextProvider = ({ children }) => {
 
   // Hydrate state from sessionStorage on mount
   useEffect(() => {
+    const counts = JSON.parse(sessionStorage.getItem("counts"));
     const columns = JSON.parse(sessionStorage.getItem("columns"));
     const statuses = JSON.parse(sessionStorage.getItem("statuses"));
     const categories = JSON.parse(sessionStorage.getItem("categories"));
 
+    if (counts) {
+      dispatch({ type: "SET_COUNTS", payload: counts });
+    }
     if (columns) {
       dispatch({ type: "SET_COLUMNS", payload: columns });
     }
@@ -82,6 +91,13 @@ export const BoardContextProvider = ({ children }) => {
             accessToken
           );
           const notes = await NotesAPI.getAllNotes(accessToken);
+
+          // Counts
+          const counts = {
+            projects: projects.length,
+            internships: internships.length,
+            notes: notes.length,
+          };
 
           // Statuses
           const internshipStatuses =
@@ -120,6 +136,7 @@ export const BoardContextProvider = ({ children }) => {
           };
 
           // Dispatch actions to set state
+          dispatch({ type: "SET_COUNTS", payload: counts });
           dispatch({ type: "SET_COLUMNS", payload: columns });
           dispatch({ type: "SET_STATUSES", payload: statuses });
           dispatch({ type: "SET_CATEGORIES", payload: categories });

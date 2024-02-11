@@ -33,6 +33,15 @@ const SetUser = (state, payload) => {
     }
 }
 
+const SetCounts = (state, payload) => {
+    const newCounts = { ...state.counts, ...payload };
+    sessionStorage.setItem("counts", JSON.stringify(newCounts));
+    return {
+        ...state,
+        counts: newCounts,
+    };
+}
+
 const SetColumns = (state, payload) => {
     const newColumns = { ...state.columns, ...payload };
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
@@ -78,11 +87,18 @@ const AddProject = (state, payload) => {
         },
     };
 
+    const newCounts = {
+        ...state.counts,
+        projects: state.counts.projects + 1,
+    };
+
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
+    sessionStorage.setItem("counts", JSON.stringify(newCounts));
 
     return {
         ...state,
         columns: newColumns,
+        counts: newCounts,
     };
 }
 
@@ -101,11 +117,18 @@ const AddInternship = (state, payload) => {
         },
     };
 
+    const newCounts = {
+        ...state.counts,
+        internships: state.counts.internships + 1,
+    };
+
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
+    sessionStorage.setItem("counts", JSON.stringify(newCounts));
 
     return {
         ...state,
         columns: newColumns,
+        counts: newCounts,
     };
 }
 
@@ -125,11 +148,18 @@ const AddNote = (state, payload) => {
         },
     };
 
+    const newCounts = {
+        ...state.counts,
+        notes: state.counts.notes + 1,
+    };
+
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
+    sessionStorage.setItem("counts", JSON.stringify(newCounts));
 
     return {
         ...state,
         columns: newColumns,
+        counts: newCounts,
     };
 }
 
@@ -151,11 +181,18 @@ const DeleteProject = (state, payload) => {
         },
     };
 
+    const newCounts = {
+        ...state.counts,
+        projects: state.counts.projects - 1 < 0 ? 0 : state.counts.projects - 1,
+    };
+
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
+    sessionStorage.setItem("counts", JSON.stringify(newCounts));
 
     return {
         ...state,
         columns: newColumns,
+        counts: newCounts,
     };
 }
 
@@ -173,11 +210,18 @@ const DeleteInternship = (state, payload) => {
         },
     };
 
+    const newCounts = {
+        ...state.counts,
+        internships: state.counts.internships - 1 < 0 ? 0 : state.counts.internships - 1,
+    };
+
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
+    sessionStorage.setItem("counts", JSON.stringify(newCounts));
 
     return {
         ...state,
         columns: newColumns,
+        counts: newCounts,
     };
 }
 
@@ -199,10 +243,18 @@ const DeleteNote = (state, payload) => {
         },
     };
 
+    const newCounts = {
+        ...state.counts,
+        notes: state.counts.notes - 1 < 0 ? 0 : state.counts.notes - 1,
+    };
+
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
+    sessionStorage.setItem("counts", JSON.stringify(newCounts));
+
     return {
         ...state,
         columns: newColumns,
+        counts: newCounts,
     };
 }
 
@@ -346,6 +398,7 @@ export {
     SignIn,
     SignOut,
     SetUser,
+    SetCounts,
     SetColumns,
     SetStatuses,
     SetCategories,

@@ -12,10 +12,6 @@ const DashboardStats = () => {
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
-  const totalNotes = Object.keys(state.columns?.notes).length ?? 0;
-  const totalInternships = Object.keys(state.columns?.internships).length ?? 0;
-  const totalProjects = Object.keys(state.columns?.projects).length ?? 0;
-
   // Calculate the distribution of projects across different statuses
   const projectStatusDistribution = Object.keys(state.columns.projects)
     .map((statusId) => {
@@ -107,7 +103,7 @@ const DashboardStats = () => {
         <Card>
           <CardHeader
             title="Internships Statistics"
-            subheader={`Total Internships: ${totalInternships}`}
+            subheader={`Total Internships: ${state.counts.internships}`}
           />
           <Divider />
           <CardContent>
@@ -140,7 +136,7 @@ const DashboardStats = () => {
         <Card>
           <CardHeader
             title="Notes Statistics"
-            subheader={`Total Notes: ${totalNotes}`}
+            subheader={`Total Notes: ${state.counts.notes}`}
           />
           <Divider />
           <CardContent>
@@ -172,7 +168,7 @@ const DashboardStats = () => {
         <Card>
           <CardHeader
             title="Projects Statistics"
-            subheader={`Total Projects: ${totalProjects}`}
+            subheader={`Total Projects: ${state.counts.projects}`}
           />
           <Divider />
           <CardContent>

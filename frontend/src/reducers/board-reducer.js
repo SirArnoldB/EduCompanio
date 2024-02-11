@@ -3,6 +3,7 @@ import {
     SignIn,
     SignOut,
     SetUser,
+    SetCounts,
     SetColumns,
     SetStatuses,
     SetCategories,
@@ -29,6 +30,8 @@ const BoardReducer = (state, action) => {
             return SignOut(state);
         case "SET_USER":
             return SetUser(state, action.payload);
+        case "SET_COUNTS":
+            return SetCounts(state, action.payload);
         case "SET_COLUMNS":
             return SetColumns(state, action.payload);
         case "SET_STATUSES":
