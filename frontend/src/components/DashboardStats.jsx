@@ -4,29 +4,17 @@ import {
   VictoryPie,
   VictoryChart,
   VictoryBar,
-  VictoryTheme,
-  VictoryAxis,
-  VictoryLabel,
   VictoryContainer,
 } from "victory";
-import {
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  CardHeader,
-  CardActions,
-  Button,
-  Paper,
-  Box,
-  Avatar,
-  Divider,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
+import { Grid, Card, CardContent, CardHeader, Divider } from "@mui/material";
 
 const DashboardStats = () => {
+  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
+
+  const totalNotes = Object.keys(state.columns?.notes).length ?? 0;
+  const totalInternships = Object.keys(state.columns?.internships).length ?? 0;
+  const totalProjects = Object.keys(state.columns?.projects).length ?? 0;
 
   // Calculate the distribution of projects across different statuses
   const projectStatusDistribution = Object.keys(state.columns.projects)
@@ -119,7 +107,7 @@ const DashboardStats = () => {
         <Card>
           <CardHeader
             title="Internships Statistics"
-            subheader={`Total Internships: ${state.counts.internships}`}
+            subheader={`Total Internships: ${totalInternships}`}
           />
           <Divider />
           <CardContent>
@@ -152,7 +140,7 @@ const DashboardStats = () => {
         <Card>
           <CardHeader
             title="Notes Statistics"
-            subheader={`Total Notes: ${state.counts.notes}`}
+            subheader={`Total Notes: ${totalNotes}`}
           />
           <Divider />
           <CardContent>
@@ -184,7 +172,7 @@ const DashboardStats = () => {
         <Card>
           <CardHeader
             title="Projects Statistics"
-            subheader={`Total Projects: ${state.counts.projects}`}
+            subheader={`Total Projects: ${totalProjects}`}
           />
           <Divider />
           <CardContent>

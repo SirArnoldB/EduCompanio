@@ -7,15 +7,11 @@ import StatusesAPI from "../services/statuses";
 import CategoriesAPi from "../services/categories";
 import PropTypes from "prop-types";
 import { generateColumns } from "../utilities/columns";
+import { BoardReducer } from "../reducers/board-reducer";
 
 // Initial state
 const initialState = {
   user: JSON.parse(sessionStorage.getItem("user")) || {},
-  counts: {
-    projects: 0,
-    internships: 0,
-    notes: 0,
-  },
   columns: {
     projects: {},
     internships: {},
@@ -41,337 +37,19 @@ const initialState = {
   LOAD_USER_DATA: false,
 };
 
-// Define the reducer function
-const boardReducer = (state, action) => {
-  switch (action.type) {
-    case "LOAD_USER_DATA":
-      return {
-        ...state,
-        LOAD_USER_DATA: action.payload,
-      };
-    case "SIGN_IN":
-      sessionStorage.setItem("user", JSON.stringify(action.payload));
-      return {
-        ...state,
-        user: action.payload,
-      };
-    case "SIGN_OUT":
-      sessionStorage.removeItem("user");
-      return {
-        ...state,
-        user: {},
-      };
-    case "SET_USER":
-      sessionStorage.setItem("user", JSON.stringify(action.payload));
-      return {
-        ...state,
-        user: action.payload,
-      };
-    case "SET_COUNTS": {
-      const newCounts = { ...state.counts, ...action.payload };
-      sessionStorage.setItem("counts", JSON.stringify(newCounts));
-      return {
-        ...state,
-        counts: newCounts,
-      };
-    }
-    case "SET_COLUMNS": {
-      const newColumns = { ...state.columns, ...action.payload };
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "SET_STATUSES": {
-      const newStatuses = { ...state.statuses, ...action.payload };
-      sessionStorage.setItem("statuses", JSON.stringify(newStatuses));
-      return {
-        ...state,
-        statuses: newStatuses,
-      };
-    }
-    case "SET_CATEGORIES": {
-      const newCategories = { ...state.categories, ...action.payload };
-      sessionStorage.setItem("categories", JSON.stringify(newCategories));
-      return {
-        ...state,
-        categories: newCategories,
-      };
-    }
-    case "ADD_PROJECT": {
-      const newColumns = {
-        ...state.columns,
-        projects: {
-          ...state.columns.projects,
-          [action.payload.status_id]: {
-            ...state.columns.projects[action.payload.status_id],
-            items: [
-              action.payload,
-              ...state.columns.projects[action.payload.status_id].items,
-            ],
-          },
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "ADD_INTERNSHIP": {
-      const newColumns = {
-        ...state.columns,
-        internships: {
-          ...state.columns.internships,
-          [action.payload.status_id]: {
-            ...state.columns.internships[action.payload.status_id],
-            items: [
-              action.payload,
-              ...state.columns.internships[action.payload.status_id].items,
-            ],
-          },
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "ADD_NOTE": {
-      const newColumns = {
-        ...state.columns,
-        notes: {
-          ...state.columns.notes,
-          [action.payload.status_id]: {
-            ...state.columns.notes[action.payload.status_id],
-            items: [
-              action.payload,
-              ...state.columns.notes[action.payload.status_id].items,
-            ],
-          },
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "DELETE_PROJECT": {
-      const newColumns = {
-        ...state.columns,
-        projects: {
-          ...state.columns.projects,
-          [action.payload.status_id]: {
-            ...state.columns.projects[action.payload.status_id],
-            items: state.columns.projects[
-              action.payload.status_id
-            ].items.filter((project) => project.id !== action.payload.id),
-          },
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "DELETE_INTERNSHIP": {
-      const newColumns = {
-        ...state.columns,
-        internships: {
-          ...state.columns.internships,
-          [action.payload.status_id]: {
-            ...state.columns.internships[action.payload.status_id],
-            items: state.columns.internships[
-              action.payload.status_id
-            ].items.filter((internship) => internship.id !== action.payload.id),
-          },
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "DELETE_NOTE": {
-      const newColumns = {
-        ...state.columns,
-        notes: {
-          ...state.columns.notes,
-          [action.payload.status_id]: {
-            ...state.columns.notes[action.payload.status_id],
-            items: state.columns.notes[action.payload.status_id].items.filter(
-              (note) => note.id !== action.payload.id
-            ),
-          },
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "UPDATE_PROJECT": {
-      const { original_status_id, updatedItem } = action.payload;
-      const projects = state.columns.projects;
-      const updatedProjectsInOriginalColumn = projects[
-        original_status_id
-      ].items.filter((project) => project.id !== updatedItem.id);
-      const updatedProjectsInNewColumn = [
-        action.payload.updatedItem,
-        ...projects[updatedItem.status_id].items.filter(
-          (project) => project.id !== updatedItem.id
-        ),
-      ];
-
-      const newColumns = {
-        ...state.columns,
-        projects: {
-          ...projects,
-          [updatedItem.status_id]: {
-            ...projects[updatedItem.status_id],
-            items: updatedProjectsInNewColumn,
-          },
-          ...(original_status_id !== updatedItem.status_id && {
-            [original_status_id]: {
-              ...projects[original_status_id],
-              items: updatedProjectsInOriginalColumn,
-            },
-          }),
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "UPDATE_INTERNSHIP": {
-      const { original_status_id, updatedItem } = action.payload;
-      const internships = state.columns.internships;
-      const updatedInternshipsInOriginalColumn = internships[
-        original_status_id
-      ].items.filter((internship) => internship.id !== updatedItem.id);
-      const updatedInternshipsInNewColumn = [
-        action.payload.updatedItem,
-        ...internships[updatedItem.status_id].items.filter(
-          (internship) => internship.id !== updatedItem.id
-        ),
-      ];
-
-      const newColumns = {
-        ...state.columns,
-        internships: {
-          ...internships,
-          [updatedItem.status_id]: {
-            ...internships[updatedItem.status_id],
-            items: updatedInternshipsInNewColumn,
-          },
-          ...(original_status_id !== updatedItem.status_id && {
-            [original_status_id]: {
-              ...internships[original_status_id],
-              items: updatedInternshipsInOriginalColumn,
-            },
-          }),
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "UPDATE_NOTE": {
-      const { original_status_id, updatedItem } = action.payload;
-      const notes = state.columns.notes;
-
-      const updatedNotesInOriginalColumn = notes[
-        original_status_id
-      ].items.filter((note) => note.id !== updatedItem.id);
-
-      const updatedNotesInNewColumn = [
-        action.payload.updatedItem,
-        ...notes[updatedItem.status_id].items.filter(
-          (note) => note.id !== updatedItem.id
-        ),
-      ];
-
-      const newColumns = {
-        ...state.columns,
-        notes: {
-          ...notes,
-          [updatedItem.status_id]: {
-            ...notes[updatedItem.status_id],
-            items: updatedNotesInNewColumn,
-          },
-          ...(original_status_id !== updatedItem.status_id && {
-            [original_status_id]: {
-              ...notes[original_status_id],
-              items: updatedNotesInOriginalColumn,
-            },
-          }),
-        },
-      };
-
-      sessionStorage.setItem("columns", JSON.stringify(newColumns));
-
-      return {
-        ...state,
-        columns: newColumns,
-      };
-    }
-    case "SET_LOADING":
-      return {
-        ...state,
-        loading: action.payload,
-      };
-    case "SET_ERROR":
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-      };
-    default:
-      return state;
-  }
-};
-
 // Create the context
 export const BoardContext = createContext();
 
 // Create a provider for components to consume and subscribe to changes
 export const BoardContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(boardReducer, initialState);
+  const [state, dispatch] = useReducer(BoardReducer, initialState);
 
   // Hydrate state from sessionStorage on mount
   useEffect(() => {
-    const counts = JSON.parse(sessionStorage.getItem("counts"));
     const columns = JSON.parse(sessionStorage.getItem("columns"));
     const statuses = JSON.parse(sessionStorage.getItem("statuses"));
     const categories = JSON.parse(sessionStorage.getItem("categories"));
 
-    if (counts) {
-      dispatch({ type: "SET_COUNTS", payload: counts });
-    }
     if (columns) {
       dispatch({ type: "SET_COLUMNS", payload: columns });
     }
@@ -404,11 +82,6 @@ export const BoardContextProvider = ({ children }) => {
             accessToken
           );
           const notes = await NotesAPI.getAllNotes(accessToken);
-          const counts = {
-            projects: projects.length,
-            internships: internships.length,
-            notes: notes.length,
-          };
 
           // Statuses
           const internshipStatuses =
@@ -447,7 +120,6 @@ export const BoardContextProvider = ({ children }) => {
           };
 
           // Dispatch actions to set state
-          dispatch({ type: "SET_COUNTS", payload: counts });
           dispatch({ type: "SET_COLUMNS", payload: columns });
           dispatch({ type: "SET_STATUSES", payload: statuses });
           dispatch({ type: "SET_CATEGORIES", payload: categories });
