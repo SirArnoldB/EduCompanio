@@ -11,6 +11,11 @@ import InterviewPrep from './interview_prep.jpeg'
 import Notes from './notes.jpeg'
 import Projects from './projects.jpeg'
 import SkillsDevelopment from './skills_dev.jpeg'
+import GoogleDevStudentClub from './org/gdsc.png'
+import CodePath from './org/codepath.png'
+import Colorstack from './org/colorstack.png'
+import Wecode from './org/wecode.webp'
+import RewriteCode from './org/rewritecode.jpg'
 
 export {
     HeroImage,
@@ -25,5 +30,10 @@ export {
     InterviewPrep,
     Notes,
     Projects,
-    SkillsDevelopment
+    SkillsDevelopment,
+    GoogleDevStudentClub,
+    CodePath,
+    Colorstack,
+    Wecode,
+    RewriteCode
 };

@@ -10,6 +10,8 @@ export const InternshipsPage = lazy(() => import("../pages/InternshipsPage"));
 export const NotesPage = lazy(() => import("../pages/NotesPage"));
 export const ProjectsPage = lazy(() => import("../pages/ProjectsPage"));
 export const ProfilePage = lazy(() => import("../pages/ProfilePage"));
+export const SkillDevPage = lazy(() => import("../pages/SkillDevPage"));
+export const OrganizationPage = lazy(() => import("../pages/OrganizationPage"));
 
 const AppContent = () => {
   const routes = useRoutes([
@@ -24,22 +26,30 @@ const AppContent = () => {
       children: [
         {
           path: "/dashboard",
-          element: <ProtectedRoute element={<IndexPage />} />,
+          element: <IndexPage />, //<ProtectedRoute element={<IndexPage />} />,
           index: true,
         },
         {
           path: "/internships",
-          element: <ProtectedRoute element={<InternshipsPage />} />,
+          element: <InternshipsPage /> //<ProtectedRoute element={<InternshipsPage />} />,
         },
-        { path: "/notes", element: <ProtectedRoute element={<NotesPage />} /> },
+        { path: "/notes", element:<NotesPage />}, // <ProtectedRoute element={<NotesPage />} /> },
         {
           path: "/projects",
-          element: <ProtectedRoute element={<ProjectsPage />} />,
+          element: <ProjectsPage /> //<ProtectedRoute element={<ProjectsPage />} />,
         },
         {
           path: "/profile",
-          element: <ProtectedRoute element={<ProfilePage />} />,
+          element: <ProfilePage /> //<ProtectedRoute element={<ProfilePage />} />,
         },
+        {
+          path: "/skilldev",
+          element: <SkillDevPage /> //<ProtectedRoute element={<SkillDevPage />} />,
+        },
+        { 
+          path: "/org",
+          element: <OrganizationPage /> //<ProtectedRoute element={<OrganizationPage />} />,
+        }
       ],
     },
     {

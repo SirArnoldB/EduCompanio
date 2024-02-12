@@ -25,6 +25,16 @@ const navConfig = [
     path: "/projects",
     icon: icon(""),
   },
+  {
+    title: "Organizations",
+    path: "/org",
+    icon: icon(""),
+  },
+  {
+    title: "SkillDev",
+    path: "/skilldev",
+    icon: icon(""),
+  },
 ];
 
 export default navConfig;
