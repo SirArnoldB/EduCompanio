@@ -10,6 +10,8 @@ export const InternshipsPage = lazy(() => import("../pages/InternshipsPage"));
 export const NotesPage = lazy(() => import("../pages/NotesPage"));
 export const ProjectsPage = lazy(() => import("../pages/ProjectsPage"));
 export const ProfilePage = lazy(() => import("../pages/ProfilePage"));
+export const SkillDevPage = lazy(() => import("../pages/SkillDevPage"));
+export const OrganizationPage = lazy(() => import("../pages/OrganizationPage"));
 export const LoginPage = lazy(() => import("../pages/LoginPage"));
 export const SettingsPage = lazy(() => import("../pages/SettingsPage"));
 
@@ -26,7 +28,7 @@ const AppContent = () => {
       children: [
         {
           path: "/dashboard",
-          element: <ProtectedRoute element={<IndexPage />} />,
+          element: <IndexPage />, //<ProtectedRoute element={<IndexPage />} />,
           index: true,
         },
         {
@@ -42,6 +44,14 @@ const AppContent = () => {
           path: "/profile",
           element: <ProtectedRoute element={<ProfilePage />} />,
         },
+        {
+          path: "/skilldev",
+          element: <SkillDevPage /> //<ProtectedRoute element={<SkillDevPage />} />,
+        },
+        { 
+          path: "/org",
+          element: <OrganizationPage /> //<ProtectedRoute element={<OrganizationPage />} />,
+        }
         {
           path: "/settings",
           element: <ProtectedRoute element={<SettingsPage />} />,
