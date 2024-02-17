@@ -22,6 +22,8 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSubmit = (updatedItem) => {
+    const accessToken = state.user.stsTokenManager.accessToken;
+
     switch (itemType) {
       case "internship":
         InternshipsAPI.updateInternship(
@@ -30,7 +32,7 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
             ...updatedItem,
             updated_at: new Date(),
           },
-          state.user.id
+          accessToken
         )
           .then((res) => {
             dispatch({
@@ -43,8 +45,10 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
             Notify("Internship updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Internship update failed", toast.TYPE.ERROR);
+            Notify(
+              `Internship update failed: ${err.message}`,
+              toast.TYPE.ERROR
+            );
           });
         break;
       case "note":
@@ -54,7 +58,7 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
             ...updatedItem,
             updated_at: new Date(),
           },
-          state.user.id
+          accessToken
         )
           .then((res) => {
             dispatch({
@@ -67,8 +71,7 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
             Notify("Note updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Note update failed", toast.TYPE.ERROR);
+            Notify(`Note update failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       case "project":
@@ -78,7 +81,7 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
             ...updatedItem,
             updated_at: new Date(),
           },
-          state.user.id
+          accessToken
         )
           .then((res) => {
             dispatch({
@@ -91,8 +94,7 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
             Notify("Project updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Project update failed", toast.TYPE.ERROR);
+            Notify(`Project update failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       default:

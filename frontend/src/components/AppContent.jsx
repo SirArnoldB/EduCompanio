@@ -12,6 +12,8 @@ export const ProjectsPage = lazy(() => import("../pages/ProjectsPage"));
 export const ProfilePage = lazy(() => import("../pages/ProfilePage"));
 export const SkillDevPage = lazy(() => import("../pages/SkillDevPage"));
 export const OrganizationPage = lazy(() => import("../pages/OrganizationPage"));
+export const LoginPage = lazy(() => import("../pages/LoginPage"));
+export const SettingsPage = lazy(() => import("../pages/SettingsPage"));
 
 const AppContent = () => {
   const routes = useRoutes([
@@ -31,16 +33,16 @@ const AppContent = () => {
         },
         {
           path: "/internships",
-          element: <InternshipsPage /> //<ProtectedRoute element={<InternshipsPage />} />,
+          element: <ProtectedRoute element={<InternshipsPage />} />,
         },
-        { path: "/notes", element:<NotesPage />}, // <ProtectedRoute element={<NotesPage />} /> },
+        { path: "/notes", element: <ProtectedRoute element={<NotesPage />} /> },
         {
           path: "/projects",
-          element: <ProjectsPage /> //<ProtectedRoute element={<ProjectsPage />} />,
+          element: <ProtectedRoute element={<ProjectsPage />} />,
         },
         {
           path: "/profile",
-          element: <ProfilePage /> //<ProtectedRoute element={<ProfilePage />} />,
+          element: <ProtectedRoute element={<ProfilePage />} />,
         },
         {
           path: "/skilldev",
@@ -50,11 +52,19 @@ const AppContent = () => {
           path: "/org",
           element: <OrganizationPage /> //<ProtectedRoute element={<OrganizationPage />} />,
         }
+        {
+          path: "/settings",
+          element: <ProtectedRoute element={<SettingsPage />} />,
+        },
       ],
     },
     {
       path: "/",
       element: <LandingPage />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
     },
   ]);
 

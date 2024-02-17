@@ -4,28 +4,12 @@ import {
   VictoryPie,
   VictoryChart,
   VictoryBar,
-  VictoryTheme,
-  VictoryAxis,
-  VictoryLabel,
   VictoryContainer,
 } from "victory";
-import {
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  CardHeader,
-  CardActions,
-  Button,
-  Paper,
-  Box,
-  Avatar,
-  Divider,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
+import { Grid, Card, CardContent, CardHeader, Divider } from "@mui/material";
 
 const DashboardStats = () => {
+  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
   // Calculate the distribution of projects across different statuses

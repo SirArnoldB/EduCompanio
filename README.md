@@ -1,10 +1,6 @@
 # EduCompanio
 
-CodePath WEB103 Final Project
-
 Designed and developed by: Arnold Bhebhe and John Adeyemo
-
-🔗 Link to deployed app:
 
 ## About
 
@@ -27,8 +23,6 @@ Backend:
 ### Landing Page ✅
 
 On visiting EduCompanio, every user can access the landing page. The landing page shows the features of the app.
-![landing page](https://i.imgur.com/DQykVOY.gif)
-https://i.imgur.com/DQykVOY.gif
 
 ### Organizations
 
@@ -38,9 +32,6 @@ This feature allows students to add and track on-campus and off-campus organizat
 
 Provides a customizable Trello-like board for students to track their internship applications, along with their respective statuses. Offers a curated list of websites for discovering internship opportunities.
 
-- Final GIF:
-  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/internships_page.gif' title='Video Walkthrough' width='' alt='Internship Board' />
-
 ### Interview Prep
 
 This feature provides resources that students can use to prepare for interviews. It aims to make it easier for students across all disciplines to find necessary resources quickly and efficiently.
@@ -49,15 +40,9 @@ This feature provides resources that students can use to prepare for interviews.
 
 Provides a curated list of websites for discovering hackathons and open-source projects, catering to students interested in honing their technical skills.
 
-- Final GIF:
-  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/projects_page.gif' title='Video Walkthrough' width='' alt='Projects Board' />
-
 ### Notes ✅
 
 Allows students to journal about their experiences and take notes, ensuring all valuable information is stored in one accessible location.
-
-- Final GIF:
-  <img src='https://github.com/SirArnoldB/EduCompanio/blob/main/planning/gifs/notes_page.gif' title='Video Walkthrough' width='' alt='Notes Board' />
 
 ### Skills Development
 

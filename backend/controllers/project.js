@@ -3,7 +3,7 @@ import { pool } from '../config/database.js'
 
 const createProject = async (req, res) => {
   try {
-    const user_id = req.params.user_id
+    const user_id = req.user.uid
     const { title, content, url, category_id, status_id } = req.body
 
     const results = await pool.query(`
@@ -21,7 +21,7 @@ const createProject = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
   try {
-    const user_id = req.params.user_id
+    const user_id = req.user.uid
     const results = await pool.query('SELECT * FROM projects WHERE user_id = $1 ORDER BY updated_at DESC', [user_id])
     res.status(200).json(results.rows)
   }
@@ -32,7 +32,7 @@ const getAllProjects = async (req, res) => {
 
 const getProjectById = async (req, res) => {
   try {
-    const user_id = req.params.user_id
+    const user_id = req.user.uid
     const id = req.params.id
     const results = await pool.query('SELECT * FROM projects WHERE id = $1 AND user_id = $2', [id, user_id])
     res.status(200).json(results.rows[0])
@@ -44,7 +44,7 @@ const getProjectById = async (req, res) => {
 
 const updateProject = async (req, res) => {
   try {
-    const user_id = req.params.user_id
+    const user_id = req.user.uid
     const id = req.params.id
     const { title, content, url, category_id, status_id } = req.body
     const results = await pool.query(
@@ -63,7 +63,7 @@ const updateProject = async (req, res) => {
 
 const deleteProject = async (req, res) => {
   try {
-    const user_id = req.params.user_id
+    const user_id = req.user.uid
     const id = req.params.id
     const results = await pool.query('DELETE FROM projects WHERE id = $1 AND user_id = $2 RETURNING *', [id, user_id])
     res.status(200).json(results.rows[0])

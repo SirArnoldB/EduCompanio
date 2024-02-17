@@ -22,38 +22,40 @@ const AddModal = ({ open, handleClose, itemType }) => {
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSubmit = (newItem) => {
+    const accessToken = state.user.stsTokenManager.accessToken;
+
     switch (itemType) {
       case "internship":
-        InternshipsAPI.createInternship(newItem, state.user.id)
+        InternshipsAPI.createInternship(newItem, accessToken)
           .then((res) => {
             dispatch({ type: "ADD_INTERNSHIP", payload: res });
             Notify("Internship added successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Internship addition failed", toast.TYPE.ERROR);
+            Notify(
+              `Internship addition failed: ${err.message}`,
+              toast.TYPE.ERROR
+            );
           });
         break;
       case "note":
-        NotesAPI.createNote(newItem, state.user.id)
+        NotesAPI.createNote(newItem, accessToken)
           .then((res) => {
             dispatch({ type: "ADD_NOTE", payload: res });
             Notify("Note added successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Note addition failed", toast.TYPE.ERROR);
+            Notify(`Note addition failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       case "project":
-        ProjectsAPI.createProject(newItem, state.user.id)
+        ProjectsAPI.createProject(newItem, accessToken)
           .then((res) => {
             dispatch({ type: "ADD_PROJECT", payload: res });
             Notify("Project added successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            console.log(err);
-            Notify("Project addition failed", toast.TYPE.ERROR);
+            Notify(`Project addition failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       default:
