@@ -6,9 +6,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 export const LandingPage = lazy(() => import("../../pages/LandingPage"));
 export const IndexPage = lazy(() => import("../../pages/IndexPage"));
-export const InternshipsPage = lazy(() =>
-  import("../../pages/InternshipsPage")
-);
+export const JobsPage = lazy(() => import("../../pages/JobsPage"));
 export const NotesPage = lazy(() => import("../../pages/NotesPage"));
 export const ProjectsPage = lazy(() => import("../../pages/ProjectsPage"));
 export const ProfilePage = lazy(() => import("../../pages/ProfilePage"));
@@ -35,8 +33,8 @@ const AppContent = () => {
           index: true,
         },
         {
-          path: "/internships",
-          element: <ProtectedRoute element={<InternshipsPage />} />,
+          path: "/jobs",
+          element: <ProtectedRoute element={<JobsPage />} />,
         },
         { path: "/notes", element: <ProtectedRoute element={<NotesPage />} /> },
         {

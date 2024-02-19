@@ -97,10 +97,7 @@ const IndexView = () => {
 
             <Box sx={{ width: "95%" }}>
               <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 5 }}>
-                <Button
-                  variant="contained"
-                  onClick={() => navigate("/internships")}
-                >
+                <Button variant="contained" onClick={() => navigate("/jobs")}>
                   View All
                 </Button>
               </Box>
@@ -121,7 +118,7 @@ const IndexView = () => {
                     />
                   ))
                 ) : (
-                  <Typography variant="h6">No Internships yet</Typography>
+                  <Typography variant="h6">No Jobs yet</Typography>
                 )}
               </Box>
             </Box>

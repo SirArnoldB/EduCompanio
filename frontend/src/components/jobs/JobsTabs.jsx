@@ -2,9 +2,9 @@ import { Grid, Typography } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
 import Board from "../board/Board";
 
-const internshipsTabs = [
+const jobsTabs = [
   {
-    label: "My Internships",
+    label: "My Applications",
     content: <Board boardType="internship" />,
     icon: "",
   },
@@ -15,12 +15,12 @@ const internshipsTabs = [
   },
 ];
 
-const InternshipsTabs = () => {
+const JobsTabs = () => {
   return (
     <Grid item xs={12}>
-      <TabsSection tabs={internshipsTabs} />
+      <TabsSection tabs={jobsTabs} />
     </Grid>
   );
 };
 
-export default InternshipsTabs;
+export default JobsTabs;
