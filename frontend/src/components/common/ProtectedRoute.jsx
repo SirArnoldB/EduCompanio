@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { BoardContext } from "../contexts/BoardContext";
+import { BoardContext } from "../../contexts/BoardContext";
 
 const ProtectedRoute = ({ element }) => {
   const [state] = useContext(BoardContext);

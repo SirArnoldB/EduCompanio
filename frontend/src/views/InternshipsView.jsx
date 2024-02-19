@@ -1,5 +1,5 @@
 import { Container, Typography } from "@mui/material";
-import Board from "../components/Board";
+import InternshipsTabs from "../components/internships/InternshipsTabs";
 
 /**
  * Renders the InternshipsView component.
@@ -11,7 +11,7 @@ const InternshipsView = () => {
       <Typography variant="h4" sx={{ mb: 5 }}>
         Internships 📌
       </Typography>
-      <Board boardType="internship" />
+      <InternshipsTabs />
     </Container>
   );
 };

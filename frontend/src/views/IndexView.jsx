@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@mui/material";
-import SectionPreview from "../components/SectionPreview";
+import SectionPreview from "../components/common/SectionPreview";
 import { BoardContext } from "../contexts/BoardContext";
-import DashboardStats from "../components/DashboardStats";
-import LoadingSpinner from "../components/LoadingSpinner";
+import DashboardStats from "../components/dashboard/DashboardStats";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const IndexView = () => {
   const mockNotes = [

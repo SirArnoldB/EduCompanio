@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   Card,
   CardContent,
@@ -9,37 +9,32 @@ import {
   InputLabel,
   Button,
   CardActions,
+  CardHeader,
 } from "@mui/material";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import PropTypes from "prop-types";
-import { BoardContext } from "../contexts/BoardContext";
+import { BoardContext } from "../../contexts/BoardContext";
 
 /**
- * A component for editing an item.
+ * A component for adding a new item, such as an internship, note, or project.
  * @param {Object} props - The component props.
- * @param {Object} props.item - The item to be edited.
- * @param {string} props.itemType - The type of item being edited.
- * @param {Function} props.onSave - The function to be called when the item is saved.
- * @param {Function} props.onCancel - The function to be called when the editing is cancelled.
- * @returns {JSX.Element} - The EditItem component.
+ * @param {string} props.itemType - The type of item being added.
+ * @param {Function} props.onSave - The function to call when the item is saved.
+ * @param {Function} props.onCancel - The function to call when the item is cancelled.
+ * @returns {JSX.Element} - The AddItem component.
  */
-const EditItem = ({ item, itemType, onSave, onCancel }) => {
-  const [content, setContent] = useState(item?.content);
-  const [status, setStatus] = useState(item.status_id || "");
-  const [category, setCategory] = useState(item.category_id || "");
-  const [title, setTitle] = useState(item?.title);
-  const [position, setPosition] = useState(item?.position);
-  const [url, setUrl] = useState(item?.url ?? "");
-  const [companyName, setCompanyName] = useState(item?.company ?? "");
+const AddItem = ({ itemType, onSave, onCancel }) => {
+  const [content, setContent] = useState("");
+  const [status, setStatus] = useState("");
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [position, setPosition] = useState("");
+  const [url, setUrl] = useState("");
+  const [companyName, setCompanyName] = useState("");
   const [statuses, setStatuses] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [initialItem, setInitialItem] = useState({});
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
-
-  useEffect(() => {
-    setInitialItem(item);
-  }, [item]);
 
   useEffect(() => {
     switch (itemType) {
@@ -61,62 +56,49 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
   }, [itemType, state.statuses, state.categories]);
 
   const handleSave = () => {
-    // Check if any changes have been made to the item
-    let updatedItem;
-
-    switch (itemType) {
-      case "note":
-        updatedItem = {
-          ...item,
-          title,
-          content,
-          status_id: status,
-          category_id: category,
-          updated_at: "",
-        };
-        break;
-      case "project":
-        updatedItem = {
-          ...item,
-          title,
-          content,
-          status_id: status,
-          category_id: category,
-          url,
-          updated_at: "",
-        };
-        break;
-      case "internship":
-        updatedItem = {
-          ...item,
-          title,
-          content,
-          status_id: status,
-          category_id: category,
-          position,
-          url,
-          company: companyName,
-          updated_at: "",
-        };
-        break;
-      default:
-        break;
-    }
-
-    // Check if any changes have been made to the item
-    if (
-      JSON.stringify({ ...initialItem, updated_at: "" }) ===
-      JSON.stringify(updatedItem)
-    ) {
-      alert("No changes have been made to the item.");
+    if (!content || !status || !category) {
+      alert("Please fill out all fields.");
       return;
     }
 
-    onSave(updatedItem);
+    if (itemType !== "internship" && !title) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    if (itemType === "internship" && (!position || !companyName)) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    if (itemType !== "note" && !url) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    onSave({
+      title,
+      content,
+      status_id: status,
+      category_id: category,
+      position,
+      url,
+      company: companyName,
+    });
   };
 
   return (
     <Card sx={{ width: 600, m: 2, backgroundColor: "#f5f5f5" }}>
+      <CardHeader
+        title={`New ${
+          itemType === "internship"
+            ? "Internship"
+            : itemType === "note"
+            ? "Note"
+            : "Project"
+        }`}
+      />
+
       <CardContent
         sx={{
           display: "flex",
@@ -184,6 +166,7 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
         </FormControl>
         <FormControl fullWidth>
           <InputLabel id="category-select-label">Category</InputLabel>
+
           <Select
             labelId="category-select-label"
             id="category-select"
@@ -217,11 +200,10 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
   );
 };
 
-EditItem.propTypes = {
-  item: PropTypes.object.isRequired,
+AddItem.propTypes = {
   itemType: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
 
-export default EditItem;
+export default AddItem;

@@ -1,4 +1,4 @@
-import SvgColor from "../../components/SvgColor";
+import SvgColor from "../../components/common/SvgColor";
 
 const icon = (name) => (
   <SvgColor src={`${name}`} sx={{ width: 1, height: 1 }} />
@@ -26,13 +26,18 @@ const navConfig = [
     icon: icon(""),
   },
   {
-    title: "Organizations",
-    path: "/org",
+    title: "resources",
+    path: "/resources",
     icon: icon(""),
   },
   {
-    title: "SkillDev",
-    path: "/skilldev",
+    title: "Events",
+    path: "/events",
+    icon: icon(""),
+  },
+  {
+    title: "Wellness",
+    path: "/wellness",
     icon: icon(""),
   },
 ];

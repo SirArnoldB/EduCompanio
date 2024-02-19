@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import PropTypes from "prop-types";
-import InternshipsAPI from "../services/internships";
-import NotesAPI from "../services/notes";
-import ProjectsAPI from "../services/projects";
-import { BoardContext } from "../contexts/BoardContext";
+import InternshipsAPI from "../../services/internships";
+import NotesAPI from "../../services/notes";
+import ProjectsAPI from "../../services/projects";
+import { BoardContext } from "../../contexts/BoardContext";
 import { toast } from "react-toastify";
-import Notify from "./Toast/Notify";
+import Notify from "../Toast/Notify";
 
 /**
  * A modal component for deleting an item.
