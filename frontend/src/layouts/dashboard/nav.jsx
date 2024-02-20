@@ -14,10 +14,10 @@ import { alpha } from "@mui/material/styles";
 import { NAV } from "./config-layout";
 import navConfig from "./config-navigation";
 import usePathname from "../../hooks/use-pathname";
-import RouterLink from "../../components/RouterLink";
+import RouterLink from "../../components/common/RouterLink";
 import { useResponsive } from "../../hooks/use-responsive";
-import Scrollbar from "../../components/Scrollbar";
-import Logo from "../../components/Logo";
+import Scrollbar from "../../components/common/Scrollbar";
+import Logo from "../../components/common/Logo";
 import { BoardContext } from "../../contexts/BoardContext";
 
 export default function Nav({ openNav, onCloseNav }) {

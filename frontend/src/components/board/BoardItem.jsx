@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import { BoardContext } from "../contexts/BoardContext";
+import { BoardContext } from "../../contexts/BoardContext";
 
 /**
  * Renders a board item with truncated content and a chip displaying the creation date.

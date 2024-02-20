@@ -1,19 +1,19 @@
 import { Container, Typography } from "@mui/material";
-import Board from "../components/board/Board";
+import WellnessTabs from "../components/wellness/WellnessTabs";
 
 /**
  * Renders a view for displaying notes.
  * @returns {JSX.Element}
  */
-const NotesView = () => {
+const WellnessView = () => {
   return (
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 5 }}>
-        Notes 📝
+        Wellness 🧘
       </Typography>
-      <Board boardType="note" />
+      <WellnessTabs />
     </Container>
   );
 };
 
-export default NotesView;
+export default WellnessView;

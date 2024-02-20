@@ -6,7 +6,7 @@ import { app } from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
 import { Box, Typography, Paper } from "@mui/material";
 import { BoardContext } from "../contexts/BoardContext";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {

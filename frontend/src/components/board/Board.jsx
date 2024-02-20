@@ -2,16 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Box } from "@mui/material";
 import PropTypes from "prop-types";
-import SearchBar from "./SearchBar";
+import SearchBar from "../common/SearchBar";
 import DroppableColumn from "./DroppableColumn";
-import Modals from "./Modals";
-import LoadingSpinner from "./LoadingSpinner";
-import InternshipsAPI from "../services/internships";
-import NotesAPI from "../services/notes";
-import ProjectsAPI from "../services/projects";
-import { BoardContext } from "../contexts/BoardContext";
+import Modals from "../modals/Modals";
+import LoadingSpinner from "../common/LoadingSpinner";
+import InternshipsAPI from "../../services/internships";
+import NotesAPI from "../../services/notes";
+import ProjectsAPI from "../../services/projects";
+import { BoardContext } from "../../contexts/BoardContext";
 import { toast } from "react-toastify";
-import Notify from "./Toast/Notify";
+import Notify from "../Toast/Notify";
 
 /**
  * A component that displays a board with draggable and droppable columns and items.

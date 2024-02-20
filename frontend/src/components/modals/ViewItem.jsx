@@ -16,7 +16,7 @@ import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PropTypes from "prop-types";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import { BoardContext } from "../contexts/BoardContext";
+import { BoardContext } from "../../contexts/BoardContext";
 
 /**
  * Renders a card displaying the details of an item.

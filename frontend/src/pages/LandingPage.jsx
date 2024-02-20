@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { BoardContext } from "../contexts/BoardContext";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 import Hero from "../components/landingpage/Hero";
 import NavBar from "../components/landingpage/NavBar";
 import Testimonials from "../components/landingpage/Testimonials";

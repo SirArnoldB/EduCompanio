@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@mui/material";
-import SectionPreview from "../components/SectionPreview";
+import SectionPreview from "../components/common/SectionPreview";
 import { BoardContext } from "../contexts/BoardContext";
-import DashboardStats from "../components/DashboardStats";
-import LoadingSpinner from "../components/LoadingSpinner";
+import DashboardStats from "../components/dashboard/DashboardStats";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const IndexView = () => {
   const mockNotes = [
@@ -97,10 +97,7 @@ const IndexView = () => {
 
             <Box sx={{ width: "95%" }}>
               <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 5 }}>
-                <Button
-                  variant="contained"
-                  onClick={() => navigate("/internships")}
-                >
+                <Button variant="contained" onClick={() => navigate("/jobs")}>
                   View All
                 </Button>
               </Box>
@@ -121,7 +118,7 @@ const IndexView = () => {
                     />
                   ))
                 ) : (
-                  <Typography variant="h6">No Internships yet</Typography>
+                  <Typography variant="h6">No Jobs yet</Typography>
                 )}
               </Box>
             </Box>

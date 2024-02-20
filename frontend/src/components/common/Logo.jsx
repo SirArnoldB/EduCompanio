@@ -3,8 +3,8 @@ import { forwardRef, useContext } from "react";
 import { Link, Box } from "@mui/material";
 import RouterLink from "./RouterLink";
 import { useTheme } from "@mui/material/styles";
-import { LogoNoBackground } from "../assets";
-import { BoardContext } from "../contexts/BoardContext";
+import { LogoNoBackground } from "../../assets";
+import { BoardContext } from "../../contexts/BoardContext";
 
 // eslint-disable-next-line react/display-name
 const Logo = forwardRef(({ disabledLink = false, sx }, ref) => {

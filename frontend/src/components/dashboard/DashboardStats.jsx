@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { BoardContext } from "../contexts/BoardContext";
+import { BoardContext } from "../../contexts/BoardContext";
 import {
   VictoryPie,
   VictoryChart,
@@ -102,8 +102,8 @@ const DashboardStats = () => {
       <Grid item xs={4} md={4}>
         <Card>
           <CardHeader
-            title="Internships Statistics"
-            subheader={`Total Internships: ${state.counts.internships}`}
+            title="Jobs Statistics"
+            subheader={`Total Jobs: ${state.counts.internships}`}
           />
           <Divider />
           <CardContent>

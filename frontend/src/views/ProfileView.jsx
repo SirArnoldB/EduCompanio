@@ -73,10 +73,7 @@ const ProfileView = () => {
         >
           <Grid container spacing={3}>
             <StatCard title="Total Notes" value={state.counts.notes} />
-            <StatCard
-              title="Total Internships"
-              value={state.counts.internships}
-            />
+            <StatCard title="Total Jobs" value={state.counts.internships} />
             <StatCard title="Total Projects" value={state.counts.projects} />
           </Grid>
           <Button

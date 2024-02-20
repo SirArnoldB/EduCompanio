@@ -1,19 +1,19 @@
 import { Container, Typography } from "@mui/material";
-import Board from "../components/board/Board";
+import EventsTabs from "../components/events/Eventstabs";
 
 /**
  * Renders a view for displaying notes.
  * @returns {JSX.Element}
  */
-const NotesView = () => {
+const EventsView = () => {
   return (
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 5 }}>
-        Notes 📝
+        Events 📅
       </Typography>
-      <Board boardType="note" />
+      <EventsTabs />
     </Container>
   );
 };
 
-export default NotesView;
+export default EventsView;

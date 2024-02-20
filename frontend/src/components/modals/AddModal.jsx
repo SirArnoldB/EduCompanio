@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { Modal, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import AddItem from "./AddItem";
-import InternshipsAPI from "../services/internships";
-import NotesAPI from "../services/notes";
-import ProjectsAPI from "../services/projects";
-import { BoardContext } from "../contexts/BoardContext";
+import InternshipsAPI from "../../services/internships";
+import NotesAPI from "../../services/notes";
+import ProjectsAPI from "../../services/projects";
+import { BoardContext } from "../../contexts/BoardContext";
 import { toast } from "react-toastify";
-import Notify from "./Toast/Notify";
+import Notify from "../Toast/Notify";
 
 /**
  * Renders a modal for adding an item of a specified type.
