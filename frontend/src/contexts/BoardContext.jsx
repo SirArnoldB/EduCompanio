@@ -1,5 +1,5 @@
 import { createContext, useReducer, useEffect } from "react";
-import InitialzeDataAPI from "../services/initialize-examples";
+import { initializeExamples as InitializeDataAPI } from "../services/initialize-examples";
 import ProjectsAPI from "../services/projects";
 import InternshipsAPI from "../services/internships";
 import NotesAPI from "../services/notes";
@@ -80,9 +80,10 @@ export const BoardContextProvider = ({ children }) => {
           // If the user signed in for the first time, initialize the user's data
           // in the database
           if (
-            state.user.metadata.createdAt === state.user.metadata.lastSignedInAt
+            state.user.metadata.creationTime ===
+            state.user.metadata.lastSignInTime
           ) {
-            await InitialzeDataAPI.initializeExamples(accessToken);
+            await InitializeDataAPI.initializeExamples(accessToken);
           }
 
           // Projects, internships, and notes
