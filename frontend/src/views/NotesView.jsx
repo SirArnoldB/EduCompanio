@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Card, Container, Typography } from "@mui/material";
 import Board from "../components/board/Board";
 
 /**
@@ -11,7 +11,9 @@ const NotesView = () => {
       <Typography variant="h4" sx={{ mb: 5 }}>
         Notes 📝
       </Typography>
-      <Board boardType="note" />
+      <Card sx={{ p: 3 }}>
+        <Board boardType="note" />
+      </Card>
     </Container>
   );
 };
