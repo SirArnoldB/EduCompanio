@@ -83,7 +83,7 @@ export const BoardContextProvider = ({ children }) => {
             state.user.metadata.creationTime ===
             state.user.metadata.lastSignInTime
           ) {
-            await InitializeDataAPI.initializeExamples(accessToken);
+            await InitializeDataAPI(accessToken);
           }
 
           // Projects, internships, and notes
