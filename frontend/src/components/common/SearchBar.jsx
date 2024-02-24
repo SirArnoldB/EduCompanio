@@ -17,7 +17,12 @@ import debounce from "lodash.debounce";
  * @param {Function} props.setAddModalOpen - The function to call when the add button is clicked.
  * @returns {JSX.Element} - The SearchBar component.
  */
-const SearchBar = ({ onSearch, setAddModalOpen, boardType }) => {
+const SearchBar = ({
+  onSearch,
+  setAddModalOpen,
+  boardType,
+  showAddButton = true,
+}) => {
   const [searchInput, setSearchInput] = useState("");
 
   // Debounce the search function so that it only fires after the user has stopped typing for 500ms.
@@ -60,14 +65,16 @@ const SearchBar = ({ onSearch, setAddModalOpen, boardType }) => {
             </InputAdornment>
           }
         />
-        <Button
-          variant="contained"
-          color="info"
-          startIcon={<Iconify icon="eva:plus-fill" />}
-          onClick={() => setAddModalOpen(true)}
-        >
-          Add
-        </Button>
+        {showAddButton && (
+          <Button
+            variant="contained"
+            color="info"
+            startIcon={<Iconify icon="eva:plus-fill" />}
+            onClick={() => setAddModalOpen(true)}
+          >
+            Add
+          </Button>
+        )}
       </Stack>
     </Paper>
   );
@@ -77,6 +84,7 @@ SearchBar.propTypes = {
   onSearch: PropTypes.func.isRequired,
   setAddModalOpen: PropTypes.func.isRequired,
   boardType: PropTypes.string.isRequired,
+  showAddButton: PropTypes.bool,
 };
 
 export default SearchBar;
