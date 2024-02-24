@@ -2,7 +2,6 @@
     {
         "title": "Campus Sustainability Project",
         "description": "Help make our campus more environmentally friendly by promoting recycling, energy conservation, and sustainable food options.",
-        "start_date": "2023-03-01",
         "interest_deadline": "2023-02-15",
         "interested": 12,
         "contact": "johnson@college.edu",
@@ -11,7 +10,6 @@
     {
         "title": "Peer Tutoring Program",
         "description": "Provide free tutoring to fellow students struggling in math, science, writing, or other subjects.",
-        "start_date": "2023-04-15",
         "interest_deadline": "2023-03-30",
         "interested": 8,
         "contact": "tutoringclub@college.edu",
@@ -20,7 +18,6 @@
     {
         "title": "Coding Workshops",
         "description": "Host free workshops to teach other students coding skills like Python, JavaScript, and web development.",
-        "start_date": "2023-05-01",
         "interest_deadline": "2023-04-01",
         "interested": 6,
         "contact": "learncode@college.edu",
@@ -29,7 +26,6 @@
     {
         "title": "Community Garden",
         "description": "Start a community garden to grow fresh produce for students and donate surplus to food banks.",
-        "start_date": "2023-03-15",
         "interest_deadline": "2023-02-28",
         "interested": 10,
         "contact": "gardenclub@college.edu",
@@ -38,7 +34,6 @@
     {
         "title": "Student-Athlete Mentoring",
         "description": "Mentor local youth athletes to develop skills and character through sports.",
-        "start_date": "2023-06-01",
         "interest_deadline": "2023-04-15",
         "interested": 10,
         "contact": "mentors@college.edu",
@@ -47,7 +42,6 @@
     {
         "title": "Homelessness Outreach",
         "description": "Provide support for the local homeless population through donations, meals, and other assistance.",
-        "start_date": "2023-03-01",
         "interest_deadline": "2023-02-15",
         "interested": 15,
         "contact": "outreach@college.edu",
@@ -56,7 +50,6 @@
     {
         "title": "STEM Education Outreach",
         "description": "Inspire youth to pursue careers in science and tech through hands-on activities and mentorship.",
-        "start_date": "2023-04-01",
         "interest_deadline": "2023-03-15",
         "interested": 8,
         "contact": "stemeducation@college.edu",
@@ -65,7 +58,6 @@
     {
         "title": "Student Film Festival",
         "description": "Showcase student films and provide opportunities for feedback and recognition.",
-        "start_date": "2023-05-15",
         "interest_deadline": "2023-04-30",
         "interested": 12,
         "contact": "filmfestival@college.edu",
@@ -74,7 +66,6 @@
     {
         "title": "Mental Health Awareness",
         "description": "Promote mental health awareness through campus events, peer counseling, and reducing stigma.",
-        "start_date": "2023-03-01",
         "interest_deadline": "2023-02-15",
         "interested": 11,
         "contact": "mha@college.edu",
@@ -83,7 +74,6 @@
     {
         "title": "Blood Drive",
         "description": "Organize blood donation drives to support local hospitals and save lives.",
-        "start_date": "2023-04-01",
         "interest_deadline": "2023-03-15",
         "interested": 9,
         "contact": "blooddrive@college.edu",
@@ -92,7 +82,6 @@
     {
         "title": "Cultural Exchange Events",
         "description": "Foster cultural understanding between students through food festivals, exhibits and sharing traditions.",
-        "start_date": "2023-09-15",
         "interest_deadline": "2023-08-30",
         "interested": 7,
         "contact": "culture@college.edu",
@@ -101,7 +90,6 @@
     {
         "title": "Student Newspaper",
         "description": "Give students journalism experience by starting a campus newspaper.",
-        "start_date": "2023-06-01",
         "interest_deadline": "2023-05-15",
         "interested": 5,
         "contact": "newspaper@college.edu",
@@ -110,7 +98,6 @@
     {
         "title": "Study Abroad Ambassador Program",
         "description": "Support future study abroad students with advice and resources from student ambassadors. ",
-        "start_date": "2023-03-01",
         "interest_deadline": "2023-02-15",
         "interested": 4,
         "contact": "abroad@college.edu",
@@ -119,7 +106,6 @@
     {
         "title": "Career Mentor Network",
         "description": "Connect students to alumni mentors in their desired careers for advice and networking.",
-        "start_date": "2023-04-01",
         "interest_deadline": "2023-03-15",
         "interested": 11,
         "contact": "mentors@college.edu",
@@ -128,7 +114,6 @@
     {
         "title": "Student Feedback Forum",
         "description": "Provide a way for students to give anonymous feedback to improve campus policies and facilities.",
-        "start_date": "2023-05-01",
         "interest_deadline": "2023-04-15",
         "interested": 9,
         "contact": "feedback@college.edu",
