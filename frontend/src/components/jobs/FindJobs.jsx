@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import JobCard from './JobCard';
+import SearchBar from '../common/SearchBar';
 
 const FindJobs = () => {
+  const [searchInput, setSearchInput] = useState("");
   const [internships, setInternships] = useState([]);
   const [communityInternships, setCommunityInternships] = useState([]);
 
@@ -114,7 +116,9 @@ const FindJobs = () => {
       jobTag: 'full-time',
     },
   ];
-
+  const handleSearchInput = (value) => {
+    setSearchInput(value);
+  };
   
 
 useEffect(() => {
@@ -152,12 +156,9 @@ useEffect(() => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-        <TextField label="Search internships" variant="outlined" />
-        <Button variant="contained" color="primary" sx={{ marginLeft: '10px' }}>
-          Search
-        </Button>
-      </Box>
+      <SearchBar 
+        onSearch={handleSearchInput}
+      />
 
       <Box >
         <h2> Latest Internships</h2>
