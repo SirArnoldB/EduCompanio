@@ -1,6 +1,9 @@
 import { Grid, Typography } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
 import Board from "../board/Board";
+import OrganizationsView from "../../views/OrganizationsView";
+import CommunityProjects from "./CommunityProjects";
+
 
 const projectsTabs = [
   {
@@ -10,9 +13,11 @@ const projectsTabs = [
   },
   {
     label: "Community Projects",
-    content: <Typography variant="h6">Community Projects</Typography>,
+    content: <CommunityProjects/>,
     icon: "",
+
   },
+
 ];
 
 const ProjectsTabs = () => {
