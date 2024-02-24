@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Recruiter Roundtable: How to Get Noticed by Recruiters",
+        "date": "2019-10-01",
+        "time": "12:00 PM",
+        "location": "Career Services",
+        "description": "Join us for a panel discussion with recruiters from top companies to learn how to get noticed by recruiters. This event is open to all students and alumni.",
+        "url": "https://www.eventbrite.com/e/recruiter-roundtable-how-to-get-noticed-by-recruiters-tickets-1234567890"
+    },
+    {
+        "id": 2,
+        "title": "Resume Workshop",
+        "date": "2019-10-15",
+        "time": "2:00 PM",
+        "location": "Career Services",
+        "description": "Learn how to create a resume that will stand out to employers. This event is open to all students and alumni.",
+        "url": "https://www.eventbrite.com/e/resume-workshop-tickets-1234567891"
+    },
+    {
+        "id": 3,
+        "title": "Interview Prep",
+        "date": "2019-10-30",
+        "time": "3:00 PM",
+        "location": "Career Services",
+        "description": "Get tips on how to prepare for interviews and practice your interview skills. This event is open to all students and alumni.",
+        "url": "https://www.eventbrite.com/e/interview-prep-tickets-1234567892"
+    },
+    {
+        "id": 4,
+        "title": "Job Search Strategies",
+        "date": "2019-11-15",
+        "time": "1:00 PM",
+        "location": "Career Services",
+        "description": "Learn how to effectively search for jobs and find opportunities that are a good fit for you. This event is open to all students and alumni.",
+        "url": "https://www.eventbrite.com/e/job-search-strategies-tickets-1234567893"
+    }
+]

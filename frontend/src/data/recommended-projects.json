@@ -1,0 +1,99 @@
+[
+    {
+        "id": 1,
+        "title": "Fizz Buzz Projct",
+        "description": "This is a project to implement the Fizz Buzz game in a web application",
+        "url": "",
+        "level": "Beginner",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "To Do List Project",
+        "description": "This is a project to implement a To Do List in a web application",
+        "url": "",
+        "level": "Beginner",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Weather App Project",
+        "description": "This is a project to implement a Weather App in a web application",
+        "url": "",
+        "level": "Intermediate",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "API"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Calculator Project",
+        "description": "This is a project to implement a Calculator in a web application",
+        "url": "",
+        "level": "Intermediate",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Tic Tac Toe Project",
+        "description": "This is a project to implement a Tic Tac Toe game in a web application",
+        "url": "",
+        "level": "Intermediate",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Rock Paper Scissors Project",
+        "description": "This is a project to implement a Rock Paper Scissors game in a web application",
+        "url": "",
+        "level": "Intermediate",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Memory Game Project",
+        "description": "This is a project to implement a Memory Game in a web application",
+        "url": "",
+        "level": "Intermediate",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Quiz App Project",
+        "description": "This is a project to implement a Quiz App in a web application",
+        "url": "",
+        "level": "Intermediate",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    }
+]

@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "Software Engineering Intern",
+        "company": "Google",
+        "location": "Mountain View, CA",
+        "date": "Summer 2024",
+        "type": "Internship",
+        "url": "https://careers.google.com/jobs/results/123456789"
+    },
+    {
+        "id": 2,
+        "title": "Software Engineering Intern",
+        "company": "Facebook",
+        "location": "Menlo Park, CA",
+        "date": "Summer 2024",
+        "type": "Internship",
+        "url": "https://www.facebook.com/careers/jobs/123456789"
+    },
+    {
+        "id": 3,
+        "title": "Software Engineering Intern",
+        "company": "Amazon",
+        "location": "Seattle, WA",
+        "date": "Summer 2024",
+        "type": "Internship",
+        "url": "https://www.amazon.jobs/en/jobs/123456789"
+    },
+    {
+        "id": 4,
+        "title": "Software Engineering Intern",
+        "company": "Microsoft",
+        "location": "Redmond, WA",
+        "date": "Summer 2024",
+        "type": "Internship",
+        "url": "https://careers.microsoft.com/us/en/jobs/123456789"
+    },
+    {
+        "id": 5,
+        "title": "Software Engineering Intern",
+        "company": "Apple",
+        "location": "Cupertino, CA",
+        "date": "Summer 2024",
+        "type": "Internship",
+        "url": "https://jobs.apple.com/en-us/details/123456789"
+    }
+]
