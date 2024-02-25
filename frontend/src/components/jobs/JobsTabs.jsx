@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
 import Board from "../board/Board";
+import FindJobs from "./FindJobs";
 
 const jobsTabs = [
   {
@@ -10,7 +11,7 @@ const jobsTabs = [
   },
   {
     label: "Community Opportunities",
-    content: <Typography variant="h6">Community Opportunities</Typography>,
+    content: <FindJobs />,
     icon: "",
   },
 ];

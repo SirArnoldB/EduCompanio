@@ -1,0 +1,178 @@
+[
+    {
+        "id": 1,
+        "logo_url": "https://example.com/google.png",
+        "title": "Software Engineering Intern",
+        "description": "Gain hands-on experience in software development and work on cutting-edge projects at Google.",
+        "tag": "Internship",
+        "location": "Hybrid",
+        "company": "Google",
+        "link": "https://www.google.com/careers/students/",
+        "deadline": "2024-05-31"
+    },
+    {
+        "id": 2,
+        "logo_url": "https://example.com/microsoft.png",
+        "title": "Data Science Intern",
+        "description": "Join Microsoft's data science team and work on innovative AI and machine learning projects.",
+        "tag": "Internship",
+        "location": "Remote",
+        "company": "Microsoft",
+        "link": "https://careers.microsoft.com/students/internships",
+        "deadline": "2024-04-15"
+    },
+    {
+        "id": 3,
+        "logo_url": "https://example.com/amazon.png",
+        "title": "Software Development Engineer Intern",
+        "description": "Gain valuable experience in software development and work on Amazon's cutting-edge technologies.",
+        "tag": "Internship",
+        "location": "Onsite",
+        "company": "Amazon",
+        "link": "https://www.amazon.jobs/en/internships",
+        "deadline": "2024-03-31"
+    },
+    {
+        "id": 4,
+        "logo_url": "https://example.com/facebook.png",
+        "title": "Engineering Intern",
+        "description": "Join Facebook's engineering team and work on innovative products and services used by billions worldwide.",
+        "tag": "Internship",
+        "location": "Hybrid",
+        "company": "Facebook",
+        "link": "https://www.facebook.com/careers/students-and-grads/",
+        "deadline": "2024-06-30"
+    },
+    {
+        "id": 5,
+        "logo_url": "https://example.com/apple.png",
+        "title": "Software Engineering Intern",
+        "description": "Gain hands-on experience in software development and work on cutting-edge Apple products and services.",
+        "tag": "Internship",
+        "location": "Onsite",
+        "company": "Apple",
+        "link": "https://www.apple.com/jobs/us/students.html",
+        "deadline": "2024-04-30"
+    },
+    {
+        "id": 6,
+        "logo_url": "https://example.com/volunteer.png",
+        "title": "Community Service Volunteer",
+        "description": "Join our local community center and help organize events, mentor youth, and support various initiatives.",
+        "tag": "Volunteer",
+        "location": "Onsite",
+        "company": "Hometown Community Center",
+        "link": "https://www.hometowncc.org/volunteer",
+        "deadline": "2024-12-31"
+    },
+    {
+        "id": 7,
+        "logo_url": "https://example.com/mentor.png",
+        "title": "Coding Mentor",
+        "description": "Become a coding mentor and help students learn programming skills and prepare for coding competitions.",
+        "tag": "Volunteer",
+        "location": "Remote",
+        "company": "CodeSpark Academy",
+        "link": "https://www.codespark.org/mentors",
+        "deadline": "2024-08-15"
+    },
+    {
+        "id": 8,
+        "logo_url": "https://example.com/research.png",
+        "title": "Research Assistant Intern",
+        "description": "Assist with research projects in the field of computer science and gain valuable experience in academia.",
+        "tag": "Internship",
+        "location": "Onsite",
+        "company": "University Research Lab",
+        "link": "https://www.university.edu/research/internships",
+        "deadline": "2024-03-01"
+    },
+    {
+        "id": 9,
+        "logo_url": "https://example.com/hackathon.png",
+        "title": "Hackathon Organizer",
+        "description": "Join our team and help organize a local hackathon, promoting innovation and collaboration among developers.",
+        "tag": "Volunteer",
+        "location": "Hybrid",
+        "company": "TechHub Community",
+        "link": "https://www.techhub.com/hackathon",
+        "deadline": "2024-07-31"
+    },
+    {
+        "id": 10,
+        "logo_url": "https://example.com/nonprofit.png",
+        "title": "Web Developer Intern",
+        "description": "Gain experience in web development and help a non-profit organization create and maintain their online presence.",
+        "tag": "Internship",
+        "location": "Remote",
+        "company": "Charity Web Solutions",
+        "link": "https://www.charitywebsolutions.org/internships",
+        "deadline": "2024-06-15"
+    },
+    {
+        "id": 11,
+        "logo_url": "https://example.com/startup.png",
+        "title": "Software Engineering Intern",
+        "description": "Join a dynamic startup and work on innovative products and technologies in a fast-paced environment.",
+        "tag": "Internship",
+        "location": "Onsite",
+        "company": "TechnovateX",
+        "link": "https://www.technovatex.com/careers",
+        "deadline": "2024-05-01"
+    },
+    {
+        "id": 12,
+        "logo_url": "https://example.com/conference.png",
+        "title": "Conference Volunteer",
+        "description": "Volunteer at a major technology conference and gain valuable experience while networking with industry professionals.",
+        "tag": "Volunteer",
+        "location": "Onsite",
+        "company": "TechCon",
+        "link": "https://www.techcon.org/volunteer",
+        "deadline": "2024-09-30"
+    },
+    {
+        "id": 13,
+        "logo_url": "https://example.com/coding.png",
+        "title": "Coding Instructor",
+        "description": "Teach coding classes to students and help them develop programming skills and critical thinking abilities.",
+        "tag": "Volunteer",
+        "location": "Hybrid",
+        "company": "Code4Kids",
+        "link": "https://www.code4kids.org/instructors",
+        "deadline": "2024-08-31"
+    },
+    {
+        "id": 14,
+        "logo_url": "https://example.com/government.png",
+        "title": "IT Intern",
+        "description": "Gain experience in IT support and administration while working for a government agency.",
+        "tag": "Internship",
+        "location": "Onsite",
+        "company": "City Government",
+        "link": "https://www.citygovt.org/internships",
+        "deadline": "2024-04-01"
+    },
+    {
+        "id": 15,
+        "logo_url": "https://example.com/robotics.png",
+        "title": "Robotics Intern",
+        "description": "Work on cutting-edge robotics projects and gain hands-on experience in hardware and software development.",
+        "tag": "Internship",
+        "location": "Onsite",
+        "company": "RoboTech Solutions",
+        "link": "https://www.robotechsolutions.com/careers",
+        "deadline": "2024-06-30"
+    },
+    {
+        "id": "my opportunities",
+        "logo_url": "https://example.com/robotics.png",
+        "title": "Robotics Intern",
+        "description": "Work on cutting-edge robotics projects and gain hands-on experience in hardware and software development.",
+        "tag": "Internship",
+        "location": "Onsite",
+        "company": "RoboTech Solutions",
+        "link": "https://www.robotechsolutions.com/careers",
+        "deadline": "2024-06-30"
+    }
+]
