@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Badge,
   Box,
   Card,
   CardActions,
@@ -13,6 +14,7 @@ import { Icons8Project } from "../../assets/icons8";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import PropTypes from "prop-types";
 
 const CommunityProjectsCard = ({ project }) => {
@@ -70,6 +72,20 @@ const CommunityProjectsCard = ({ project }) => {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+        <Badge
+          badgeContent={project.interested}
+          color="primary"
+          sx={{
+            "& .MuiBadge-badge": {
+              backgroundColor: (theme) => theme.palette.primary.main,
+              mt: 0.5,
+            },
+          }}
+        >
+          <IconButton aria-label="Interested">
+            <GroupAddIcon />
+          </IconButton>
+        </Badge>
       </CardActions>
     </Card>
   );
