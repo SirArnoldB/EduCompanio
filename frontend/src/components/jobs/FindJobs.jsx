@@ -161,7 +161,7 @@ useEffect(() => {
       />
 
       <Box >
-        <h2> Latest Internships</h2>
+        <h2> Latest Jobs</h2>
         <Box style={{ marginTop: '20px', display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
             {internships.map((internship, index) => (
             <JobCard
@@ -176,11 +176,6 @@ useEffect(() => {
             ))}
         </Box>
 
-      </Box>
-
-      <Box sx={{ marginTop: '20px' }}>
-        <h2>Internships from Community Members</h2>
-        {/* Display internships from community members */}
       </Box>
     </>
   );
