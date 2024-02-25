@@ -1,186 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button } from '@mui/material';
-import JobCard from './JobCard';
-import SearchBar from '../common/SearchBar';
+import { useState } from "react";
+import { Box, Button, ButtonGroup } from "@mui/material";
+import JobCard from "./JobCard";
+import SearchBar from "../common/SearchBar";
+import CommunityOpportunitiesData from "../../data/community-opportunities.json";
 
 const FindJobs = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [internships, setInternships] = useState([]);
-  const [communityInternships, setCommunityInternships] = useState([]);
+  const [filter, setFilter] = useState("All");
 
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
 
-  const mockInternships = [
-    {
-        logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-        title: 'Software Engineering Intern',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onApply: () => {
-          // Apply logic here
-        },
-        onDetails: () => {
-          // Details logic here
-        },
-        jobTag: 'internship',
-      },
-      {
-        logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-        title: 'Data Science Intern',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onApply: () => {
-          // Apply logic here
-        },
-        onDetails: () => {
-          // Details logic here
-        },
-        jobTag: 'full-time',
-      },
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'Web Development Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'internship',
-    },
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'UX/UI Design Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'full-time',
-    },
-    // New internships...
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'Marketing Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'internship',
-    },
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'Finance Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'full-time',
-    },
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'HR Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'internship',
-    },
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'Sales Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'full-time',
-    },
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'Operations Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'internship',
-    },
-    {
-      logo: 'https://www.google.com/logos/doodles/2024/casimir-funks-140th-birthday-6753651837110355.2-s.png',
-      title: 'Product Management Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'full-time',
-    },
-    {
-      logo: 'https://example.com/logo11.png',
-      title: 'Business Development Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'internship',
-    },
-    {
-      logo: 'https://example.com/logo12.png',
-      title: 'IT Support Intern',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      onApply: () => {},
-      onDetails: () => {},
-      jobTag: 'full-time',
-    },
-  ];
   const handleSearchInput = (value) => {
     setSearchInput(value);
   };
-  
-
-useEffect(() => {
-    setInternships(mockInternships);
-  // Fetch internships from API
-//   fetchInternships();
-
-//   // Fetch community internships
-//   fetchCommunityInternships();
-}, []);
-
-
-//   const fetchInternships = async () => {
-//     // Fetch internships from API and update state
-//     try {
-//       const response = await fetch('API_ENDPOINT');
-//       const data = await response.json();
-//       setInternships(data);
-//     } catch (error) {
-//       console.error('Error fetching internships:', error);
-//     }
-//   };
-
-//   const fetchCommunityInternships = async () => {
-//     // Fetch community internships and update state
-//     try {
-//       const response = await fetch('COMMUNITY_API_ENDPOINT');
-//       const data = await response.json();
-//       setCommunityInternships(data);
-//     } catch (error) {
-//       console.error('Error fetching community internships:', error);
-//     }
-//   };
-  
 
   return (
     <>
-      <SearchBar 
-        onSearch={handleSearchInput}
-      />
-
-      <Box >
-        <h2> Latest Jobs</h2>
-        <Box style={{ marginTop: '20px', display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
-            {internships.map((internship, index) => (
-            <JobCard
-                key={index}
-                logo={internship.logo}
-                title={internship.title}
-                description={internship.description}
-                onApply={internship.onApply}
-                onDetails={internship.onDetails}
-                jobTag={internship.jobTag}
-            />
-            ))}
+      <SearchBar onSearch={handleSearchInput} />
+      <ButtonGroup
+        sx={{
+          padding: "10px",
+        }}
+      >
+        <Button
+          className={filter === "All" ? "activeBtn" : ""}
+          onClick={() => handleFilterChange("All")}
+        >
+          All
+        </Button>
+        <Button
+          className={filter === "beginner" ? "activeBtn" : ""}
+          onClick={() => handleFilterChange("beginner")}
+        >
+          Beginner
+        </Button>
+        <Button
+          className={filter === "expert" ? "activeBtn" : ""}
+          onClick={() => handleFilterChange("expert")}
+        >
+          Intermediate
+        </Button>
+        <Button
+          className={filter === "intermediate" ? "activeBtn" : ""}
+          onClick={() => handleFilterChange("intermediate")}
+        >
+          Expert
+        </Button>
+      </ButtonGroup>
+      <Box>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: 2,
+            mt: 2,
+          }}
+        >
+          {CommunityOpportunitiesData.map((job, index) => (
+            <JobCard key={index} job={job} />
+          ))}
         </Box>
-
       </Box>
     </>
   );
 };
 
 export default FindJobs;
-
-
