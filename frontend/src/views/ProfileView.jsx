@@ -1,7 +1,10 @@
 import { useContext } from "react";
-import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { Avatar, Box, Card, Grid, Paper, Typography } from "@mui/material";
 import { BoardContext } from "../contexts/BoardContext";
 import PropTypes from "prop-types";
+import ResumeSection from "../components/profile/ResumeSection";
+import DangerZone from "../components/profile/DangerZone";
+import Preferences from "../components/profile/Preferences";
 
 const StatCard = ({ title, value }) => (
   <Grid
@@ -37,7 +40,7 @@ const ProfileView = () => {
     <Box sx={{ p: 2 }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper
+          <Card
             sx={{
               p: 2,
               display: "flex",
@@ -59,32 +62,20 @@ const ProfileView = () => {
             <Typography variant="body2" gutterBottom>
               {`${state.user?.email ? state.user.email : ""}`}
             </Typography>
-          </Paper>
+          </Card>
         </Grid>
         <Grid
+          item
+          xs={12}
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
+            gap: 2,
           }}
-          item
-          xs={12}
         >
-          <Grid container spacing={3}>
-            <StatCard title="Total Notes" value={state.counts.notes} />
-            <StatCard title="Total Jobs" value={state.counts.internships} />
-            <StatCard title="Total Projects" value={state.counts.projects} />
-          </Grid>
-          <Button
-            sx={{
-              m: 2,
-            }}
-            variant="outlined"
-            color="error"
-          >
-            Delete Account
-          </Button>
+          <Preferences />
+          <ResumeSection />
+          <DangerZone />
         </Grid>
       </Grid>
     </Box>
