@@ -1,17 +1,17 @@
 import { Grid } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
-import OrganizationsView from "../../views/OrganizationsView";
-import SkillsView from "../../views/SkillsView";
+import Organizations from "./Organizations";
+import Skills from "./Skills";
 
 const resourcesTabs = [
   {
     label: "Organizations",
-    content: <OrganizationsView />,
+    content: <Organizations />,
     icon: "",
   },
   {
     label: "Skills",
-    content: <SkillsView />,
+    content: <Skills />,
     icon: "",
   },
 ];
