@@ -1,0 +1,17 @@
+export { default as Icons8Morning } from './icons8-morning-64.png';
+export { default as Icons8Evening } from './icons8-evening-64.png';
+export { default as Icons8Meditate } from './icons8-meditate-64.png';
+export { default as icons8WiseMind } from './icons8-wise-mind-64.png';
+export { default as Icons8Journey } from './icons8-journey-64.png';
+export { default as Icons8Community } from './icons8-community-64.png';
+export { default as Icons8MedicalDoctor } from './icons8-medical-doctor-94.png';
+export { default as Icons8QuillPen } from './icons8-quill-pen-64.png';
+export { default as Icons8Calm } from './icons8-calm-64.png';
+export { default as Icons8Read } from './icons8-read-64.png';
+export { default as Icons8Emergency } from './icons8-emergency-62.png';
+export { default as Icons8Notes } from './icons8-notes-64.png';
+export { default as Icons8Jobs } from './icons8-jobs-64.png';
+export { default as Icons8Project } from './icons8-project.gif';
+export { default as Icons8Events } from './icons8-events.gif';
+export { default as Icons8Organization } from './icons8-organization-64.png';
+export { default as Icons8Skills } from './icons8-skills-64.png';

@@ -25,3 +25,9 @@ dist-ssr
 
 # Environment 
 .env
+
+# Firebase Service Credentials
+.firebase 
+
+# Megalinter reports
+megalinter-reports/

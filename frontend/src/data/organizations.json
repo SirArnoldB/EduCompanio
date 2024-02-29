@@ -1,0 +1,211 @@
+[
+    {
+        "logo_url": "/org/codepath.png",
+        "title": "Codepath",
+        "description": "Codepath is an education technology platform that offers transformative computer science education programs to underrepresented minorities in tech. Their courses cover vital software engineering skills and industry-relevant projects.",
+        "tags": [
+            "Education",
+            "Technology",
+            "Diversity"
+        ],
+        "url": "https://www.codepath.org"
+    },
+    {
+        "logo_url": "/org/rewritecode.jpg",
+        "title": "Rewriting the Code",
+        "description": "Rewriting the Code is a non-profit organization that empowers young women to pursue and excel in technology-related degrees and careers. They provide resources, programs, and a supportive community to encourage women in tech.",
+        "tags": [
+            "Education",
+            "Community",
+            "Women in Tech"
+        ],
+        "url": "https://www.rewritingthecode.org"
+    },
+    {
+        "logo_url": "/org/wecode.webp",
+        "title": "Women who code",
+        "description": "Women Who Code is a global non-profit organization dedicated to inspiring women to excel in technology careers. They provide an avenue for women to showcase their skills and help companies diversify their technology teams.",
+        "tags": [
+            "Education",
+            "Technology",
+            "Women in Tech"
+        ],
+        "url": "https://www.womenwhocode.com/"
+    },
+    {
+        "logo_url": "/org/gdsc.png",
+        "title": "Google Developer Student Club",
+        "description": "Google Developer Student Club is a community program that helps students bridge the gap between theory and practice. It offers hands-on experiences on Google technologies and a platform to share knowledge.",
+        "tags": [
+            "Education",
+            "Technology",
+            "Community"
+        ],
+        "url": "https://developers.google.com/community/dsc"
+    },
+    {
+        "logo_url": "/org/colorstack.png",
+        "title": "Colorstack",
+        "description": "Colorstack is a non-profit organization that empowers and supports underrepresented students of color in the tech industry. They provide mentorship, resources, and a community to help these students excel in their computer science education journey.",
+        "tags": [
+            "Community",
+            "Technology",
+            "Diversity"
+        ],
+        "url": "https://www.colorstack.org"
+    },
+    {
+        "logo_url": "",
+        "title": "Hack Club",
+        "description": "Hack Club is a nonprofit network of student-led coding clubs where members learn to code through tinkering and building projects. It aims to cultivate the next generation of tech leaders and innovators.",
+        "tags": [
+            "Education",
+            "Technology",
+            "Student-led"
+        ],
+        "url": "https://hackclub.com"
+    },
+    {
+        "logo_url": "",
+        "title": "Enactus",
+        "description": "Enactus is an international nonprofit organization that brings together student, academic and business leaders to transform lives and shape a better, more sustainable world through entrepreneurial action.",
+        "tags": [
+            "Entrepreneurship",
+            "Social Impact",
+            "Leadership"
+        ],
+        "url": "https://enactus.org"
+    },
+    {
+        "logo_url": "",
+        "title": "NerdWallet",
+        "description": "NerdWallet is a personal finance company that provides accessible and unbiased tools and resources to help individuals make smart money decisions. They offer student-focused content on budgeting, loans, and financial literacy.",
+        "tags": [
+            "Finance",
+            "Education",
+            "Personal Development"
+        ],
+        "url": "https://www.nerdwallet.com"
+    },
+    {
+        "logo_url": "",
+        "title": "Collegiate Leaders Summit",
+        "description": "The Collegiate Leaders Summit (CLS) is a premier annual conference that brings together student leaders from across the country to develop their leadership skills, network with peers, and explore career opportunities.",
+        "tags": [
+            "Leadership",
+            "Networking",
+            "Professional Development"
+        ],
+        "url": "https://www.collegiateleaders.org"
+    },
+    {
+        "logo_url": "",
+        "title": "AIESEC",
+        "description": "AIESEC is a global youth-led organization that provides leadership development and cross-cultural internship opportunities for students and recent graduates, promoting positive social impact.",
+        "tags": [
+            "Leadership",
+            "Internships",
+            "Cultural Exchange"
+        ],
+        "url": "https://www.aiesec.org"
+    },
+    {
+        "logo_url": "",
+        "title": "Society of Hispanic Professional Engineers (SHPE)",
+        "description": "SHPE is a national organization that promotes the advancement of Hispanics in STEM fields. They provide professional development, networking opportunities, and support for Hispanic students and professionals.",
+        "tags": [
+            "STEM",
+            "Diversity",
+            "Professional Development"
+        ],
+        "url": "https://www.shpe.org"
+    },
+    {
+        "logo_url": "",
+        "title": "National Society of Black Engineers (NSBE)",
+        "description": "NSBE is a student-governed organization that aims to increase the number of culturally responsible Black engineers who excel academically, succeed professionally, and positively impact the community.",
+        "tags": [
+            "Engineering",
+            "Diversity",
+            "Community Service"
+        ],
+        "url": "https://www.nsbe.org"
+    },
+    {
+        "logo_url": "",
+        "title": "PwC's Start Internship Program",
+        "description": "PwC's Start Internship Program provides opportunities for underrepresented students to gain valuable work experience and professional development through paid internships at PwC.",
+        "tags": [
+            "Internships",
+            "Professional Development",
+            "Diversity"
+        ],
+        "url": "https://www.pwc.com/us/en/careers/student-jobs/start-internship.html"
+    },
+    {
+        "logo_url": "",
+        "title": "Circles",
+        "description": "Circles is a national nonprofit organization that empowers and equips underrepresented students for career success through mentorship, leadership development, and professional opportunities.",
+        "tags": [
+            "Mentorship",
+            "Leadership",
+            "Professional Development"
+        ],
+        "url": "https://www.circles-us.com"
+    },
+    {
+        "logo_url": "",
+        "title": "Accenture's Student Leadership Development Program",
+        "description": "Accenture's Student Leadership Development Program offers leadership training, networking events, and mentorship to underrepresented students interested in technology and consulting careers.",
+        "tags": [
+            "Leadership",
+            "Mentorship",
+            "Professional Development"
+        ],
+        "url": "https://www.accenture.com/us-en/careers/student-leadership-development-program"
+    },
+    {
+        "logo_url": "",
+        "title": "National Society of Accountants",
+        "description": "The National Society of Accountants (NSA) is a professional organization that provides resources, education, and advocacy for accountants and tax professionals, including student members.",
+        "tags": [
+            "Accounting",
+            "Professional Development",
+            "Networking"
+        ],
+        "url": "https://www.nsacct.org"
+    },
+    {
+        "logo_url": "",
+        "title": "Toastmasters International",
+        "description": "Toastmasters International is a nonprofit educational organization that teaches public speaking and leadership skills through a worldwide network of clubs.",
+        "tags": [
+            "Public Speaking",
+            "Leadership",
+            "Personal Development"
+        ],
+        "url": "https://www.toastmasters.org"
+    },
+    {
+        "logo_url": "",
+        "title": "DoSomething.org",
+        "description": "DoSomething.org is a global nonprofit organization that encourages young people to get involved in social causes and make a positive impact in their communities.",
+        "tags": [
+            "Community Service",
+            "Social Impact",
+            "Youth Empowerment"
+        ],
+        "url": "https://www.dosomething.org"
+    },
+    {
+        "logo_url": "",
+        "title": "Sales and Marketing Professionals (SMP)",
+        "description": "Sales and Marketing Professionals (SMP) is a student-led organization that provides networking opportunities, professional development, and mentorship for those interested in sales and marketing careers.",
+        "tags": [
+            "Sales",
+            "Marketing",
+            "Professional Development"
+        ],
+        "url": "https://www.smpnational.org"
+    }
+]

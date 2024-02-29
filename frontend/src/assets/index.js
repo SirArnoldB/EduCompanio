@@ -25,5 +25,5 @@ export {
     InterviewPrep,
     Notes,
     Projects,
-    SkillsDevelopment
+    SkillsDevelopment,
 };

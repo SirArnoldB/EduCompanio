@@ -17,7 +17,7 @@ class ApiError extends Error {
  * @throws {ApiError} - If the API returns an error response.
  */
 const request = async (method, url, body = '', headers = {}) => {
-    const API_URL = "https://educompanio-prod-server.up.railway.app";
+    const API_URL = "http://localhost:3000";
     try {
         const config = {
             method,
@@ -30,7 +30,8 @@ const request = async (method, url, body = '', headers = {}) => {
         const response = await axios(config);
         return response.data;
     } catch (error) {
-        throw new ApiError('⛔️ API Error: ', error.message);
+        const msg = error.response.data.message;
+        throw new ApiError(`⛔️ API Error: ${msg}`);
     }
 }
 

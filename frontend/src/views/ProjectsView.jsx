@@ -1,5 +1,5 @@
 import { Container, Typography } from "@mui/material";
-import Board from "../components/Board";
+import ProjectsTabs from "../components/projects/ProjectsTabs";
 
 /**
  * Renders the ProjectsView component.
@@ -11,7 +11,7 @@ const ProjectsView = () => {
       <Typography variant="h4" sx={{ mb: 5 }}>
         Projects 🎯
       </Typography>
-      <Board boardType="project" />
+      <ProjectsTabs />
     </Container>
   );
 };

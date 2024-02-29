@@ -14,10 +14,10 @@ import { alpha } from "@mui/material/styles";
 import { NAV } from "./config-layout";
 import navConfig from "./config-navigation";
 import usePathname from "../../hooks/use-pathname";
-import RouterLink from "../../components/RouterLink";
+import RouterLink from "../../components/common/RouterLink";
 import { useResponsive } from "../../hooks/use-responsive";
-import Scrollbar from "../../components/Scrollbar";
-import Logo from "../../components/Logo";
+import Scrollbar from "../../components/common/Scrollbar";
+import Logo from "../../components/common/Logo";
 import { BoardContext } from "../../contexts/BoardContext";
 
 export default function Nav({ openNav, onCloseNav }) {
@@ -46,13 +46,13 @@ export default function Nav({ openNav, onCloseNav }) {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Avatar src={state.user.avatarurl} alt="photoURL" />
+      <Avatar src={state.user.photoURL} alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{state.user.username}</Typography>
+        <Typography variant="subtitle2">{state.user.displayName}</Typography>
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {`@${state.user.username?.toLowerCase()}`}
+          {`@${state.user.displayName?.toLowerCase()}`}
         </Typography>
       </Box>
     </Box>

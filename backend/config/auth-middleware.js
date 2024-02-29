@@ -1,21 +1,28 @@
-import { pool } from "./database.js";
+import { app } from "../firebase/admin.js";
 
-const ensureAuthenticated = (req, res, next) => {
-    console.log('req', req)
-    if (req.params.user_id) {
-        return next();
+const authMiddleware = (request, response, next) => {
+    const headerToken = request.headers.authorization;
+    if (!headerToken) {
+        return response.status(401).send({ message: "No token provided" });
     }
 
-    // if (req.isAuthenticated()) {
-    //     return next();
-    // }
+    if (headerToken && headerToken.split(" ")[0] !== "Bearer") {
+        return response.status(401).send({ message: "Invalid token" });
+    }
 
-    res.status(401).json({ error: 'Not authenticated' });
+    const token = headerToken.split(" ")[1];
+
+    app
+        .auth()
+        .verifyIdToken(token)
+        .then((decodedToken) => {
+            // Add the user to the request object
+            request.user = decodedToken;
+
+            // Continue with the request
+            next();
+        })
+        .catch(() => response.status(403).json({ message: "Could not authorize" }));
 }
 
-const findById = async (id) => {
-    const results = await pool.query('SELECT * FROM users WHERE id = $1', [id])
-    return results.rows[0]
-}
-
-export { ensureAuthenticated, findById };
+export default authMiddleware;

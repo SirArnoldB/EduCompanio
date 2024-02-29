@@ -7,7 +7,7 @@ import { bgBlur } from "../../theme/css";
 
 import { NAV, HEADER } from "./config-layout";
 import AccountPopover from "./common/account-popover";
-import Iconify from "../../components/Iconify";
+import Iconify from "../../components/common/Iconify";
 import { useResponsive } from "../../hooks/use-responsive";
 
 export default function Header({ onOpenNav }) {
