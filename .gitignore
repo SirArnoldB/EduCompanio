@@ -28,3 +28,6 @@ dist-ssr
 
 # Firebase Service Credentials
 .firebase 
+
+# Megalinter reports
+megalinter-reports/

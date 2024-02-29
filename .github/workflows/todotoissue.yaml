@@ -1,0 +1,16 @@
+# This is a workflow to convert TODOs to issues
+# It is triggered on pull requests
+---
+name: TODO to Issue
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: TODO to Issue
+        uses: alstr/todo-to-issue-action@v4
+        with:
+          AUTO_ASSIGN: true
