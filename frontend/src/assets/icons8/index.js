@@ -13,3 +13,5 @@ export { default as Icons8Notes } from './icons8-notes-64.png';
 export { default as Icons8Jobs } from './icons8-jobs-64.png';
 export { default as Icons8Project } from './icons8-project.gif';
 export { default as Icons8Events } from './icons8-events.gif';
+export { default as Icons8Organization } from './icons8-organization-64.png';
+export { default as Icons8Skills } from './icons8-skills-64.png';

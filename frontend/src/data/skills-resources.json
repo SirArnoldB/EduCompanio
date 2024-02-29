@@ -1,0 +1,167 @@
+[
+    {
+        "title": "CodeAcademy",
+        "description": "Interactive courses and tutorials to learn programming languages like Python, JavaScript, and more.",
+        "url": "https://www.codecademy.com/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "web development",
+            "programming"
+        ]
+    },
+    {
+        "title": "Coursera",
+        "description": "Online courses and certifications on topics like data science, business, and more from top universities.",
+        "url": "https://www.coursera.org/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "data science",
+            "business"
+        ]
+    },
+    {
+        "title": "FreeCodeCamp",
+        "description": "Self-paced coding tutorials and challenges to learn web development and prepare for developer interviews.",
+        "url": "https://www.freecodecamp.org/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "web development",
+            "interview prep"
+        ]
+    },
+    {
+        "title": "EDX",
+        "description": "Free online courses from Harvard, MIT, and other top institutions to advance your skills.",
+        "url": "https://www.edx.org/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "expert",
+            "academic"
+        ]
+    },
+    {
+        "title": "DataCamp",
+        "description": "Interactive courses and tutorials on data science, analytics, machine learning, and more.",
+        "url": "https://www.datacamp.com/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "data science",
+            "analytics"
+        ]
+    },
+    {
+        "title": "Khan Academy",
+        "description": "Free online courses, lessons, and practice for K-12 and college students in math, science, computer programming, history, and more.",
+        "url": "https://www.khanacademy.org/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "math",
+            "science",
+            "test prep"
+        ]
+    },
+    {
+        "title": "Treehouse",
+        "description": "Affordable video courses on web design, coding, business, and much more to help build in-demand skills.",
+        "url": "https://teamtreehouse.com/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "web development",
+            "business"
+        ]
+    },
+    {
+        "title": "Udacity",
+        "description": "Develop in-demand tech skills with Nanodegree programs in areas like AI, cloud, autonomous systems, and more.",
+        "url": "https://www.udacity.com/",
+        "tags": [
+            "intermediate",
+            "advanced",
+            "technology",
+            "career development"
+        ]
+    },
+    {
+        "title": "Skillshare",
+        "description": "Online classes covering dozens of creative and entrepreneurial skills like illustration, writing, marketing, and more.",
+        "url": "https://www.skillshare.com/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "design",
+            "business"
+        ]
+    },
+    {
+        "title": "Udemy",
+        "description": "Choose from over 155,000 online video courses taught by industry experts on programming, design, marketing, and more.",
+        "url": "https://www.udemy.com/",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "expert",
+            "professional development"
+        ]
+    },
+    {
+        "title": "edX Projects",
+        "description": "Put your skills into practice by completing a project in areas like programming, data science, cybersecurity, and more.",
+        "url": "https://www.edx.org/edx-projects",
+        "tags": [
+            "intermediate",
+            "advanced",
+            "portfolio building",
+            "capstone projects"
+        ]
+    },
+    {
+        "title": "CodeStudio",
+        "description": "Fun, game-like environment to learn computer science and programming concepts like Javascript, HTML/CSS, and more.",
+        "url": "https://code.org/educate/code-studio",
+        "tags": [
+            "beginner",
+            "game-based learning",
+            "computer science"
+        ]
+    },
+    {
+        "title": "Google Digital Garage",
+        "description": "Free online training modules and courses on digital skills like social media, email marketing, data analytics, and more.",
+        "url": "https://learndigital.withgoogle.com/digitalgarage",
+        "tags": [
+            "beginner",
+            "intermediate",
+            "digital marketing",
+            "analytics"
+        ]
+    },
+    {
+        "title": "Career Karma",
+        "description": "Matches coding bootcamp students with mentors and funders to help launch new careers in areas like web development and UX Design.",
+        "url": "https://careerkarma.com/",
+        "tags": [
+            "bootcamps",
+            "mentorship",
+            "job placement",
+            "career services"
+        ]
+    },
+    {
+        "title": "Coursolve",
+        "description": "Paid online learning platform focused specifically on developer and IT courses around trending and in-demand technologies.",
+        "url": "https://coursolve.com/",
+        "tags": [
+            "intermediate",
+            "advanced",
+            "developer skills",
+            "IT skills"
+        ]
+    }
+]
