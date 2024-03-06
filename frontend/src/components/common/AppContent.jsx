@@ -15,6 +15,7 @@ export const WellnessPage = lazy(() => import("../../pages/WellnessPage"));
 export const EventsPage = lazy(() => import("../../pages/EventsPage"));
 export const LoginPage = lazy(() => import("../../pages/LoginPage"));
 export const SettingsPage = lazy(() => import("../../pages/SettingsPage"));
+export const SpacesPage = lazy(() => import("../../pages/SpacesPage"));
 
 const AppContent = () => {
   const routes = useRoutes([
@@ -52,6 +53,10 @@ const AppContent = () => {
         {
           path: "/events",
           element: <ProtectedRoute element={<EventsPage />} />,
+        },
+        {
+          path: "/spaces",
+          element: <ProtectedRoute element={<SpacesPage />} />,
         },
         {
           path: "/profile",
