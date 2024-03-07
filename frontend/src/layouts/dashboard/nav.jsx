@@ -18,7 +18,7 @@ import { useResponsive } from "../../hooks/useResponsive";
 import Scrollbar from "../../components/common/Scrollbar";
 import Logo from "../../components/common/Logo";
 import { BoardContext } from "../../contexts/BoardContext";
-import usePathname from "../../hooks/usePathName";
+import usePathname from "../../hooks/usePathname";
 
 export default function Nav({ openNav, onCloseNav }) {
   const pathname = usePathname();
