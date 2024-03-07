@@ -16,6 +16,9 @@ export const EventsPage = lazy(() => import("../../pages/EventsPage"));
 export const LoginPage = lazy(() => import("../../pages/LoginPage"));
 export const SettingsPage = lazy(() => import("../../pages/SettingsPage"));
 export const SpacesPage = lazy(() => import("../../pages/SpacesPage"));
+export const CommunitySpacePage = lazy(() =>
+  import("../../pages/CommunitySpacePage")
+);
 
 const AppContent = () => {
   const routes = useRoutes([
@@ -56,7 +59,25 @@ const AppContent = () => {
         },
         {
           path: "/spaces",
-          element: <ProtectedRoute element={<SpacesPage />} />,
+          children: [
+            {
+              path: "",
+              element: <ProtectedRoute element={<SpacesPage />} />,
+              index: true,
+            },
+            {
+              path: ":spaceId",
+              element: (
+                <ProtectedRoute
+                  element={
+                    <Suspense fallback={<LoadingSpinner />}>
+                      <CommunitySpacePage />
+                    </Suspense>
+                  }
+                />
+              ),
+            },
+          ],
         },
         {
           path: "/profile",

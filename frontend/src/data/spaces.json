@@ -1,0 +1,153 @@
+{
+    "spaces": [
+        {
+            "id": 1,
+            "title": "Mental Health Space",
+            "image_url": "https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-mental-health-psychology-flaticons-flat-flat-icons-2.png",
+            "banner": "https://example.com/mental-health-banner.jpg",
+            "members_count": 250,
+            "posts_count": 75
+        },
+        {
+            "id": 2,
+            "title": "Career Guidance",
+            "image_url": "",
+            "banner": "https://example.com/career-guidance-banner.jpg",
+            "members_count": 320,
+            "posts_count": 105
+        },
+        {
+            "id": 3,
+            "title": "Study Tips",
+            "image_url": "",
+            "banner": "https://example.com/study-tips-banner.jpg",
+            "members_count": 450,
+            "posts_count": 185
+        },
+        {
+            "id": 4,
+            "title": "Tech Talks",
+            "image_url": "",
+            "banner": "https://example.com/tech-talks-banner.jpg",
+            "members_count": 175,
+            "posts_count": 65
+        },
+        {
+            "id": 5,
+            "title": "Student Life",
+            "image_url": "",
+            "banner": "https://example.com/student-life-banner.jpg",
+            "members_count": 380,
+            "posts_count": 120
+        }
+    ],
+    "posts": [
+        {
+            "id": 1,
+            "space": 1,
+            "title": "Dealing with Anxiety",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+            "tags": [
+                "anxiety",
+                "mental-health",
+                "coping"
+            ],
+            "likes": 25,
+            "comments": 10,
+            "user": 3
+        },
+        {
+            "id": 2,
+            "space": 2,
+            "title": "How to Ace Job Interviews",
+            "content": "Nullam quis risus eget urna mollis ornare vel eu leo...",
+            "tags": [
+                "interviews",
+                "career",
+                "tips"
+            ],
+            "likes": 18,
+            "comments": 6,
+            "user": 7
+        },
+        {
+            "id": 3,
+            "space": 3,
+            "title": "Effective Note-Taking Strategies",
+            "content": "Cras mattis consectetur purus sit amet fermentum...",
+            "tags": [
+                "note-taking",
+                "study",
+                "productivity"
+            ],
+            "likes": 32,
+            "comments": 14,
+            "user": 2
+        },
+        {
+            "id": 4,
+            "space": 4,
+            "title": "Introduction to Machine Learning",
+            "content": "Donec sed odio dui. Cras justo odio, dapibus ac facilisis in...",
+            "tags": [
+                "machine-learning",
+                "ai",
+                "tech"
+            ],
+            "likes": 22,
+            "comments": 8,
+            "user": 5
+        },
+        {
+            "id": 5,
+            "space": 5,
+            "title": "Best Campus Events This Semester",
+            "content": "Vestibulum id ligula porta felis euismod semper...",
+            "tags": [
+                "events",
+                "campus",
+                "sociallife"
+            ],
+            "likes": 30,
+            "comments": 12,
+            "user": 1
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "post": 1,
+            "content": "Thanks for sharing! These tips really helped me.",
+            "likes": 3,
+            "user": 8
+        },
+        {
+            "id": 2,
+            "post": 2,
+            "content": "Any advice on how to prepare for technical interviews?",
+            "likes": 2,
+            "user": 4
+        },
+        {
+            "id": 3,
+            "post": 3,
+            "content": "I prefer using digital note-taking apps. They've been a game-changer for me.",
+            "likes": 5,
+            "user": 6
+        },
+        {
+            "id": 4,
+            "post": 4,
+            "content": "Can you recommend any good resources to learn more about machine learning?",
+            "likes": 4,
+            "user": 9
+        },
+        {
+            "id": 5,
+            "post": 5,
+            "content": "Don't forget the outdoor movie night next week!",
+            "likes": 6,
+            "user": 10
+        }
+    ]
+}

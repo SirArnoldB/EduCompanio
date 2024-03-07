@@ -13,12 +13,12 @@ import { alpha } from "@mui/material/styles";
 
 import { NAV } from "./config-layout";
 import navConfig from "./config-navigation";
-import usePathname from "../../hooks/use-pathname";
 import RouterLink from "../../components/common/RouterLink";
-import { useResponsive } from "../../hooks/use-responsive";
+import { useResponsive } from "../../hooks/useResponsive";
 import Scrollbar from "../../components/common/Scrollbar";
 import Logo from "../../components/common/Logo";
 import { BoardContext } from "../../contexts/BoardContext";
+import usePathname from "../../hooks/usePathName";
 
 export default function Nav({ openNav, onCloseNav }) {
   const pathname = usePathname();

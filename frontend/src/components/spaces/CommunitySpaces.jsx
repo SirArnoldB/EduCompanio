@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
-import CommunityProjectsData from "../../data/community-projects.json";
-import CommunityProjectsCard from "../projects/CommunityProjectsCard";
+import SpacesData from "../../data/spaces.json";
 import SearchBar from "../common/SearchBar";
+import SpacesCard from "./SpacesCard";
 
-const CommunityProjects = () => {
+const CommunitySpaces = () => {
   const handleSearch = (searchInput) => {
     console.log(searchInput);
   };
@@ -23,14 +23,12 @@ const CommunityProjects = () => {
           mt: 2,
         }}
       >
-        {/* TODO(@SirArnoldB): Rm Community projects data and community projects card. Add Spaces Data and Spaces Card */}
-
-        {CommunityProjectsData.map((project, index) => (
-          <CommunityProjectsCard key={index} project={project} />
+        {SpacesData.spaces.map((space, index) => (
+          <SpacesCard key={index} space={space} />
         ))}
       </Box>
     </>
   );
 };
 
-export default CommunityProjects;
+export default CommunitySpaces;
