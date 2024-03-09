@@ -1,18 +1,14 @@
 import {
-  Box,
   Card,
   CardContent,
   CardHeader,
-  CardMedia,
-  Chip,
   Container,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import PropTypes from "prop-types";
-
-// TODO: (SirArnoldB) - Update the CommunitySpaceView components to use the new design.
+import SpacePageHeaderCard from "../components/space-page/SpacePageHeaderCard";
 
 const CommunitySpaceView = ({ space }) => {
   return (
@@ -22,45 +18,12 @@ const CommunitySpaceView = ({ space }) => {
           <LoadingSpinner label="your space ..." />
         ) : (
           <Grid container spacing={3}>
-            {/* Space Card Header */}
+            {/* Space Card Title and Banner */}
             <Grid item xs={12} sm={12} md={12}>
-              <Card
-                variant="outlined"
-                sx={{
-                  borderStyle: "dashed",
-                  backgroundColor: (theme) => theme.palette.grey[100],
-                  borderRadius: 2,
-                  boxShadow: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  textAlign: "center",
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  sx={{ height: 150, objectFit: "contain" }}
-                  image={
-                    space.image_url ||
-                    "https://img.icons8.com/doodle/48/community.png"
-                  }
-                  alt={space.title}
-                />
-                <CardHeader title={space.title} />
-                <CardContent>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      justifyContent: "center",
-                      gap: 1,
-                      mt: 2,
-                    }}
-                  >
-                    <Chip label={`${space.members_count} members`} />
-                    <Chip label={`${space.posts_count} posts`} />
-                  </Box>
-                </CardContent>
-              </Card>
+              <SpacePageHeaderCard
+                title={space.title}
+                image_url={space.image_url}
+              />
             </Grid>
 
             {/* Posts Section */}

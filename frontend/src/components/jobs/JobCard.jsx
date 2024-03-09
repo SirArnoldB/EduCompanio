@@ -74,7 +74,7 @@ const JobCard = ({ job }) => {
         >
           Apply
         </Button>
-        <Button onClick={""} variant="outlined" color="primary">
+        <Button variant="outlined" color="primary">
           Details
         </Button>
       </CardActions>
