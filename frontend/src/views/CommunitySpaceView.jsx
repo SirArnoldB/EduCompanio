@@ -9,8 +9,16 @@ import Grid from "@mui/material/Unstable_Grid2";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import PropTypes from "prop-types";
 import SpacePageHeaderCard from "../components/space-page/SpacePageHeaderCard";
+import Posts from "../components/posts/Posts";
+import useFetch from "../hooks/useFetch";
 
 const CommunitySpaceView = ({ space }) => {
+  const {
+    data: posts,
+    isPending: isLoading,
+    error,
+  } = useFetch(`http://localhost:3001/posts?space=${space.id}`);
+
   return (
     <>
       <Container maxWidth="xl">
@@ -19,7 +27,7 @@ const CommunitySpaceView = ({ space }) => {
         ) : (
           <Grid container spacing={3}>
             {/* Space Card Title and Banner */}
-            <Grid item xs={12} sm={12} md={12}>
+            <Grid xs={12} sm={12} md={12}>
               <SpacePageHeaderCard
                 title={space.title}
                 image_url={space.image_url}
@@ -28,14 +36,12 @@ const CommunitySpaceView = ({ space }) => {
 
             {/* Posts Section */}
             <Grid xs={12} md={6} lg={8}>
-              <Card>
-                <CardHeader title={"Posts"} />
-                <CardContent>
-                  <Typography>
-                    {`Welcome to ${space.title} posts section.`}
-                  </Typography>
-                </CardContent>
-              </Card>
+              {error && <div>Error: {error.message}</div>}
+              {isLoading ? (
+                <LoadingSpinner label="posts..." />
+              ) : (
+                <Posts posts={posts} />
+              )}
             </Grid>
 
             {/* Discussion Guidelines and Tags Section */}

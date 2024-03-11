@@ -1,23 +1,28 @@
 import { Helmet } from "react-helmet-async";
 import CommunitySpaceView from "../views/CommunitySpaceView";
 import { useParams } from "react-router-dom";
-import useCommunitySpace from "../hooks/useCommunitySpace";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import useFetch from "../hooks/useFetch";
 
 const CommunitySpacePage = () => {
   const { spaceId } = useParams();
-  const { space, isLoading, error } = useCommunitySpace(spaceId);
+
+  const {
+    data: space,
+    isPending: isLoading,
+    error,
+  } = useFetch(`http://localhost:3001/spaces?id=${spaceId}`);
 
   if (isLoading) return <LoadingSpinner label="your space..." />;
   // TODO (SirArnoldB): If there's an error, show the 404 page.
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error Fetching Space: {error.message}</div>;
 
   return (
     <>
       <Helmet>
         <title>{space.title}</title>
       </Helmet>
-      <CommunitySpaceView space={space} />
+      <CommunitySpaceView space={space[0]} />
     </>
   );
 };

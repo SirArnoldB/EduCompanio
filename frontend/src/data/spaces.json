@@ -54,7 +54,8 @@
             ],
             "likes": 25,
             "comments": 10,
-            "user": 3
+            "user": 3,
+            "createdAt": "2024-08-12T12:00:00Z"
         },
         {
             "id": 2,
@@ -68,7 +69,8 @@
             ],
             "likes": 18,
             "comments": 6,
-            "user": 7
+            "user": 7,
+            "createdAt": "2024-08-15T14:00:00Z"
         },
         {
             "id": 3,
@@ -82,7 +84,8 @@
             ],
             "likes": 32,
             "comments": 14,
-            "user": 2
+            "user": 2,
+            "createdAt": "2024-08-18T10:00:00Z"
         },
         {
             "id": 4,
@@ -96,7 +99,8 @@
             ],
             "likes": 22,
             "comments": 8,
-            "user": 5
+            "user": 5,
+            "createdAt": "2024-08-20T16:00:00Z"
         },
         {
             "id": 5,
@@ -110,7 +114,8 @@
             ],
             "likes": 30,
             "comments": 12,
-            "user": 1
+            "user": 1,
+            "createdAt": "2024-08-22T18:00:00Z"
         }
     ],
     "comments": [
