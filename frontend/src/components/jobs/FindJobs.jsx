@@ -1,16 +1,30 @@
-import { useState } from "react";
-import { Box, Button, ButtonGroup } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import JobCard from "./JobCard";
 import SearchBar from "../common/SearchBar";
 import CommunityOpportunitiesData from "../../data/community-opportunities.json";
+import FilterButtonGroup from "../common/FilterButtonGroup";
 
 const FindJobs = () => {
+  const [jobs, setJobs] = useState(CommunityOpportunitiesData);
   const [searchInput, setSearchInput] = useState("");
-  const [filter, setFilter] = useState("All");
+  const [currentFilter, setCurrentFilter] = useState("All");
 
-  const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
-  };
+  useEffect(() => {
+    const filteredJobs = CommunityOpportunitiesData.filter((job) => {
+      if (currentFilter === "All") {
+        return job;
+      } else {
+        return job.tag.toLowerCase() === currentFilter.toLowerCase();
+      }
+    });
+
+    setJobs(
+      filteredJobs.filter((job) =>
+        job.title.toLowerCase().includes(searchInput.toLowerCase())
+      )
+    );
+  }, [searchInput, currentFilter]);
 
   const handleSearchInput = (value) => {
     setSearchInput(value);
@@ -19,36 +33,17 @@ const FindJobs = () => {
   return (
     <>
       <SearchBar onSearch={handleSearchInput} />
-      <ButtonGroup
-        sx={{
-          padding: "10px",
-        }}
-      >
-        <Button
-          className={filter === "All" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("All")}
-        >
-          All
-        </Button>
-        <Button
-          className={filter === "beginner" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("beginner")}
-        >
-          Beginner
-        </Button>
-        <Button
-          className={filter === "expert" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("expert")}
-        >
-          Intermediate
-        </Button>
-        <Button
-          className={filter === "intermediate" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("intermediate")}
-        >
-          Expert
-        </Button>
-      </ButtonGroup>
+      <FilterButtonGroup
+        filters={[
+          { value: "All", active: true },
+          { value: "Full Time", active: false },
+          { value: "Part Time", active: false },
+          { value: "Contract", active: false },
+          { value: "Internship", active: false },
+          { value: "Volunteer", active: false },
+        ]}
+        setCurrentFilter={setCurrentFilter}
+      />
       <Box>
         <Box
           sx={{
@@ -58,7 +53,7 @@ const FindJobs = () => {
             mt: 2,
           }}
         >
-          {CommunityOpportunitiesData.map((job, index) => (
+          {jobs.map((job, index) => (
             <JobCard key={index} job={job} />
           ))}
         </Box>
