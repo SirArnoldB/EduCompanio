@@ -11,13 +11,15 @@ export const NotesPage = lazy(() => import("../../pages/NotesPage"));
 export const ProjectsPage = lazy(() => import("../../pages/ProjectsPage"));
 export const ProfilePage = lazy(() => import("../../pages/ProfilePage"));
 export const ResourcesPage = lazy(() => import("../../pages/ResourcesPage"));
-export const WellnessPage = lazy(() => import("../../pages/WellnessPage"));
 export const EventsPage = lazy(() => import("../../pages/EventsPage"));
 export const LoginPage = lazy(() => import("../../pages/LoginPage"));
 export const SettingsPage = lazy(() => import("../../pages/SettingsPage"));
 export const SpacesPage = lazy(() => import("../../pages/SpacesPage"));
 export const CommunitySpacePage = lazy(() =>
   import("../../pages/CommunitySpacePage")
+);
+export const InterviewPrepPage = lazy(() =>
+  import("../../pages/InterviewPrepPage")
 );
 
 const AppContent = () => {
@@ -46,12 +48,12 @@ const AppContent = () => {
           element: <ProtectedRoute element={<ProjectsPage />} />,
         },
         {
-          path: "/resources",
-          element: <ProtectedRoute element={<ResourcesPage />} />,
+          path: "/interview-prep",
+          element: <ProtectedRoute element={<InterviewPrepPage />} />,
         },
         {
-          path: "/wellness",
-          element: <ProtectedRoute element={<WellnessPage />} />,
+          path: "/resources",
+          element: <ProtectedRoute element={<ResourcesPage />} />,
         },
         {
           path: "/events",
