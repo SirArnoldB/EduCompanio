@@ -1,7 +1,7 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
 import CommunityEvents from "./CommunityEvents";
-import MyEvents from "./MyEvents"
+import MyEvents from "./MyEvents";
 
 const eventsTabs = [
   {
