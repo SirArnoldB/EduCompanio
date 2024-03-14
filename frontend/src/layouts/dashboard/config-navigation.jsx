@@ -5,7 +5,7 @@ import WorkRoundedIcon from "@mui/icons-material/WorkRounded";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 import WorkspacesRoundedIcon from "@mui/icons-material/WorkspacesRounded";
 import EventAvailableRoundedIcon from "@mui/icons-material/EventAvailableRounded";
-import SelfImprovementRoundedIcon from "@mui/icons-material/SelfImprovementRounded";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import HandymanIcon from "@mui/icons-material/Handyman";
 
 const icon = (muiIcon) => <SvgIcon component={muiIcon} />;
@@ -42,14 +42,14 @@ const navConfig = [
     icon: icon(EventAvailableRoundedIcon),
   },
   {
-    title: "Wellness",
-    path: "/wellness",
-    icon: icon(SelfImprovementRoundedIcon),
-  },
-  {
     title: "Spaces",
     path: "/spaces",
     icon: icon(WorkspacesRoundedIcon),
+  },
+  {
+    title: "Interview Prep",
+    path: "/interview-prep",
+    icon: icon(AutoAwesomeIcon),
   },
 ];
 

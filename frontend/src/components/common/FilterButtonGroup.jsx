@@ -27,7 +27,6 @@ const FilterButtonGroup = ({ filters, setCurrentFilter }) => {
       {newFilters.map((filter, index) => (
         <Button
           key={index}
-          className={filter.active ? "activeBtn" : ""}
           onClick={() => handleFilterChange(filter)}
           sx={{
             backgroundColor: filter.active ? "#1877F2" : "",
