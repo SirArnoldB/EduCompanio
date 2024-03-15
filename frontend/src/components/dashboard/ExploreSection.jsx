@@ -7,8 +7,9 @@ import ExploreEvents from "./ExploreEvents";
 import JobsData from "../../data/recommended-jobs.json";
 import ProjectsData from "../../data/recommended-projects.json";
 import EventsData from "../../data/recommended-events.json";
+import RouterLink from "../common/RouterLink";
 
-const ExploreSection = ({ title }) => {
+const ExploreSection = ({ title, viewAllUrl }) => {
   return (
     <Box
       sx={{
@@ -24,13 +25,17 @@ const ExploreSection = ({ title }) => {
         }}
       >
         <Typography variant="h7">{title}</Typography>
-        <Button
-          variant="text"
-          size="small"
-          endIcon={<ArrowForwardIosIcon fontSize="small" />}
-        >
-          View All
-        </Button>
+        {viewAllUrl && (
+          <RouterLink href={viewAllUrl}>
+            <Button
+              variant="text"
+              size="small"
+              endIcon={<ArrowForwardIosIcon fontSize="small" />}
+            >
+              View All
+            </Button>
+          </RouterLink>
+        )}
       </Box>
       <Box>
         {(() => {
@@ -52,6 +57,7 @@ const ExploreSection = ({ title }) => {
 
 ExploreSection.propTypes = {
   title: PropTypes.string.isRequired,
+  viewAllUrl: PropTypes.string,
 };
 
 export default ExploreSection;
