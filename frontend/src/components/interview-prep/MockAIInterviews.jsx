@@ -2,7 +2,7 @@ import { Box, Typography, Button } from "@mui/material";
 
 const MockAIInterviews = () => {
   const handleScheduleInterview = () => {
-    // Implement logic to schedule a mock AI interview
+    // TODO: (SirArnoldB) Implement logic to schedule a mock AI interview
     console.log("Schedule Mock AI Interview");
   };
 
