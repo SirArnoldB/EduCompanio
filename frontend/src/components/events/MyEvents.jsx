@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import "../../css/Skills.css";
 import CommunityEventsData from "../../data/community-events.json";
 import SearchBar from "../common/SearchBar";
 import CommunityEventsCard from "./CommunityEventsCard";
