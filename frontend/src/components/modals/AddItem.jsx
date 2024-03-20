@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 import { BoardContext } from "../../contexts/BoardContext";
 
 /**
- * A component for adding a new item, such as an internship, note, or project.
+ * A component for adding a new item, such as an job, note, or project.
  * @param {Object} props - The component props.
  * @param {string} props.itemType - The type of item being added.
  * @param {Function} props.onSave - The function to call when the item is saved.
@@ -38,9 +38,9 @@ const AddItem = ({ itemType, onSave, onCancel }) => {
 
   useEffect(() => {
     switch (itemType) {
-      case "internship":
-        setStatuses(state.statuses.internships);
-        setCategories(state.categories.internships);
+      case "job":
+        setStatuses(state.statuses.jobs);
+        setCategories(state.categories.jobs);
         break;
       case "note":
         setStatuses(state.statuses.notes);
@@ -61,12 +61,12 @@ const AddItem = ({ itemType, onSave, onCancel }) => {
       return;
     }
 
-    if (itemType !== "internship" && !title) {
+    if (itemType !== "job" && !title) {
       alert("Please fill out all fields.");
       return;
     }
 
-    if (itemType === "internship" && (!position || !companyName)) {
+    if (itemType === "job" && (!position || !companyName)) {
       alert("Please fill out all fields.");
       return;
     }
@@ -79,8 +79,8 @@ const AddItem = ({ itemType, onSave, onCancel }) => {
     onSave({
       title,
       content,
-      status_id: status,
-      category_id: category,
+      statusId: status,
+      categoryId: category,
       position,
       url,
       company: companyName,
@@ -91,11 +91,7 @@ const AddItem = ({ itemType, onSave, onCancel }) => {
     <Card sx={{ width: 600, m: 2, backgroundColor: "#f5f5f5" }}>
       <CardHeader
         title={`New ${
-          itemType === "internship"
-            ? "Internship"
-            : itemType === "note"
-            ? "Note"
-            : "Project"
+          itemType === "job" ? "Job" : itemType === "note" ? "Note" : "Project"
         }`}
       />
 
@@ -109,16 +105,16 @@ const AddItem = ({ itemType, onSave, onCancel }) => {
         }}
       >
         <TextField
-          label={itemType === "internship" ? "Position" : "Title"}
-          value={itemType === "internship" ? position : title}
+          label={itemType === "job" ? "Position" : "Title"}
+          value={itemType === "job" ? position : title}
           onChange={(e) =>
-            itemType === "internship"
+            itemType === "job"
               ? setPosition(e.target.value)
               : setTitle(e.target.value)
           }
           fullWidth
         />
-        {itemType === "internship" && (
+        {itemType === "job" && (
           <TextField
             label="Company Name"
             value={companyName}

@@ -24,7 +24,7 @@ const DashboardStats = () => {
       icon: <img src={Icons8Project} alt="projects" />,
     },
     {
-      title: `${state.counts.internships}`,
+      title: `${state.counts.jobs}`,
       subtitle: `Total Jobs`,
       icon: <img src={Icons8Jobs} alt="jobs" />,
     },

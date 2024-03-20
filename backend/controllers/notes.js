@@ -1,81 +1,104 @@
-import { pool } from '../config/database.js'
+import { app } from "../firebase/admin.js";
+
+// Firestore instance
+const db = app.firestore();
 
 const createNote = async (req, res) => {
   try {
-    const user_id = req.user.uid
-    const { title, content, category_id, status_id } = req.body
-
-    const results = await pool.query(
-      `INSERT INTO notes (title, content, category_id, status_id, user_id)
-      VALUES ($1, $2, $3, $4, $5) 
-      RETURNING *`,
-      [title, content, category_id, status_id, user_id]
-    )
-    res.status(201).json(results.rows[0])
+    const { title, content, categoryId, statusId } = req.body;
+    const userId = req.user.uid;
+    const noteRef = await db.collection("notes").add({
+      userId,
+      title,
+      content,
+      categoryId,
+      statusId,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    const noteSnapshot = await noteRef.get();
+    res.status(201).json({ id: noteSnapshot.id, ...noteSnapshot.data() });
+  } catch (error) {
+    res.status(409).json({ error: error.message });
   }
-  catch (error) {
-    res.status(409).json({ error: error.message })
-  }
-}
+};
 
 const getAllNotes = async (req, res) => {
   try {
-    const user_id = req.user.uid
-    const results = await pool.query('SELECT * FROM notes WHERE user_id = $1 ORDER BY created_at DESC', [user_id])
-    res.status(200).json(results.rows)
+    const userId = req.user.uid;
+    const notesSnapshot = await db
+      .collection("notes")
+      .where("userId", "==", userId)
+      .orderBy("createdAt", "desc")
+      .get();
+    const notes = notesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(409).json({ error: error.message });
   }
-  catch (error) {
-    res.status(409).json({ error: error.message })
-  }
-}
+};
 
 const getNoteById = async (req, res) => {
   try {
-    const user_id = req.user.uid
-    const id = req.params.id
-    const results = await pool.query('SELECT * FROM notes WHERE id = $1 AND user_id = $2', [id, user_id])
-    res.status(200).json(results.rows[0])
+    const userId = req.user.uid;
+    const noteId = req.params.id;
+    const noteDoc = await db.collection("notes").doc(noteId).get();
+    if (noteDoc.exists && noteDoc.data().userId === userId) {
+      res.status(200).json({ id: noteDoc.id, ...noteDoc.data() });
+    } else {
+      res.status(404).json({ error: "Note not found" });
+    }
+  } catch (error) {
+    res.status(409).json({ error: error.message });
   }
-  catch (error) {
-    res.status(409).json({ error: error.message })
-  }
-}
+};
 
 const updateNote = async (req, res) => {
   try {
-    const user_id = req.user.uid
-    const id = req.params.id
-    const { title, content, category_id, status_id } = req.body
-    const results = await pool.query(
-      `UPDATE notes
-      SET title = $1, content = $2, category_id = $3, status_id = $4
-      WHERE id = $5 AND user_id = $6
-      RETURNING *`,
-      [title, content, category_id, status_id, id, user_id]
-    )
-    res.status(200).json(results.rows[0])
+    const userId = req.user.uid;
+    const noteId = req.params.id;
+    const { title, content, categoryId, statusId } = req.body;
+    const noteDoc = db.collection("notes").doc(noteId);
+    const noteSnapshot = await noteDoc.get();
+    if (noteSnapshot.exists && noteSnapshot.data().userId === userId) {
+      await noteDoc.update({
+        title,
+        content,
+        categoryId,
+        statusId,
+        updatedAt: new Date(),
+      });
+      const updatedNoteSnapshot = await noteDoc.get();
+      res.status(200).json({ id: updatedNoteSnapshot.id, ...updatedNoteSnapshot.data() });
+    } else {
+      res.status(404).json({ error: "Note not found" });
+    }
+  } catch (error) {
+    res.status(409).json({ error: error.message });
   }
-  catch (error) {
-    res.status(409).json({ error: error.message })
-  }
-}
+};
 
 const deleteNote = async (req, res) => {
   try {
-    const user_id = req.user.uid
-    const id = req.params.id
-    const results = await pool.query('DELETE FROM notes WHERE id = $1 AND user_id = $2 RETURNING *', [id, user_id])
-    res.status(200).json(results.rows[0])
+    const userId = req.user.uid;
+    const noteId = req.params.id;
+    const noteDoc = db.collection("notes").doc(noteId);
+    const noteSnapshot = await noteDoc.get();
+    if (noteSnapshot.exists && noteSnapshot.data().userId === userId) {
+      await noteDoc.delete();
+      res.status(200).json({ id: noteSnapshot.id, ...noteSnapshot.data() });
+    } else {
+      res.status(404).json({ error: "Note not found" });
+    }
+  } catch (error) {
+    res.status(409).json({ error: error.message });
   }
-  catch (error) {
-    res.status(409).json({ error: error.message })
-  }
-}
+};
 
 export default {
   createNote,
   getAllNotes,
   getNoteById,
   updateNote,
-  deleteNote
-}
+  deleteNote,
+};

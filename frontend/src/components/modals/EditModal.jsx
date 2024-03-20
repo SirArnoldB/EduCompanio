@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Modal, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import EditItem from "./EditItem";
-import InternshipsAPI from "../../services/internships";
+import JobsAPI from "../../services/jobs";
 import NotesAPI from "../../services/notes";
 import ProjectsAPI from "../../services/projects";
 import { BoardContext } from "../../contexts/BoardContext";
@@ -25,8 +25,8 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
     const accessToken = state.user.stsTokenManager.accessToken;
 
     switch (itemType) {
-      case "internship":
-        InternshipsAPI.updateInternship(
+      case "job":
+        JobsAPI.updateJob(
           updatedItem.id,
           {
             ...updatedItem,
@@ -36,19 +36,16 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
         )
           .then((res) => {
             dispatch({
-              type: "UPDATE_INTERNSHIP",
+              type: "UPDATE_JOB",
               payload: {
                 updatedItem: res,
-                original_status_id: item.status_id,
+                originalStatusId: item.statusId,
               },
             });
-            Notify("Internship updated successfully", toast.TYPE.SUCCESS);
+            Notify("Job updated successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            Notify(
-              `Internship update failed: ${err.message}`,
-              toast.TYPE.ERROR
-            );
+            Notify(`Job update failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       case "note":
@@ -65,7 +62,7 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
               type: "UPDATE_NOTE",
               payload: {
                 updatedItem: res,
-                original_status_id: item.status_id,
+                originalStatusId: item.statusId,
               },
             });
             Notify("Note updated successfully", toast.TYPE.SUCCESS);
@@ -88,7 +85,7 @@ const EditModal = ({ open, handleClose, item, itemType }) => {
               type: "UPDATE_PROJECT",
               payload: {
                 updatedItem: res,
-                original_status_id: item.status_id,
+                originalStatusId: item.statusId,
               },
             });
             Notify("Project updated successfully", toast.TYPE.SUCCESS);

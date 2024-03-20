@@ -1,12 +1,20 @@
 import express from 'express';
 import cors from 'cors';
+import authMiddleware from './config/auth-middleware.js';
+
+// Routes
 import notesRouter from './routes/notes.js';
-import internshipsRouter from './routes/internships.js';
+import jobsRouter from './routes/jobs.js';
 import projectsRouter from './routes/projects.js';
 import categoriesRouter from './routes/categories.js';
 import statusesRouter from './routes/statuses.js';
-import initialDataRouter from './routes/initial-data.js';
-import authMiddleware from './config/auth-middleware.js';
+import communityJobsRouter from './routes/community-jobs.js';
+import communityProjectsRouter from './routes/community-projects.js';
+import financeResourcesRouter from './routes/finance.js';
+import healthResourcesRouter from './routes/health.js';
+import organizationsRouter from './routes/organizations.js';
+import skillsRouter from './routes/skills.js';
+
 
 // create express app
 const app = express();
@@ -36,9 +44,14 @@ app.use(authMiddleware);
 
 // set up the routes
 app.use('/api/notes', notesRouter);
-app.use('/api/internships', internshipsRouter);
+app.use('/api/jobs', jobsRouter);
 app.use('/api/projects', projectsRouter);
-app.use('/api/initialize', initialDataRouter);
+app.use('/api/community-jobs', communityJobsRouter);
+app.use('/api/community-projects', communityProjectsRouter);
+app.use('/api/finance-resources', financeResourcesRouter);
+app.use('/api/health-resources', healthResourcesRouter);
+app.use('/api/organizations', organizationsRouter);
+app.use('/api/skills', skillsRouter);
 
 // set up the port that the server will run on
 const PORT = process.env.PORT || 3000;

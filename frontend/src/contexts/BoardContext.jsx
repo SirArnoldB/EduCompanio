@@ -1,7 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
-import { initializeExamples as InitializeDataAPI } from "../services/initialize-examples";
 import ProjectsAPI from "../services/projects";
-import InternshipsAPI from "../services/internships";
+import JobsAPI from "../services/jobs";
 import NotesAPI from "../services/notes";
 import StatusesAPI from "../services/statuses";
 import CategoriesAPi from "../services/categories";
@@ -14,22 +13,22 @@ const initialState = {
   user: JSON.parse(sessionStorage.getItem("user")) || {},
   counts: {
     projects: 0,
-    internships: 0,
+    jobs: 0,
     notes: 0,
   },
   columns: {
     projects: {},
-    internships: {},
+    jobs: {},
     notes: {},
   },
   statuses: {
     projects: [],
-    internships: [],
+    jobs: [],
     notes: [],
   },
   categories: {
     projects: [],
-    internships: [],
+    jobs: [],
     notes: [],
   },
   API_URL:
@@ -77,62 +76,47 @@ export const BoardContextProvider = ({ children }) => {
         try {
           const accessToken = state.user.stsTokenManager.accessToken;
 
-          // If the user signed in for the first time, initialize the user's data
-          // in the database
-          if (
-            state.user.metadata.creationTime ===
-            state.user.metadata.lastSignInTime
-          ) {
-            await InitializeDataAPI(accessToken);
-          }
-
-          // Projects, internships, and notes
+          // Projects, Jobs, and notes
           const projects = await ProjectsAPI.getAllProjects(accessToken);
-          const internships = await InternshipsAPI.getAllInternships(
-            accessToken
-          );
+          const jobs = await JobsAPI.getAllJobs(accessToken);
           const notes = await NotesAPI.getAllNotes(accessToken);
 
           // Counts
           const counts = {
             projects: projects.length,
-            internships: internships.length,
+            jobs: jobs.length,
             notes: notes.length,
           };
 
           // Statuses
-          const internshipStatuses =
-            await StatusesAPI.getAllInternshipStatuses();
+          const jobStatuses = await StatusesAPI.getAllJobStatuses();
+          console.log(jobStatuses);
           const noteStatuses = await StatusesAPI.getAllNoteStatuses();
           const projectStatuses = await StatusesAPI.getAllProjectStatuses();
           const statuses = {
             projects: projectStatuses,
-            internships: internshipStatuses,
+            jobs: jobStatuses,
             notes: noteStatuses,
           };
 
           // Generate columns from statuses and items
           const projectColumns = generateColumns(projectStatuses, projects);
-          const internshipColumns = generateColumns(
-            internshipStatuses,
-            internships
-          );
+          const jobColumns = generateColumns(jobStatuses, jobs);
           const noteColumns = generateColumns(noteStatuses, notes);
           const columns = {
             projects: projectColumns,
-            internships: internshipColumns,
+            jobs: jobColumns,
             notes: noteColumns,
           };
 
           // Categories
-          const internshipCategories =
-            await CategoriesAPi.getAllInternshipCategories();
+          const jobCategories = await CategoriesAPi.getAllJobCategories();
           const noteCategories = await CategoriesAPi.getAllNoteCategories();
           const projectCategories =
             await CategoriesAPi.getAllProjectCategories();
           const categories = {
             projects: projectCategories,
-            internships: internshipCategories,
+            jobs: jobCategories,
             notes: noteCategories,
           };
 

@@ -1,68 +1,84 @@
-import { pool } from '../config/database.js'
+import { app } from "../firebase/admin.js";
 
-// Internship Statuses
-const getAllInternshipStatuses = async (req, res) => {
+// Firestore instance
+const db = app.firestore();
+
+// Function to get all statuses for a collection
+const getAllStatuses = async (collectionName, orderField, orderMap) => {
     try {
-        const results = await pool.query(`
-            SELECT * FROM internship_statuses
-            ORDER BY CASE
-                WHEN status = 'Applied' THEN 1
-                WHEN status = 'Screen' THEN 2
-                WHEN status = 'Interviewing' THEN 3
-                WHEN status = 'Offer' THEN 4
-                WHEN status = 'Rejected' THEN 5
-                ELSE 6
-            END
-        `);
-        res.status(200).json(results.rows)
-    }
-    catch (error) {
-        res.status(409).json({ error: error.message })
+        const statusesSnapshot = await db.collection(collectionName).get();
+        const statuses = statusesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+        // Apply custom order based on orderField
+        return statuses.sort((a, b) => {
+            const orderA = orderMap[a[orderField]] || Infinity;
+            const orderB = orderMap[b[orderField]] || Infinity;
+            return orderA - orderB;
+        });
+    } catch (error) {
+        console.error(`Error fetching statuses from ${collectionName}:`, error);
+        throw new Error(`Failed to retrieve statuses from ${collectionName}`);
     }
 }
 
-// Notes Statuses
+// Job Statuses
+const getAllJobStatuses = async (req, res) => {
+    const orderField = "status";
+    const orderMap = {
+        Applied: 1,
+        Screen: 2,
+        Interviewing: 3,
+        Offer: 4,
+        Rejected: 5,
+    };
+
+    try {
+        const statuses = await getAllStatuses("jobStatuses", orderField, orderMap);
+        res.status(200).json(statuses);
+    } catch (error) {
+        console.error("Error fetching job statuses:", error.message);
+        res.status(500).json({ error: error.message });
+    }
+};
+
 const getAllNoteStatuses = async (req, res) => {
-    try {
-        const results = await pool.query(`
-            SELECT * FROM note_statuses
-            ORDER BY CASE
-                WHEN status = 'Draft' THEN 1
-                WHEN status = 'Final' THEN 2
-                WHEN status = 'Important' THEN 3
-                WHEN status = 'Archived' THEN 4
-                ELSE 5
-            END
-        `);
-        res.status(200).json(results.rows)
-    }
-    catch (error) {
-        res.status(409).json({ error: error.message })
-    }
-}
+    const orderField = "status";
+    const orderMap = {
+        Draft: 1,
+        Final: 2,
+        Important: 3,
+        Archived: 4,
+    };
 
-// Project Statuses
-const getAllProjectStatuses = async (req, res) => {
     try {
-        const results = await pool.query(`
-            SELECT * FROM project_statuses
-            ORDER BY CASE
-                WHEN status = 'Idea' THEN 1
-                WHEN status = 'Planning' THEN 2
-                WHEN status = 'In Progress' THEN 3
-                WHEN status = 'Completed' THEN 4
-                WHEN status = 'On Hold' THEN 5
-                WHEN status = 'Canceled' THEN 6
-                ELSE 7
-            END
-        `);
-        res.status(200).json(results.rows)
+        const statuses = await getAllStatuses("noteStatuses", orderField, orderMap);
+        res.status(200).json(statuses);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-    catch (error) {
-        res.status(409).json({ error: error.message })
+};
+
+const getAllProjectStatuses = async (req, res) => {
+    const orderField = "status";
+    const orderMap = {
+        Idea: 1,
+        Planning: 2,
+        "In Progress": 3,
+        Completed: 4,
+        "On Hold": 5,
+        Canceled: 6,
+    };
+
+    try {
+        const statuses = await getAllStatuses("projectStatuses", orderField, orderMap);
+        res.status(200).json(statuses);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-}
+};
 
 export default {
-    getAllInternshipStatuses, getAllNoteStatuses, getAllProjectStatuses
-}
+    getAllJobStatuses,
+    getAllNoteStatuses,
+    getAllProjectStatuses,
+};

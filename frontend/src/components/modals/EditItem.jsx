@@ -25,8 +25,8 @@ import { BoardContext } from "../../contexts/BoardContext";
  */
 const EditItem = ({ item, itemType, onSave, onCancel }) => {
   const [content, setContent] = useState(item?.content);
-  const [status, setStatus] = useState(item.status_id || "");
-  const [category, setCategory] = useState(item.category_id || "");
+  const [status, setStatus] = useState(item.statusId || "");
+  const [category, setCategory] = useState(item.categoryId || "");
   const [title, setTitle] = useState(item?.title);
   const [position, setPosition] = useState(item?.position);
   const [url, setUrl] = useState(item?.url ?? "");
@@ -43,9 +43,9 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
 
   useEffect(() => {
     switch (itemType) {
-      case "internship":
-        setStatuses(state.statuses.internships);
-        setCategories(state.categories.internships);
+      case "job":
+        setStatuses(state.statuses.jobs);
+        setCategories(state.categories.jobs);
         break;
       case "note":
         setStatuses(state.statuses.notes);
@@ -70,9 +70,9 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
           ...item,
           title,
           content,
-          status_id: status,
-          category_id: category,
-          updated_at: "",
+          statusId: status,
+          categoryId: category,
+          updatedAt: "",
         };
         break;
       case "project":
@@ -80,23 +80,23 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
           ...item,
           title,
           content,
-          status_id: status,
-          category_id: category,
+          statusId: status,
+          categoryId: category,
           url,
-          updated_at: "",
+          updatedAt: "",
         };
         break;
-      case "internship":
+      case "job":
         updatedItem = {
           ...item,
           title,
           content,
-          status_id: status,
-          category_id: category,
+          statusId: status,
+          categoryId: category,
           position,
           url,
           company: companyName,
-          updated_at: "",
+          updatedAt: "",
         };
         break;
       default:
@@ -105,7 +105,7 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
 
     // Check if any changes have been made to the item
     if (
-      JSON.stringify({ ...initialItem, updated_at: "" }) ===
+      JSON.stringify({ ...initialItem, updatedAt: "" }) ===
       JSON.stringify(updatedItem)
     ) {
       alert("No changes have been made to the item.");
@@ -127,16 +127,16 @@ const EditItem = ({ item, itemType, onSave, onCancel }) => {
         }}
       >
         <TextField
-          label={itemType === "internship" ? "Position" : "Title"}
-          value={itemType === "internship" ? position : title}
+          label={itemType === "job" ? "Position" : "Title"}
+          value={itemType === "job" ? position : title}
           onChange={(e) =>
-            itemType === "internship"
+            itemType === "job"
               ? setPosition(e.target.value)
               : setTitle(e.target.value)
           }
           fullWidth
         />
-        {itemType === "internship" && (
+        {itemType === "job" && (
           <TextField
             label="Company Name"
             value={companyName}
