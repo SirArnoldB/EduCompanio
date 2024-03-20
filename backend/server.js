@@ -14,6 +14,7 @@ import financeResourcesRouter from './routes/finance.js';
 import healthResourcesRouter from './routes/health.js';
 import organizationsRouter from './routes/organizations.js';
 import skillsRouter from './routes/skills.js';
+import tagsRouter from './routes/tags.js';
 
 
 // create express app
@@ -31,13 +32,9 @@ app.use(cors({
 // set up the express app to handle data parsing
 app.use(express.json());
 
-
-// set up the categories routes
 app.use('/api/categories', categoriesRouter);
-
-// set up the statuses routes
 app.use('/api/statuses', statusesRouter);
-
+app.use('/api/tags', tagsRouter);
 
 // set up the auth middleware
 app.use(authMiddleware);

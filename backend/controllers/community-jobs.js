@@ -29,13 +29,13 @@ const getCommunityJobById = async (req, res) => {
 
 const createCommunityJob = async (req, res) => {
     try {
-        const { user, company, title, description, tags, location, url, deadline } = req.body;
+        const { user, company, title, description, tag, location, url, deadline } = req.body;
         const communityJobRef = await db.collection("communityJobs").add({
             user,
             company,
             title,
             description,
-            tags,
+            tag,
             location,
             url,
             deadline,
@@ -50,7 +50,7 @@ const createCommunityJob = async (req, res) => {
 const updateCommunityJob = async (req, res) => {
     try {
         const jobId = req.params.id;
-        const { user, company, title, description, tags, location, url, deadline } = req.body;
+        const { user, company, title, description, tag, location, url, deadline } = req.body;
         const jobDoc = db.collection("communityJobs").doc(jobId);
         const jobSnapshot = await jobDoc.get();
         if (jobSnapshot.exists && jobSnapshot.data().user === user) {
@@ -58,7 +58,7 @@ const updateCommunityJob = async (req, res) => {
                 company,
                 title,
                 description,
-                tags,
+                tag,
                 location,
                 url,
                 deadline,

@@ -98,6 +98,106 @@ const resetCategoriesAndStatuses = async (collectionName, data) => {
     }
 };
 
+// ------------------- Tags Collections -------------------
+const organizationTags = [
+    { tag: 'Education' },
+    { tag: 'Technology' },
+    { tag: 'Diversity' },
+    { tag: 'Community' },
+    { tag: 'Women in Tech' },
+    { tag: 'Student-led' },
+    { tag: 'Entrepreneurship' },
+    { tag: 'Social Impact' },
+    { tag: 'Leadership' },
+    { tag: 'Networking' }
+];
+
+const skillTags = [
+    { tag: 'beginner' },
+    { tag: 'game-based learning' },
+    { tag: 'computer science' },
+    { tag: 'digital marketing' },
+    { tag: 'analytics' },
+    { tag: 'bootcamps' },
+    { tag: 'mentorship' },
+    { tag: 'job placement' },
+    { tag: 'career services' }
+];
+
+const communityJobTags = [
+    { tag: 'internship' },
+    { tag: 'volunteer' },
+    { tag: 'part time' },
+    { tag: 'full time' }
+];
+
+const communityProjectTags = [
+    { tag: 'beginner' },
+    { tag: 'intermediate' },
+    { tag: 'advanced' }
+];
+
+const healthTags = [
+    { tag: 'mental health' },
+    { tag: 'physical health' },
+    { tag: 'nutrition' },
+    { tag: 'exercise' },
+    { tag: 'wellness' },
+    { tag: 'stress management' },
+    { tag: 'counseling' },
+    { tag: 'yoga' },
+    { tag: 'meditation' },
+    { tag: 'fitness' }
+];
+
+const financeTags = [
+    { tag: 'budgeting' },
+    { tag: 'financial aid' },
+    { tag: 'scholarships' },
+    { tag: 'loans' },
+    { tag: 'personal finance' },
+    { tag: 'investment' },
+    { tag: 'tax planning' },
+    { tag: 'credit management' },
+    { tag: 'financial literacy' },
+    { tag: 'money management' }
+];
+
+const resetTags = async (collectionName, data) => {
+    try {
+        const collectionRef = db.collection(collectionName);
+        const batch = db.batch();
+
+        // Check if the collection exists
+        const collectionSnapshot = await collectionRef.get();
+        if (collectionSnapshot.empty) {
+            // If the collection doesn't exist, add new documents
+            for (const doc of data) {
+                const newDocRef = await collectionRef.add(doc);
+                batch.update(newDocRef, { id: newDocRef.id });
+                console.log(`Document added with ID: ${newDocRef.id}`);
+            }
+            await batch.commit();
+            console.log(`🚀 ${collectionName} collection is successfully created`);
+        } else {
+            // If the collection exists, delete all existing documents
+            collectionSnapshot.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+            // Add new documents to the collection
+            for (const doc of data) {
+                const newDocRef = await collectionRef.add(doc);
+                batch.update(newDocRef, { id: newDocRef.id });
+                console.log(`Document added with ID: ${newDocRef.id}`);
+            }
+            await batch.commit();
+            console.log(`🚀 ${collectionName} collection is successfully reset`);
+        }
+    } catch (err) {
+        console.log(`⛔️ Error updating ${collectionName} collection: ${err}`);
+    }
+};
+
 // ------------------- Other Collections -------------------
 
 const resetCollections = async () => {
@@ -130,6 +230,12 @@ const runAllFunctions = async () => {
     await resetCategoriesAndStatuses('jobStatuses', jobStatuses);
     await resetCategoriesAndStatuses('projectCategories', projectCategories);
     await resetCategoriesAndStatuses('projectStatuses', projectStatuses);
+    await resetTags('organizationTags', organizationTags);
+    await resetTags('skillTags', skillTags);
+    await resetTags('communityJobTags', communityJobTags);
+    await resetTags('communityProjectTags', communityProjectTags);
+    await resetTags('healthTags', healthTags);
+    await resetTags('financeTags', financeTags);
     await resetCollections();
 };
 

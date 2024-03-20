@@ -377,6 +377,15 @@ const UpdateNote = (state, payload) => {
     };
 }
 
+const SetTags = (state, payload) => {
+    const newTags = { ...state.tags, ...payload };
+    sessionStorage.setItem("tags", JSON.stringify(newTags));
+    return {
+        ...state,
+        tags: newTags,
+    };
+}
+
 const SetLoading = (state, payload) => {
     return {
         ...state,
@@ -413,4 +422,5 @@ export {
     UpdateNote,
     SetLoading,
     SetError,
+    SetTags,
 }

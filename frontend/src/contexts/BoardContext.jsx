@@ -4,6 +4,7 @@ import JobsAPI from "../services/jobs";
 import NotesAPI from "../services/notes";
 import StatusesAPI from "../services/statuses";
 import CategoriesAPi from "../services/categories";
+import TagsAPI from "../services/tags";
 import PropTypes from "prop-types";
 import { generateColumns } from "../utilities/columns";
 import { BoardReducer } from "../reducers/board-reducer";
@@ -31,6 +32,14 @@ const initialState = {
     jobs: [],
     notes: [],
   },
+  tags: {
+    organizations: [],
+    skills: [],
+    communityJobs: [],
+    communityProjects: [],
+    finance: [],
+    health: [],
+  },
   API_URL:
     // eslint-disable-next-line no-undef
     process.env.NODE_ENV === "production"
@@ -54,6 +63,7 @@ export const BoardContextProvider = ({ children }) => {
     const columns = JSON.parse(sessionStorage.getItem("columns"));
     const statuses = JSON.parse(sessionStorage.getItem("statuses"));
     const categories = JSON.parse(sessionStorage.getItem("categories"));
+    const tags = JSON.parse(sessionStorage.getItem("tags"));
 
     if (counts) {
       dispatch({ type: "SET_COUNTS", payload: counts });
@@ -66,6 +76,9 @@ export const BoardContextProvider = ({ children }) => {
     }
     if (categories) {
       dispatch({ type: "SET_CATEGORIES", payload: categories });
+    }
+    if (tags) {
+      dispatch({ type: "SET_TAGS", payload: tags });
     }
   }, []);
 
@@ -120,11 +133,29 @@ export const BoardContextProvider = ({ children }) => {
             notes: noteCategories,
           };
 
+          // Tags
+          const organizations = await TagsAPI.getAllOrganizationTags();
+          const skills = await TagsAPI.getAllSkillTags();
+          const communityJobs = await TagsAPI.getAllCommunityJobTags();
+          const communityProjects = await TagsAPI.getAllCommunityProjectTags();
+          const finance = await TagsAPI.getAllFinanceTags();
+          const health = await TagsAPI.getAllHealthTags();
+
+          const tags = {
+            organizations,
+            skills,
+            communityJobs,
+            communityProjects,
+            finance,
+            health,
+          };
+
           // Dispatch actions to set state
           dispatch({ type: "SET_COUNTS", payload: counts });
           dispatch({ type: "SET_COLUMNS", payload: columns });
           dispatch({ type: "SET_STATUSES", payload: statuses });
           dispatch({ type: "SET_CATEGORIES", payload: categories });
+          dispatch({ type: "SET_TAGS", payload: tags });
         } catch (error) {
           dispatch({ type: "SET_ERROR", payload: error });
         }

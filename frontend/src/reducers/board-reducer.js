@@ -18,6 +18,7 @@ import {
     UpdateNote,
     SetLoading,
     SetError,
+    SetTags,
 } from "../actions/actions";
 
 const BoardReducer = (state, action) => {
@@ -38,6 +39,8 @@ const BoardReducer = (state, action) => {
             return SetStatuses(state, action.payload);
         case "SET_CATEGORIES":
             return SetCategories(state, action.payload);
+        case "SET_TAGS":
+            return SetTags(state, action.payload);
         case "ADD_PROJECT":
             return AddProject(state, action.payload);
         case "ADD_JOB":

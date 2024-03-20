@@ -38,7 +38,7 @@ const DashboardStats = () => {
   return (
     <>
       {DashboardStatsInfo.map((item, index) => (
-        <Grid item xs={12} sm={6} md={3} key={index}>
+        <Grid xs={12} sm={6} md={3} key={index}>
           <SummaryCard {...item} />
         </Grid>
       ))}
