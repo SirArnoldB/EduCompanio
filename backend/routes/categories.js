@@ -3,7 +3,7 @@ import categoriesController from '../controllers/categories.js';
 
 const router = express.Router();
 
-router.get('/internships', categoriesController.getAllInternshipCategories);
+router.get('/jobs', categoriesController.getAllJobCategories);
 router.get('/notes', categoriesController.getAllNoteCategories);
 router.get('/projects', categoriesController.getAllProjectCategories);
 

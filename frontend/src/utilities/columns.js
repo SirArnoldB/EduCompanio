@@ -3,7 +3,7 @@ const generateColumns = (statuses, items) => {
     statuses.forEach((status) => {
         columns[status.id] = {
             name: status.status,
-            items: items.filter((item) => item.status_id === status.id),
+            items: items.filter((item) => item.statusId === status.id),
         };
     });
     return columns;

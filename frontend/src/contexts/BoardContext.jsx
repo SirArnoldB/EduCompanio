@@ -1,10 +1,10 @@
 import { createContext, useReducer, useEffect } from "react";
-import { initializeExamples as InitializeDataAPI } from "../services/initialize-examples";
 import ProjectsAPI from "../services/projects";
-import InternshipsAPI from "../services/internships";
+import JobsAPI from "../services/jobs";
 import NotesAPI from "../services/notes";
 import StatusesAPI from "../services/statuses";
 import CategoriesAPi from "../services/categories";
+import TagsAPI from "../services/tags";
 import PropTypes from "prop-types";
 import { generateColumns } from "../utilities/columns";
 import { BoardReducer } from "../reducers/board-reducer";
@@ -14,23 +14,31 @@ const initialState = {
   user: JSON.parse(sessionStorage.getItem("user")) || {},
   counts: {
     projects: 0,
-    internships: 0,
+    jobs: 0,
     notes: 0,
   },
   columns: {
     projects: {},
-    internships: {},
+    jobs: {},
     notes: {},
   },
   statuses: {
     projects: [],
-    internships: [],
+    jobs: [],
     notes: [],
   },
   categories: {
     projects: [],
-    internships: [],
+    jobs: [],
     notes: [],
+  },
+  tags: {
+    organizations: [],
+    skills: [],
+    communityJobs: [],
+    communityProjects: [],
+    finance: [],
+    health: [],
   },
   API_URL:
     // eslint-disable-next-line no-undef
@@ -55,6 +63,7 @@ export const BoardContextProvider = ({ children }) => {
     const columns = JSON.parse(sessionStorage.getItem("columns"));
     const statuses = JSON.parse(sessionStorage.getItem("statuses"));
     const categories = JSON.parse(sessionStorage.getItem("categories"));
+    const tags = JSON.parse(sessionStorage.getItem("tags"));
 
     if (counts) {
       dispatch({ type: "SET_COUNTS", payload: counts });
@@ -68,6 +77,9 @@ export const BoardContextProvider = ({ children }) => {
     if (categories) {
       dispatch({ type: "SET_CATEGORIES", payload: categories });
     }
+    if (tags) {
+      dispatch({ type: "SET_TAGS", payload: tags });
+    }
   }, []);
 
   useEffect(() => {
@@ -77,63 +89,65 @@ export const BoardContextProvider = ({ children }) => {
         try {
           const accessToken = state.user.stsTokenManager.accessToken;
 
-          // If the user signed in for the first time, initialize the user's data
-          // in the database
-          if (
-            state.user.metadata.creationTime ===
-            state.user.metadata.lastSignInTime
-          ) {
-            await InitializeDataAPI(accessToken);
-          }
-
-          // Projects, internships, and notes
+          // Projects, Jobs, and notes
           const projects = await ProjectsAPI.getAllProjects(accessToken);
-          const internships = await InternshipsAPI.getAllInternships(
-            accessToken
-          );
+          const jobs = await JobsAPI.getAllJobs(accessToken);
           const notes = await NotesAPI.getAllNotes(accessToken);
 
           // Counts
           const counts = {
             projects: projects.length,
-            internships: internships.length,
+            jobs: jobs.length,
             notes: notes.length,
           };
 
           // Statuses
-          const internshipStatuses =
-            await StatusesAPI.getAllInternshipStatuses();
+          const jobStatuses = await StatusesAPI.getAllJobStatuses();
+          console.log(jobStatuses);
           const noteStatuses = await StatusesAPI.getAllNoteStatuses();
           const projectStatuses = await StatusesAPI.getAllProjectStatuses();
           const statuses = {
             projects: projectStatuses,
-            internships: internshipStatuses,
+            jobs: jobStatuses,
             notes: noteStatuses,
           };
 
           // Generate columns from statuses and items
           const projectColumns = generateColumns(projectStatuses, projects);
-          const internshipColumns = generateColumns(
-            internshipStatuses,
-            internships
-          );
+          const jobColumns = generateColumns(jobStatuses, jobs);
           const noteColumns = generateColumns(noteStatuses, notes);
           const columns = {
             projects: projectColumns,
-            internships: internshipColumns,
+            jobs: jobColumns,
             notes: noteColumns,
           };
 
           // Categories
-          const internshipCategories =
-            await CategoriesAPi.getAllInternshipCategories();
+          const jobCategories = await CategoriesAPi.getAllJobCategories();
           const noteCategories = await CategoriesAPi.getAllNoteCategories();
           const projectCategories =
             await CategoriesAPi.getAllProjectCategories();
           const categories = {
             projects: projectCategories,
-            internships: internshipCategories,
+            jobs: jobCategories,
             notes: noteCategories,
+          };
+
+          // Tags
+          const organizations = await TagsAPI.getAllOrganizationTags();
+          const skills = await TagsAPI.getAllSkillTags();
+          const communityJobs = await TagsAPI.getAllCommunityJobTags();
+          const communityProjects = await TagsAPI.getAllCommunityProjectTags();
+          const finance = await TagsAPI.getAllFinanceTags();
+          const health = await TagsAPI.getAllHealthTags();
+
+          const tags = {
+            organizations,
+            skills,
+            communityJobs,
+            communityProjects,
+            finance,
+            health,
           };
 
           // Dispatch actions to set state
@@ -141,6 +155,7 @@ export const BoardContextProvider = ({ children }) => {
           dispatch({ type: "SET_COLUMNS", payload: columns });
           dispatch({ type: "SET_STATUSES", payload: statuses });
           dispatch({ type: "SET_CATEGORIES", payload: categories });
+          dispatch({ type: "SET_TAGS", payload: tags });
         } catch (error) {
           dispatch({ type: "SET_ERROR", payload: error });
         }

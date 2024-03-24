@@ -1,38 +1,35 @@
-import { pool } from '../config/database.js'
+import { app } from "../firebase/admin.js";
 
-// Internship Categories
-const getAllInternshipCategories = async (req, res) => {
+// Firestore instance
+const db = app.firestore();
+
+
+// Function to get all categories for a collection
+const getCategories = async (collectionName, req, res) => {
     try {
-        const results = await pool.query('SELECT * FROM internship_categories ORDER BY id ASC')
-        res.status(200).json(results.rows)
+        const categoriesSnapshot = await db.collection(collectionName).get();
+        const categories = categoriesSnapshot.docs.map(doc => doc.data());
+        res.status(200).json(categories);
+    } catch (error) {
+        res.status(409).json({ error: error.message });
     }
-    catch (error) {
-        res.status(409).json({ error: error.message })
-    }
+}
+
+// Job Categories
+const getAllJobCategories = async (req, res) => {
+    await getCategories('jobCategories', req, res);
 }
 
 // Notes Categories
 const getAllNoteCategories = async (req, res) => {
-    try {
-        const results = await pool.query('SELECT * FROM note_categories ORDER BY id ASC')
-        res.status(200).json(results.rows)
-    }
-    catch (error) {
-        res.status(409).json({ error: error.message })
-    }
+    await getCategories('noteCategories', req, res);
 }
 
 // Project Categories
 const getAllProjectCategories = async (req, res) => {
-    try {
-        const results = await pool.query('SELECT * FROM project_categories ORDER BY id ASC')
-        res.status(200).json(results.rows)
-    }
-    catch (error) {
-        res.status(409).json({ error: error.message })
-    }
+    await getCategories('projectCategories', req, res);
 }
 
 export default {
-    getAllInternshipCategories, getAllNoteCategories, getAllProjectCategories
+    getAllJobCategories, getAllNoteCategories, getAllProjectCategories
 }
