@@ -1,9 +1,23 @@
+import { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
+import ScheduleMockInterviewModal from "../modals/ScheduleMockInterviewModal";
 
 const MockAIInterviews = () => {
-  const handleScheduleInterview = () => {
-    // TODO: (SirArnoldB) Implement logic to schedule a mock AI interview
-    console.log("Schedule Mock AI Interview");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleScheduleInterview = (formData) => {
+    // TODO: Implement logic to schedule a mock AI interview based on formData
+    console.log("Schedule Mock AI Interview:", formData);
+    // Close modal after scheduling the interview
+    setIsModalOpen(false);
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -16,13 +30,14 @@ const MockAIInterviews = () => {
         AI technology. Practice behavioral, technical, and case interviews, and
         receive personalized feedback and analysis.
       </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleScheduleInterview}
-      >
+      <Button variant="contained" color="primary" onClick={handleOpenModal}>
         Schedule Mock AI Interview
       </Button>
+      <ScheduleMockInterviewModal
+        open={isModalOpen}
+        handleClose={handleCloseModal}
+        handleScheduleInterview={handleScheduleInterview}
+      />
     </Box>
   );
 };
