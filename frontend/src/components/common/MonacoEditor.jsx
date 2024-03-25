@@ -2,9 +2,95 @@ import Editor from "@monaco-editor/react";
 import { Box } from "@mui/material";
 import { useState } from "react";
 
+const themes = [
+  {
+    label: "Dark",
+    value: "vs-dark",
+  },
+  {
+    label: "Light",
+    value: "vs",
+  },
+];
+
+const languages = [
+  {
+    label: "JavaScript",
+    value: "javascript",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "TypeScript",
+    value: "typescript",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "Python",
+    value: "python",
+    defaultCode: "# Add your brilliant code here!",
+  },
+  {
+    label: "Java",
+    value: "java",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "C#",
+    value: "csharp",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "C++",
+    value: "cpp",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "HTML",
+    value: "html",
+    defaultCode: "<!-- Add your brilliant code here! -->",
+  },
+  { label: "C", value: "c", defaultCode: "// Add your brilliant code here!" },
+  {
+    label: "Ruby",
+    value: "ruby",
+    defaultCode: "# Add your brilliant code here!",
+  },
+  {
+    label: "Swift",
+    value: "swift",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "Golang",
+    value: "golang",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "Scala",
+    value: "scala",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "Kotlin",
+    value: "kotlin",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "Rust",
+    value: "rust",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "PHP",
+    value: "php",
+    defaultCode: "// Add your brilliant code here!",
+  },
+];
+
 const MonacoEditor = () => {
   const [theme, setTheme] = useState("vs-dark");
   const [language, setLanguage] = useState("javascript");
+  const [code, setCode] = useState(languages[0].defaultCode);
 
   const handleThemeChange = (event) => {
     setTheme(event.target.value);
@@ -12,24 +98,10 @@ const MonacoEditor = () => {
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
+    setCode(
+      languages.find((lang) => lang.value === event.target.value).defaultCode
+    );
   };
-
-  function handleEditorChange(value, event) {
-    console.log("handleEditorChange", value, event);
-  }
-
-  function handleEditorDidMount(editor, monaco) {
-    console.log("onMount: the editor instance:", editor);
-    console.log("onMount: the monaco instance:", monaco);
-  }
-
-  function handleEditorWillMount(monaco) {
-    console.log("beforeMount: the monaco instance:", monaco);
-  }
-
-  function handleEditorValidation(markers) {
-    markers.forEach((marker) => console.log("onValidate:", marker.message));
-  }
 
   return (
     <>
@@ -41,27 +113,21 @@ const MonacoEditor = () => {
         }}
       >
         <select value={theme} onChange={handleThemeChange}>
-          <option value="vs-dark">Dark</option>
-          <option value="vs">Light</option>
+          {themes.map((theme) => (
+            <option key={theme.value} value={theme.value}>
+              {theme.label}
+            </option>
+          ))}
         </select>
         <select value={language} onChange={handleLanguageChange}>
-          <option value="javascript">JavaScript</option>
-          <option value="json">JSON</option>
-          <option value="html">HTML</option>
-          <option value="css">CSS</option>
-          <option value="typescript">TypeScript</option>
+          {languages.map((lang) => (
+            <option key={lang.value} value={lang.value}>
+              {lang.label}
+            </option>
+          ))}
         </select>
       </Box>
-      <Editor
-        height="90vh"
-        defaultLanguage={language}
-        theme={theme}
-        defaultValue="// Add your brilliant code here!"
-        onChange={handleEditorChange}
-        onMount={handleEditorDidMount}
-        beforeMount={handleEditorWillMount}
-        onValidate={handleEditorValidation}
-      />
+      <Editor height="90vh" language={language} theme={theme} value={code} />
     </>
   );
 };
