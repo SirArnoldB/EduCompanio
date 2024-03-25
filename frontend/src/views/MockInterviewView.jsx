@@ -1,4 +1,4 @@
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
 import InteractivePanelGroup from "../components/common/InteractivePanelGroup";
 
 const MockInterviewView = () => {
@@ -11,7 +11,14 @@ const MockInterviewView = () => {
         height: "100%",
       }}
     >
-      <Typography variant="h5">Mock AI Interview with EduChamp</Typography>
+      <Box
+        sx={{
+          flexGrow: 1,
+          mb: 2,
+        }}
+      >
+        <Typography variant="h4">Mock AI Interview with EduChamp</Typography>
+      </Box>
       <InteractivePanelGroup />
     </Container>
   );

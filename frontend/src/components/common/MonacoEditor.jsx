@@ -11,6 +11,11 @@ const themes = [
     label: "Light",
     value: "vs",
   },
+  {
+    label: "High Contrast",
+    value: "hc-black",
+  },
+  [],
 ];
 
 const languages = [
