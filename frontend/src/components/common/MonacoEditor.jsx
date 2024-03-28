@@ -90,6 +90,26 @@ const languages = [
     value: "php",
     defaultCode: "// Add your brilliant code here!",
   },
+  {
+    label: "SQL",
+    value: "sql",
+    defaultCode: "-- Add your brilliant code here!",
+  },
+  {
+    label: "Dart",
+    value: "dart",
+    defaultCode: "// Add your brilliant code here!",
+  },
+  {
+    label: "Markdown",
+    value: "markdown",
+    defaultCode: "# Add your brilliant code here!",
+  },
+  {
+    label: "text",
+    value: "plaintext",
+    defaultCode: "// Add your brilliant code here!",
+  },
 ];
 
 const MonacoEditor = () => {
