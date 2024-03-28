@@ -5,6 +5,7 @@ import { PanelGroup, Panel } from "react-resizable-panels";
 import ResizeHandle from "./ResizeHandle";
 
 import styles from "../../css/panel.module.css";
+import AIChat from "../interview-prep/AIChat";
 
 const InteractivePanelGroup = () => {
   const [panelSizes, setPanelSizes] = useState([20, 50, 30]);
@@ -40,7 +41,7 @@ const InteractivePanelGroup = () => {
             <Tab label="Chat" />
             <Tab label="Evaluation" />
           </Tabs>
-          {tabValue === 0 && <Typography>Chat with EduChamp here</Typography>}
+          {tabValue === 0 && <AIChat />}
           {tabValue === 1 && (
             <Typography>See your evaluation and feedback here</Typography>
           )}

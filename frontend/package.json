@@ -23,6 +23,7 @@
     "firebase": "^10.9.0",
     "firebaseui": "^6.1.0",
     "lodash.debounce": "^4.0.8",
+    "lucide-react": "^0.363.0",
     "monaco-editor": "^0.47.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
