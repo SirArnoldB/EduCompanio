@@ -1,4 +1,5 @@
 import { useEffect, useContext } from "react";
+import StarsIcon from "@mui/icons-material/Stars";
 import PropTypes from "prop-types";
 
 import {
@@ -51,9 +52,12 @@ export default function Nav({ openNav, onCloseNav }) {
       <Box sx={{ ml: 2 }}>
         <Typography variant="subtitle2">{state.user.displayName}</Typography>
 
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {`@${state.user.displayName?.toLowerCase()}`}
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <StarsIcon sx={{ color: "text.secondary", mr: 1 }} />
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            {(state.user.reputation || 0).toString().padStart(3, "0")}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
