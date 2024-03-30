@@ -14,8 +14,21 @@ import { Icons8Organization } from "../../assets/icons8";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PropTypes from "prop-types";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import ResourcesModal from "../modals/ResourcesModal";
+import { useState } from "react";
+
 
 const OrganizationsCard = ({ organization }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Card
       variant="outlined"
@@ -76,9 +89,14 @@ const OrganizationsCard = ({ organization }) => {
         >
           Visit
         </Button>
-        <Button onClick={""} variant="outlined" color="primary">
+        <Button onClick={handleOpen} variant="outlined" color="primary">
           Details
         </Button>
+        <ResourcesModal 
+          open={open}
+          handleClose={handleClose}
+          resourceDetails={organization}
+        />
       </CardActions>
     </Card>
   );
