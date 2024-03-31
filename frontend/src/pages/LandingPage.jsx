@@ -6,7 +6,6 @@ import NavBar from "../components/landingpage/NavBar";
 import Testimonials from "../components/landingpage/Testimonials";
 import Features from "../components/landingpage/Features";
 import Footer from "../components/landingpage/Footer";
-import Sponsors from "../components/landingpage/Sponsors";
 import "../css/LandingPage.css";
 
 /**
@@ -28,7 +27,6 @@ const LandingPage = () => {
             <Hero />
             <Features />
             <Testimonials />
-            <Sponsors />
           </div>
           <Footer />
         </>

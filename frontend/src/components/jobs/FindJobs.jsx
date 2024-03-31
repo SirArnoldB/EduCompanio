@@ -32,7 +32,10 @@ const FindJobs = () => {
 
   return (
     <>
-      <SearchBar onSearch={handleSearchInput} />
+      <SearchBar 
+        onSearch={handleSearchInput}
+        boardType="Job" 
+      />
       <FilterButtonGroup
         filters={[
           { value: "All", active: true },
