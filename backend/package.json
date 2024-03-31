@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": ">=16.x"
+  },
   "type": "module",
   "scripts": {
     "reset": "cd config && node --require dotenv/config reset.js",
