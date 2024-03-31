@@ -30,8 +30,8 @@ const MockAIInterviews = () => {
         AI technology. Practice behavioral, technical, and case interviews, and
         receive personalized feedback and analysis.
       </Typography>
-      <Button variant="contained" color="primary" onClick={handleOpenModal}>
-        Schedule Mock AI Interview
+      <Button variant="contained" color="info" onClick={handleOpenModal}>
+        New Mock AI Interview
       </Button>
       <ScheduleMockInterviewModal
         open={isModalOpen}

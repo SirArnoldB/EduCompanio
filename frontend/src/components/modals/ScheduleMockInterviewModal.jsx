@@ -29,7 +29,13 @@ const ScheduleMockInterviewModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleScheduleInterview(formData);
+    // Check if all fields are filled
+    if (!formData.interviewType || !formData.company || !formData.level) {
+      // Alert user to fill all fields
+      alert("Please fill all fields");
+    } else {
+      handleScheduleInterview(formData);
+    }
   };
 
   const companies = [

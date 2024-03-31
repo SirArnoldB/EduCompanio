@@ -13,23 +13,21 @@ import {
 import Iconify from "../common/Iconify";
 import Proptypes from "prop-types";
 
-const InterviewFilters = ({ onFiltersChange }) => {
+const InterviewFilters = ({ onFiltersChange, addNewEvent }) => {
   const [availability, setAvailability] = useState([]);
   const [interviewType, setInterviewType] = useState([]);
-  const [interviewRole, setInterviewRole] = useState([]);
+  const [peerRole, setPeerRole] = useState([]);
 
   const options = {
     availability: ["morning", "afternoon", "evening"],
     interviewType: ["technical", "behavioral", "case", "system design"],
-    interviewRole: ["interviewer/interviewee", "interviewer", "interviewee"],
+    peerRole: ["interviewer/interviewee", "interviewer", "interviewee"],
   };
 
   const handleChange = (event, setFilter, option) => {
     const {
       target: { value },
     } = event;
-
-    console.log("value", value);
 
     // Check if 'all' option or all the options for given filter are selected
     const allOptionSelected =
@@ -43,7 +41,7 @@ const InterviewFilters = ({ onFiltersChange }) => {
     onFiltersChange({
       availability: option === "availability" ? updatedValue : availability,
       interviewType: option === "interviewType" ? updatedValue : interviewType,
-      interviewRole: option === "interviewRole" ? updatedValue : interviewRole,
+      peerRole: option === "peerRole" ? updatedValue : peerRole,
     });
   };
 
@@ -118,27 +116,25 @@ const InterviewFilters = ({ onFiltersChange }) => {
               ))}
             </Select>
           </FormControl>
-          {/* Interview Role Select */}
+          {/* Peer Role Select */}
           <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="interview-role-label">Role</InputLabel>
+            <InputLabel id="peer-role-label">Peer Role</InputLabel>
             <Select
-              labelId="interview-role-label"
+              labelId="peer-role-label"
               multiple
-              value={interviewRole}
-              onChange={(event) =>
-                handleChange(event, setInterviewRole, "interviewRole")
-              }
+              value={peerRole}
+              onChange={(event) => handleChange(event, setPeerRole, "peerRole")}
               size="small"
-              label="Interview Role"
+              label="Peer Role"
               renderValue={renderValue}
             >
               <MenuItem value="all">
-                <Checkbox checked={interviewRole.indexOf("all") > -1} />
+                <Checkbox checked={peerRole.indexOf("all") > -1} />
                 <ListItemText primary="All" />
               </MenuItem>
-              {options.interviewRole.map((option) => (
+              {options.peerRole.map((option) => (
                 <MenuItem key={option} value={option}>
-                  <Checkbox checked={interviewRole.indexOf(option) > -1} />
+                  <Checkbox checked={peerRole.indexOf(option) > -1} />
                   <ListItemText primary={option} />
                 </MenuItem>
               ))}
@@ -151,6 +147,7 @@ const InterviewFilters = ({ onFiltersChange }) => {
           variant="contained"
           color="info"
           startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={addNewEvent}
         >
           Add Availability
         </Button>
@@ -161,6 +158,7 @@ const InterviewFilters = ({ onFiltersChange }) => {
 
 InterviewFilters.propTypes = {
   onFiltersChange: Proptypes.func.isRequired,
+  addNewEvent: Proptypes.func,
 };
 
 export default InterviewFilters;

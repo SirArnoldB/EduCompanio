@@ -4,12 +4,13 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import { BoardContext } from "../../contexts/BoardContext.jsx";
 
 const Hero = () => {
+  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(BoardContext);
 
   const handleSignUpClick = () => {
     dispatch({ type: "SET_LOADING", payload: true });
 
-    window.location.href = `${state.API_URL}/login`;
+    window.location.href = `/login`;
   };
 
   return (
