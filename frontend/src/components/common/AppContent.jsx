@@ -21,6 +21,7 @@ export const CommunitySpacePage = lazy(() =>
 export const InterviewPrepPage = lazy(() =>
   import("../../pages/InterviewPrepPage")
 );
+const MockInterviewPage = lazy(() => import("../../pages/MockInterviewPage"));
 
 const AppContent = () => {
   const routes = useRoutes([
@@ -50,6 +51,10 @@ const AppContent = () => {
         {
           path: "/interview-prep",
           element: <ProtectedRoute element={<InterviewPrepPage />} />,
+        },
+        {
+          path: "/mock-interview",
+          element: <ProtectedRoute element={<MockInterviewPage />} />,
         },
         {
           path: "/resources",
