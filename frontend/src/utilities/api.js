@@ -17,7 +17,7 @@ class ApiError extends Error {
  * @throws {ApiError} - If the API returns an error response.
  */
 const request = async (method, url, body = '', headers = {}) => {
-    const API_URL = "http://localhost:3000";
+    const API_URL = import.meta.env.PROD ? import.meta.env.VITE_API_URL_PROD : import.meta.env.VITE_API_URL_DEV;
     try {
         const config = {
             method,

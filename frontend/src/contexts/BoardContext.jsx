@@ -40,11 +40,6 @@ const initialState = {
     finance: [],
     health: [],
   },
-  API_URL:
-    // eslint-disable-next-line no-undef
-    process.env.NODE_ENV === "production"
-      ? "https://educompanio-prod-server.up.railway.app"
-      : "http://localhost:3000",
   loading: false,
   error: null,
   LOAD_USER_DATA: false,

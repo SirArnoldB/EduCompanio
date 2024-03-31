@@ -20,7 +20,7 @@ import tagsRouter from './routes/tags.js';
 // create express app
 const app = express();
 
-const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'productionURL' : 'http://localhost:5173'
+const CLIENT_URL = process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL : process.env.CLIENT_URL_DEV;
 
 // set up the cors middleware
 app.use(cors({
@@ -49,6 +49,15 @@ app.use('/api/finance-resources', financeResourcesRouter);
 app.use('/api/health-resources', healthResourcesRouter);
 app.use('/api/organizations', organizationsRouter);
 app.use('/api/skills', skillsRouter);
+
+// set up the error handler
+app.use((req, res, next) => {
+    if (res.statusCode === 404) {
+        res.status(404).json({ message: 'Resource not found' });
+    } else {
+        next();
+    }
+});
 
 // set up the port that the server will run on
 const PORT = process.env.PORT || 3000;
