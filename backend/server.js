@@ -20,7 +20,7 @@ import tagsRouter from './routes/tags.js';
 // create express app
 const app = express();
 
-const CLIENT_URL = process.env.NODE_ENV === 'production' ? 'productionURL' : 'http://localhost:5173'
+const CLIENT_URL = process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL : process.env.CLIENT_URL_DEV;
 
 // set up the cors middleware
 app.use(cors({
