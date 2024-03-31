@@ -1,78 +1,101 @@
 import {
-  Card,
-  CardContent,
-  CardActions,
-  Button,
-  Typography,
-  CardHeader,
-  Avatar,
-  Chip,
-  Modal,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
   Box,
+  Typography,
+  Button,
+  Chip,
 } from "@mui/material";
-import { Icons8Jobs } from "../../assets/icons8";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import PropTypes from "prop-types";
+import { styled } from "@mui/system";
+import { X as CloseIcon } from "lucide-react";
+import Proptypes from "prop-types";
+
+const StyledDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    paddingTop: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
+
+const StyledDialogTitle = styled(DialogTitle)({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
 
 const JobDetailsModal = ({ open, handleClose, jobDetails }) => {
   return (
-    <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="job-details-modal"
-        aria-describedby="job-details"
-    >
-        <Card
+    <StyledDialog onClose={handleClose} open={open} maxWidth="sm" fullWidth>
+      <StyledDialogTitle>
+        Job Details
+        <IconButton aria-label="close" onClick={handleClose} size="large">
+          <CloseIcon />
+        </IconButton>
+      </StyledDialogTitle>
+      <DialogContent dividers>
+        <Typography gutterBottom variant="h5" component="div">
+          {jobDetails.title}
+        </Typography>
+        <Typography variant="subtitle1" color="text.secondary">
+          Company: {jobDetails.company}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Location: {jobDetails.location}
+        </Typography>
+        <Box pt={2}>
+          <Typography variant="body1">{jobDetails.description}</Typography>
+        </Box>
+        <Box mt={2} sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+          <Chip label={jobDetails.tag} color="primary" variant="outlined" />
+          <Chip
+            label={`Deadline: ${jobDetails.deadline}`}
+            color="secondary"
+            variant="outlined"
+          />
+        </Box>
+      </DialogContent>
+      <Box
         sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 400,
-            bgcolor: 'background.paper',
-            boxShadow: 24,
-            p: 4
+          mt: 2,
+          display: "flex",
+          justifyContent: "flex-end",
+          p: 2,
+          gap: 2,
         }}
+      >
+        <Button variant="outlined" color="primary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button
+          variant="outlined"
+          href={jobDetails.link}
+          target="_blank"
+          startIcon={<OpenInNewIcon />}
         >
-        <CardHeader
-            avatar={<Avatar src={Icons8Jobs} aria-label="jobs" />}
-            title="Job Details"
-        />
-        <CardContent>
-            <Typography variant="h6" component="h2" gutterBottom>
-            {jobDetails.title}
-            </Typography>
-            <Typography variant="body2" component="div" gutterBottom>
-            {jobDetails.description}
-            </Typography>
-            <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-            <Chip label={`Application Deadline: ${jobDetails.deadline}`} />
-            </Box>
-        </CardContent>
-        <CardActions>
-            <Button onClick={handleClose}>Close</Button>
-            <Button
-            href={jobDetails.link}
-            target="_blank"
-            startIcon={<OpenInNewIcon />}
-            >
-            Apply
-            </Button>
-        </CardActions>
-        </Card>
-    </Modal>
+          Apply
+        </Button>
+      </Box>
+    </StyledDialog>
   );
 };
 
 JobDetailsModal.propTypes = {
-  jobDetails: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    deadline: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
+  open: Proptypes.bool.isRequired,
+  handleClose: Proptypes.func.isRequired,
+  jobDetails: Proptypes.shape({
+    title: Proptypes.string.isRequired,
+    company: Proptypes.string.isRequired,
+    location: Proptypes.string.isRequired,
+    description: Proptypes.string.isRequired,
+    tag: Proptypes.string.isRequired,
+    deadline: Proptypes.string.isRequired,
+    link: Proptypes.string.isRequired,
   }).isRequired,
-  handleClose: PropTypes.func.isRequired,
 };
 
 export default JobDetailsModal;
-
