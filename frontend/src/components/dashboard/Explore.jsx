@@ -11,9 +11,9 @@ const Explore = ({ title, subheader, ...other }) => {
           p: 3,
         }}
       >
-        <ExploreSection title="Jobs" />
-        <ExploreSection title="Projects" />
-        <ExploreSection title="Events" />
+        <ExploreSection title="Jobs" viewAllUrl={"/jobs"} />
+        <ExploreSection title="Projects" viewAllUrl={"/projects"} />
+        <ExploreSection title="Events" viewAllUrl={"/events"} />
       </Box>
     </Card>
   );
