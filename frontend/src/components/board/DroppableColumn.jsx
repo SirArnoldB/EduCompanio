@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
  * @param {Object} props - The props object.
  * @param {Object} props.column - The column object containing the column's name and items.
  * @param {string} props.columnId - The ID of the column.
- * @param {string} props.boardType - The type of board (e.g. "note", "internship", or "project".).
+ * @param {string} props.boardType - The type of board (e.g. "note", "job", or "project".).
  * @param {Function} props.handleViewModalOpen - A function to handle opening a modal to view an item.
  * @param {string} props.key - The key of the component.
  * @returns {JSX.Element} - The DroppableColumn component.

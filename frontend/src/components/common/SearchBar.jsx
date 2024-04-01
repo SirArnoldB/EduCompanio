@@ -82,7 +82,7 @@ const SearchBar = ({
 
 SearchBar.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  setAddModalOpen: PropTypes.func.isRequired,
+  setAddModalOpen: PropTypes.func,
   boardType: PropTypes.string.isRequired,
   showAddButton: PropTypes.bool,
 };

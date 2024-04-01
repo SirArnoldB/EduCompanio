@@ -1,15 +1,17 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
+import PeerInterviews from "./PeerInterviews";
+import MockAIInterviews from "./MockAIInterviews";
 
 const interviewPrepTabs = [
   {
     label: "Peer Interviews",
-    content: <Typography variant="h6">Peer Interviews</Typography>,
+    content: <PeerInterviews />,
     icon: "",
   },
   {
     label: "Mock AI Interviews",
-    content: <Typography variant="h6">Mock AI Interviews</Typography>,
+    content: <MockAIInterviews />,
     icon: "",
   },
 ];

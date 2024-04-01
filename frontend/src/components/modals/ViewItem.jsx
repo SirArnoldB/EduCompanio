@@ -37,9 +37,9 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
 
   useEffect(() => {
     switch (itemType) {
-      case "internship":
-        setStatuses(state.statuses.internships);
-        setCategories(state.categories.internships);
+      case "job":
+        setStatuses(state.statuses.jobs);
+        setCategories(state.categories.jobs);
         break;
       case "note":
         setStatuses(state.statuses.notes);
@@ -76,8 +76,8 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={itemType === "internship" ? item.position : item.title}
-        subheader={itemType === "internship" ? item.company : item.updated_at}
+        title={itemType === "job" ? item.position : item.title}
+        subheader={itemType === "job" ? item.company : item.updated_at}
       />
       <Menu
         id="simple-menu"
@@ -116,7 +116,7 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
           <Select
             labelId="status-select-label"
             id="status-select"
-            value={statuses.length > 0 ? item.status_id : ""}
+            value={statuses.length > 0 ? item.statusId : ""}
             label="Status"
             disabled
           >
@@ -132,7 +132,7 @@ const ViewItem = ({ item, itemType, onEdit, onDelete, onClose }) => {
           <Select
             labelId="category-select-label"
             id="category-select"
-            value={categories.length > 0 ? item.category_id : ""}
+            value={categories.length > 0 ? item.categoryId : ""}
             label="Category"
             disabled
           >

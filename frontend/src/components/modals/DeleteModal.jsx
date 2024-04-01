@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import PropTypes from "prop-types";
-import InternshipsAPI from "../../services/internships";
+import JobsAPI from "../../services/jobs";
 import NotesAPI from "../../services/notes";
 import ProjectsAPI from "../../services/projects";
 import { BoardContext } from "../../contexts/BoardContext";
@@ -24,17 +24,14 @@ const DeleteModal = ({ open, handleClose, item, itemType }) => {
     const accessToken = state.user.stsTokenManager.accessToken;
 
     switch (itemType) {
-      case "internship":
-        InternshipsAPI.deleteInternship(item.id, accessToken)
+      case "job":
+        JobsAPI.deleteJob(item.id, accessToken)
           .then((res) => {
-            dispatch({ type: "DELETE_INTERNSHIP", payload: res });
-            Notify("Internship deleted successfully", toast.TYPE.SUCCESS);
+            dispatch({ type: "DELETE_JOB", payload: res });
+            Notify("Job deleted successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            Notify(
-              `Internship deletion failed: ${err.message}`,
-              toast.TYPE.ERROR
-            );
+            Notify(`Job deletion failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       case "note":

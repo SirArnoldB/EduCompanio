@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Modal, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import AddItem from "./AddItem";
-import InternshipsAPI from "../../services/internships";
+import JobsAPI from "../../services/jobs";
 import NotesAPI from "../../services/notes";
 import ProjectsAPI from "../../services/projects";
 import { BoardContext } from "../../contexts/BoardContext";
@@ -25,17 +25,14 @@ const AddModal = ({ open, handleClose, itemType }) => {
     const accessToken = state.user.stsTokenManager.accessToken;
 
     switch (itemType) {
-      case "internship":
-        InternshipsAPI.createInternship(newItem, accessToken)
+      case "job":
+        JobsAPI.createJob(newItem, accessToken)
           .then((res) => {
-            dispatch({ type: "ADD_INTERNSHIP", payload: res });
-            Notify("Internship added successfully", toast.TYPE.SUCCESS);
+            dispatch({ type: "ADD_JOB", payload: res });
+            Notify("Job added successfully", toast.TYPE.SUCCESS);
           })
           .catch((err) => {
-            Notify(
-              `Internship addition failed: ${err.message}`,
-              toast.TYPE.ERROR
-            );
+            Notify(`Job addition failed: ${err.message}`, toast.TYPE.ERROR);
           });
         break;
       case "note":

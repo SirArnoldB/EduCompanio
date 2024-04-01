@@ -77,11 +77,11 @@ const AddProject = (state, payload) => {
         ...state.columns,
         projects: {
             ...state.columns.projects,
-            [payload.status_id]: {
-                ...state.columns.projects[payload.status_id],
+            [payload.statusId]: {
+                ...state.columns.projects[payload.statusId],
                 items: [
                     payload,
-                    ...state.columns.projects[payload.status_id].items,
+                    ...state.columns.projects[payload.statusId].items,
                 ],
             },
         },
@@ -102,16 +102,16 @@ const AddProject = (state, payload) => {
     };
 }
 
-const AddInternship = (state, payload) => {
+const AddJob = (state, payload) => {
     const newColumns = {
         ...state.columns,
-        internships: {
-            ...state.columns.internships,
-            [payload.status_id]: {
-                ...state.columns.internships[payload.status_id],
+        jobs: {
+            ...state.columns.jobs,
+            [payload.statusId]: {
+                ...state.columns.jobs[payload.statusId],
                 items: [
                     payload,
-                    ...state.columns.internships[payload.status_id].items,
+                    ...state.columns.jobs[payload.statusId].items,
                 ],
             },
         },
@@ -119,7 +119,7 @@ const AddInternship = (state, payload) => {
 
     const newCounts = {
         ...state.counts,
-        internships: state.counts.internships + 1,
+        jobs: state.counts.jobs + 1,
     };
 
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
@@ -138,11 +138,11 @@ const AddNote = (state, payload) => {
         ...state.columns,
         notes: {
             ...state.columns.notes,
-            [payload.status_id]: {
-                ...state.columns.notes[payload.status_id],
+            [payload.statusId]: {
+                ...state.columns.notes[payload.statusId],
                 items: [
                     payload,
-                    ...state.columns.notes[payload.status_id].items,
+                    ...state.columns.notes[payload.statusId].items,
                 ],
             },
         },
@@ -169,12 +169,12 @@ const DeleteProject = (state, payload) => {
         projects: {
             ...state.columns.projects,
             [
-                payload.status_id]: {
+                payload.statusId]: {
                 ...state.columns.projects[
-                payload.status_id],
+                payload.statusId],
                 items: state.columns.projects[
 
-                    payload.status_id
+                    payload.statusId
                 ].items.filter((project) => project.id !==
                     payload.id),
             },
@@ -196,23 +196,23 @@ const DeleteProject = (state, payload) => {
     };
 }
 
-const DeleteInternship = (state, payload) => {
+const DeleteJob = (state, payload) => {
     const newColumns = {
         ...state.columns,
-        internships: {
-            ...state.columns.internships,
-            [payload.status_id]: {
-                ...state.columns.internships[payload.status_id],
-                items: state.columns.internships[
-                    payload.status_id
-                ].items.filter((internship) => internship.id !== payload.id),
+        jobs: {
+            ...state.columns.jobs,
+            [payload.statusId]: {
+                ...state.columns.jobs[payload.statusId],
+                items: state.columns.jobs[
+                    payload.statusId
+                ].items.filter((job) => job.id !== payload.id),
             },
         },
     };
 
     const newCounts = {
         ...state.counts,
-        internships: state.counts.internships - 1 < 0 ? 0 : state.counts.internships - 1,
+        jobs: state.counts.jobs - 1 < 0 ? 0 : state.counts.jobs - 1,
     };
 
     sessionStorage.setItem("columns", JSON.stringify(newColumns));
@@ -231,11 +231,11 @@ const DeleteNote = (state, payload) => {
         notes: {
             ...state.columns.notes,
             [
-                payload.status_id]: {
+                payload.statusId]: {
                 ...state.columns.notes[
-                payload.status_id],
+                payload.statusId],
                 items: state.columns.notes[
-                    payload.status_id].items.filter(
+                    payload.statusId].items.filter(
                         (note) => note.id !==
                             payload.id
                     ),
@@ -259,14 +259,14 @@ const DeleteNote = (state, payload) => {
 }
 
 const UpdateProject = (state, payload) => {
-    const { original_status_id, updatedItem } = payload;
+    const { originalStatusId, updatedItem } = payload;
     const projects = state.columns.projects;
     const updatedProjectsInOriginalColumn = projects[
-        original_status_id
+        originalStatusId
     ].items.filter((project) => project.id !== updatedItem.id);
     const updatedProjectsInNewColumn = [
         payload.updatedItem,
-        ...projects[updatedItem.status_id].items.filter(
+        ...projects[updatedItem.statusId].items.filter(
             (project) => project.id !== updatedItem.id
         ),
     ];
@@ -275,13 +275,13 @@ const UpdateProject = (state, payload) => {
         ...state.columns,
         projects: {
             ...projects,
-            [updatedItem.status_id]: {
-                ...projects[updatedItem.status_id],
+            [updatedItem.statusId]: {
+                ...projects[updatedItem.statusId],
                 items: updatedProjectsInNewColumn,
             },
-            ...(original_status_id !== updatedItem.status_id && {
-                [original_status_id]: {
-                    ...projects[original_status_id],
+            ...(originalStatusId !== updatedItem.statusId && {
+                [originalStatusId]: {
+                    ...projects[originalStatusId],
                     items: updatedProjectsInOriginalColumn,
                 },
             }),
@@ -296,33 +296,33 @@ const UpdateProject = (state, payload) => {
     };
 }
 
-const UpdateInternship = (state, payload) => {
-    const { original_status_id, updatedItem } =
+const UpdateJob = (state, payload) => {
+    const { originalStatusId, updatedItem } =
         payload;
-    const internships = state.columns.internships;
-    const updatedInternshipsInOriginalColumn = internships[
-        original_status_id
-    ].items.filter((internship) => internship.id !== updatedItem.id);
-    const updatedInternshipsInNewColumn = [
+    const jobs = state.columns.jobs;
+    const updatedJobsInOriginalColumn = jobs[
+        originalStatusId
+    ].items.filter((job) => job.id !== updatedItem.id);
+    const updatedJobsInNewColumn = [
 
         payload.updatedItem,
-        ...internships[updatedItem.status_id].items.filter(
-            (internship) => internship.id !== updatedItem.id
+        ...jobs[updatedItem.statusId].items.filter(
+            (job) => job.id !== updatedItem.id
         ),
     ];
 
     const newColumns = {
         ...state.columns,
-        internships: {
-            ...internships,
-            [updatedItem.status_id]: {
-                ...internships[updatedItem.status_id],
-                items: updatedInternshipsInNewColumn,
+        jobs: {
+            ...jobs,
+            [updatedItem.statusId]: {
+                ...jobs[updatedItem.statusId],
+                items: updatedJobsInNewColumn,
             },
-            ...(original_status_id !== updatedItem.status_id && {
-                [original_status_id]: {
-                    ...internships[original_status_id],
-                    items: updatedInternshipsInOriginalColumn,
+            ...(originalStatusId !== updatedItem.statusId && {
+                [originalStatusId]: {
+                    ...jobs[originalStatusId],
+                    items: updatedJobsInOriginalColumn,
                 },
             }),
         },
@@ -336,18 +336,18 @@ const UpdateInternship = (state, payload) => {
 }
 
 const UpdateNote = (state, payload) => {
-    const { original_status_id, updatedItem } =
+    const { originalStatusId, updatedItem } =
         payload;
     const notes = state.columns.notes;
 
     const updatedNotesInOriginalColumn = notes[
-        original_status_id
+        originalStatusId
     ].items.filter((note) => note.id !== updatedItem.id);
 
     const updatedNotesInNewColumn = [
 
         payload.updatedItem,
-        ...notes[updatedItem.status_id].items.filter(
+        ...notes[updatedItem.statusId].items.filter(
             (note) => note.id !== updatedItem.id
         ),
     ];
@@ -356,13 +356,13 @@ const UpdateNote = (state, payload) => {
         ...state.columns,
         notes: {
             ...notes,
-            [updatedItem.status_id]: {
-                ...notes[updatedItem.status_id],
+            [updatedItem.statusId]: {
+                ...notes[updatedItem.statusId],
                 items: updatedNotesInNewColumn,
             },
-            ...(original_status_id !== updatedItem.status_id && {
-                [original_status_id]: {
-                    ...notes[original_status_id],
+            ...(originalStatusId !== updatedItem.statusId && {
+                [originalStatusId]: {
+                    ...notes[originalStatusId],
                     items: updatedNotesInOriginalColumn,
                 },
             }),
@@ -374,6 +374,15 @@ const UpdateNote = (state, payload) => {
     return {
         ...state,
         columns: newColumns,
+    };
+}
+
+const SetTags = (state, payload) => {
+    const newTags = { ...state.tags, ...payload };
+    sessionStorage.setItem("tags", JSON.stringify(newTags));
+    return {
+        ...state,
+        tags: newTags,
     };
 }
 
@@ -403,14 +412,15 @@ export {
     SetStatuses,
     SetCategories,
     AddProject,
-    AddInternship,
+    AddJob,
     AddNote,
     DeleteProject,
-    DeleteInternship,
+    DeleteJob,
     DeleteNote,
     UpdateProject,
-    UpdateInternship,
+    UpdateJob,
     UpdateNote,
     SetLoading,
     SetError,
+    SetTags,
 }

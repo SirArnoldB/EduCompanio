@@ -5,7 +5,11 @@ const PostCommentSection = ({ articleId }) => {
   return (
     <CommentSection
       articleId={articleId}
-      apiBaseUrl="http://localhost:3000"
+      apiBaseUrl={
+        import.meta.env.PROD
+          ? import.meta.env.VITE_API_URL_PROD
+          : import.meta.env.VITE_API_URL_DEV
+      }
       callbacks={{
         loginClickCallback: () => {
           console.log("Login button clicked");

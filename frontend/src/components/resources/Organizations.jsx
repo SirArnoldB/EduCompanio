@@ -11,7 +11,10 @@ const Organizations = () => {
   };
   return (
     <Container maxWidth="xl">
-      <SearchBar onSearch={handleSearchInput} />
+      <SearchBar 
+        onSearch={handleSearchInput}
+        boardType="organization"  
+      />
       <Box
         sx={{
           display: "grid",
