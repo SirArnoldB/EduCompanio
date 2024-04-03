@@ -46,8 +46,7 @@ const Features = () => {
             <Typography variant="body2" color="text.secondary">
               Provides a customizable Trello-like board for students to track
               their internship applications, along with their respective
-              statuses. Offers a curated list of websites for discovering
-              internship opportunities.
+              statuses. Offers a community jobs page to get recently posted internships.
             </Typography>
           </CardContent>
         </Card>
@@ -60,12 +59,11 @@ const Features = () => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Interview Prep
+              Resources
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              This feature provides resources that students can use to prepare
-              for interviews. It aims to make it easier for students across all
-              disciplines to find necessary resources quickly and efficiently.
+            Access a wealth of resources to support your personal and professional growth through EduCompanio's Resource Aggregation feature. 
+            Discover tips for managing your finances, guidance for maintaining mental health, and connections to valuable organizations and communities.
             </Typography>
           </CardContent>
         </Card>
@@ -112,7 +110,7 @@ const Features = () => {
               Skills Development
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Recommends websites and platforms for students to further develop
+              Recommends resources and platforms for students to further develop
               their skills beyond the classroom environment, enhancing their
               professional profile.
             </Typography>
@@ -127,12 +125,11 @@ const Features = () => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Career Roadmaps
+              Interview Prep
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              This feature provides career roadmaps for students. These roadmaps
-              give an overview of the skills and experiences needed to follow a
-              certain career path.
+              Elevate your interview skills with EduCompanio's innovative Interview Preparation feature. Our AI Coach chatbot conducts realistic mock interviews, providing personalized feedback to help you ace the real thing. 
+              Engage in peer-to-peer interviews to gain valuable insights and confidence.
             </Typography>
           </CardContent>
         </Card>
