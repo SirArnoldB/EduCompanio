@@ -1,143 +1,153 @@
-import { Card, CardMedia, CardContent, Typography, Stack } from "@mui/material";
-import {
-  CareerRoadmap,
-  Internship,
-  InterviewPrep,
-  Notes,
-  Projects,
-  SkillsDevelopment,
-} from "../../assets";
+import { Typography, Box, Container, Paper, Grid, Button } from "@mui/material";
+import { useContext } from "react";
+import { BoardContext } from "../../contexts/BoardContext";
+
+const eduCompanioFeatures = [
+  {
+    title: "Personalized Career Roadmap",
+    description:
+      "The EduCompanio Assistant, our AI-powered virtual mentor, provides personalized guidance and recommendations to help you navigate your academic and professional journey.",
+  },
+  {
+    title: "Internship and Job Tracking",
+    description:
+      "Stay on top of your internship and job applications with our dedicated tracking tools, and explore a community-driven job board for exclusive student-shared opportunities.",
+  },
+  {
+    title: "Interview Preparation",
+    description:
+      "Enhance your interview skills through peer-to-peer mock interviews and AI-powered virtual interviews, designed to provide realistic practice and personalized feedback.",
+  },
+  {
+    title: "Skill Development and Projects",
+    description:
+      "Track your personal projects and participate in community-driven open-source projects to build real-world skills and collaborate with other students.",
+  },
+  {
+    title: "Centralized Note-Taking",
+    description:
+      "Organize your academic and career-related notes in one place, ensuring you have quick access to important information when you need it.",
+  },
+  {
+    title: "Curated Resources and Community",
+    description:
+      "Explore a wide range of resources shared by students, covering topics like organization, skills, health, and finance, and engage with your peers in dedicated discussion spaces.",
+  },
+];
 
 const Features = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(BoardContext);
+
+  const handleGetStarted = () => {
+    dispatch({ type: "SET_LOADING", payload: true });
+
+    window.location.href = `/login`;
+  };
+
   return (
-    <Stack
-      direction="column"
-      spacing={2}
+    <Box
       id="features"
-      style={{ paddingBottom: "35px" }}
+      sx={{
+        width: "100%",
+        py: { xs: 6, md: 8, lg: 12 },
+      }}
     >
-      <Typography
-        variant="h2"
-        style={{ margin: "12 auto", textAlign: "center" }}
-      >
-        Features
-      </Typography>
-      <Stack
-        direction="row"
-        spacing={2}
+      <Container
         sx={{
-          margin: "20px 40px",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignContent: "center",
+          spacing: 12,
+          px: { xs: 4, md: 6 },
         }}
       >
-        <Card style={{ width: 360, marginTop: "30px" }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={Internship}
-            alt="Internships"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Internships
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Provides a customizable Trello-like board for students to track
-              their internship applications, along with their respective
-              statuses. Offers a curated list of websites for discovering
-              internship opportunities.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card style={{ width: 360, marginTop: "30px" }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={InterviewPrep}
-            alt="Interview Prep"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Interview Prep
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              This feature provides resources that students can use to prepare
-              for interviews. It aims to make it easier for students across all
-              disciplines to find necessary resources quickly and efficiently.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card style={{ width: 360, marginTop: "30px" }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={Projects}
-            alt="Projects"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Projects
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Provides a curated list of websites for discovering hackathons and
-              open-source projects, catering to students interested in honing
-              their technical skills.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card style={{ width: 360, marginTop: "30px", marginLeft: "0px" }}>
-          <CardMedia component="img" height="140" image={Notes} alt="Notes" />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Notes
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Allows students to journal about their experiences and take notes,
-              ensuring all valuable information is stored in one accessible
-              location.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card style={{ width: 360, marginTop: "30px" }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={SkillsDevelopment}
-            alt="Skills Development"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Skills Development
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Recommends websites and platforms for students to further develop
-              their skills beyond the classroom environment, enhancing their
-              professional profile.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card style={{ width: 360, marginTop: "30px" }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={CareerRoadmap}
-            alt="Career Roadmaps"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Career Roadmaps
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              This feature provides career roadmaps for students. These roadmaps
-              give an overview of the skills and experiences needed to follow a
-              certain career path.
-            </Typography>
-          </CardContent>
-        </Card>
-      </Stack>
-    </Stack>
+        <Box
+          sx={{
+            pl: { xs: 0, sm: 4 },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "start",
+          }}
+        >
+          <Paper
+            component="div"
+            sx={{
+              borderRadius: "lg",
+              bgcolor: "grey.10",
+              px: 3,
+              py: 1,
+            }}
+          >
+            EduCompanio Features
+          </Paper>
+          <Typography
+            variant="h2"
+            sx={{ fontWeight: "bold", letterSpacing: "tighter" }}
+          >
+            Streamlining Your Academic and Professional Journey
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              maxWidth: 900,
+              color: (theme) => theme.palette.text.secondary,
+              fontSize: { md: "xl", lg: "base", xl: "xl" },
+              lineHeight: "relaxed",
+            }}
+          >
+            EduCompanio offers a comprehensive platform to help students manage
+            their academic and professional development, from organizing their
+            notes and projects to preparing for interviews and exploring job
+            opportunities.
+          </Typography>
+        </Box>
+        <Grid
+          container
+          mx="auto"
+          items="start"
+          gap={8}
+          sx={{
+            my: 4,
+          }}
+        >
+          {eduCompanioFeatures.map((feature, index) => (
+            <Grid item xs={12} sm key={index}>
+              <Box
+                sx={{
+                  gap: 1,
+                }}
+              >
+                <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+                  {feature.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  {feature.description}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            onClick={() => handleGetStarted()}
+            color="info"
+            variant="contained"
+            sx={{
+              flexGrow: 0.25,
+              boxShadow: 1,
+            }}
+          >
+            Get Started
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
