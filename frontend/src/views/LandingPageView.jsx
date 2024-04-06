@@ -7,10 +7,13 @@ import Footer from "../components/landingpage/Footer";
 import LandingPageAppBar from "../components/landingpage/LandingPageAppBar";
 import MissionSection from "../components/landingpage/MissionSection";
 import ContactUsSection from "../components/landingpage/ContactUsSection";
+import { Box } from "@mui/material";
 
 /**
- * Renders the landing page with NavBar, Hero, Features, Testimonials, Sponsors and Footer components.
- * @returns {JSX.Element} LandingPage component
+ * Renders the landing page view.
+ *
+ * @component
+ * @returns {JSX.Element} The landing page view.
  */
 const LandingPageView = () => {
   const [state] = useContext(BoardContext);
@@ -21,14 +24,14 @@ const LandingPageView = () => {
       {loading ? (
         <LoadingSpinner label="your account ..." />
       ) : (
-        <>
+        <Box>
           <LandingPageAppBar />
           <Hero />
           <Features />
           <MissionSection />
           <ContactUsSection />
           <Footer />
-        </>
+        </Box>
       )}
     </>
   );
