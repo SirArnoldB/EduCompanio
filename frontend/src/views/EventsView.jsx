@@ -2,7 +2,7 @@ import { Container, Typography } from "@mui/material";
 import EventsTabs from "../components/events/Eventstabs";
 
 /**
- * Renders a view for displaying notes.
+ * Renders a view for displaying events.
  * @returns {JSX.Element}
  */
 const EventsView = () => {

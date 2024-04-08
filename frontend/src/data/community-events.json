@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Community Event 1",
+    "date": "2022-10-01",
+    "time": "10:00 AM",
+    "tag": "in-person",
+    "location": "Community Center",
+    "description": "Join us for a fun-filled day of activities and networking!",
+    "interest_deadline": "2022-09-25",
+    "contact": "community@example.com",
+    "interested": 50
+  },
+  {
+    "title": "Community Event 2",
+    "date": "2022-10-15",
+    "time": "2:00 PM",
+    "tag": "in-person",
+    "location": "Park",
+    "description": "Come and enjoy outdoor games and food with the community!",
+    "interest_deadline": "2022-10-10",
+    "contact": "community@example.com",
+    "interested": 30
+  },
+  {
+    "title": "Community Event 3",
+    "date": "2022-11-05",
+    "time": "6:00 PM",
+    "tag": "campus",
+    "location": "Community Hall",
+    "description": "Learn about sustainable living and eco-friendly practices.",
+    "interest_deadline": "2022-10-30",
+    "contact": "community@example.com",
+    "interested": 20
+  },
+  {
+    "title": "Community Event 4",
+    "date": "2022-11-20",
+    "time": "11:00 AM",
+    "location": "Library",
+    "tag": "campus",
+    "description": "Book reading and storytelling session for kids.",
+    "interest_deadline": "2022-11-15",
+    "contact": "community@example.com",
+    "interested": 40
+  },
+  {
+    "title": "Community Event 5",
+    "date": "2022-12-10",
+    "time": "3:00 PM",
+    "location": "Sports Complex",
+    "tag": "campus",
+    "description": "Sports tournament for all age groups.",
+    "interest_deadline": "2022-12-05",
+    "contact": "community@example.com",
+    "interested": 60
+  },
+  {
+    "title": "Community Event 6",
+    "date": "2023-01-07",
+    "time": "7:00 PM",
+    "location": "Community Center",
+    "tag": "in-person",
+    "description": "New Year celebration with music and dance performances.",
+    "interest_deadline": "2022-12-31",
+    "contact": "community@example.com",
+    "interested": 25
+  },
+  {
+    "title": "Community Event 7",
+    "date": "2023-02-12",
+    "time": "12:00 PM",
+    "location": "Park",
+    "tag": "in-person",
+    "description": "Valentine's Day picnic with games and live music.",
+    "interest_deadline": "2023-02-07",
+    "contact": "community@example.com",
+    "interested": 35
+  },
+  {
+    "title": "Community Event 8",
+    "date": "2023-03-18",
+    "time": "4:00 PM",
+    "location": "Community Hall",
+    "tag": "virtual",
+    "description": "Art exhibition showcasing local talent.",
+    "interest_deadline": "2023-03-13",
+    "contact": "community@example.com",
+    "interested": 15
+  },
+  {
+    "title": "Community Event 9",
+    "date": "2023-04-22",
+    "time": "9:00 AM",
+    "location": "Library",
+    "tag": "in-person",
+    "description": "Workshop on coding and programming for beginners.",
+    "interest_deadline": "2023-04-17",
+    "contact": "community@example.com",
+    "interested": 50
+  },
+  {
+    "title": "Community Event 10",
+    "date": "2023-05-15",
+    "time": "1:00 PM",
+    "location": "Sports Complex",
+    "tag": "in-person",
+    "description": "Fitness boot camp for all fitness levels.",
+    "interest_deadline": "2023-05-10",
+    "contact": "community@example.com",
+    "interested": 30
+  }
+]

@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
 import Board from "../board/Board";
 import FindJobs from "./FindJobs";
@@ -6,7 +6,7 @@ import FindJobs from "./FindJobs";
 const jobsTabs = [
   {
     label: "My Applications",
-    content: <Board boardType="internship" />,
+    content: <Board boardType="job" />,
     icon: "",
   },
   {

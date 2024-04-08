@@ -1,19 +1,33 @@
-import { useState } from "react";
-import { Box, Button, ButtonGroup } from "@mui/material";
-import "../../css/Skills.css";
+import { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import CommunityProjectsData from "../../data/community-projects.json";
 import CommunityProjectsCard from "./CommunityProjectsCard";
 import SearchBar from "../common/SearchBar";
+import FilterButtonGroup from "../common/FilterButtonGroup";
 
 const CommunityProjects = () => {
-  const [filter, setFilter] = useState("All");
+  const [projects, setProjects] = useState(CommunityProjectsData);
+  const [searchInput, setSearchInput] = useState("");
+  const [currentFilter, setCurrentFilter] = useState("All");
 
-  const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
-  };
+  useEffect(() => {
+    const filteredProjects = CommunityProjectsData.filter((project) => {
+      if (currentFilter === "All") {
+        return project;
+      } else {
+        return project.tags.includes(currentFilter.toLowerCase());
+      }
+    });
+
+    setProjects(
+      filteredProjects.filter((project) =>
+        project.title.toLowerCase().includes(searchInput.toLowerCase())
+      )
+    );
+  }, [searchInput, currentFilter]);
 
   const handleSearch = (searchInput) => {
-    console.log(searchInput);
+    setSearchInput(searchInput);
   };
 
   const handleAdd = () => {
@@ -27,36 +41,15 @@ const CommunityProjects = () => {
         setAddModalOpen={handleAdd}
         boardType="project"
       />
-      <ButtonGroup
-        sx={{
-          padding: "10px",
-        }}
-      >
-        <Button
-          className={filter === "All" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("All")}
-        >
-          All
-        </Button>
-        <Button
-          className={filter === "beginner" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("beginner")}
-        >
-          Beginner
-        </Button>
-        <Button
-          className={filter === "expert" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("expert")}
-        >
-          Intermediate
-        </Button>
-        <Button
-          className={filter === "intermediate" ? "activeBtn" : ""}
-          onClick={() => handleFilterChange("intermediate")}
-        >
-          Expert
-        </Button>
-      </ButtonGroup>
+      <FilterButtonGroup
+        filters={[
+          { value: "All", active: true },
+          { value: "Beginner", active: false },
+          { value: "Intermediate", active: false },
+          { value: "Expert", active: false },
+        ]}
+        setCurrentFilter={setCurrentFilter}
+      />
       <Box
         sx={{
           display: "grid",
@@ -65,7 +58,7 @@ const CommunityProjects = () => {
           mt: 2,
         }}
       >
-        {CommunityProjectsData.map((project, index) => (
+        {projects.map((project, index) => (
           <CommunityProjectsCard key={index} project={project} />
         ))}
       </Box>

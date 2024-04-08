@@ -5,7 +5,12 @@
         "interest_deadline": "2023-02-15",
         "interested": 12,
         "contact": "johnson@college.edu",
-        "likes": 23
+        "likes": 23,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Peer Tutoring Program",
@@ -13,7 +18,11 @@
         "interest_deadline": "2023-03-30",
         "interested": 8,
         "contact": "tutoringclub@college.edu",
-        "likes": 15
+        "likes": 15,
+        "tags": [
+            "beginner",
+            "intermediate"
+        ]
     },
     {
         "title": "Coding Workshops",
@@ -21,7 +30,10 @@
         "interest_deadline": "2023-04-01",
         "interested": 6,
         "contact": "learncode@college.edu",
-        "likes": 10
+        "likes": 10,
+        "tags": [
+            "beginner"
+        ]
     },
     {
         "title": "Community Garden",
@@ -29,7 +41,11 @@
         "interest_deadline": "2023-02-28",
         "interested": 10,
         "contact": "gardenclub@college.edu",
-        "likes": 20
+        "likes": 20,
+        "tags": [
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Student-Athlete Mentoring",
@@ -37,7 +53,12 @@
         "interest_deadline": "2023-04-15",
         "interested": 10,
         "contact": "mentors@college.edu",
-        "likes": 12
+        "likes": 12,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Homelessness Outreach",
@@ -45,7 +66,12 @@
         "interest_deadline": "2023-02-15",
         "interested": 15,
         "contact": "outreach@college.edu",
-        "likes": 29
+        "likes": 29,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "STEM Education Outreach",
@@ -53,7 +79,11 @@
         "interest_deadline": "2023-03-15",
         "interested": 8,
         "contact": "stemeducation@college.edu",
-        "likes": 17
+        "likes": 17,
+        "tags": [
+            "beginner",
+            "intermediate"
+        ]
     },
     {
         "title": "Student Film Festival",
@@ -61,7 +91,12 @@
         "interest_deadline": "2023-04-30",
         "interested": 12,
         "contact": "filmfestival@college.edu",
-        "likes": 21
+        "likes": 21,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Mental Health Awareness",
@@ -69,7 +104,12 @@
         "interest_deadline": "2023-02-15",
         "interested": 11,
         "contact": "mha@college.edu",
-        "likes": 19
+        "likes": 19,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Blood Drive",
@@ -77,7 +117,12 @@
         "interest_deadline": "2023-03-15",
         "interested": 9,
         "contact": "blooddrive@college.edu",
-        "likes": 16
+        "likes": 16,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Cultural Exchange Events",
@@ -85,7 +130,12 @@
         "interest_deadline": "2023-08-30",
         "interested": 7,
         "contact": "culture@college.edu",
-        "likes": 13
+        "likes": 13,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Student Newspaper",
@@ -93,7 +143,12 @@
         "interest_deadline": "2023-05-15",
         "interested": 5,
         "contact": "newspaper@college.edu",
-        "likes": 8
+        "likes": 8,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Study Abroad Ambassador Program",
@@ -101,7 +156,12 @@
         "interest_deadline": "2023-02-15",
         "interested": 4,
         "contact": "abroad@college.edu",
-        "likes": 10
+        "likes": 10,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Career Mentor Network",
@@ -109,7 +169,12 @@
         "interest_deadline": "2023-03-15",
         "interested": 11,
         "contact": "mentors@college.edu",
-        "likes": 15
+        "likes": 15,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     },
     {
         "title": "Student Feedback Forum",
@@ -117,6 +182,11 @@
         "interest_deadline": "2023-04-15",
         "interested": 9,
         "contact": "feedback@college.edu",
-        "likes": 12
+        "likes": 12,
+        "tags": [
+            "beginner",
+            "intermediate",
+            "advanced"
+        ]
     }
 ]

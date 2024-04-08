@@ -6,7 +6,7 @@ import SearchBar from "../common/SearchBar";
 import DroppableColumn from "./DroppableColumn";
 import Modals from "../modals/Modals";
 import LoadingSpinner from "../common/LoadingSpinner";
-import InternshipsAPI from "../../services/internships";
+import JobsAPI from "../../services/jobs";
 import NotesAPI from "../../services/notes";
 import ProjectsAPI from "../../services/projects";
 import { BoardContext } from "../../contexts/BoardContext";
@@ -16,7 +16,7 @@ import Notify from "../Toast/Notify";
 /**
  * A component that displays a board with draggable and droppable columns and items.
  * @param {Object} props - The props object.
- * @param {string} props.boardType - The type of board to display (note, internship, or project).
+ * @param {string} props.boardType - The type of board to display (note, job, or project).
  * @returns {JSX.Element} - The Board component.
  */
 const Board = ({ boardType }) => {
@@ -32,8 +32,8 @@ const Board = ({ boardType }) => {
 
   useEffect(() => {
     switch (boardType) {
-      case "internship":
-        setBoardColumns(state.columns.internships);
+      case "job":
+        setBoardColumns(state.columns.jobs);
         break;
       case "note":
         setBoardColumns(state.columns.notes);
@@ -97,31 +97,27 @@ const Board = ({ boardType }) => {
       const accessToken = state.user.stsTokenManager.accessToken;
 
       switch (boardType) {
-        case "internship":
-          InternshipsAPI.updateInternship(
+        case "job":
+          JobsAPI.updateJob(
             itemId,
             {
               ...item,
-              status_id: statusId,
-              updated_at: new Date(),
+              statusId: statusId,
             },
             accessToken
           )
             .then((res) => {
               dispatch({
-                type: "UPDATE_INTERNSHIP",
+                type: "UPDATE_JOB",
                 payload: {
                   updatedItem: res,
-                  original_status_id: source.droppableId,
+                  originalStatusId: source.droppableId,
                 },
               });
-              Notify("Internship moved successfully", toast.TYPE.SUCCESS);
+              Notify("Job moved successfully", toast.TYPE.SUCCESS);
             })
             .catch((err) => {
-              Notify(
-                `Internship move failed: ${err.message}`,
-                toast.TYPE.ERROR
-              );
+              Notify(`Job move failed: ${err.message}`, toast.TYPE.ERROR);
             });
           break;
         case "note":
@@ -129,8 +125,7 @@ const Board = ({ boardType }) => {
             itemId,
             {
               ...item,
-              status_id: statusId,
-              updated_at: new Date(),
+              statusId: statusId,
             },
             accessToken
           )
@@ -139,7 +134,7 @@ const Board = ({ boardType }) => {
                 type: "UPDATE_NOTE",
                 payload: {
                   updatedItem: res,
-                  original_status_id: source.droppableId,
+                  originalStatusId: source.droppableId,
                 },
               });
               Notify("Note moved successfully", toast.TYPE.SUCCESS);
@@ -153,8 +148,7 @@ const Board = ({ boardType }) => {
             itemId,
             {
               ...item,
-              status_id: statusId,
-              updated_at: new Date(),
+              statusId: statusId,
             },
             accessToken
           )
@@ -163,7 +157,7 @@ const Board = ({ boardType }) => {
                 type: "UPDATE_PROJECT",
                 payload: {
                   updatedItem: res,
-                  original_status_id: source.droppableId,
+                  originalStatusId: source.droppableId,
                 },
               });
               Notify("Project moved successfully", toast.TYPE.SUCCESS);

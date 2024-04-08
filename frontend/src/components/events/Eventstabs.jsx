@@ -1,15 +1,17 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
+import CommunityEvents from "./CommunityEvents";
+import MyEvents from "./MyEvents";
 
 const eventsTabs = [
   {
     label: "My Events",
-    content: <Typography variant="h6">My Events</Typography>,
+    content: <MyEvents />,
     icon: "",
   },
   {
     label: "Community Events",
-    content: <Typography variant="h6">Community Events</Typography>,
+    content: <CommunityEvents />,
     icon: "",
   },
 ];

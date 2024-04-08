@@ -20,23 +20,29 @@ import { BoardContext } from "../../contexts/BoardContext";
 const BoardItem = ({ item, itemType }) => {
   const [state] = useContext(BoardContext);
 
-  const getItemCategory = (category_id) => {
+  const getItemCategory = (categoryId) => {
+    let category = null;
     switch (itemType) {
-      case "internship":
-        return state.categories.internships.find(
-          (category) => category.id === category_id
-        ).category;
+      case "job":
+        category = state.categories.jobs.find(
+          (category) => category.id === categoryId
+        );
+        break;
       case "project":
-        return state.categories.projects.find(
-          (category) => category.id === category_id
-        ).category;
+        category = state.categories.projects.find(
+          (category) => category.id === categoryId
+        );
+        break;
       case "note":
-        return state.categories.notes.find(
-          (category) => category.id === category_id
-        ).category;
+        category = state.categories.notes.find(
+          (category) => category.id === categoryId
+        );
+        break;
       default:
         return "";
     }
+    // Check if the category was found before accessing its 'category' property
+    return category ? category.category : "";
   };
 
   const truncateContent = (content, wordLimit) => {
@@ -56,7 +62,7 @@ const BoardItem = ({ item, itemType }) => {
           color: "#f5f5f5",
         }}
       >
-        {itemType === "internship" ? (
+        {itemType === "job" ? (
           <CardHeader title={item.position} subheader={item.company} />
         ) : (
           <CardHeader title={item.title} subheader={item.category} />
@@ -80,7 +86,7 @@ const BoardItem = ({ item, itemType }) => {
               backgroundColor: "#f5f5f5",
               color: "#000000",
             }}
-            label={`Category: ${getItemCategory(item.category_id)}`}
+            label={`Category: ${getItemCategory(item.categoryId)}`}
           />
           <Chip
             sx={{

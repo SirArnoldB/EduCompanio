@@ -1,249 +1,242 @@
-import { pool } from "./database.js";
 import './dotenv.js';
-import notesData from '../data/notes.json' assert { type: "json" };
-import internshipsData from '../data/internships.json' assert { type: "json" };
-import projectsData from '../data/projects.json' assert { type: "json" };
+import { app } from "../firebase/admin.js";
 
+// Database Connection
+const db = app.firestore();
 
-// ------------------- Categories and Statuses Tables -------------------
+// ------------------- Categories and Statuses Collections -------------------
+const noteCategories = [
+    { category: 'Idea' },
+    { category: 'Reminder' },
+    { category: 'Meeting' },
+    { category: 'Research' },
+    { category: 'Summary' },
+    { category: 'Reference' }
+];
 
+const noteStatuses = [
+    { status: 'Draft' },
+    { status: 'Final' },
+    { status: 'Archived' },
+    { status: 'Important' }
+];
 
-// Create and seed Note Categories Table
-const createAndSeedNoteCategoriesTable = async () => {
-    const categories = ['Idea', 'Reminder', 'Meeting', 'Research', 'Summary', 'Reference'];
-    const query = `
-    DROP TABLE IF EXISTS note_categories;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+const jobCategories = [
+    { category: 'Paid' },
+    { category: 'Unpaid' },
+    { category: 'For-credit' },
+    { category: 'Not-for-credit' },
+    { category: 'Summer' },
+    { category: 'Quarterly' },
+    { category: 'Semester' },
+    { category: 'Year' },
+    { category: 'Holiday' },
+    { category: 'Co-op' },
+    { category: 'Rotation' },
+    { category: 'Externship' },
+    { category: 'Service Learning' }
+];
 
-    CREATE TABLE IF NOT EXISTS note_categories (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        category VARCHAR(50) NOT NULL
-    );
-    INSERT INTO note_categories (category) VALUES ${categories.map(category => `('${category}')`).join(',')};
-    `
+const jobStatuses = [
+    { status: 'Applied' },
+    { status: 'Screen' },
+    { status: 'Interviewing' },
+    { status: 'Offer' },
+    { status: 'Rejected' }
+];
+
+const projectCategories = [
+    { category: 'Personal' },
+    { category: 'Academic' },
+    { category: 'Professional' },
+    { category: 'Freelance' }
+];
+
+const projectStatuses = [
+    { status: 'Idea' },
+    { status: 'Planning' },
+    { status: 'In Progress' },
+    { status: 'Completed' },
+    { status: 'On Hold' },
+    { status: 'Canceled' }
+];
+
+const resetCategoriesAndStatuses = async (collectionName, data) => {
     try {
-        await pool.query(query);
-        console.log("🚀 Note Categories Table is successfully created and seeded");
+        const collectionRef = db.collection(collectionName);
+        const batch = db.batch();
+
+        // Check if the collection exists
+        const collectionSnapshot = await collectionRef.get();
+
+        if (collectionSnapshot.empty) {
+            // If the collection doesn't exist, add new documents
+            for (const doc of data) {
+                const newDocRef = await collectionRef.add(doc);
+                batch.update(newDocRef, { id: newDocRef.id });
+                console.log(`Document added with ID: ${newDocRef.id}`);
+            }
+            await batch.commit();
+            console.log(`🚀 ${collectionName} collection is successfully created`);
+        } else {
+            // If the collection exists, delete all existing documents
+            collectionSnapshot.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+
+            // Add new documents to the collection
+            for (const doc of data) {
+                const newDocRef = await collectionRef.add(doc);
+                batch.update(newDocRef, { id: newDocRef.id });
+                console.log(`Document added with ID: ${newDocRef.id}`);
+            }
+            await batch.commit();
+            console.log(`🚀 ${collectionName} collection is successfully reset`);
+        }
     } catch (err) {
-        console.log(`⛔️ Error seeding notes categories data: ${err}`);
+        console.log(`⛔️ Error updating ${collectionName} collection: ${err}`);
     }
-}
+};
 
-// Create and seed Note Statuses Table
-const createAndSeedNoteStatusesTable = async () => {
-    const statuses = ['Draft', 'Final', 'Archived', 'Important'];
-    const query = `
-    DROP TABLE IF EXISTS note_statuses;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+// ------------------- Tags Collections -------------------
+const organizationTags = [
+    { tag: 'Education' },
+    { tag: 'Technology' },
+    { tag: 'Diversity' },
+    { tag: 'Community' },
+    { tag: 'Women in Tech' },
+    { tag: 'Student-led' },
+    { tag: 'Entrepreneurship' },
+    { tag: 'Social Impact' },
+    { tag: 'Leadership' },
+    { tag: 'Networking' }
+];
 
-    CREATE TABLE IF NOT EXISTS note_statuses (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        status VARCHAR(50) NOT NULL
-    );
-    INSERT INTO note_statuses (status) VALUES ${statuses.map(status => `('${status}')`).join(',')};
-    `
+const skillTags = [
+    { tag: 'beginner' },
+    { tag: 'game-based learning' },
+    { tag: 'computer science' },
+    { tag: 'digital marketing' },
+    { tag: 'analytics' },
+    { tag: 'bootcamps' },
+    { tag: 'mentorship' },
+    { tag: 'job placement' },
+    { tag: 'career services' }
+];
+
+const communityJobTags = [
+    { tag: 'internship' },
+    { tag: 'volunteer' },
+    { tag: 'part time' },
+    { tag: 'full time' }
+];
+
+const communityProjectTags = [
+    { tag: 'beginner' },
+    { tag: 'intermediate' },
+    { tag: 'advanced' }
+];
+
+const healthTags = [
+    { tag: 'mental health' },
+    { tag: 'physical health' },
+    { tag: 'nutrition' },
+    { tag: 'exercise' },
+    { tag: 'wellness' },
+    { tag: 'stress management' },
+    { tag: 'counseling' },
+    { tag: 'yoga' },
+    { tag: 'meditation' },
+    { tag: 'fitness' }
+];
+
+const financeTags = [
+    { tag: 'budgeting' },
+    { tag: 'financial aid' },
+    { tag: 'scholarships' },
+    { tag: 'loans' },
+    { tag: 'personal finance' },
+    { tag: 'investment' },
+    { tag: 'tax planning' },
+    { tag: 'credit management' },
+    { tag: 'financial literacy' },
+    { tag: 'money management' }
+];
+
+const resetTags = async (collectionName, data) => {
     try {
-        await pool.query(query);
-        console.log("🚀 Note Statuses Table is successfully created and seeded");
+        const collectionRef = db.collection(collectionName);
+        const batch = db.batch();
+
+        // Check if the collection exists
+        const collectionSnapshot = await collectionRef.get();
+        if (collectionSnapshot.empty) {
+            // If the collection doesn't exist, add new documents
+            for (const doc of data) {
+                const newDocRef = await collectionRef.add(doc);
+                batch.update(newDocRef, { id: newDocRef.id });
+                console.log(`Document added with ID: ${newDocRef.id}`);
+            }
+            await batch.commit();
+            console.log(`🚀 ${collectionName} collection is successfully created`);
+        } else {
+            // If the collection exists, delete all existing documents
+            collectionSnapshot.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+            // Add new documents to the collection
+            for (const doc of data) {
+                const newDocRef = await collectionRef.add(doc);
+                batch.update(newDocRef, { id: newDocRef.id });
+                console.log(`Document added with ID: ${newDocRef.id}`);
+            }
+            await batch.commit();
+            console.log(`🚀 ${collectionName} collection is successfully reset`);
+        }
     } catch (err) {
-        console.log(`⛔️ Error seeding notes statuses data: ${err}`);
+        console.log(`⛔️ Error updating ${collectionName} collection: ${err}`);
     }
-}
+};
 
-// Create and seed Internship Categories Table
-const createAndSeedInternshipCategoriesTable = async () => {
-    const categories = ['Paid', 'Unpaid', 'For-credit', 'Not-for-credit', 'Summer', 'Quarterly', 'Semester', 'Year', 'Holiday', 'Co-op', 'Rotation', 'Externship', 'Service Learning'];
-    const query = `
-    DROP TABLE IF EXISTS internship_categories;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+// ------------------- Other Collections -------------------
 
-    CREATE TABLE IF NOT EXISTS internship_categories (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        category VARCHAR(50) NOT NULL
-    );
-    INSERT INTO internship_categories (category) VALUES ${categories.map(category => `('${category}')`).join(',')};
-    `
+const resetCollections = async () => {
     try {
-        await pool.query(query);
-        console.log("🚀 Internship Categories Table is successfully created and seeded");
+        // Create collections if they don't exist
+        await db.collection('organizations').doc().set({});
+        await db.collection('skills').doc().set({});
+        await db.collection('health').doc().set({});
+        await db.collection('finance').doc().set({});
+        await db.collection('jobs').doc().set({});
+        await db.collection('communityJobs').doc().set({});
+        await db.collection('notes').doc().set({});
+        await db.collection('resources').doc().set({});
+        await db.collection('tags').doc().set({});
+        await db.collection('projects').doc().set({});
+        await db.collection('communityProjects').doc().set({});
+
+        console.log("🚀 Collections are successfully created");
     } catch (err) {
-        console.log(`⛔️ Error seeding internship categories data: ${err}`);
+        console.log(`⛔️ Error resetting collections: ${err}`);
     }
-}
-
-// Create and seed Internship Statuses Table
-const createAndSeedInternshipStatusesTable = async () => {
-    const statuses = ['Applied', 'Screen', 'Interviewing', 'Offer', 'Rejected'];
-    const query = `
-    DROP TABLE IF EXISTS internship_statuses;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-    CREATE TABLE IF NOT EXISTS internship_statuses (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        status VARCHAR(50) NOT NULL
-    );
-    INSERT INTO internship_statuses (status) VALUES ${statuses.map(status => `('${status}')`).join(',')};
-    `
-    try {
-        await pool.query(query);
-        console.log("🚀 Internship Statuses Table is successfully created and seeded");
-    } catch (err) {
-        console.log(`⛔️ Error seeding internship statuses data: ${err}`);
-    }
-}
-
-// Create and seed Project Categories Table
-const createAndSeedProjectCategoriesTable = async () => {
-    const categories = ['Personal', 'Academic', 'Professional', 'Freelance'];
-    const query = `
-    DROP TABLE IF EXISTS project_categories;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-    CREATE TABLE IF NOT EXISTS project_categories (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        category VARCHAR(50) NOT NULL
-    );
-    INSERT INTO project_categories (category) VALUES ${categories.map(category => `('${category}')`).join(',')};
-    `
-    try {
-        await pool.query(query);
-        console.log("🚀 Project Categories Table is successfully created and seeded");
-    } catch (err) {
-        console.log(`⛔️ Error seeding project categories data: ${err}`);
-    }
-}
-
-// Create and seed Project Statuses Table
-const createAndSeedProjectStatusesTable = async () => {
-    const statuses = ['Idea', 'Planning', 'In Progress', 'Completed', 'On Hold', 'Canceled'];
-    const query = `
-    DROP TABLE IF EXISTS project_statuses;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-    CREATE TABLE IF NOT EXISTS project_statuses (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        status VARCHAR(50) NOT NULL
-    );
-    INSERT INTO project_statuses (status) VALUES ${statuses.map(status => `('${status}')`).join(',')};
-    `
-    try {
-        await pool.query(query);
-        console.log("🚀 Project Statuses Table is successfully created and seeded");
-    } catch (err) {
-        console.log(`⛔️ Error seeding project statuses data: ${err}`);
-    }
-}
-
-
-// ------------------- Notes, Internships, and Projects Tables -------------------
-
-// ------------------- Notes Table ------------------- 
-
-// Create Notes Table
-const createNotesTable = async () => {
-    const CreateNotesTable = `
-    DROP TABLE IF EXISTS notes;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-    CREATE TABLE IF NOT EXISTS notes (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        user_id VARCHAR(500) NOT NULL,
-        title VARCHAR(500) NOT NULL,
-        content VARCHAR(1000) NOT NULL,
-        category_id uuid NOT NULL,
-        status_id uuid NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW(),
-        FOREIGN KEY (category_id) REFERENCES note_categories (id),
-        FOREIGN KEY (status_id) REFERENCES note_statuses (id)
-    );
-`
-    try {
-        const res = await pool.query(CreateNotesTable);
-        console.log("🚀 Notes Table is successfully created");
-    } catch (err) {
-        console.log(`⛔️ Error creating notes table: ${err}`);
-    }
-
-}
-
-// ------------------- Internships Table -------------------
-
-// Create Internships Table
-const createInternshipsTable = async () => {
-    const CreateInternshipsTable = `
-    DROP TABLE IF EXISTS internships;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-    CREATE TABLE IF NOT EXISTS internships (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        user_id VARCHAR(500) NOT NULL,
-        company VARCHAR(500) NOT NULL,
-        position VARCHAR(500) NOT NULL,
-        content VARCHAR(1000) NOT NULL,
-        url VARCHAR(500) NOT NULL,
-        category_id uuid NOT NULL,
-        status_id uuid NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW(),
-        FOREIGN KEY (category_id) REFERENCES internship_categories (id),
-        FOREIGN KEY (status_id) REFERENCES internship_statuses (id)
-    );
-`
-    try {
-        const res = await pool.query(CreateInternshipsTable);
-        console.log("🚀 Internships Table is successfully created");
-    } catch (err) {
-        console.log(`⛔️ Error creating internships table: ${err}`);
-    }
-
-}
-
-
-// ------------------- Projects Table -------------------
-
-// Create Projects Table
-const createProjectsTable = async () => {
-    const CreateProjectsTable = `
-    DROP TABLE IF EXISTS projects;
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-    
-    CREATE TABLE IF NOT EXISTS projects (
-        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-        user_id VARCHAR(500) NOT NULL,
-        title VARCHAR(500) NOT NULL,
-        content VARCHAR(1000) NOT NULL,
-        url VARCHAR(500) NOT NULL,
-        category_id uuid NOT NULL,
-        status_id uuid NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW(),
-        FOREIGN KEY (category_id) REFERENCES project_categories (id),
-        FOREIGN KEY (status_id) REFERENCES project_statuses (id)
-    );
-`
-    try {
-        const res = await pool.query(CreateProjectsTable)
-        console.log("🚀 Projects Table is successfully created");
-    } catch (err) {
-        console.log(`⛔️ Error creating projects table: ${err}`);
-    }
-
-}
+};
 
 
 // ------------------- Run All Functions -------------------
-
 const runAllFunctions = async () => {
-    await createAndSeedNoteCategoriesTable();
-    await createAndSeedNoteStatusesTable();
-    await createAndSeedInternshipCategoriesTable();
-    await createAndSeedInternshipStatusesTable();
-    await createAndSeedProjectCategoriesTable();
-    await createAndSeedProjectStatusesTable();
-    await createNotesTable();
-    await createInternshipsTable();
-    await createProjectsTable();
-}
+    await resetCategoriesAndStatuses('noteCategories', noteCategories);
+    await resetCategoriesAndStatuses('noteStatuses', noteStatuses);
+    await resetCategoriesAndStatuses('jobCategories', jobCategories);
+    await resetCategoriesAndStatuses('jobStatuses', jobStatuses);
+    await resetCategoriesAndStatuses('projectCategories', projectCategories);
+    await resetCategoriesAndStatuses('projectStatuses', projectStatuses);
+    await resetTags('organizationTags', organizationTags);
+    await resetTags('skillTags', skillTags);
+    await resetTags('communityJobTags', communityJobTags);
+    await resetTags('communityProjectTags', communityProjectTags);
+    await resetTags('healthTags', healthTags);
+    await resetTags('financeTags', financeTags);
+    await resetCollections();
+};
 
 runAllFunctions();

@@ -11,10 +11,17 @@ export const NotesPage = lazy(() => import("../../pages/NotesPage"));
 export const ProjectsPage = lazy(() => import("../../pages/ProjectsPage"));
 export const ProfilePage = lazy(() => import("../../pages/ProfilePage"));
 export const ResourcesPage = lazy(() => import("../../pages/ResourcesPage"));
-export const WellnessPage = lazy(() => import("../../pages/WellnessPage"));
 export const EventsPage = lazy(() => import("../../pages/EventsPage"));
 export const LoginPage = lazy(() => import("../../pages/LoginPage"));
 export const SettingsPage = lazy(() => import("../../pages/SettingsPage"));
+export const SpacesPage = lazy(() => import("../../pages/SpacesPage"));
+export const CommunitySpacePage = lazy(() =>
+  import("../../pages/CommunitySpacePage")
+);
+export const InterviewPrepPage = lazy(() =>
+  import("../../pages/InterviewPrepPage")
+);
+const MockInterviewPage = lazy(() => import("../../pages/MockInterviewPage"));
 
 const AppContent = () => {
   const routes = useRoutes([
@@ -42,16 +49,42 @@ const AppContent = () => {
           element: <ProtectedRoute element={<ProjectsPage />} />,
         },
         {
+          path: "/interview-prep",
+          element: <ProtectedRoute element={<InterviewPrepPage />} />,
+        },
+        {
+          path: "/mock-interview",
+          element: <ProtectedRoute element={<MockInterviewPage />} />,
+        },
+        {
           path: "/resources",
           element: <ProtectedRoute element={<ResourcesPage />} />,
         },
         {
-          path: "/wellness",
-          element: <ProtectedRoute element={<WellnessPage />} />,
-        },
-        {
           path: "/events",
           element: <ProtectedRoute element={<EventsPage />} />,
+        },
+        {
+          path: "/spaces",
+          children: [
+            {
+              path: "",
+              element: <ProtectedRoute element={<SpacesPage />} />,
+              index: true,
+            },
+            {
+              path: ":spaceId",
+              element: (
+                <ProtectedRoute
+                  element={
+                    <Suspense fallback={<LoadingSpinner />}>
+                      <CommunitySpacePage />
+                    </Suspense>
+                  }
+                />
+              ),
+            },
+          ],
         },
         {
           path: "/profile",
