@@ -1,0 +1,362 @@
+[
+    {
+        "title": "Mint",
+        "description": "A personal finance app that helps college students track their spending, create budgets, and manage their money.",
+        "url": "https://www.mint.com/",
+        "tags": [
+            "budgeting",
+            "spending",
+            "savings",
+            "money management",
+            "mobile app"
+        ]
+    },
+    {
+        "title": "Khan Academy - Personal Finance",
+        "description": "Free online courses and tutorials on personal finance topics, including budgeting, investing, credit, and taxes, designed for college students.",
+        "url": "https://www.khanacademy.org/economics-finance-domain/core-finance",
+        "tags": [
+            "personal finance",
+            "education",
+            "budgeting",
+            "investing",
+            "credit"
+        ]
+    },
+    {
+        "title": "Nerd Wallet",
+        "description": "A personal finance website that provides college students with resources and tools to manage their money, including credit cards, loans, and insurance.",
+        "url": "https://www.nerdwallet.com/",
+        "tags": [
+            "money management",
+            "credit",
+            "loans",
+            "insurance",
+            "comparison"
+        ]
+    },
+    {
+        "title": "Goodbudget",
+        "description": "A budgeting app that uses the envelope budgeting method to help college students track their expenses and save money.",
+        "url": "https://www.goodbudget.com/",
+        "tags": [
+            "budgeting",
+            "savings",
+            "money management",
+            "envelope method",
+            "mobile app"
+        ]
+    },
+    {
+        "title": "Student Loan Hero",
+        "description": "A website that provides college students with resources and tools to manage their student loans, including repayment options and debt consolidation.",
+        "url": "https://studentloanhero.com/",
+        "tags": [
+            "student loans",
+            "debt management",
+            "repayment",
+            "consolidation",
+            "education"
+        ]
+    },
+    {
+        "title": "Investopedia",
+        "description": "A financial education website that offers college students a wealth of information and resources on investing, personal finance, and financial markets.",
+        "url": "https://www.investopedia.com/",
+        "tags": [
+            "investing",
+            "personal finance",
+            "financial markets",
+            "education",
+            "research"
+        ]
+    },
+    {
+        "title": "Federal Student Aid",
+        "description": "The official website of the U.S. Department of Education's office that provides information and resources on federal student aid, including loans, grants, and scholarships.",
+        "url": "https://studentaid.gov/",
+        "tags": [
+            "student loans",
+            "grants",
+            "scholarships",
+            "financial aid",
+            "education"
+        ]
+    },
+    {
+        "title": "Credit Karma",
+        "description": "A free personal finance platform that helps college students monitor their credit scores, understand their credit reports, and improve their financial health.",
+        "url": "https://www.creditkarma.com/",
+        "tags": [
+            "credit score",
+            "credit report",
+            "credit monitoring",
+            "financial health",
+            "education"
+        ]
+    },
+    {
+        "title": "Debt.com",
+        "description": "A comprehensive resource for college students on managing and eliminating debt, including student loans, credit cards, and other financial obligations.",
+        "url": "https://www.debt.com/",
+        "tags": [
+            "debt management",
+            "student loans",
+            "credit cards",
+            "financial education",
+            "tools"
+        ]
+    },
+    {
+        "title": "Acorns",
+        "description": "A micro-investing app that helps college students save and invest small amounts of money automatically, promoting a habit of regular saving and investing.",
+        "url": "https://www.acorns.com/",
+        "tags": [
+            "investing",
+            "savings",
+            "micro-investing",
+            "automatic transfers",
+            "mobile app"
+        ]
+    },
+    {
+        "title": "CFPB - Consumer Financial Protection Bureau",
+        "description": "A government agency that provides college students with resources and tools to help them make informed financial decisions, including budgeting, credit, and student loans.",
+        "url": "https://www.consumerfinance.gov/",
+        "tags": [
+            "financial education",
+            "consumer protection",
+            "student loans",
+            "credit",
+            "budgeting"
+        ]
+    },
+    {
+        "title": "Budgeting for College Students",
+        "description": "A comprehensive guide from the American Institute of CPAs (AICPA) on creating and managing a budget as a college student, including tips on saving, spending, and avoiding debt.",
+        "url": "https://www.360financialliteracy.org/Topics/College-and-Young-Adults/Budgeting-for-College-Students",
+        "tags": [
+            "budgeting",
+            "savings",
+            "spending",
+            "debt management",
+            "financial education"
+        ]
+    },
+    {
+        "title": "Unbury.me",
+        "description": "A debt repayment calculator and tool that helps college students develop a plan to pay off their student loans and other debts more efficiently.",
+        "url": "https://unbury.me/",
+        "tags": [
+            "student loans",
+            "debt repayment",
+            "debt management",
+            "calculators",
+            "financial planning"
+        ]
+    },
+    {
+        "title": "Turbo Tax",
+        "description": "A tax preparation software that offers college students easy-to-use tools and resources to file their tax returns, claim deductions, and maximize their refunds.",
+        "url": "https://turbotax.intuit.com/",
+        "tags": [
+            "taxes",
+            "tax filing",
+            "deductions",
+            "refunds",
+            "personal finance"
+        ]
+    },
+    {
+        "title": "Scholarships.com",
+        "description": "A comprehensive website that helps college students find and apply for scholarships, grants, and other financial aid opportunities to fund their education.",
+        "url": "https://www.scholarships.com/",
+        "tags": [
+            "scholarships",
+            "grants",
+            "financial aid",
+            "college funding",
+            "education"
+        ]
+    },
+    {
+        "title": "Edvisors",
+        "description": "A website that provides college students and their families with information and resources on student loans, financial aid, and college planning.",
+        "url": "https://www.edvisors.com/",
+        "tags": [
+            "student loans",
+            "financial aid",
+            "college planning",
+            "education financing",
+            "resources"
+        ]
+    },
+    {
+        "title": "Gen Z Money",
+        "description": "A personal finance website and community specifically designed to help Generation Z (college-aged) individuals manage their money, build wealth, and achieve financial independence.",
+        "url": "https://genzmoneymatters.com/",
+        "tags": [
+            "personal finance",
+            "wealth building",
+            "financial literacy",
+            "generational finance",
+            "community"
+        ]
+    },
+    {
+        "title": "EVERFI",
+        "description": "A digital learning platform that offers college students interactive courses and resources on financial education, including budgeting, credit, and student loans.",
+        "url": "https://everfi.com/",
+        "tags": [
+            "financial education",
+            "budgeting",
+            "credit",
+            "student loans",
+            "digital learning"
+        ]
+    },
+    {
+        "title": "Grad Money Matters",
+        "description": "A website that provides graduate students with information and resources on financial topics specific to their stage of life, such as managing student debt, budgeting, and career planning.",
+        "url": "https://gradmoneymatters.com/",
+        "tags": [
+            "graduate students",
+            "student loans",
+            "budgeting",
+            "career planning",
+            "financial education"
+        ]
+    },
+    {
+        "title": "CFPB Students",
+        "description": "A section of the Consumer Financial Protection Bureau's website dedicated to providing college students with information and tools to help them make informed financial decisions.",
+        "url": "https://www.consumerfinance.gov/students/",
+        "tags": [
+            "financial education",
+            "consumer protection",
+            "student loans",
+            "credit",
+            "budgeting"
+        ]
+    },
+    {
+        "title": "Student Loan Genius",
+        "description": "A platform that helps college students and graduates manage and optimize their student loan repayment, including refinancing and consolidation options.",
+        "url": "https://www.studentloangenius.com/",
+        "tags": [
+            "student loans",
+            "debt management",
+            "refinancing",
+            "consolidation",
+            "repayment"
+        ]
+    },
+    {
+        "title": "Personal Finance for College Students",
+        "description": "A comprehensive guide from the University of Illinois Extension that covers a wide range of personal finance topics for college students, including budgeting, credit, and retirement planning.",
+        "url": "https://extension.illinois.edu/financialwellness/personal-finance-college-students",
+        "tags": [
+            "personal finance",
+            "budgeting",
+            "credit",
+            "retirement planning",
+            "financial education"
+        ]
+    },
+    {
+        "title": "Fidelity Investments - College Students",
+        "description": "A section of the Fidelity Investments website dedicated to providing college students with resources and tools to help them manage their money, invest, and plan for the future.",
+        "url": "https://www.fidelity.com/college-planning/overview",
+        "tags": [
+            "investing",
+            "financial planning",
+            "retirement",
+            "budgeting",
+            "money management"
+        ]
+    },
+    {
+        "title": "Payoff",
+        "description": "A financial technology company that offers college students a mobile app and resources to help them pay off debt, improve their credit, and achieve their financial goals.",
+        "url": "https://www.payoff.com/",
+        "tags": [
+            "debt management",
+            "credit improvement",
+            "financial goals",
+            "mobile app",
+            "personal finance"
+        ]
+    },
+    {
+        "title": "Stash",
+        "description": "A mobile investment app that makes it easy for college students to start investing small amounts of money, with educational resources to help them learn about investing.",
+        "url": "https://www.stash.com/",
+        "tags": [
+            "investing",
+            "micro-investing",
+            "financial education",
+            "mobile app",
+            "personal finance"
+        ]
+    },
+    {
+        "title": "Student Loan Planner",
+        "description": "A website that provides college students and graduates with personalized advice and tools to help them optimize their student loan repayment strategy.",
+        "url": "https://www.studentloanplanner.com/",
+        "tags": [
+            "student loans",
+            "debt management",
+            "repayment strategies",
+            "financial planning",
+            "personalized advice"
+        ]
+    },
+    {
+        "title": "Budgeting for College Students",
+        "description": "A guide from the Federal Trade Commission that offers college students practical tips and advice on creating and sticking to a budget, managing credit, and avoiding financial pitfalls.",
+        "url": "https://www.consumer.ftc.gov/articles/0241-budgeting-college-students",
+        "tags": [
+            "budgeting",
+            "credit management",
+            "financial education",
+            "consumer protection",
+            "money management"
+        ]
+    },
+    {
+        "title": "Kiplinger",
+        "description": "A financial media company that provides college students with articles, tools, and resources on a wide range of personal finance topics, including investing, saving, and tax planning.",
+        "url": "https://www.kiplinger.com/",
+        "tags": [
+            "personal finance",
+            "investing",
+            "saving",
+            "tax planning",
+            "financial education"
+        ]
+    },
+    {
+        "title": "Mint Bills",
+        "description": "A mobile app from Mint that helps college students manage their bills and payments, track their spending, and stay on top of their financial obligations.",
+        "url": "https://www.mint.com/products/bills",
+        "tags": [
+            "bill management",
+            "payment tracking",
+            "spending management",
+            "mobile app",
+            "personal finance"
+        ]
+    },
+    {
+        "title": "Payback",
+        "description": "A financial literacy program from the Lumina Foundation that provides college students with interactive tools, resources, and education to help them make informed decisions about paying for college, managing student loans, and achieving financial success.",
+        "url": "https://www.paybacktoday.org/",
+        "tags": [
+            "financial literacy",
+            "student loans",
+            "college financing",
+            "money management",
+            "education"
+        ]
+    }
+]
