@@ -5,7 +5,7 @@ import { PanelGroup, Panel } from "react-resizable-panels";
 import ResizeHandle from "./ResizeHandle";
 
 import styles from "../../css/panel.module.css";
-import AIChat from "../interview-prep/AIChat";
+import AIChat from "../pitch/AIChat";
 
 const InteractivePanelGroup = () => {
   const [panelSizes, setPanelSizes] = useState([20, 50, 30]);

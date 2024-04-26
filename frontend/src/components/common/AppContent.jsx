@@ -18,9 +18,7 @@ export const SpacesPage = lazy(() => import("../../pages/SpacesPage"));
 export const CommunitySpacePage = lazy(() =>
   import("../../pages/CommunitySpacePage")
 );
-export const InterviewPrepPage = lazy(() =>
-  import("../../pages/InterviewPrepPage")
-);
+export const PitchPage = lazy(() => import("../../pages/PitchPage"));
 const MockInterviewPage = lazy(() => import("../../pages/MockInterviewPage"));
 
 const AppContent = () => {
@@ -49,8 +47,8 @@ const AppContent = () => {
           element: <ProtectedRoute element={<ProjectsPage />} />,
         },
         {
-          path: "/interview-prep",
-          element: <ProtectedRoute element={<InterviewPrepPage />} />,
+          path: "/pitch",
+          element: <ProtectedRoute element={<PitchPage />} />,
         },
         {
           path: "/mock-interview",

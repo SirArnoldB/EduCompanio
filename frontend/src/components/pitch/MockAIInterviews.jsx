@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import ScheduleMockInterviewModal from "../modals/ScheduleMockInterviewModal";
+import ScheduleMockInterviewModal from "../modals/ScheduleMockAIInterviewModal";
 
 const MockAIInterviews = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
