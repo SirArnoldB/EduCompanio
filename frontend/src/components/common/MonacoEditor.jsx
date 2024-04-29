@@ -152,7 +152,7 @@ const MonacoEditor = () => {
           ))}
         </select>
       </Box>
-      <Editor height="90vh" language={language} theme={theme} value={code} />
+      <Editor height="85vh" language={language} theme={theme} value={code} />
     </>
   );
 };

@@ -6,10 +6,8 @@ import {
   DialogTitle,
   DialogActions,
 } from "@mui/material";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { styled } from "@mui/system";
 import PropTypes from "prop-types";
-import RouterLink from "../common/RouterLink";
 import { X as CloseIcon } from "lucide-react";
 import InterviewCalendar from "../pitch/InterviewCaledar";
 
@@ -50,15 +48,6 @@ const ScheduleMockInterviewModal = ({ open, handleClose }) => {
         <Button variant="outlined" onClick={handleClose}>
           Cancel
         </Button>
-        <RouterLink href="/mock-interview">
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<OpenInNewIcon />}
-          >
-            Start
-          </Button>
-        </RouterLink>
       </DialogActions>
     </StyledDialog>
   );

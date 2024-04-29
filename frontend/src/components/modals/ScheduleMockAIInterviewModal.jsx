@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Select,
@@ -10,6 +10,8 @@ import {
   Dialog,
   DialogTitle,
   DialogActions,
+  TextField,
+  CircularProgress,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import PropTypes from "prop-types";
@@ -17,39 +19,45 @@ import { X as CloseIcon } from "lucide-react";
 import { BoardContext } from "../../contexts/BoardContext";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+import InterviewsAPI from "../../services/interviews";
 
 const ScheduleMockAIInterviewModal = ({ open, handleClose }) => {
-  const [, dispatch] = useContext(BoardContext);
+  const [state, dispatch] = useContext(BoardContext);
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    dispatch({ type: "START_MOCK_AI_INTERVIEW", payload: data });
-    dispatch({ type: "SET_LOADING_MOCK_AI_INTERVIEW", payload: true });
-    navigate("/mock-interview");
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+    try {
+      const accessToken = state.user.stsTokenManager.accessToken;
+      const response = await InterviewsAPI.createMockAIInterview(
+        data,
+        accessToken
+      );
+      dispatch({ type: "SET_MOCK_AI_INTERVIEW_QUESTION", payload: response });
+      navigate(`/mock-interview/${response.id}`);
+    } catch (error) {
+      console.error("Error creating mock AI interview:", error);
+      // Handle error state or show error message
+    } finally {
+      setLoading(false);
+    }
+
+    handleClose();
   };
 
   const formFields = [
     {
       name: "interviewType",
       label: "Interview Type",
-      options: ["Behavioral", "Case", "System Design", "Technical"],
-    },
-    {
-      name: "company",
-      label: "Company",
-      options: ["Google", "Amazon", "Facebook", "Microsoft", "Apple", "Other"],
+      options: ["Behavioral", "Case", "Technical"],
     },
     {
       name: "level",
       label: "Level",
-      options: [
-        "Freshman",
-        "Sophomore",
-        "SWE",
-        "Junior",
-        "Entry Level/New Grad",
-      ],
+      options: ["Freshman", "Sophomore", "Junior", "Senior"],
     },
   ];
 
@@ -100,12 +108,46 @@ const ScheduleMockAIInterviewModal = ({ open, handleClose }) => {
       <DialogContent dividers>
         <form onSubmit={handleSubmit(onSubmit)}>
           {formFields.map(renderFormField)}
+          <Controller
+            name="company"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Company (Optional)"
+                variant="filled"
+                fullWidth
+                margin="normal"
+              />
+            )}
+          />
+          <Controller
+            name="role"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Role (Optional)"
+                variant="filled"
+                fullWidth
+                margin="normal"
+              />
+            )}
+          />
           <DialogActions>
-            <Button variant="outlined" onClick={handleClose}>
+            <Button variant="outlined" onClick={handleClose} disabled={loading}>
               Cancel
             </Button>
-            <Button variant="outlined" color="primary" type="submit">
-              Start
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={loading}
+              startIcon={loading && <CircularProgress size={20} />}
+            >
+              {loading ? "Starting..." : "Start"}
             </Button>
           </DialogActions>
         </form>

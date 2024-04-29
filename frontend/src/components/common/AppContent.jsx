@@ -51,7 +51,7 @@ const AppContent = () => {
           element: <ProtectedRoute element={<PitchPage />} />,
         },
         {
-          path: "/mock-interview",
+          path: "/mock-interview/:interviewId",
           element: <ProtectedRoute element={<MockInterviewPage />} />,
         },
         {
