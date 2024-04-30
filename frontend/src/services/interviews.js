@@ -3,6 +3,7 @@ import request from "../utilities/api";
 const interviewsUrl = "/api/interviews";
 
 const createMockAIInterview = (formData, token) => request("POST", `${interviewsUrl}/mock-ai-interview`, formData, { Authorization: `Bearer ${token}` });
+const conductInterview = (interviewDetails, token) => request("POST", `${interviewsUrl}/mock-ai-interview/conduct`, interviewDetails, { Authorization: `Bearer ${token}` });
 const scheduleMockInterview = (formData) => request("POST", `${interviewsUrl}/mock-interview`, formData);
 const getPastPracticeSessions = () => request("GET", `${interviewsUrl}/past-practice-sessions`);
 const getMockAIInterviews = () => request("GET", `${interviewsUrl}/mock-ai-interviews`);
@@ -15,6 +16,7 @@ export default {
     getPastPracticeSessions,
     getMockAIInterviews,
     getMockInterviews,
-    getMockAiInterview
+    getMockAiInterview,
+    conductInterview
 };
 

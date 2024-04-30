@@ -7,24 +7,6 @@ async function generateInterviewQuestion(interviewType, company, level) {
         const model = googleGenerativeAI.getGenerativeModel({
             model: process.env.GEMINI_PRO_LATEST,
             systemInstructions: getSystemInstructionsByInterviewType(interviewType),
-            safetySettings: [
-                {
-                    "category": "HARM_CATEGORY_HARASSMENT",
-                    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-                },
-                {
-                    "category": "HARM_CATEGORY_HATE_SPEECH",
-                    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-                },
-                {
-                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-                },
-                {
-                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-                },
-            ]
         });
 
         const prompt = getPromptByInterviewType(interviewType, company, level);

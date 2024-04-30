@@ -13,6 +13,7 @@ const InteractivePanelGroup = () => {
   const [state] = useContext(BoardContext);
   const [panelSizes, setPanelSizes] = useState([20, 50, 30]);
   const [tabValue, setTabValue] = useState(0);
+  const [editorValue, setEditorValue] = useState("");
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -20,25 +21,6 @@ const InteractivePanelGroup = () => {
 
   const handlePanelResize = (newSizes) => {
     setPanelSizes(newSizes);
-  };
-
-  const formatQuestion = (question) => {
-    const renderValue = (value) => {
-      return <Typography>{value}</Typography>;
-    };
-
-    return (
-      <Box sx={{ m: 2 }}>
-        {Object.entries(question).map(([key, value], index) => (
-          <Box key={index} mt={2}>
-            <Typography variant="subtitle1" gutterBottom>
-              {key.charAt(0).toUpperCase() + key.slice(1)}:
-            </Typography>
-            {renderValue(value)}
-          </Box>
-        ))}
-      </Box>
-    );
   };
 
   return (
@@ -59,7 +41,10 @@ const InteractivePanelGroup = () => {
       <ResizeHandle />
       <Panel className={styles.Panel} size={panelSizes[1]} minSize={30}>
         <Box className={styles.PanelContent}>
-          <MonacoEditor className={styles.PanelContent} />
+          <MonacoEditor
+            className={styles.PanelContent}
+            setEditorValue={setEditorValue}
+          />
         </Box>
       </Panel>
       <ResizeHandle />
@@ -69,7 +54,7 @@ const InteractivePanelGroup = () => {
             <Tab label="Chat" />
             <Tab label="Evaluation" />
           </Tabs>
-          {tabValue === 0 && <InterviewChat />}
+          {tabValue === 0 && <InterviewChat editorValue={editorValue} />}
           {tabValue === 1 && (
             <Typography>See your evaluation and feedback here</Typography>
           )}

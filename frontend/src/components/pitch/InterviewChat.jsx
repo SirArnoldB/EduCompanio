@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   MainContainer,
   ChatContainer,
@@ -13,18 +13,45 @@ import {
   InfoButton,
 } from "@chatscope/chat-ui-kit-react";
 import { MicOff as MicOffIcon } from "lucide-react";
-import { Avatar, Box } from "@mui/material";
+import { Avatar, Box, CircularProgress } from "@mui/material";
 import { BoardContext } from "../../contexts/BoardContext";
+import InterviewsAPI from "../../services/interviews";
+import PropTypes from "prop-types";
 
 // eslint-disable-next-line no-unused-vars
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 
-const InterviewChat = () => {
+const InterviewChat = ({ editorValue }) => {
   const [state] = useContext(BoardContext);
-  const [messages, setMessages] = React.useState([]);
-  const [messageInput, setMessageInput] = React.useState("");
-  const [isRecording, setIsRecording] = React.useState(false);
-  const [isTyping, setIsTyping] = React.useState(false);
+  const [messages, setMessages] = useState([]);
+  const [messageInput, setMessageInput] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      try {
+        setIsLoading(true);
+        const chatHistory = state.interviewQuestion.chatHistory;
+        if (chatHistory && chatHistory.conversation) {
+          const formattedMessages = chatHistory.conversation.map((message) => ({
+            role: message.role,
+            content: message.parts[0].text,
+          }));
+          setMessages(formattedMessages);
+        } else {
+          setMessages([]);
+        }
+      } catch (error) {
+        console.error("Error loading chat history:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchChatHistory();
+  }, [state.interviewQuestion]);
 
   let typingTimer;
 
@@ -37,17 +64,36 @@ const InterviewChat = () => {
     }, 5000);
   };
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (messageInput.trim() === "") return;
-    const newMessage = {
-      message: messageInput,
-      sentTime: "just now",
-      sender: "User",
-      direction: "outgoing",
-      position: "single",
+
+    const userMessage = {
+      role: "user",
+      content: messageInput,
     };
-    setMessages([...messages, newMessage]);
+
+    setMessages([...messages, userMessage]);
     setMessageInput("");
+
+    try {
+      const accessToken = state.user.stsTokenManager.accessToken;
+      const assistantMessage = await InterviewsAPI.conductInterview(
+        {
+          interviewId: state.interviewQuestion.id,
+          msg: userMessage.content,
+          progress: editorValue,
+        },
+        accessToken
+      );
+
+      setMessages([
+        ...messages,
+        userMessage,
+        { role: "model", content: assistantMessage.responseText },
+      ]);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   };
 
   const toggleRecording = () => {
@@ -55,11 +101,7 @@ const InterviewChat = () => {
   };
 
   return (
-    <Box
-      sx={{
-        height: "80vh",
-      }}
-    >
+    <Box sx={{ height: "80vh" }}>
       <MainContainer>
         <ChatContainer>
           <ConversationHeader>
@@ -78,30 +120,41 @@ const InterviewChat = () => {
               (isRecording && <TypingIndicator content="Recording..." />) ||
               (isTyping && (
                 <TypingIndicator
-                  content={`
-                ${state.user.displayName} is typing...
-              `}
+                  content={`${state.user.displayName} is typing...`}
                 />
               ))
             }
           >
             <MessageSeparator content="Interview In Progress" />
-            {messages.map((msg, index) => (
-              <Message
-                key={index}
-                model={{
-                  message: msg.message,
-                  sentTime: msg.sentTime,
-                  sender: msg.sender,
-                  direction: msg.direction,
-                  position: msg.position,
+            {isLoading ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
                 }}
               >
-                {msg.direction === "incoming" && (
-                  <Avatar src={""} name={msg.sender} />
-                )}
-              </Message>
-            ))}
+                <CircularProgress />
+              </Box>
+            ) : (
+              messages.map((msg, index) => (
+                <Message
+                  key={index}
+                  model={{
+                    message: msg.content,
+                    sentTime: "just now",
+                    sender: msg.role,
+                    direction: msg.role === "user" ? "outgoing" : "incoming",
+                    position: "single",
+                  }}
+                >
+                  {msg.role === "assistant" && (
+                    <Avatar src={""} name="Assistant" />
+                  )}
+                </Message>
+              ))
+            )}
           </MessageList>
           <MessageInput
             placeholder="Type a message..."
@@ -120,6 +173,10 @@ const InterviewChat = () => {
       </MainContainer>
     </Box>
   );
+};
+
+InterviewChat.propTypes = {
+  editorValue: PropTypes.string,
 };
 
 export default InterviewChat;
