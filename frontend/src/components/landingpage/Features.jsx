@@ -1,35 +1,49 @@
 import { Typography, Box, Container, Paper, Grid, Button } from "@mui/material";
 import { useContext } from "react";
 import { BoardContext } from "../../contexts/BoardContext";
+import {
+  RoadMap,
+  Internship,
+  InterviewPrep,
+  SkillDev,
+  NoteTaking,
+  Resources,
+} from "../../assets";
 
 const eduCompanioFeatures = [
   {
     title: "Personalized Career Roadmap",
+    image: RoadMap,
     description:
       "The EduCompanio Assistant, our AI-powered virtual mentor, provides personalized guidance and recommendations to help you navigate your academic and professional journey.",
   },
   {
     title: "Internship and Job Tracking",
+    image: Internship,
     description:
       "Stay on top of your internship and job applications with our dedicated tracking tools, and explore a community-driven job board for exclusive student-shared opportunities.",
   },
   {
     title: "Interview Preparation",
+    image: InterviewPrep,
     description:
       "Enhance your interview skills through peer-to-peer mock interviews and AI-powered virtual interviews, designed to provide realistic practice and personalized feedback.",
   },
   {
     title: "Skill Development and Projects",
+    image: SkillDev,
     description:
       "Track your personal projects and participate in community-driven open-source projects to build real-world skills and collaborate with other students.",
   },
   {
     title: "Centralized Note-Taking",
+    image: NoteTaking,
     description:
       "Organize your academic and career-related notes in one place, ensuring you have quick access to important information when you need it.",
   },
   {
     title: "Curated Resources and Community",
+    image: Resources,
     description:
       "Explore a wide range of resources shared by students, covering topics like organization, skills, health, and finance, and engage with your peers in dedicated discussion spaces.",
   },
@@ -61,7 +75,6 @@ const Features = () => {
       >
         <Box
           sx={{
-            pl: { xs: 0, sm: 4 },
             display: "flex",
             flexDirection: "column",
             alignItems: "start",
@@ -72,14 +85,13 @@ const Features = () => {
             sx={{
               borderRadius: "lg",
               bgcolor: "grey.10",
-              px: 3,
-              py: 1,
+              p: 1,
             }}
           >
-            EduCompanio Features
+            What we offer
           </Paper>
           <Typography
-            variant="h2"
+            variant="h3"
             sx={{ fontWeight: "bold", letterSpacing: "tighter" }}
           >
             Streamlining Your Academic and Professional Journey
@@ -110,12 +122,18 @@ const Features = () => {
         >
           {eduCompanioFeatures.map((feature, index) => (
             <Grid item xs={12} sm key={index}>
+              <img src={feature.image} alt="a laptop" />
               <Box
                 sx={{
                   gap: 1,
+                  backgroundColor: "#f1f1f1",
+                  px: 2.5,
+                  py: 0.8,
+                  border: "1px solid #f1f1f1",
+                  borderRadius: "0 0 10px 10px",
                 }}
               >
-                <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+                <Typography variant="h4" sx={{ fontWeight: "bold" }}>
                   {feature.title}
                 </Typography>
                 <Typography

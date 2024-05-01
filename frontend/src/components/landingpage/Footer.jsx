@@ -6,7 +6,7 @@ function Footer() {
   return (
     <Box
       component="footer"
-      bgcolor="grey.100"
+      bgcolor="grey.200"
       sx={{
         py: { xs: 4, md: 6, lg: 8 },
       }}

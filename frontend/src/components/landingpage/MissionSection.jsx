@@ -52,12 +52,9 @@ const MissionSection = () => {
           }}
         >
           <Paper
-            component="div"
+            component="p"
             sx={{
-              borderRadius: "lg",
-              bgcolor: "grey.10",
-              px: 3,
-              py: 1,
+              p: 1,
               width: { xs: "fit-content", md: "max-content" },
             }}
           >
@@ -67,7 +64,7 @@ const MissionSection = () => {
             {missionStatements.map((mission) => (
               <ListItem key={mission.title}>
                 <Box sx={{ gap: 1 }}>
-                  <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+                  <Typography variant="h4" sx={{ fontWeight: "bold" }}>
                     {mission.title}
                   </Typography>
                   <Typography
