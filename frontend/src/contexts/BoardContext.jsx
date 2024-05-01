@@ -108,7 +108,6 @@ export const BoardContextProvider = ({ children }) => {
 
           // Statuses
           const jobStatuses = await StatusesAPI.getAllJobStatuses();
-          console.log(jobStatuses);
           const noteStatuses = await StatusesAPI.getAllNoteStatuses();
           const projectStatuses = await StatusesAPI.getAllProjectStatuses();
           const statuses = {

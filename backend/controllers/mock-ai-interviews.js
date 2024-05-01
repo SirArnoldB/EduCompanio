@@ -9,8 +9,6 @@ const createMockAIInterview = async (req, res) => {
     try {
         const { interviewType, company, level } = req.body;
 
-        console.log(req.user)
-
         const question = await generateInterviewQuestion(interviewType.toLowerCase(), company, level);
         const chatHistory = {
             conversation: [

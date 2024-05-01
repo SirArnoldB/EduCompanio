@@ -20,7 +20,6 @@ import PropTypes from "prop-types";
 
 // eslint-disable-next-line no-unused-vars
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
-import { set } from "react-hook-form";
 
 const InterviewChat = ({ editorValue }) => {
   const [state] = useContext(BoardContext);
