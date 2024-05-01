@@ -6,7 +6,7 @@ async function generateInterviewQuestion(interviewType, company, level) {
     try {
         const model = googleGenerativeAI.getGenerativeModel({
             model: process.env.GEMINI_PRO_LATEST,
-            systemInstructions: getSystemInstructionsByInterviewType(interviewType),
+            systemInstruction: getSystemInstructionsByInterviewType(interviewType),
         });
 
         const prompt = getPromptByInterviewType(interviewType, company, level);

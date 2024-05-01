@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 
 // eslint-disable-next-line no-unused-vars
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import { set } from "react-hook-form";
 
 const InterviewChat = ({ editorValue }) => {
   const [state] = useContext(BoardContext);
@@ -28,6 +29,7 @@ const InterviewChat = ({ editorValue }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAssistantTyping, setIsAssistantTyping] = useState(false);
 
   useEffect(() => {
     const fetchChatHistory = async () => {
@@ -67,6 +69,8 @@ const InterviewChat = ({ editorValue }) => {
   const sendMessage = async () => {
     if (messageInput.trim() === "") return;
 
+    setIsAssistantTyping(true);
+
     const userMessage = {
       role: "user",
       content: messageInput,
@@ -91,8 +95,11 @@ const InterviewChat = ({ editorValue }) => {
         userMessage,
         { role: "model", content: assistantMessage.responseText },
       ]);
+
+      setIsAssistantTyping(false);
     } catch (error) {
       console.error("Error sending message:", error);
+      setIsAssistantTyping(false);
     }
   };
 
@@ -122,6 +129,9 @@ const InterviewChat = ({ editorValue }) => {
                 <TypingIndicator
                   content={`${state.user.displayName} is typing...`}
                 />
+              )) ||
+              (isAssistantTyping && (
+                <TypingIndicator content="Assistant is typing..." />
               ))
             }
           >
