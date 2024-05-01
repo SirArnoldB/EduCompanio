@@ -1,6 +1,7 @@
 import Editor from "@monaco-editor/react";
 import { Box } from "@mui/material";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const themes = [
   {
@@ -112,10 +113,15 @@ const languages = [
   },
 ];
 
-const MonacoEditor = () => {
+const MonacoEditor = ({ setEditorValue }) => {
   const [theme, setTheme] = useState("vs-dark");
   const [language, setLanguage] = useState("javascript");
   const [code, setCode] = useState(languages[0].defaultCode);
+
+  const handleEditorChange = (value) => {
+    setCode(value);
+    setEditorValue(value);
+  };
 
   const handleThemeChange = (event) => {
     setTheme(event.target.value);
@@ -152,9 +158,19 @@ const MonacoEditor = () => {
           ))}
         </select>
       </Box>
-      <Editor height="90vh" language={language} theme={theme} value={code} />
+      <Editor
+        height="85vh"
+        language={language}
+        theme={theme}
+        value={code}
+        onChange={handleEditorChange}
+      />
     </>
   );
+};
+
+MonacoEditor.propTypes = {
+  setEditorValue: PropTypes.func.isRequired,
 };
 
 export default MonacoEditor;

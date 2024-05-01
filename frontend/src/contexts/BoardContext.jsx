@@ -40,6 +40,7 @@ const initialState = {
     finance: [],
     health: [],
   },
+  interviewQuestion: {},
   loading: false,
   error: null,
   LOAD_USER_DATA: false,
@@ -59,6 +60,9 @@ export const BoardContextProvider = ({ children }) => {
     const statuses = JSON.parse(sessionStorage.getItem("statuses"));
     const categories = JSON.parse(sessionStorage.getItem("categories"));
     const tags = JSON.parse(sessionStorage.getItem("tags"));
+    const interviewQuestion = JSON.parse(
+      sessionStorage.getItem("interviewQuestion")
+    );
 
     if (counts) {
       dispatch({ type: "SET_COUNTS", payload: counts });
@@ -74,6 +78,12 @@ export const BoardContextProvider = ({ children }) => {
     }
     if (tags) {
       dispatch({ type: "SET_TAGS", payload: tags });
+    }
+    if (interviewQuestion) {
+      dispatch({
+        type: "SET_MOCK_AI_INTERVIEW_QUESTION",
+        payload: interviewQuestion,
+      });
     }
   }, []);
 
@@ -98,7 +108,6 @@ export const BoardContextProvider = ({ children }) => {
 
           // Statuses
           const jobStatuses = await StatusesAPI.getAllJobStatuses();
-          console.log(jobStatuses);
           const noteStatuses = await StatusesAPI.getAllNoteStatuses();
           const projectStatuses = await StatusesAPI.getAllProjectStatuses();
           const statuses = {

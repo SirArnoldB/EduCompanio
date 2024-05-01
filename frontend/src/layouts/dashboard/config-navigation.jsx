@@ -47,8 +47,8 @@ const navConfig = [
     icon: icon(WorkspacesRoundedIcon),
   },
   {
-    title: "Interview Prep",
-    path: "/interview-prep",
+    title: "Pitch",
+    path: "/pitch",
     icon: icon(AutoAwesomeIcon),
   },
 ];

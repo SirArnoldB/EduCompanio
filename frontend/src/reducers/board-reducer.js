@@ -19,6 +19,7 @@ import {
     SetLoading,
     SetError,
     SetTags,
+    SetMockAIInterview
 } from "../actions/actions";
 
 const BoardReducer = (state, action) => {
@@ -63,6 +64,8 @@ const BoardReducer = (state, action) => {
             return SetLoading(state, action.payload);
         case "SET_ERROR":
             return SetError(state, action.payload);
+        case "SET_MOCK_AI_INTERVIEW_QUESTION":
+            return SetMockAIInterview(state, action.payload);
         default:
             return state;
     }
