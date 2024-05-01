@@ -19,7 +19,7 @@ const Hero = () => {
       sx={{
         width: "100%",
         height: "100vh",
-        pt: { xs: 12, md: 24, lg: 32 },
+        pt: { xs: 12, md: 12, lg: 12 },
         borderY: 1,
       }}
     >
