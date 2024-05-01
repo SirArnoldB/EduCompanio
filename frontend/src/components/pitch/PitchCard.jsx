@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardHeader } from "@mui/material";
 import PropTypes from "prop-types";
 
-const JobInterviewsCard = ({ title, subtitle, callToAction, openModal }) => {
+const PitchCard = ({ title, subtitle, callToAction, openModal }) => {
   return (
     <Card
       variant="outlined"
@@ -28,11 +28,11 @@ const JobInterviewsCard = ({ title, subtitle, callToAction, openModal }) => {
   );
 };
 
-JobInterviewsCard.propTypes = {
+PitchCard.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   callToAction: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
 };
 
-export default JobInterviewsCard;
+export default PitchCard;

@@ -1,6 +1,8 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
 import JobInterviews from "./JobInterviews";
+import IdeaPitches from "./IdeaPitches";
+import PersonalBranding from "./PersonalBranding";
 
 const pitchTabs = [
   {
@@ -10,12 +12,12 @@ const pitchTabs = [
   },
   {
     label: "Business & Idea Pitches",
-    content: <Typography>Business & Idea Pitches</Typography>,
+    content: <IdeaPitches />,
     icon: "",
   },
   {
     label: "Personal Branding",
-    content: <Typography>Personal Branding</Typography>,
+    content: <PersonalBranding />,
     icon: "",
   },
 ];

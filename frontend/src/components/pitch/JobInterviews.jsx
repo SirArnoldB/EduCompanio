@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Grid } from "@mui/material";
-import JobInterviewsCard from "./JobInterviewsCard";
+import PitchCard from "./PitchCard";
 import PastPracticeSessions from "./PastPracticeSessions";
 import ScheduleMockAIInterviewModal from "../modals/ScheduleMockAIInterviewModal";
 import ScheduleMockInterviewModal from "../modals/ScheduleMockInterviewModal";
@@ -30,7 +30,7 @@ const JobInterviews = () => {
     <>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
-          <JobInterviewsCard
+          <PitchCard
             title="Peer & Professional Mock Interviews"
             subtitle="Practice your interview skills with peers or professionals."
             callToAction="Schedule a Practice Session"
@@ -38,7 +38,7 @@ const JobInterviews = () => {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <JobInterviewsCard
+          <PitchCard
             title="Mock AI Interviews"
             subtitle="Experience simulated interviews powered by AI technology."
             callToAction="Start a Mock AI Interview"
