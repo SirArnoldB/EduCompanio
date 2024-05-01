@@ -1,7 +1,9 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import TabsSection from "../tabs/TabsSection";
 import Organizations from "./Organizations";
 import Skills from "./Skills";
+import HealthResources from "./Health";
+import FinanceResources from "./Finance";
 
 const resourcesTabs = [
   {
@@ -16,12 +18,12 @@ const resourcesTabs = [
   },
   {
     label: "Health",
-    content: <Typography variant="h6">Health</Typography>,
+    content: <HealthResources />,
     icon: "",
   },
   {
     label: "Finance",
-    content: <Typography variant="h6">Finance</Typography>,
+    content: <FinanceResources />,
     icon: "",
   },
 ];

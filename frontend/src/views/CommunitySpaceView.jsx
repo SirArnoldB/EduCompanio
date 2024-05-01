@@ -6,24 +6,16 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import LoadingSpinner from "../components/common/LoadingSpinner";
 import PropTypes from "prop-types";
 import SpacePageHeaderCard from "../components/space-page/SpacePageHeaderCard";
 import Posts from "../components/posts/Posts";
-import useFetch from "../hooks/useFetch";
 
-const CommunitySpaceView = ({ space }) => {
-  const {
-    data: posts,
-    isPending: isLoading,
-    error,
-  } = useFetch(`http://localhost:3001/posts?space=${space.id}`);
-
+const CommunitySpaceView = ({ space, posts }) => {
   return (
     <>
       <Container maxWidth="xl">
         {!space ? (
-          <LoadingSpinner label="your space ..." />
+          <Typography variant="h4">Nothing Here!</Typography>
         ) : (
           <Grid container spacing={3}>
             {/* Space Card Title and Banner */}
@@ -36,12 +28,7 @@ const CommunitySpaceView = ({ space }) => {
 
             {/* Posts Section */}
             <Grid xs={12} md={6} lg={8}>
-              {error && <div>Error: {error.message}</div>}
-              {isLoading ? (
-                <LoadingSpinner label="posts..." />
-              ) : (
-                <Posts posts={posts} />
-              )}
+              {<Posts posts={posts} />}
             </Grid>
 
             {/* Discussion Guidelines and Tags Section */}
@@ -88,6 +75,7 @@ const CommunitySpaceView = ({ space }) => {
 
 CommunitySpaceView.propTypes = {
   space: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
 };
 
 export default CommunitySpaceView;

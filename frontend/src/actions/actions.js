@@ -401,6 +401,14 @@ const SetError = (state, payload) => {
     }
 }
 
+const SetMockAIInterview = (state, payload) => {
+    sessionStorage.setItem("interviewQuestion", JSON.stringify(payload));
+    return {
+        ...state,
+        interviewQuestion: payload,
+    }
+}
+
 
 export {
     LoadUserData,
@@ -423,4 +431,5 @@ export {
     SetLoading,
     SetError,
     SetTags,
+    SetMockAIInterview
 }

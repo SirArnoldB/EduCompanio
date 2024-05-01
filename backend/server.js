@@ -15,6 +15,7 @@ import healthResourcesRouter from './routes/health.js';
 import organizationsRouter from './routes/organizations.js';
 import skillsRouter from './routes/skills.js';
 import tagsRouter from './routes/tags.js';
+import interviewsRouter from './routes/interviews.js';
 
 
 // create express app
@@ -49,6 +50,7 @@ app.use('/api/finance-resources', financeResourcesRouter);
 app.use('/api/health-resources', healthResourcesRouter);
 app.use('/api/organizations', organizationsRouter);
 app.use('/api/skills', skillsRouter);
+app.use('/api/interviews', interviewsRouter);
 
 // set up the error handler
 app.use((req, res, next) => {

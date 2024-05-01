@@ -1,28 +1,28 @@
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import SearchBar from "../common/SearchBar";
-import SkillsResources from "../../data/skills-resources.json";
+import HealthResourcesData from "../../data/health-resources.json";
 import ResourcesCard from "./ResourcesCard";
 import FilterButtonGroup from "../common/FilterButtonGroup";
-import { Icons8Skills } from "../../assets/icons8";
+import { Icons8Calm } from "../../assets/icons8";
 
-const Skills = () => {
-  const [skills, setSkills] = useState(SkillsResources);
+const HealthResources = () => {
+  const [healthData, setHealthData] = useState(HealthResourcesData);
   const [searchInput, setSearchInput] = useState("");
   const [currentFilter, setCurrentFilter] = useState("All");
 
   useEffect(() => {
-    const filteredSkills = SkillsResources.filter((skill) => {
+    const filteredHealthData = HealthResourcesData.filter((resource) => {
       if (currentFilter === "All") {
-        return skill;
+        return resource;
       } else {
-        return skill.tags.includes(currentFilter.toLowerCase());
+        return resource.tags.includes(currentFilter.toLowerCase());
       }
     });
 
-    setSkills(
-      filteredSkills.filter((skill) =>
-        skill.title.toLowerCase().includes(searchInput.toLowerCase())
+    setHealthData(
+      filteredHealthData.filter((resource) =>
+        resource.title.toLowerCase().includes(searchInput.toLowerCase())
       )
     );
   }, [searchInput, currentFilter]);
@@ -40,16 +40,16 @@ const Skills = () => {
       <SearchBar
         onSearch={handleSearch}
         setAddModalOpen={handleAdd}
-        boardType="skill resource"
+        boardType="health resource"
       />
       <FilterButtonGroup
         filters={[
           { value: "All", active: true },
-          { value: "Beginner", active: false },
-          { value: "Intermediate", active: false },
-          { value: "Expert", active: false },
-          { value: "Interview Prep", active: false },
-          { value: "Career Roadmap", active: false },
+          { value: "Mental Health", active: false },
+          { value: "Physical Health", active: false },
+          { value: "Wellness", active: false },
+          { value: "Education", active: false },
+          { value: "Support", active: false },
         ]}
         setCurrentFilter={setCurrentFilter}
       />
@@ -61,11 +61,11 @@ const Skills = () => {
           mt: 2,
         }}
       >
-        {skills.map((resource, index) => (
+        {healthData.map((resource, index) => (
           <ResourcesCard
             key={index}
             resource={resource}
-            resourceIcon={Icons8Skills}
+            resourceIcon={Icons8Calm}
           />
         ))}
       </Box>
@@ -73,4 +73,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default HealthResources;

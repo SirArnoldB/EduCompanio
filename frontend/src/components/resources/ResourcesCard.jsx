@@ -10,7 +10,6 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { Icons8Skills } from "../../assets/icons8";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -19,7 +18,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import ResourcesModal from "../modals/ResourcesModal";
 
-const SkillsCard = ({ skill }) => {
+const ResourcesCard = ({ resource, resourceIcon }) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -43,19 +42,19 @@ const SkillsCard = ({ skill }) => {
     >
       <CardHeader
         sx={{}}
-        avatar={<Avatar src={Icons8Skills} aria-label="skill" />}
+        avatar={<Avatar src={resourceIcon} aria-label="resource" />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={skill.title}
+        title={resource.title}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {skill.description.length > 100
-            ? `${skill.description.slice(0, 100)}...`
-            : skill.description}
+          {resource.description.length > 100
+            ? `${resource.description.slice(0, 100)}...`
+            : resource.description}
         </Typography>
         <Box
           sx={{
@@ -65,7 +64,7 @@ const SkillsCard = ({ skill }) => {
             mt: 2,
           }}
         >
-          {skill.tags.map((tag, index) => (
+          {resource.tags.map((tag, index) => (
             <Chip key={index} label={tag} variant="outlined" size="small" />
           ))}
         </Box>
@@ -79,7 +78,7 @@ const SkillsCard = ({ skill }) => {
         }}
       >
         <Button
-          href={skill.url}
+          href={resource.url}
           target="_blank"
           variant="outlined"
           color="primary"
@@ -90,10 +89,10 @@ const SkillsCard = ({ skill }) => {
         <Button variant="outlined" color="primary" onClick={handleOpen}>
           Details
         </Button>
-        <ResourcesModal 
-          open ={open}
-          handleClose= {handleClose}
-          resourceDetails = {skill}
+        <ResourcesModal
+          open={open}
+          handleClose={handleClose}
+          resourceDetails={resource}
         />
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -106,8 +105,9 @@ const SkillsCard = ({ skill }) => {
   );
 };
 
-SkillsCard.propTypes = {
-  skill: PropTypes.object.isRequired,
+ResourcesCard.propTypes = {
+  resource: PropTypes.object.isRequired,
+  resourceIcon: PropTypes.string.isRequired,
 };
 
-export default SkillsCard;
+export default ResourcesCard;

@@ -1,0 +1,362 @@
+[
+    {
+        "title": "Mental Health America",
+        "description": "A nonprofit organization dedicated to addressing the needs of those living with mental illness and promoting mental health.",
+        "url": "https://www.mhanational.org/",
+        "tags": [
+            "mental health",
+            "counseling",
+            "support",
+            "education",
+            "wellness"
+        ]
+    },
+    {
+        "title": "Calm",
+        "description": "A mindfulness and meditation app that offers guided meditations, sleep stories, and other tools to reduce stress and improve mental well-being.",
+        "url": "https://www.calm.com/",
+        "tags": [
+            "mental health",
+            "mindfulness",
+            "meditation",
+            "stress reduction",
+            "sleep"
+        ]
+    },
+    {
+        "title": "Headspace",
+        "description": "A meditation and mindfulness app that provides guided meditations, mindfulness exercises, and sleep content to help users reduce stress and improve overall well-being.",
+        "url": "https://www.headspace.com/",
+        "tags": [
+            "mental health",
+            "mindfulness",
+            "meditation",
+            "stress reduction",
+            "sleep"
+        ]
+    },
+    {
+        "title": "Student Health 101",
+        "description": "An online magazine that provides college students with information and resources on a variety of health and wellness topics, including physical health, mental health, and sexual health.",
+        "url": "https://www.studenthealth101.com/",
+        "tags": [
+            "physical health",
+            "mental health",
+            "sexual health",
+            "wellness",
+            "education"
+        ]
+    },
+    {
+        "title": "Active Minds",
+        "description": "A nonprofit organization that empowers students to speak openly about mental health in order to educate others and encourage help-seeking.",
+        "url": "https://www.activeminds.org/",
+        "tags": [
+            "mental health",
+            "education",
+            "advocacy",
+            "support",
+            "community"
+        ]
+    },
+    {
+        "title": "Planned Parenthood",
+        "description": "A nonprofit organization that provides sexual and reproductive health care, education, and advocacy, including services for college students.",
+        "url": "https://www.plannedparenthood.org/",
+        "tags": [
+            "sexual health",
+            "reproductive health",
+            "education",
+            "services",
+            "advocacy"
+        ]
+    },
+    {
+        "title": "Campus Recreation",
+        "description": "Provides information and resources for college students to access campus recreation facilities, intramural sports, and fitness classes to promote physical activity and overall wellness.",
+        "url": "https://www.nirsa.org/",
+        "tags": [
+            "physical health",
+            "fitness",
+            "recreation",
+            "sports",
+            "wellness"
+        ]
+    },
+    {
+        "title": "Nutrition.gov",
+        "description": "A website that provides information and resources on nutrition, healthy eating, and food safety, with specific content for college students.",
+        "url": "https://www.nutrition.gov/",
+        "tags": [
+            "nutrition",
+            "healthy eating",
+            "food safety",
+            "wellness",
+            "education"
+        ]
+    },
+    {
+        "title": "College Health and Wellness",
+        "description": "A comprehensive resource that covers a wide range of health and wellness topics for college students, including physical health, mental health, sexual health, and substance abuse.",
+        "url": "https://www.collegehealth.com/",
+        "tags": [
+            "physical health",
+            "mental health",
+            "sexual health",
+            "substance abuse",
+            "wellness"
+        ]
+    },
+    {
+        "title": "National Suicide Prevention Lifeline",
+        "description": "A free, 24-hour hotline available to anyone in suicidal crisis or emotional distress, including college students.",
+        "url": "https://suicidepreventionlifeline.org/",
+        "tags": [
+            "mental health",
+            "crisis support",
+            "suicide prevention",
+            "counseling",
+            "emergency"
+        ]
+    },
+    {
+        "title": "The Trevor Project",
+        "description": "A nonprofit organization that provides crisis intervention and suicide prevention services to LGBTQ+ young people, including college students.",
+        "url": "https://www.thetrevorproject.org/",
+        "tags": [
+            "mental health",
+            "LGBTQ+",
+            "crisis support",
+            "suicide prevention",
+            "counseling"
+        ]
+    },
+    {
+        "title": "CDC - College Health and Safety",
+        "description": "The Centers for Disease Control and Prevention's website with information and resources on a variety of health and safety topics for college students.",
+        "url": "https://www.cdc.gov/features/college-health-safety/index.html",
+        "tags": [
+            "physical health",
+            "mental health",
+            "safety",
+            "disease prevention",
+            "education"
+        ]
+    },
+    {
+        "title": "Nourish",
+        "description": "A wellness app that provides college students with personalized nutrition and fitness plans, as well as mindfulness and mental health support.",
+        "url": "https://www.nourishapp.com/",
+        "tags": [
+            "nutrition",
+            "fitness",
+            "mental health",
+            "wellness",
+            "mobile app"
+        ]
+    },
+    {
+        "title": "College Cooking",
+        "description": "A website and cookbook that provides budget-friendly, easy-to-make recipes and cooking tips for college students to promote healthy eating.",
+        "url": "https://www.collegecooking.com/",
+        "tags": [
+            "nutrition",
+            "cooking",
+            "budget-friendly",
+            "recipes",
+            "education"
+        ]
+    },
+    {
+        "title": "Sanvello",
+        "description": "A mental health app that offers evidence-based coping tools, community support, and personalized care plans for college students struggling with anxiety, depression, and other mental health issues.",
+        "url": "https://www.sanvello.com/",
+        "tags": [
+            "mental health",
+            "anxiety",
+            "depression",
+            "coping skills",
+            "mobile app"
+        ]
+    },
+    {
+        "title": "ACHA - American College Health Association",
+        "description": "A professional association dedicated to advancing the health of college students and campus communities through advocacy, education, and research.",
+        "url": "https://www.acha.org/",
+        "tags": [
+            "physical health",
+            "mental health",
+            "campus health",
+            "education",
+            "research"
+        ]
+    },
+    {
+        "title": "American Red Cross",
+        "description": "Provides first aid, CPR, and other health and safety training and resources for college students, including emergency preparedness.",
+        "url": "https://www.redcross.org/",
+        "tags": [
+            "physical health",
+            "safety",
+            "emergency preparedness",
+            "training",
+            "education"
+        ]
+    },
+    {
+        "title": "Healthy Minds Network",
+        "description": "A research network and online resource center that focuses on improving the mental health and well-being of college students.",
+        "url": "https://healthymindsnetwork.org/",
+        "tags": [
+            "mental health",
+            "research",
+            "education",
+            "support",
+            "wellness"
+        ]
+    },
+    {
+        "title": "Omada Health",
+        "description": "A digital health program that helps college students and young adults develop healthy habits, manage chronic conditions, and improve overall well-being.",
+        "url": "https://www.omadahealth.com/",
+        "tags": [
+            "physical health",
+            "chronic conditions",
+            "lifestyle management",
+            "digital health",
+            "wellness"
+        ]
+    },
+    {
+        "title": "Healthy Eating on Campus",
+        "description": "A comprehensive guide from the Academy of Nutrition and Dietetics with tips and resources for college students to maintain a balanced, nutritious diet.",
+        "url": "https://www.eatright.org/health/lifestyle/college-nutrition",
+        "tags": [
+            "nutrition",
+            "healthy eating",
+            "campus life",
+            "education",
+            "wellness"
+        ]
+    },
+    {
+        "title": "RAINN National Sexual Assault Hotline",
+        "description": "A free, confidential hotline that provides 24/7 support and resources for survivors of sexual assault, including college students.",
+        "url": "https://hotline.rainn.org/online",
+        "tags": [
+            "sexual health",
+            "assault prevention",
+            "crisis support",
+            "counseling",
+            "advocacy"
+        ]
+    },
+    {
+        "title": "Movember",
+        "description": "A global men's health movement that focuses on raising awareness and funding for issues like prostate cancer, testicular cancer, mental health, and suicide prevention, particularly among college-aged men.",
+        "url": "https://us.movember.com/",
+        "tags": [
+            "men's health",
+            "mental health",
+            "cancer prevention",
+            "suicide prevention",
+            "awareness"
+        ]
+    },
+    {
+        "title": "National Eating Disorders Association",
+        "description": "A nonprofit organization that provides information, resources, and support for individuals and families affected by eating disorders, including college students.",
+        "url": "https://www.nationaleatingdisorders.org/",
+        "tags": [
+            "mental health",
+            "eating disorders",
+            "support",
+            "education",
+            "advocacy"
+        ]
+    },
+    {
+        "title": "ACHA-NCHA - National College Health Assessment",
+        "description": "A national survey administered by the American College Health Association that collects data on the health, behaviors, and perceptions of college students.",
+        "url": "https://www.acha.org/NCHA",
+        "tags": [
+            "research",
+            "data",
+            "campus health",
+            "trends",
+            "education"
+        ]
+    },
+    {
+        "title": "Student Health 101 Magazine",
+        "description": "A digital magazine that covers a wide range of health and wellness topics for college students, including physical health, mental health, sexual health, and substance abuse.",
+        "url": "https://www.studenthealth101.com/",
+        "tags": [
+            "physical health",
+            "mental health",
+            "sexual health",
+            "substance abuse",
+            "education"
+        ]
+    },
+    {
+        "title": "Fit University",
+        "description": "A website and online community that provides college students with fitness and nutrition resources, including workout plans, healthy recipes, and tips for staying active on campus.",
+        "url": "https://www.fituniversity.com/",
+        "tags": [
+            "physical health",
+            "fitness",
+            "nutrition",
+            "campus life",
+            "community"
+        ]
+    },
+    {
+        "title": "Therapy for Black Girls",
+        "description": "An online space dedicated to encouraging the mental wellness of Black girls and women, including college students, through content, resources, and a therapist directory.",
+        "url": "https://therapyforblackgirls.com/",
+        "tags": [
+            "mental health",
+            "Black women",
+            "counseling",
+            "support",
+            "community"
+        ]
+    },
+    {
+        "title": "Body Positive",
+        "description": "A nonprofit organization that promotes body acceptance, self-love, and healthy body image among college students and young adults.",
+        "url": "https://bodypositive.com/",
+        "tags": [
+            "mental health",
+            "body image",
+            "self-esteem",
+            "advocacy",
+            "education"
+        ]
+    },
+    {
+        "title": "Wellness Wheel",
+        "description": "A comprehensive framework for holistic health and wellness, with resources and tools for college students to assess and improve their overall well-being.",
+        "url": "https://www.uccs.edu/recwellness/wellness-wheel",
+        "tags": [
+            "physical health",
+            "mental health",
+            "social health",
+            "spiritual health",
+            "wellness"
+        ]
+    },
+    {
+        "title": "Healthy Minds Study",
+        "description": "An annual survey that examines mental health, service utilization, and related issues among undergraduate and graduate students in the United States.",
+        "url": "https://healthymindsnetwork.org/hms/",
+        "tags": [
+            "mental health",
+            "research",
+            "data",
+            "higher education",
+            "trends"
+        ]
+    }
+]
