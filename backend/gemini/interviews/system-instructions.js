@@ -43,8 +43,15 @@ function getSystemInstructionsByInterviewType(interviewType, question, progress)
             throw new Error(`Unsupported interview type: ${interviewType}`);
     }
 
-    const systemInstructions = [...baseInstructions, ...additionalInstructions].join("\n");
-    return systemInstructions;
+    const allInstructions = [...baseInstructions, ...additionalInstructions];
+    const parts = allInstructions.map((instruction) => ({ text: instruction }));
+
+    const content = {
+        role: "model",
+        parts: parts,
+    };
+
+    return content;
 }
 
 export { getSystemInstructionsByInterviewType };
