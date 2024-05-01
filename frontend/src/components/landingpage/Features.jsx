@@ -1,7 +1,14 @@
 import { Typography, Box, Container, Paper, Grid, Button } from "@mui/material";
 import { useContext } from "react";
 import { BoardContext } from "../../contexts/BoardContext";
-import { RoadMap, Internship, InterviewPrep, SkillDev, NoteTaking, Resources } from "../../assets";
+import {
+  RoadMap,
+  Internship,
+  InterviewPrep,
+  SkillDev,
+  NoteTaking,
+  Resources,
+} from "../../assets";
 
 const eduCompanioFeatures = [
   {
@@ -73,16 +80,16 @@ const Features = () => {
             alignItems: "start",
           }}
         >
-          <Typography
+          <Paper
             component="div"
             sx={{
               borderRadius: "lg",
               bgcolor: "grey.10",
-              py: 1,
+              p: 1,
             }}
           >
             What we offer
-          </Typography>
+          </Paper>
           <Typography
             variant="h3"
             sx={{ fontWeight: "bold", letterSpacing: "tighter" }}
@@ -115,7 +122,7 @@ const Features = () => {
         >
           {eduCompanioFeatures.map((feature, index) => (
             <Grid item xs={12} sm key={index}>
-              <img src= {feature.image} alt="a laptop"  />
+              <img src={feature.image} alt="a laptop" />
               <Box
                 sx={{
                   gap: 1,
@@ -123,7 +130,7 @@ const Features = () => {
                   px: 2.5,
                   py: 0.8,
                   border: "1px solid #f1f1f1",
-                  borderRadius: "0 0 10px 10px"
+                  borderRadius: "0 0 10px 10px",
                 }}
               >
                 <Typography variant="h4" sx={{ fontWeight: "bold" }}>

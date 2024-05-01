@@ -51,15 +51,15 @@ const MissionSection = () => {
             spacing: 4,
           }}
         >
-          <Typography
+          <Paper
             component="p"
             sx={{
-              px: 3,
+              p: 1,
               width: { xs: "fit-content", md: "max-content" },
             }}
           >
             Our Mission
-          </Typography>
+          </Paper>
           <List sx={{ gap: 6, display: "grid" }}>
             {missionStatements.map((mission) => (
               <ListItem key={mission.title}>
