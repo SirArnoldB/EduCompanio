@@ -1,57 +1,53 @@
 # EduCompanio
 
-Designed and developed by: Arnold Bhebhe and John Adeyemo
+## Description
 
-## About
+EduCompanio is a comprehensive platform designed to help college students navigate their academic and professional journeys. Motivated by personal experiences and the challenges faced by our peers, we built EduCompanio to provide a one-stop solution for students to organize, plan, and build their careers effectively. The platform offers features such as note organization, job and project tracking, access to resources, and AI-powered interview and pitch preparation tools.
 
-### Description and Purpose
+## Table of Contents
 
-EduCompanio is an all-in-one platform designed to assist students in organizing, planning, and building their careers. It offers a comprehensive suite of features that cater to various aspects of a student's academic and professional journey. By integrating functionalities like tracking internships, preparing for interviews, and skill development, EduCompanio aims to streamline the process of career planning and advancement for students.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
 
-### Inspiration
+## Installation
 
-Our inspiration comes from personal experiences as college students and the challenges faced by our peers. We observed that students often find it difficult to navigate through the job application process, establish a clear career path, access resources efficiently, and learn from past experiences. EduCompanio is our solution to these challenges - a one-stop platform for students to organize, plan, and build their careers effectively.
+To set up the EduCompanio development environment, follow these steps:
 
-## Tech Stack
+1. Clone the repository: `git clone https://github.com/SirArnoldB/EduCompanio.git`
+2. Navigate to the project directory: `cd EduCompanio`
+3. Install the dependencies for the backend:
+   - Navigate to the backend directory: `cd backend`
+   - Run `npm install`
+4. Install the dependencies for the frontend:
+   - Navigate to the frontend directory: `cd ../frontend`
+   - Run `npm install`
 
-Frontend:
+## Usage
 
-Backend:
+To start the EduCompanio application:
 
-## Features
+1. Start the backend server:
+   - Navigate to the backend directory: `cd backend`
+   - Run `npm start`
+2. Start the frontend development server:
+   - Navigate to the frontend directory: `cd ../frontend`
+   - Run `npm start`
+3. Open your browser and visit `http://localhost:3000` to access EduCompanio.
 
-### Landing Page ✅
+## Credits
 
-On visiting EduCompanio, every user can access the landing page. The landing page shows the features of the app.
+EduCompanio was developed by a dedicated team of contributors:
 
-### Organizations
+- [Arnold](https://github.com/SirArnoldB)
+- [John](https://github.com/ajohnofficial001)
+- [Thomas](https://github.com/mulxone)
 
-This feature allows students to add and track on-campus and off-campus organizations. Students can add a custom organization if it's not already listed on the platform.
+## License
 
-### Internships ✅
+This project is licensed under the [MIT License](LICENSE).
 
-Provides a customizable Trello-like board for students to track their internship applications, along with their respective statuses. Offers a curated list of websites for discovering internship opportunities.
+## Contributing
 
-### Interview Prep
-
-This feature provides resources that students can use to prepare for interviews. It aims to make it easier for students across all disciplines to find necessary resources quickly and efficiently.
-
-### Projects ✅
-
-Provides a curated list of websites for discovering hackathons and open-source projects, catering to students interested in honing their technical skills.
-
-### Notes ✅
-
-Allows students to journal about their experiences and take notes, ensuring all valuable information is stored in one accessible location.
-
-### Skills Development
-
-Recommends websites and platforms for students to further develop their skills beyond the classroom environment, enhancing their professional profile.
-
-### Career Roadmaps
-
-This feature provides career roadmaps for students. These roadmaps give an overview of the skills and experiences needed to follow a certain career path.
-
-## Installation Instructions
-
-[instructions go here]
+This project is open-source and we welcome contributions from the community. Feel free to submit issues, feature requests, and pull requests to help us improve EduCompanio.
