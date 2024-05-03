@@ -8,7 +8,7 @@ import Internship from './features/internship.jpg'
 import RoadMap from './features/roadmap.jpg'
 import InterviewPrep from './features/interview_prep.jpg'
 import Resources from './features/resources.png'
-import SkillDev from './features/SkillDev.jpg'
+import SkillDev from './features/skillDev.jpg'
 import NoteTaking from './features/note_taking.jpg'
 
 
